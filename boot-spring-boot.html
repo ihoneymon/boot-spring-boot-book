@@ -523,8 +523,6 @@ table.CodeRay td.code>pre{padding:0}
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_서문">서문</a>
-<ul class="sectlevel1">
 <li><a href="#_저자_소개">저자 소개</a></li>
 <li><a href="#_들어가며">들어가며</a>
 <ul class="sectlevel2">
@@ -535,20 +533,18 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_예제">예제</a></li>
 </ul>
 </li>
-</ul>
-</li>
 <li><a href="#_스프링_부트">스프링 부트</a>
 <ul class="sectlevel1">
 <li><a href="#chap01">1. 시작하기</a>
 <ul class="sectlevel2">
-<li><a href="#_스프링_부트_소개">1.1. 스프링 부트 소개</a></li>
-<li><a href="#_시스템_요구사항">1.2. 시스템 요구사항</a></li>
-<li><a href="#_스프링_부트_설치">1.3. 스프링 부트 설치</a>
+<li><a href="#spring-boot-introduction">1.1. 스프링 부트 소개</a></li>
+<li><a href="#syste-requirements">1.2. 시스템 요구사항</a></li>
+<li><a href="#spring-boot-installation">1.3. 스프링 부트 설치</a>
 <ul class="sectlevel3">
 <li><a href="#_설치방법_소개">1.3.1. 설치방법 소개</a></li>
 </ul>
 </li>
-<li><a href="#_스프링_부트_애플리케이션_개발">1.4. 스프링 부트 애플리케이션 개발</a>
+<li><a href="#spring-boot-application-development">1.4. 스프링 부트 애플리케이션 개발</a>
 <ul class="sectlevel3">
 <li><a href="#_프로젝트_생성">1.4.1. 프로젝트 생성</a></li>
 <li><a href="#_의존성_추가">1.4.2. 의존성 추가</a></li>
@@ -562,7 +558,7 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#chap02">2. 스프링 부트 이용</a>
 <ul class="sectlevel2">
-<li><a href="#_빌드_시스템">2.1. 빌드 시스템</a>
+<li><a href="#build-system">2.1. 빌드 시스템</a>
 <ul class="sectlevel3">
 <li><a href="#_의존성_관리">2.1.1. 의존성 관리</a></li>
 <li><a href="#_메이븐">2.1.2. 메이븐</a></li>
@@ -570,27 +566,27 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_스타터">2.1.4. 스타터</a></li>
 </ul>
 </li>
-<li><a href="#_코드_구조">2.2. 코드 구조</a>
+<li><a href="#code-structure">2.2. 코드 구조</a>
 <ul class="sectlevel3">
 <li><a href="#__기본_패키지_사용">2.2.1. "기본" 패키지 사용</a></li>
 <li><a href="#_메인_애플리케이션_클래스_위치">2.2.2. 메인 애플리케이션 클래스 위치</a></li>
 </ul>
 </li>
-<li><a href="#_구성_code_configuration_code_클래스">2.3. 구성(<code>Configuration</code>) 클래스</a>
+<li><a href="#configuration-class">2.3. 구성(<code>Configuration</code>) 클래스</a>
 <ul class="sectlevel3">
 <li><a href="#_추가적인_구성클래스_불러오기">2.3.1. 추가적인 구성클래스 불러오기</a></li>
 <li><a href="#_xml_구성_불러오기">2.3.2. XML 구성 불러오기</a></li>
 </ul>
 </li>
-<li><a href="#_자동구성_code_auto_configuration_code">2.4. 자동구성(<code>Auto-configuration</code>)</a>
+<li><a href="#auto-configuration">2.4. 자동구성(<code>Auto-configuration</code>)</a>
 <ul class="sectlevel3">
 <li><a href="#_자동구성_대체하기">2.4.1. 자동구성 대체하기</a></li>
 <li><a href="#_특정_자동구성_비활성화하기">2.4.2. 특정 자동구성 비활성화하기</a></li>
 </ul>
 </li>
-<li><a href="#_스프링_빈과_의존성_주입">2.5. 스프링 빈과 의존성 주입</a></li>
+<li><a href="#spring-bean-and-dependency-injection">2.5. 스프링 빈과 의존성 주입</a></li>
 <li><a href="#__code_springbootapplication_code_애노테이션_사용하기">2.6. <code>@SpringBootApplication</code> 애노테이션 사용하기</a></li>
-<li><a href="#_애플리케이션_실행하기">2.7. 애플리케이션 실행하기</a>
+<li><a href="#running-spring-boot">2.7. 애플리케이션 실행하기</a>
 <ul class="sectlevel3">
 <li><a href="#_ide_에서_실행하기">2.7.1. IDE 에서 실행하기</a></li>
 <li><a href="#_패키징된_애플리케이션_실행하기">2.7.2. 패키징된 애플리케이션 실행하기</a></li>
@@ -599,7 +595,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_핫_스와핑">2.7.5. 핫 스와핑</a></li>
 </ul>
 </li>
-<li><a href="#_스프링_개발자도구">2.8. 스프링 개발자도구</a>
+<li><a href="#spring-boot-developer-tools">2.8. 스프링 개발자도구</a>
 <ul class="sectlevel3">
 <li><a href="#_기본_속성들">2.8.1. 기본 속성들</a></li>
 <li><a href="#_자동_재시작">2.8.2. 자동 재시작</a></li>
@@ -607,13 +603,13 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_원격_애플리케이션">2.8.4. 원격 애플리케이션</a></li>
 </ul>
 </li>
-<li><a href="#_출시를_위한_애플리케이션_패키징">2.9. 출시를 위한 애플리케이션 패키징</a></li>
+<li><a href="#packaging-application">2.9. 출시를 위한 애플리케이션 패키징</a></li>
 <li><a href="#_이어질_이야기_2">2.10. 이어질 이야기</a></li>
 </ul>
 </li>
 <li><a href="#chap03">3. 스프링 부트 기능</a>
 <ul class="sectlevel2">
-<li><a href="#_스프링애플리케이션_code_springapplication_code">3.1. 스프링애플리케이션(<code>SpringApplication</code>)</a>
+<li><a href="#spring-application">3.1. 스프링애플리케이션(<code>SpringApplication</code>)</a>
 <ul class="sectlevel3">
 <li><a href="#_배너_재정의">3.1.1. 배너 재정의</a></li>
 <li><a href="#__code_springapplication_code_재정의">3.1.2. <code>SpringApplication</code> 재정의</a></li>
@@ -626,7 +622,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_관리자_기능">3.1.9. 관리자 기능</a></li>
 </ul>
 </li>
-<li><a href="#_외부_구성">3.2. 외부 구성</a>
+<li><a href="#externalize-configuration">3.2. 외부 구성</a>
 <ul class="sectlevel3">
 <li><a href="#_랜덤값_구성">3.2.1. 랜덤값 구성</a></li>
 <li><a href="#_명령줄_속성_접근">3.2.2. 명령줄 속성 접근</a></li>
@@ -637,14 +633,14 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_보장형_구성_속성">3.2.7. 보장형 구성 속성</a></li>
 </ul>
 </li>
-<li><a href="#_프로파일">3.3. 프로파일</a>
+<li><a href="#profiles">3.3. 프로파일</a>
 <ul class="sectlevel3">
 <li><a href="#_활성화할_프로파일_추가하기">3.3.1. 활성화할 프로파일 추가하기</a></li>
 <li><a href="#_프로파일을_프로그래밍적으로_설정">3.3.2. 프로파일을 프로그래밍적으로 설정</a></li>
 <li><a href="#_프로파일_정의_구성_파일">3.3.3. 프로파일 정의 구성 파일</a></li>
 </ul>
 </li>
-<li><a href="#_로깅">3.4. 로깅</a>
+<li><a href="#logging">3.4. 로깅</a>
 <ul class="sectlevel3">
 <li><a href="#_로그_형식">3.4.1. 로그 형식</a></li>
 <li><a href="#_콘솔_출력">3.4.2. 콘솔 출력</a></li>
@@ -654,13 +650,13 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_로그백_확장">3.4.6. 로그백 확장</a></li>
 </ul>
 </li>
-<li><a href="#_웹애플리케이션_개발">3.5. 웹애플리케이션 개발</a>
+<li><a href="#web-application-development">3.5. 웹애플리케이션 개발</a>
 <ul class="sectlevel3">
 <li><a href="#__spring_web_mvc_framework">3.5.1. 'Spring Web MVC framework'</a></li>
 <li><a href="#_내장_서블릿_컨테이너_지원">3.5.2. 내장 서블릿 컨테이너 지원</a></li>
 </ul>
 </li>
-<li><a href="#_보안">3.6. 보안</a>
+<li><a href="#security">3.6. 보안</a>
 <ul class="sectlevel3">
 <li><a href="#__code_oauth2_code">3.6.1. <code>OAuth2</code></a></li>
 <li><a href="#_사용자_정보_속_토큰_유형">3.6.2. 사용자 정보 속 토큰 유형</a></li>
@@ -668,7 +664,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_액츄에이터_보안_code_actuator_security_code">3.6.4. 액츄에이터 보안(<code>Actuator Security</code>)</a></li>
 </ul>
 </li>
-<li><a href="#_sql_데이터베이스_이용">3.7. SQL 데이터베이스 이용</a>
+<li><a href="#using-sql-database">3.7. SQL 데이터베이스 이용</a>
 <ul class="sectlevel3">
 <li><a href="#__code_datasource_code_구성">3.7.1. <code>DataSource</code> 구성</a></li>
 <li><a href="#__code_jdbctemplate_code_사용">3.7.2. <code>JdbcTemplate</code> 사용</a></li>
@@ -677,7 +673,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_jooq_사용">3.7.5. jOOQ 사용</a></li>
 </ul>
 </li>
-<li><a href="#_nosql_기술_이용">3.8. NoSQL 기술 이용</a>
+<li><a href="#using-no-sql-database">3.8. NoSQL 기술 이용</a>
 <ul class="sectlevel3">
 <li><a href="#_레디스_redis">3.8.1. 레디스(Redis)</a></li>
 <li><a href="#_몽고db_mongodb">3.8.2. 몽고DB(MongoDB)</a></li>
@@ -685,18 +681,18 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_엘라스틱서치_elasticsearch">3.8.4. 엘라스틱서치(Elasticsearch)</a></li>
 </ul>
 </li>
-<li><a href="#_캐시">3.9. 캐시</a>
+<li><a href="#cache">3.9. 캐시</a>
 <ul class="sectlevel3">
 <li><a href="#_지원하는_캐시_제공자_code_provider_code">3.9.1. 지원하는 캐시 제공자(<code>Provider</code>)</a></li>
 </ul>
 </li>
-<li><a href="#__strong_rest_strong_서비스_호출">3.10. <strong>REST</strong> 서비스 호출</a>
+<li><a href="#call-rest-service">3.10. <strong>REST</strong> 서비스 호출</a>
 <ul class="sectlevel3">
 <li><a href="#__code_resttemplate_code_재정의">3.10.1. <code>RestTemplate</code> 재정의</a></li>
 </ul>
 </li>
-<li><a href="#_스프링_세션">3.11. 스프링  세션</a></li>
-<li><a href="#_테스트">3.12. 테스트</a>
+<li><a href="#spring-session">3.11. 스프링  세션</a></li>
+<li><a href="#test">3.12. 테스트</a>
 <ul class="sectlevel3">
 <li><a href="#_테스트_관련_의존성">3.12.1. 테스트 관련 의존성</a></li>
 <li><a href="#_스프링_애플리케이션_테스트">3.12.2. 스프링 애플리케이션 테스트</a></li>
@@ -704,9 +700,9 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_테스트_유틸리티">3.12.4. 테스트 유틸리티</a></li>
 </ul>
 </li>
-<li><a href="#_웹소켓_websocket">3.13. 웹소켓(WebSocket)</a></li>
-<li><a href="#_웹_서비스_web_service">3.14. 웹 서비스(Web Service)</a></li>
-<li><a href="#_자동구성_직접_생성하기">3.15. 자동구성 직접 생성하기</a>
+<li><a href="#web-socket">3.13. 웹소켓(WebSocket)</a></li>
+<li><a href="#web-services">3.14. 웹 서비스(Web Service)</a></li>
+<li><a href="#create-auto-configuration">3.15. 자동구성 직접 생성하기</a>
 <ul class="sectlevel3">
 <li><a href="#_자동구성_빈_이해하기">3.15.1. 자동구성 빈 이해하기</a></li>
 <li><a href="#_자동구성_대상자_위치">3.15.2. 자동구성 대상자 위치</a></li>
@@ -719,80 +715,86 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#chap04">4. 스프링 부트 액츄애이터: 출시준비기능</a>
 <ul class="sectlevel2">
-<li><a href="#_출시준비_기능_활성화">4.1. 출시준비 기능 활성화</a></li>
-<li><a href="#_종단점_endpoint">4.2. 종단점(Endpoint)</a>
+<li><a href="#enable-production-ready">4.1. 출시준비 기능 활성화</a>
 <ul class="sectlevel3">
-<li><a href="#_종단점_재정의">4.2.1. 종단점 재정의</a></li>
-<li><a href="#_액츄애이터_mvc_종단점_를_위한_하이퍼미디어">4.2.2. 액츄애이터 MVC 종단점 를 위한 하이퍼미디어</a></li>
-<li><a href="#_cors_지원">4.2.3. CORS 지원</a></li>
-<li><a href="#_재정의_종단점_추가하기">4.2.4. 재정의 종단점 추가하기</a></li>
-<li><a href="#_건강정보">4.2.5. 건강정보</a></li>
-<li><a href="#__code_healthindicator_code_를_사용한_보안">4.2.6. <code>HealthIndicator</code> 를 사용한 보안</a></li>
-<li><a href="#_애플리케이션_정보">4.2.7. 애플리케이션 정보</a></li>
+<li><a href="#_종단점_endpoint">4.1.1. 종단점(Endpoint)</a></li>
+<li><a href="#_종단점_재정의">4.1.2. 종단점 재정의</a></li>
+<li><a href="#_액츄애이터_mvc_종단점_를_위한_하이퍼미디어">4.1.3. 액츄애이터 MVC 종단점 를 위한 하이퍼미디어</a></li>
+<li><a href="#_cors_지원">4.1.4. CORS 지원</a></li>
+<li><a href="#_재정의_종단점_추가하기">4.1.5. 재정의 종단점 추가하기</a></li>
+<li><a href="#_건강정보">4.1.6. 건강정보</a></li>
+<li><a href="#__code_healthindicator_code_를_사용한_보안">4.1.7. <code>HealthIndicator</code> 를 사용한 보안</a></li>
+<li><a href="#_애플리케이션_정보">4.1.8. 애플리케이션 정보</a></li>
 </ul>
 </li>
-<li><a href="#_http_로_모니터링하고_관리하기">4.3. HTTP 로 모니터링하고 관리하기</a>
+<li><a href="#monitoring-and-management-http">4.2. HTTP 로 모니터링하고 관리하기</a>
 <ul class="sectlevel3">
-<li><a href="#_종단점_에_대한_노출강도_보안관리">4.3.1. 종단점 에 대한 노출강도 보안관리</a></li>
-<li><a href="#_관리_종단점_경로_재정의">4.3.2. 관리 종단점 경로 재정의</a></li>
-<li><a href="#_관리_서버_포트_재정의">4.3.3. 관리 서버 포트 재정의</a></li>
-<li><a href="#_관리를_위한_ssl_재정의">4.3.4. 관리를 위한 SSL 재정의</a></li>
-<li><a href="#_관리_서버_주소_재정의">4.3.5. 관리 서버 주소 재정의</a></li>
-<li><a href="#_http_종단점_비활성화">4.3.6. HTTP 종단점 비활성화</a></li>
-<li><a href="#_http_건강_종단점_접근_제한">4.3.7. HTTP 건강 종단점 접근 제한</a></li>
+<li><a href="#_종단점_에_대한_노출강도_보안관리">4.2.1. 종단점 에 대한 노출강도 보안관리</a></li>
+<li><a href="#_관리_종단점_경로_재정의">4.2.2. 관리 종단점 경로 재정의</a></li>
+<li><a href="#_관리_서버_포트_재정의">4.2.3. 관리 서버 포트 재정의</a></li>
+<li><a href="#_관리를_위한_ssl_재정의">4.2.4. 관리를 위한 SSL 재정의</a></li>
+<li><a href="#_관리_서버_주소_재정의">4.2.5. 관리 서버 주소 재정의</a></li>
+<li><a href="#_http_종단점_비활성화">4.2.6. HTTP 종단점 비활성화</a></li>
+<li><a href="#_http_건강_종단점_접근_제한">4.2.7. HTTP 건강 종단점 접근 제한</a></li>
 </ul>
 </li>
-<li><a href="#_원격쉘을_통해_모니터링하고_관리하기">4.4. 원격쉘을 통해 모니터링하고 관리하기</a>
+<li><a href="#monitoring-and-management-remote-shell">4.3. 원격쉘을 통해 모니터링하고 관리하기</a>
 <ul class="sectlevel3">
-<li><a href="#_원격쉘로_접속">4.4.1. 원격쉘로 접속</a></li>
-<li><a href="#_원격쉘_확장">4.4.2. 원격쉘 확장</a></li>
+<li><a href="#_원격쉘로_접속">4.3.1. 원격쉘로 접속</a></li>
+<li><a href="#_원격쉘_확장">4.3.2. 원격쉘 확장</a></li>
+<li><a href="#_원격쉘_플러그인">4.3.3. 원격쉘 플러그인</a></li>
 </ul>
 </li>
-<li><a href="#_측량_metrics">4.5. 측량(Metrics)</a>
+<li><a href="#metrics">4.4. 측량(Metrics)</a>
 <ul class="sectlevel3">
-<li><a href="#_시스템_측량">4.5.1. 시스템 측량</a></li>
-<li><a href="#_데이터소스_측량">4.5.2. 데이터소스 측량</a></li>
-<li><a href="#_캐시_측량">4.5.3. 캐시 측량</a></li>
-<li><a href="#_톰캣_세션_측량">4.5.4. 톰캣 세션 측량</a></li>
-<li><a href="#_측량_기록">4.5.5. 측량 기록</a></li>
-<li><a href="#_공개_측량_추가">4.5.6. 공개 측량 추가</a></li>
+<li><a href="#_시스템_측량">4.4.1. 시스템 측량</a></li>
+<li><a href="#_데이터소스_측량">4.4.2. 데이터소스 측량</a></li>
+<li><a href="#_캐시_측량">4.4.3. 캐시 측량</a></li>
+<li><a href="#_톰캣_세션_측량">4.4.4. 톰캣 세션 측량</a></li>
+<li><a href="#_측량_기록">4.4.5. 측량 기록</a></li>
+<li><a href="#_공개_측량_추가">4.4.6. 공개 측량 추가</a></li>
 </ul>
 </li>
-<li><a href="#_감시">4.6. 감시</a></li>
-<li><a href="#_추적">4.7. 추적</a></li>
-<li><a href="#_프로세스_모니터링">4.8. 프로세스 모니터링</a>
+<li><a href="#auditing">4.5. 감시</a></li>
+<li><a href="#tracing">4.6. 추적</a></li>
+<li><a href="#process-monitoring">4.7. 프로세스 모니터링</a>
 <ul class="sectlevel3">
-<li><a href="#_확장_구성">4.8.1. 확장 구성</a></li>
-<li><a href="#_프로그래밍적인_처리">4.8.2. 프로그래밍적인 처리</a></li>
+<li><a href="#_확장_구성">4.7.1. 확장 구성</a></li>
+<li><a href="#_프로그래밍적인_처리">4.7.2. 프로그래밍적인 처리</a></li>
 </ul>
 </li>
-<li><a href="#_이어질_이야기_4">4.9. 이어질 이야기</a></li>
+<li><a href="#_이어질_이야기_4">4.8. 이어질 이야기</a></li>
 </ul>
 </li>
 <li><a href="#chap05">5. 스프링 부트 애플리케이션 배포</a>
 <ul class="sectlevel2">
-<li><a href="#_클라우드_배포">5.1. 클라우드 배포</a>
+<li><a href="#deploy-cloud">5.1. 클라우드 배포</a>
 <ul class="sectlevel3">
 <li><a href="#_클라우드_파운드리_cloud_foundry">5.1.1. 클라우드 파운드리(Cloud Foundry)</a></li>
 <li><a href="#_히로쿠_heroku">5.1.2. 히로쿠(Heroku)</a></li>
 <li><a href="#_오픈시프트_openshift">5.1.3. 오픈시프트(OpenShift)</a></li>
 <li><a href="#_아마존웹서비스_aws_amazon_web_service">5.1.4. 아마존웹서비스(AWS, Amazon Web Service)</a></li>
 <li><a href="#_구글앱엔진">5.1.5. 구글앱엔진</a></li>
-<li><a href="#_마이크로스프토_윈도우즈_서비스">5.1.6. 마이크로스프토 윈도우즈 서비스</a></li>
 </ul>
 </li>
-<li><a href="#_이어질_이야기_5">5.2. 이어질 이야기</a></li>
+<li><a href="#installation-spring-boot-service">5.2. 스프링 부트 애플리케이션 설치</a>
+<ul class="sectlevel3">
+<li><a href="#_유닉스_리눅스_서비스">5.2.1. 유닉스/리눅스 서비스</a></li>
+</ul>
+</li>
+<li><a href="#microsoft-windows-service">5.3. 마이크로스프토 윈도우즈 서비스</a></li>
+<li><a href="#_이어질_이야기_5">5.4. 이어질 이야기</a></li>
 </ul>
 </li>
 <li><a href="#chap06">6. 빌드 도구 플러그인</a>
 <ul class="sectlevel2">
-<li><a href="#_스프링_부트_메이븐_플러그인">6.1. 스프링 부트 메이븐 플러그인</a>
+<li><a href="#spring-boot-maven-plugin">6.1. 스프링 부트 메이븐 플러그인</a>
 <ul class="sectlevel3">
 <li><a href="#_플러그인_포함">6.1.1. 플러그인 포함</a></li>
 <li><a href="#_실행가능한_jar_와_war_파일_패키징">6.1.2. 실행가능한 jar 와 war 파일 패키징</a></li>
 </ul>
 </li>
-<li><a href="#_스프링_부트_그레이들_플러그인">6.2. 스프링 부트 그레이들 플러그인</a>
+<li><a href="#spring-boot-gradle-plugin">6.2. 스프링 부트 그레이들 플러그인</a>
 <ul class="sectlevel3">
 <li><a href="#_플러그인_포함_2">6.2.1. 플러그인 포함</a></li>
 <li><a href="#_그레이들_의존성_관리">6.2.2. 그레이들 의존성 관리</a></li>
@@ -803,7 +805,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_그레이들_을_이용해서_메이븐_리파지토리에_아티팩트_배포">6.2.7. 그레이들 을 이용해서 메이븐 리파지토리에 아티팩트 배포</a></li>
 </ul>
 </li>
-<li><a href="#_다른_빌드_시스템_지원">6.3. 다른 빌드 시스템 지원</a>
+<li><a href="#other-build-system">6.3. 다른 빌드 시스템 지원</a>
 <ul class="sectlevel3">
 <li><a href="#_리패키징_아카이브">6.3.1. 리패키징 아카이브</a></li>
 <li><a href="#_내포된_라이브러리">6.3.2. 내포된 라이브러리</a></li>
@@ -816,7 +818,7 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#chap07">7. 스프링 부트 활용 안내</a>
 <ul class="sectlevel2">
-<li><a href="#_스프링_부트_애플리케이션">7.1. 스프링 부트 애플리케이션</a>
+<li><a href="#spring-boot-application">7.1. 스프링 부트 애플리케이션</a>
 <ul class="sectlevel3">
 <li><a href="#_자동구성_문제해결">7.1.1. 자동구성 문제해결</a></li>
 <li><a href="#__code_environment_code_혹은_code_applicationcontext_code_가_시작하기_전에_재정의하기">7.1.2. <code>Environment</code> 혹은 <code>ApplicationContext</code> 가 시작하기 전에 재정의하기</a></li>
@@ -824,7 +826,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_비_웹애플리케이션_생성">7.1.4. 비-웹애플리케이션 생성</a></li>
 </ul>
 </li>
-<li><a href="#_속성_및_구성">7.2. 속성 및 구성</a>
+<li><a href="#properties-and-configuration">7.2. 속성 및 구성</a>
 <ul class="sectlevel3">
 <li><a href="#_빌드_시_자동으로_속성_확장">7.2.1. 빌드 시 자동으로 속성 확장</a></li>
 <li><a href="#__code_springapplication_code_외부_구성">7.2.2. <code>SpringApplication</code>  외부 구성</a></li>
@@ -836,7 +838,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_외부속성에_대한_빌트인_옵션_built_in_option_발견">7.2.8. 외부속성에 대한 빌트인 옵션(built-in option) 발견</a></li>
 </ul>
 </li>
-<li><a href="#_내장서블릿_컨테이너">7.3. 내장서블릿 컨테이너</a>
+<li><a href="#embedded-servlet-container">7.3. 내장서블릿 컨테이너</a>
 <ul class="sectlevel3">
 <li><a href="#_애플리케이션에_서블릿_필터_혹은_리스너_추가하기">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</a></li>
 <li><a href="#_http_포트_변경">7.3.2. HTTP  포트 변경</a></li>
@@ -852,7 +854,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_http_응답_압축_활성화">7.3.12. HTTP 응답 압축 활성화</a></li>
 </ul>
 </li>
-<li><a href="#_스프링_mvc">7.4. 스프링 MVC</a>
+<li><a href="#spring-mvc">7.4. 스프링 MVC</a>
 <ul class="sectlevel3">
 <li><a href="#_json_rest_서비스_작성">7.4.1. JSON REST 서비스 작성</a></li>
 <li><a href="#_xml_rest_서비스_작성">7.4.2. XML REST 서비스 작성</a></li>
@@ -864,18 +866,18 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#__code_viewresolver_code_재정의">7.4.8. <code>ViewResolver</code> 재정의</a></li>
 </ul>
 </li>
-<li><a href="#_http_클라이언트">7.5. HTTP 클라이언트</a>
+<li><a href="#http-clients">7.5. HTTP 클라이언트</a>
 <ul class="sectlevel3">
 <li><a href="#__code_resttemplate_code_가_프록시를_사용하도록_구성">7.5.1. <code>RestTemplate</code> 가 프록시를 사용하도록 구성</a></li>
 </ul>
 </li>
-<li><a href="#_로깅_2">7.6. 로깅</a>
+<li><a href="#logging">7.6. 로깅</a>
 <ul class="sectlevel3">
 <li><a href="#_logback_구성">7.6.1. Logback 구성</a></li>
 <li><a href="#_log4j_구성">7.6.2. Log4j 구성</a></li>
 </ul>
 </li>
-<li><a href="#_데이터_접근">7.7. 데이터 접근</a>
+<li><a href="#data-access">7.7. 데이터 접근</a>
 <ul class="sectlevel3">
 <li><a href="#__code_datasource_code_구성_2">7.7.1. <code>DataSource</code> 구성</a></li>
 <li><a href="#__code_datasource_code_복수_정의">7.7.2. <code>DataSource</code> 복수 정의</a></li>
@@ -889,7 +891,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_rest_종단점_로_스프링_data_리파지토리_노출">7.7.10. REST 종단점 로 스프링 Data 리파지토리 노출</a></li>
 </ul>
 </li>
-<li><a href="#_데이터베이스_초기화">7.8. 데이터베이스 초기화</a>
+<li><a href="#database-initialization">7.8. 데이터베이스 초기화</a>
 <ul class="sectlevel3">
 <li><a href="#_jpa_를_이용한_데이터베이스_초기화">7.8.1. JPA 를 이용한 데이터베이스 초기화</a></li>
 <li><a href="#_hibernate_를_이용한_데이터베이스_초기화">7.8.2. Hibernate 를 이용한 데이터베이스 초기화</a></li>
@@ -898,33 +900,33 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_고차원_데이터베이스_마이그레이션_도구_사용">7.8.5. 고차원 데이터베이스 마이그레이션 도구 사용</a></li>
 </ul>
 </li>
-<li><a href="#_배치_애플리케이션">7.9. 배치 애플리케이션</a>
+<li><a href="#batch-application">7.9. 배치 애플리케이션</a>
 <ul class="sectlevel3">
 <li><a href="#_구동시_스프링_배치_작업_실행">7.9.1. 구동시 스프링 배치 작업 실행</a></li>
 </ul>
 </li>
-<li><a href="#_액츄애이터">7.10. 액츄애이터</a>
+<li><a href="#actuator">7.10. 액츄애이터</a>
 <ul class="sectlevel3">
 <li><a href="#_액츄애이터_종단점_의_포트_혹은_주소_변경">7.10.1. 액츄애이터 종단점 의 포트 혹은 주소 변경</a></li>
 <li><a href="#__code_whitelabel_code_오류_페이지_재정의">7.10.2. <code>whitelabel</code> 오류 페이지 재정의</a></li>
 <li><a href="#_액츄애이터_과_jersey">7.10.3. 액츄애이터 과 Jersey</a></li>
 </ul>
 </li>
-<li><a href="#_보안_2">7.11. 보안</a>
+<li><a href="#security">7.11. 보안</a>
 <ul class="sectlevel3">
 <li><a href="#_스프링_부트_보안_구성_전환">7.11.1. 스프링 부트 보안 구성 전환</a></li>
 <li><a href="#__code_authenticationmanager_code_변경하고_사용자_계정_추가">7.11.2. <code>AuthenticationManager</code> 변경하고 사용자 계정 추가</a></li>
 <li><a href="#_프록시_서버_뒤에서_실행될_때_https_활성화">7.11.3. 프록시 서버 뒤에서 실행될 때 HTTPS 활성화</a></li>
 </ul>
 </li>
-<li><a href="#_핫스와핑_hot_swapping">7.12. 핫스와핑(Hot swapping)</a>
+<li><a href="#hot-swapping">7.12. 핫스와핑(Hot swapping)</a>
 <ul class="sectlevel3">
 <li><a href="#_정적_컨텐츠_재적재">7.12.1. 정적 컨텐츠 재적재</a></li>
 <li><a href="#_컨테이너_재시작없이_템플릿_재적재">7.12.2. 컨테이너 재시작없이 템플릿 재적재</a></li>
 <li><a href="#_빠른_애플리케이션_재시작">7.12.3. 빠른 애플리케이션 재시작</a></li>
 </ul>
 </li>
-<li><a href="#_빌드">7.13. 빌드</a>
+<li><a href="#build">7.13. 빌드</a>
 <ul class="sectlevel3">
 <li><a href="#_빌드_정보_생성">7.13.1. 빌드 정보 생성</a></li>
 <li><a href="#_깃_정보_생성">7.13.2. 깃 정보 생성</a></li>
@@ -932,7 +934,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_java_6_에서_실행하기">7.13.4. Java 6 에서 실행하기</a></li>
 </ul>
 </li>
-<li><a href="#_전통적_배포">7.14. 전통적 배포</a>
+<li><a href="#traditional-deployment">7.14. 전통적 배포</a>
 <ul class="sectlevel3">
 <li><a href="#_배포가능한_war_파일_생성">7.14.1. 배포가능한 war 파일 생성</a></li>
 <li><a href="#_오래된_서블릿_컨테이너에_배포가능한_war_파일_생성">7.14.2. 오래된 서블릿 컨테이너에 배포가능한 war  파일 생성</a></li>
@@ -984,9 +986,6 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_서문">서문</h2>
-<div class="sectionbody">
 <div class="sect1">
 <h2 id="_저자_소개">저자 소개</h2>
 <div class="sectionbody">
@@ -1142,7 +1141,7 @@ table.CodeRay td.code>pre{padding:0}
 </blockquote>
 </div>
 <div class="paragraph">
-<p>용어나 개념을 소개하는 경우에는 한국어로 표현하는 것을 선호하는 편이다. 첫 표기시에는 <strong>자동구성(<code>Configuration</code>)</strong> 과 <strong>설정(<code>SetUp</code>)</strong> 과 같이 한국어와 영어를 병행표기하고 이후 표기에서는 한국어만 표기한다. 적절한 한국어 표현을 찾기 어려운 경우에는 <strong>액츄애이터(<code>Actuator</code>)</strong> 외래어 표기법을 따른다.</p>
+<p>용어나 개념을 소개하는 경우에는 한국어로 표현하는 것을 선호하는 편이다. 첫 표기시에는 <strong>자동구성(<code>Configuration</code>)</strong>과 <strong>설정(<code>SetUp</code>)</strong>과 같이 한국어와 영어를 병행표기하고 이후 표기에서는 한국어만 표기한다. 적절한 한국어 표현을 찾기 어려운 경우에는 <strong>액츄애이터(<code>Actuator</code>)</strong> 외래어 표기법을 따른다.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1155,9 +1154,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="_예제">예제</h3>
 <div class="paragraph">
-<p>이 책에서 사용된 예제는 <a href="https://github.com/ihoneymon/boot-spring-boot">Boot Spring Boot</a> 에서 내려받을 수 있다. 메이븐 이나 그레이들 없이 실행할 수 있도록 래퍼(wrapper) 가 구성되어 있지만 이 래퍼를 실행하기 위해서는 JVM 이 있어야 한다. 코드의 기본구성은 JDK8 을 기준으로 작성되어 있다. 필요하다면 리파지토리를 복제(clone) 해서 JDK7 에서도 실행가능하게 구성하고 공유해주면 다른 개발자들에게 도움이 될 것이다.</p>
-</div>
-</div>
+<p>이 책에서 사용된 예제는 <a href="https://github.com/ihoneymon/boot-spring-boot"><code>https://github.com/ihoneymon/boot-spring-boot</code></a> 에서 내려받을 수 있다. 메이븐 이나 그레이들 없이 실행할 수 있도록 래퍼(wrapper) 가 구성되어 있지만 이 래퍼를 실행하기 위해서는 JVM 이 있어야 한다. 코드의 기본구성은 JDK8 을 기준으로 작성되어 있다. 필요하다면 리파지토리를 복제(clone) 해서 JDK7 에서도 실행가능하게 구성하고 공유해주면 다른 개발자들에게 도움이 될 것이다.</p>
 </div>
 </div>
 </div>
@@ -1165,19 +1162,45 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect1">
 <h2 id="_스프링_부트">스프링 부트</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run". We take an opinionated view of the Spring platform and third-party libraries so you can get started with minimum fuss. Most Spring Boot applications need very little Spring configuration.</p>
+</div>
+<div class="paragraph">
+<p>기능들:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create stand-alone Spring applications</p>
+</li>
+<li>
+<p>Embed Tomcat, Jetty or Undertow directly (no need to deploy WAR files)</p>
+</li>
+<li>
+<p>Provide opinionated 'starter' POMs to simplify your Maven configuration
+Automatically configure Spring whenever possible</p>
+</li>
+<li>
+<p>Provide production-ready features such as metrics, health checks and externalized configuration</p>
+</li>
+<li>
+<p>Absolutely no code generation and no requirement for XML configuration</p>
+</li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="chap01">1. 시작하기</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_스프링_부트_소개">1.1. 스프링 부트 소개</h3>
+<h3 id="spring-boot-introduction">1.1. 스프링 부트 소개</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_시스템_요구사항">1.2. 시스템 요구사항</h3>
+<h3 id="syste-requirements">1.2. 시스템 요구사항</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_스프링_부트_설치">1.3. 스프링 부트 설치</h3>
+<h3 id="spring-boot-installation">1.3. 스프링 부트 설치</h3>
 <div class="sect3">
 <h4 id="_설치방법_소개">1.3.1. 설치방법 소개</h4>
 <div class="paragraph">
@@ -1188,7 +1211,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_스프링_부트_애플리케이션_개발">1.4. 스프링 부트 애플리케이션 개발</h3>
+<h3 id="spring-boot-application-development">1.4. 스프링 부트 애플리케이션 개발</h3>
 <div class="sect3">
 <h4 id="_프로젝트_생성">1.4.1. 프로젝트 생성</h4>
 
@@ -1220,7 +1243,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap02">2. 스프링 부트 이용</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_빌드_시스템">2.1. 빌드 시스템</h3>
+<h3 id="build-system">2.1. 빌드 시스템</h3>
 <div class="sect3">
 <h4 id="_의존성_관리">2.1.1. 의존성 관리</h4>
 
@@ -1239,7 +1262,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_코드_구조">2.2. 코드 구조</h3>
+<h3 id="code-structure">2.2. 코드 구조</h3>
 <div class="sect3">
 <h4 id="__기본_패키지_사용">2.2.1. "기본" 패키지 사용</h4>
 
@@ -1250,7 +1273,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_구성_code_configuration_code_클래스">2.3. 구성(<code>Configuration</code>) 클래스</h3>
+<h3 id="configuration-class">2.3. 구성(<code>Configuration</code>) 클래스</h3>
 <div class="sect3">
 <h4 id="_추가적인_구성클래스_불러오기">2.3.1. 추가적인 구성클래스 불러오기</h4>
 
@@ -1261,7 +1284,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_자동구성_code_auto_configuration_code">2.4. 자동구성(<code>Auto-configuration</code>)</h3>
+<h3 id="auto-configuration">2.4. 자동구성(<code>Auto-configuration</code>)</h3>
 <div class="sect3">
 <h4 id="_자동구성_대체하기">2.4.1. 자동구성 대체하기</h4>
 
@@ -1272,7 +1295,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_스프링_빈과_의존성_주입">2.5. 스프링 빈과 의존성 주입</h3>
+<h3 id="spring-bean-and-dependency-injection">2.5. 스프링 빈과 의존성 주입</h3>
 
 </div>
 <div class="sect2">
@@ -1280,7 +1303,7 @@ table.CodeRay td.code>pre{padding:0}
 
 </div>
 <div class="sect2">
-<h3 id="_애플리케이션_실행하기">2.7. 애플리케이션 실행하기</h3>
+<h3 id="running-spring-boot">2.7. 애플리케이션 실행하기</h3>
 <div class="sect3">
 <h4 id="_ide_에서_실행하기">2.7.1. IDE 에서 실행하기</h4>
 
@@ -1303,7 +1326,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_스프링_개발자도구">2.8. 스프링 개발자도구</h3>
+<h3 id="spring-boot-developer-tools">2.8. 스프링 개발자도구</h3>
 <div class="sect3">
 <h4 id="_기본_속성들">2.8.1. 기본 속성들</h4>
 
@@ -1322,7 +1345,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_출시를_위한_애플리케이션_패키징">2.9. 출시를 위한 애플리케이션 패키징</h3>
+<h3 id="packaging-application">2.9. 출시를 위한 애플리케이션 패키징</h3>
 
 </div>
 <div class="sect2">
@@ -1335,7 +1358,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap03">3. 스프링 부트 기능</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_스프링애플리케이션_code_springapplication_code">3.1. 스프링애플리케이션(<code>SpringApplication</code>)</h3>
+<h3 id="spring-application">3.1. 스프링애플리케이션(<code>SpringApplication</code>)</h3>
 <div class="sect3">
 <h4 id="_배너_재정의">3.1.1. 배너 재정의</h4>
 
@@ -1374,7 +1397,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_외부_구성">3.2. 외부 구성</h3>
+<h3 id="externalize-configuration">3.2. 외부 구성</h3>
 <div class="sect3">
 <h4 id="_랜덤값_구성">3.2.1. 랜덤값 구성</h4>
 
@@ -1443,7 +1466,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_프로파일">3.3. 프로파일</h3>
+<h3 id="profiles">3.3. 프로파일</h3>
 <div class="sect3">
 <h4 id="_활성화할_프로파일_추가하기">3.3.1. 활성화할 프로파일 추가하기</h4>
 
@@ -1458,7 +1481,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_로깅">3.4. 로깅</h3>
+<h3 id="logging">3.4. 로깅</h3>
 <div class="sect3">
 <h4 id="_로그_형식">3.4.1. 로그 형식</h4>
 
@@ -1485,7 +1508,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_웹애플리케이션_개발">3.5. 웹애플리케이션 개발</h3>
+<h3 id="web-application-development">3.5. 웹애플리케이션 개발</h3>
 <div class="sect3">
 <h4 id="__spring_web_mvc_framework">3.5.1. 'Spring Web MVC framework'</h4>
 
@@ -1515,7 +1538,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_보안">3.6. 보안</h3>
+<h3 id="security">3.6. 보안</h3>
 <div class="sect3">
 <h4 id="__code_oauth2_code">3.6.1. <code>OAuth2</code></h4>
 <div class="sect4">
@@ -1548,7 +1571,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sql_데이터베이스_이용">3.7. SQL 데이터베이스 이용</h3>
+<h3 id="using-sql-database">3.7. SQL 데이터베이스 이용</h3>
 <div class="sect3">
 <h4 id="__code_datasource_code_구성">3.7.1. <code>DataSource</code> 구성</h4>
 
@@ -1578,7 +1601,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_nosql_기술_이용">3.8. NoSQL 기술 이용</h3>
+<h3 id="using-no-sql-database">3.8. NoSQL 기술 이용</h3>
 <div class="sect3">
 <h4 id="_레디스_redis">3.8.1. 레디스(Redis)</h4>
 
@@ -1626,7 +1649,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_캐시">3.9. 캐시</h3>
+<h3 id="cache">3.9. 캐시</h3>
 <div class="sect3">
 <h4 id="_지원하는_캐시_제공자_code_provider_code">3.9.1. 지원하는 캐시 제공자(<code>Provider</code>)</h4>
 <div class="sect4">
@@ -1664,18 +1687,18 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="__strong_rest_strong_서비스_호출">3.10. <strong>REST</strong> 서비스 호출</h3>
+<h3 id="call-rest-service">3.10. <strong>REST</strong> 서비스 호출</h3>
 <div class="sect3">
 <h4 id="__code_resttemplate_code_재정의">3.10.1. <code>RestTemplate</code> 재정의</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_스프링_세션">3.11. 스프링  세션</h3>
+<h3 id="spring-session">3.11. 스프링  세션</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_테스트">3.12. 테스트</h3>
+<h3 id="test">3.12. 테스트</h3>
 <div class="sect3">
 <h4 id="_테스트_관련_의존성">3.12.1. 테스트 관련 의존성</h4>
 
@@ -1752,15 +1775,15 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_웹소켓_websocket">3.13. 웹소켓(WebSocket)</h3>
+<h3 id="web-socket">3.13. 웹소켓(WebSocket)</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_웹_서비스_web_service">3.14. 웹 서비스(Web Service)</h3>
+<h3 id="web-services">3.14. 웹 서비스(Web Service)</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_자동구성_직접_생성하기">3.15. 자동구성 직접 생성하기</h3>
+<h3 id="create-auto-configuration">3.15. 자동구성 직접 생성하기</h3>
 <div class="sect3">
 <h4 id="_자동구성_빈_이해하기">3.15.1. 자동구성 빈 이해하기</h4>
 
@@ -1822,37 +1845,37 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap04">4. 스프링 부트 액츄애이터: 출시준비기능</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_출시준비_기능_활성화">4.1. 출시준비 기능 활성화</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_종단점_endpoint">4.2. 종단점(Endpoint)</h3>
+<h3 id="enable-production-ready">4.1. 출시준비 기능 활성화</h3>
 <div class="sect3">
-<h4 id="_종단점_재정의">4.2.1. 종단점 재정의</h4>
+<h4 id="_종단점_endpoint">4.1.1. 종단점(Endpoint)</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_액츄애이터_mvc_종단점_를_위한_하이퍼미디어">4.2.2. 액츄애이터 MVC 종단점 를 위한 하이퍼미디어</h4>
+<h4 id="_종단점_재정의">4.1.2. 종단점 재정의</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_cors_지원">4.2.3. CORS 지원</h4>
+<h4 id="_액츄애이터_mvc_종단점_를_위한_하이퍼미디어">4.1.3. 액츄애이터 MVC 종단점 를 위한 하이퍼미디어</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_재정의_종단점_추가하기">4.2.4. 재정의 종단점 추가하기</h4>
+<h4 id="_cors_지원">4.1.4. CORS 지원</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_건강정보">4.2.5. 건강정보</h4>
+<h4 id="_재정의_종단점_추가하기">4.1.5. 재정의 종단점 추가하기</h4>
 
 </div>
 <div class="sect3">
-<h4 id="__code_healthindicator_code_를_사용한_보안">4.2.6. <code>HealthIndicator</code> 를 사용한 보안</h4>
+<h4 id="_건강정보">4.1.6. 건강정보</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_애플리케이션_정보">4.2.7. 애플리케이션 정보</h4>
+<h4 id="__code_healthindicator_code_를_사용한_보안">4.1.7. <code>HealthIndicator</code> 를 사용한 보안</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_애플리케이션_정보">4.1.8. 애플리케이션 정보</h4>
 <div class="sect4">
 <h5 id="_자동구성된_code_infocontributors_code">자동구성된 <code>InfoContributors</code></h5>
 
@@ -1876,98 +1899,99 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_http_로_모니터링하고_관리하기">4.3. HTTP 로 모니터링하고 관리하기</h3>
+<h3 id="monitoring-and-management-http">4.2. HTTP 로 모니터링하고 관리하기</h3>
 <div class="sect3">
-<h4 id="_종단점_에_대한_노출강도_보안관리">4.3.1. 종단점 에 대한 노출강도 보안관리</h4>
+<h4 id="_종단점_에_대한_노출강도_보안관리">4.2.1. 종단점 에 대한 노출강도 보안관리</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_관리_종단점_경로_재정의">4.3.2. 관리 종단점 경로 재정의</h4>
+<h4 id="_관리_종단점_경로_재정의">4.2.2. 관리 종단점 경로 재정의</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_관리_서버_포트_재정의">4.3.3. 관리 서버 포트 재정의</h4>
+<h4 id="_관리_서버_포트_재정의">4.2.3. 관리 서버 포트 재정의</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_관리를_위한_ssl_재정의">4.3.4. 관리를 위한 SSL 재정의</h4>
+<h4 id="_관리를_위한_ssl_재정의">4.2.4. 관리를 위한 SSL 재정의</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_관리_서버_주소_재정의">4.3.5. 관리 서버 주소 재정의</h4>
+<h4 id="_관리_서버_주소_재정의">4.2.5. 관리 서버 주소 재정의</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_http_종단점_비활성화">4.3.6. HTTP 종단점 비활성화</h4>
+<h4 id="_http_종단점_비활성화">4.2.6. HTTP 종단점 비활성화</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_http_건강_종단점_접근_제한">4.3.7. HTTP 건강 종단점 접근 제한</h4>
+<h4 id="_http_건강_종단점_접근_제한">4.2.7. HTTP 건강 종단점 접근 제한</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_원격쉘을_통해_모니터링하고_관리하기">4.4. 원격쉘을 통해 모니터링하고 관리하기</h3>
+<h3 id="monitoring-and-management-remote-shell">4.3. 원격쉘을 통해 모니터링하고 관리하기</h3>
 <div class="sect3">
-<h4 id="_원격쉘로_접속">4.4.1. 원격쉘로 접속</h4>
+<h4 id="_원격쉘로_접속">4.3.1. 원격쉘로 접속</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_원격쉘_확장">4.4.2. 원격쉘 확장</h4>
-<div class="sect4">
-<h5 id="_원격쉘_플러그인">원격쉘 플러그인</h5>
-
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_측량_metrics">4.5. 측량(Metrics)</h3>
-<div class="sect3">
-<h4 id="_시스템_측량">4.5.1. 시스템 측량</h4>
+<h4 id="_원격쉘_확장">4.3.2. 원격쉘 확장</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_데이터소스_측량">4.5.2. 데이터소스 측량</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_캐시_측량">4.5.3. 캐시 측량</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_톰캣_세션_측량">4.5.4. 톰캣 세션 측량</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_측량_기록">4.5.5. 측량 기록</h4>
-
-</div>
-<div class="sect3">
-<h4 id="_공개_측량_추가">4.5.6. 공개 측량 추가</h4>
+<h4 id="_원격쉘_플러그인">4.3.3. 원격쉘 플러그인</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_감시">4.6. 감시</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_추적">4.7. 추적</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_프로세스_모니터링">4.8. 프로세스 모니터링</h3>
+<h3 id="metrics">4.4. 측량(Metrics)</h3>
 <div class="sect3">
-<h4 id="_확장_구성">4.8.1. 확장 구성</h4>
+<h4 id="_시스템_측량">4.4.1. 시스템 측량</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_프로그래밍적인_처리">4.8.2. 프로그래밍적인 처리</h4>
+<h4 id="_데이터소스_측량">4.4.2. 데이터소스 측량</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_캐시_측량">4.4.3. 캐시 측량</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_톰캣_세션_측량">4.4.4. 톰캣 세션 측량</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_측량_기록">4.4.5. 측량 기록</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_공개_측량_추가">4.4.6. 공개 측량 추가</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_이어질_이야기_4">4.9. 이어질 이야기</h3>
+<h3 id="auditing">4.5. 감시</h3>
+
+</div>
+<div class="sect2">
+<h3 id="tracing">4.6. 추적</h3>
+
+</div>
+<div class="sect2">
+<h3 id="process-monitoring">4.7. 프로세스 모니터링</h3>
+<div class="sect3">
+<h4 id="_확장_구성">4.7.1. 확장 구성</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_프로그래밍적인_처리">4.7.2. 프로그래밍적인 처리</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_이어질_이야기_4">4.8. 이어질 이야기</h3>
 
 </div>
 </div>
@@ -1976,7 +2000,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap05">5. 스프링 부트 애플리케이션 배포</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_클라우드_배포">5.1. 클라우드 배포</h3>
+<h3 id="deploy-cloud">5.1. 클라우드 배포</h3>
 <div class="sect3">
 <h4 id="_클라우드_파운드리_cloud_foundry">5.1.1. 클라우드 파운드리(Cloud Foundry)</h4>
 
@@ -1997,13 +2021,20 @@ table.CodeRay td.code>pre{padding:0}
 <h4 id="_구글앱엔진">5.1.5. 구글앱엔진</h4>
 
 </div>
+</div>
+<div class="sect2">
+<h3 id="installation-spring-boot-service">5.2. 스프링 부트 애플리케이션 설치</h3>
 <div class="sect3">
-<h4 id="_마이크로스프토_윈도우즈_서비스">5.1.6. 마이크로스프토 윈도우즈 서비스</h4>
+<h4 id="_유닉스_리눅스_서비스">5.2.1. 유닉스/리눅스 서비스</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_이어질_이야기_5">5.2. 이어질 이야기</h3>
+<h3 id="microsoft-windows-service">5.3. 마이크로스프토 윈도우즈 서비스</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_이어질_이야기_5">5.4. 이어질 이야기</h3>
 
 </div>
 </div>
@@ -2012,7 +2043,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap06">6. 빌드 도구 플러그인</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_스프링_부트_메이븐_플러그인">6.1. 스프링 부트 메이븐 플러그인</h3>
+<h3 id="spring-boot-maven-plugin">6.1. 스프링 부트 메이븐 플러그인</h3>
 <div class="sect3">
 <h4 id="_플러그인_포함">6.1.1. 플러그인 포함</h4>
 
@@ -2023,7 +2054,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_스프링_부트_그레이들_플러그인">6.2. 스프링 부트 그레이들 플러그인</h3>
+<h3 id="spring-boot-gradle-plugin">6.2. 스프링 부트 그레이들 플러그인</h3>
 <div class="sect3">
 <h4 id="_플러그인_포함_2">6.2.1. 플러그인 포함</h4>
 
@@ -2054,7 +2085,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_다른_빌드_시스템_지원">6.3. 다른 빌드 시스템 지원</h3>
+<h3 id="other-build-system">6.3. 다른 빌드 시스템 지원</h3>
 <div class="sect3">
 <h4 id="_리패키징_아카이브">6.3.1. 리패키징 아카이브</h4>
 
@@ -2082,7 +2113,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap07">7. 스프링 부트 활용 안내</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_스프링_부트_애플리케이션">7.1. 스프링 부트 애플리케이션</h3>
+<h3 id="spring-boot-application">7.1. 스프링 부트 애플리케이션</h3>
 <div class="sect3">
 <h4 id="_자동구성_문제해결">7.1.1. 자동구성 문제해결</h4>
 
@@ -2101,7 +2132,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_속성_및_구성">7.2. 속성 및 구성</h3>
+<h3 id="properties-and-configuration">7.2. 속성 및 구성</h3>
 <div class="sect3">
 <h4 id="_빌드_시_자동으로_속성_확장">7.2.1. 빌드 시 자동으로 속성 확장</h4>
 
@@ -2136,7 +2167,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_내장서블릿_컨테이너">7.3. 내장서블릿 컨테이너</h3>
+<h3 id="embedded-servlet-container">7.3. 내장서블릿 컨테이너</h3>
 <div class="sect3">
 <h4 id="_애플리케이션에_서블릿_필터_혹은_리스너_추가하기">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</h4>
 
@@ -2187,7 +2218,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_스프링_mvc">7.4. 스프링 MVC</h3>
+<h3 id="spring-mvc">7.4. 스프링 MVC</h3>
 <div class="sect3">
 <h4 id="_json_rest_서비스_작성">7.4.1. JSON REST 서비스 작성</h4>
 
@@ -2222,14 +2253,14 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_http_클라이언트">7.5. HTTP 클라이언트</h3>
+<h3 id="http-clients">7.5. HTTP 클라이언트</h3>
 <div class="sect3">
 <h4 id="__code_resttemplate_code_가_프록시를_사용하도록_구성">7.5.1. <code>RestTemplate</code> 가 프록시를 사용하도록 구성</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_로깅_2">7.6. 로깅</h3>
+<h3 id="logging">7.6. 로깅</h3>
 <div class="sect3">
 <h4 id="_logback_구성">7.6.1. Logback 구성</h4>
 
@@ -2240,7 +2271,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_데이터_접근">7.7. 데이터 접근</h3>
+<h3 id="data-access">7.7. 데이터 접근</h3>
 <div class="sect3">
 <h4 id="__code_datasource_code_구성_2">7.7.1. <code>DataSource</code> 구성</h4>
 
@@ -2283,7 +2314,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_데이터베이스_초기화">7.8. 데이터베이스 초기화</h3>
+<h3 id="database-initialization">7.8. 데이터베이스 초기화</h3>
 <div class="sect3">
 <h4 id="_jpa_를_이용한_데이터베이스_초기화">7.8.1. JPA 를 이용한 데이터베이스 초기화</h4>
 
@@ -2313,14 +2344,14 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_배치_애플리케이션">7.9. 배치 애플리케이션</h3>
+<h3 id="batch-application">7.9. 배치 애플리케이션</h3>
 <div class="sect3">
 <h4 id="_구동시_스프링_배치_작업_실행">7.9.1. 구동시 스프링 배치 작업 실행</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_액츄애이터">7.10. 액츄애이터</h3>
+<h3 id="actuator">7.10. 액츄애이터</h3>
 <div class="sect3">
 <h4 id="_액츄애이터_종단점_의_포트_혹은_주소_변경">7.10.1. 액츄애이터 종단점 의 포트 혹은 주소 변경</h4>
 
@@ -2335,7 +2366,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_보안_2">7.11. 보안</h3>
+<h3 id="security">7.11. 보안</h3>
 <div class="sect3">
 <h4 id="_스프링_부트_보안_구성_전환">7.11.1. 스프링 부트 보안 구성 전환</h4>
 
@@ -2350,7 +2381,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_핫스와핑_hot_swapping">7.12. 핫스와핑(Hot swapping)</h3>
+<h3 id="hot-swapping">7.12. 핫스와핑(Hot swapping)</h3>
 <div class="sect3">
 <h4 id="_정적_컨텐츠_재적재">7.12.1. 정적 컨텐츠 재적재</h4>
 
@@ -2365,7 +2396,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_빌드">7.13. 빌드</h3>
+<h3 id="build">7.13. 빌드</h3>
 <div class="sect3">
 <h4 id="_빌드_정보_생성">7.13.1. 빌드 정보 생성</h4>
 
@@ -2384,7 +2415,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="_전통적_배포">7.14. 전통적 배포</h3>
+<h3 id="traditional-deployment">7.14. 전통적 배포</h3>
 <div class="sect3">
 <h4 id="_배포가능한_war_파일_생성">7.14.1. 배포가능한 war 파일 생성</h4>
 
