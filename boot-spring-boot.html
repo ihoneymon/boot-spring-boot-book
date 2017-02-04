@@ -546,18 +546,14 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#syste-requirements">1.2. 시스템 요구사항</a></li>
-<li><a href="#spring-boot-installation">1.3. 스프링 부트 설치</a>
-<ul class="sectlevel3">
-<li><a href="#_설치방법_소개">1.3.1. 설치방법 소개</a></li>
-</ul>
-</li>
+<li><a href="#spring-boot-installation">1.3. 스프링 부트 설치</a></li>
 <li><a href="#spring-boot-application-development">1.4. 스프링 부트 애플리케이션 개발 시작</a>
 <ul class="sectlevel3">
 <li><a href="#_프로젝트_생성">1.4.1. 프로젝트 생성</a></li>
 <li><a href="#_의존성_추가">1.4.2. 의존성 추가</a></li>
-<li><a href="#_코드_작성하기">1.4.3. 코드 작성하기</a></li>
-<li><a href="#_실행하기">1.4.4. 실행하기</a></li>
-<li><a href="#_실행가능한_code_jar_code_생성">1.4.5. 실행가능한 <code>jar</code> 생성</a></li>
+<li><a href="#_예제_code_examplecontroller_code_작성">1.4.3. 예제: <code>ExampleController</code> 작성</a></li>
+<li><a href="#_예제_code_examplecontroller_code_실행하기">1.4.4. 예제: <code>ExampleController</code> 실행하기</a></li>
+<li><a href="#_실행가능한_jar_만들기">1.4.5. 실행가능한 JAR 만들기</a></li>
 </ul>
 </li>
 <li><a href="#_이어질_이야기">1.5. 이어질 이야기</a></li>
@@ -568,10 +564,10 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#build-system">2.1. 빌드 시스템</a>
 <ul class="sectlevel3">
 <li><a href="#_의존성_관리">2.1.1. 의존성 관리</a></li>
-<li><a href="#_스타터">2.1.2. 스타터</a></li>
+<li><a href="#starter-poms">2.1.2. 스타터</a></li>
 <li><a href="#_메이븐">2.1.3. 메이븐</a></li>
 <li><a href="#_그레이들">2.1.4. 그레이들</a></li>
-<li><a href="#__wrapper">2.1.5. {wrapper}</a></li>
+<li><a href="#wrapper">2.1.5. 래퍼</a></li>
 </ul>
 </li>
 <li><a href="#code-structure">2.2. 코드 구조</a>
@@ -583,7 +579,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#configuration-class">2.3. 구성(<code>Configuration</code>) 클래스</a>
 <ul class="sectlevel3">
 <li><a href="#_추가적인_구성클래스_불러오기">2.3.1. 추가적인 구성클래스 불러오기</a></li>
-<li><a href="#_xml_구성_불러오기">2.3.2. XML 구성 불러오기</a></li>
+<li><a href="#import-xml-context">2.3.2. XML 구성 불러오기</a></li>
 </ul>
 </li>
 <li><a href="#auto-configuration">2.4. 자동구성(<code>Auto-configuration</code>)</a>
@@ -593,13 +589,13 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </li>
 <li><a href="#spring-bean-and-dependency-injection">2.5. 스프링 빈과 의존성 주입</a></li>
-<li><a href="#__code_springbootapplication_code_애노테이션_이용">2.6. <code>@SpringBootApplication</code> 애노테이션 이용</a></li>
+<li><a href="#using-spring-boot-application-annotation">2.6. <code>@SpringBootApplication</code> 애노테이션 이용</a></li>
 <li><a href="#running-spring-boot">2.7. 애플리케이션 실행하기</a>
 <ul class="sectlevel3">
-<li><a href="#_커맨드라인에서_빌드없이_소스코드를_실행하기">2.7.1. 커맨드라인에서 빌드없이 소스코드를 실행하기</a></li>
-<li><a href="#_ide_에서_실행하기">2.7.2. IDE 에서 실행하기</a></li>
-<li><a href="#_빌드도구_플러그인으로_실행하기">2.7.3. 빌드도구 플러그인으로 실행하기</a></li>
-<li><a href="#_패키징된_애플리케이션_실행하기">2.7.4. 패키징된 애플리케이션 실행하기</a></li>
+<li><a href="#_ide_에서_실행하기">2.7.1. IDE 에서 실행하기</a></li>
+<li><a href="#_패키징된_애플리케이션_실행하기">2.7.2. 패키징된 애플리케이션 실행하기</a></li>
+<li><a href="#_메이븐_플러그인으로_실행하기">2.7.3. 메이븐 플러그인으로 실행하기</a></li>
+<li><a href="#_그레이들_플러그인으로_실행하기">2.7.4. 그레이들 플러그인으로 실행하기</a></li>
 <li><a href="#_핫_스와핑">2.7.5. 핫 스와핑</a></li>
 </ul>
 </li>
@@ -955,7 +951,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel2">
 <li><a href="#_jdk설치">JDK설치</a></li>
 <li><a href="#_sts_설치">STS 설치</a></li>
-<li><a href="#_그레이들_설치_2">그레이들 설치</a></li>
+<li><a href="#_그레이들_설치">그레이들 설치</a></li>
 </ul>
 </li>
 <li><a href="#_개발_시_참고사항">Appendix B: 개발 시 참고사항</a>
@@ -1076,7 +1072,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="_책을_따라하기_위해_필요항목">책을 따라하기 위해 필요항목</h3>
 <div class="paragraph">
-<p>스프링 부트 의  <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">시스템 요구사항</a> 을 보면 1.4.3.RELEASE 은 <a href="http://www.java.com/">Java 7</a> 과 Spring Framework 4.3.5.RELEASE 혹은 상위버전을 요구한다. Java 6도 지원을 하지만 사용하는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#_servlet_containers">컨테이너의 종류</a>에 따라서 제한되거나 영향을 받을 수 있다. 책에서 작성한 코드들 중에 일부는 Java 8에서 제공하는 <code>Optional</code>, <code>stream()</code> 등을 사용하기에 Java 8을 설치하고 작성하길 바란다.</p>
+<p>스프링 부트 의  <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">시스템 요구사항</a> 을 보면 2.0.0.RELEASE 은 <a href="http://www.java.com/">Java 7</a> 과 Spring Framework 4.3.5.RELEASE 혹은 상위버전을 요구한다. Java 6도 지원을 하지만 사용하는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#_servlet_containers">컨테이너의 종류</a>에 따라서 제한되거나 영향을 받을 수 있다. 책에서 작성한 코드들 중에 일부는 Java 8에서 제공하는 <code>Optional</code>, <code>stream()</code> 등을 사용하기에 Java 8을 설치하고 작성하길 바란다.</p>
 </div>
 <div class="paragraph">
 <p>IDE 는 <a href="https://spring.io/tools/sts">STS</a> 와 <a href="https://www.jetbrains.com/idea/">Intellij</a> 등이 있는데 이 책에서는 STS 를 기준으로 한다. 스프링 부트에 대한 기능 지원이 괜찮기도 하고 이클립스 기반이라 많은 개발자들에게 익숙하고 무료로 사용할 수 있다는 강점(?)이 있어 부담없이 사용할 수 있다.</p>
@@ -1259,7 +1255,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect3">
 <h4 id="feature-starter-pom">1.1.3. 스타터 'starter' POM 을 제공하여 간결한 의존성 구성 지원</h4>
 <div class="paragraph">
-<p>메이븐 을 이용한 의존성 선언은 관련되거나 필요한 기타 의존성을 함께 선언할 수 있다. 스프링 부트 프로젝트에 있는 <code>pom.xml</code> 혹은 <code>build.gradle</code> 을 열었을 때 볼 수 있는 의존성(<code>dependency</code>) 부분에 <code>spring-boot-starter-*</code>  들은 각각의 컴포넌트가 실행되는데 필요한 의존성들을 내포하고 있다. 이에 대해서는 <a href="#starter-poms">[starter-poms]</a> 에서 다루도록 하겠다.</p>
+<p>메이븐 을 이용한 의존성 선언은 관련되거나 필요한 기타 의존성을 함께 선언할 수 있다. 스프링 부트 프로젝트에 있는 <code>pom.xml</code> 혹은 <code>build.gradle</code> 을 열었을 때 볼 수 있는 의존성(<code>dependency</code>) 부분에 <code>spring-boot-starter-*</code>  들은 각각의 컴포넌트가 실행되는데 필요한 의존성들을 내포하고 있다. 이에 대해서는 <a href="#starter-poms">스타터</a> 에서 다루도록 하겠다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1279,7 +1275,7 @@ table.CodeRay td.code>pre{padding:0}
 <h4 id="feature-no-xml-context">1.1.6. 구성을 위한 XML 코드를 필요로 하지 않으며 작성하지 않아도 됨</h4>
 <div class="paragraph">
 <p>스프링 부트에서 가장 큰 변화 중 하나는 더이상 <strong>XML 구성</strong>을 필요로 하지 않는다는 것이다. 자바구성(<code>JavaConfig</code>) 을 통해서 애플리케이션에 필요한 컴포넌트 스캔(<code>ComponentScan</code>) 과 스프링 빈(<code>Bean</code>)  등록 등을 할 수 있게 되었다. 이마저도 관례적인 자동구성(<code>Auto-Configuration</code>)을 제공하여 애플리케이션 구성에 대한 부담감을 줄여준다. 스프링 부트를 기반으로 개발하는 개발자는 환경구성에 대한 부담없이 비즈니스 로직구현에만 집중할 수 있도록 해준다.
-물론 <code>@Configuration</code> 가 선언된 클래스에서 <code>@ImportResource</code> 애너테이션을 이용해서 패키지에 포함된 <code>XML</code> 파일을 읽어올 수 있는 기능을 제공한다.</p>
+물론 <code>@Configuration</code> 가 선언된 클래스에서 <code>@ImportResource</code> 애너테이션을 이용해서 패키지에 포함된 <code>XML</code> 파일을 읽어올 수 있는 기능을 제공한다. 이에 대해서는 <a href="#import-xml-context">XML 구성 불러오기</a> 에서 살펴본다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트 의 여섯가지 기능적 특징을 간단하게 살펴봤다.</p>
@@ -1289,7 +1285,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="syste-requirements">1.2. 시스템 요구사항</h3>
 <div class="paragraph">
-<p>스프링 부트 는 기본적으로 <a href="http://www.java.com/">Java 7</a> 과 Spring Framework 4.3.5.RELEASE 혹은 상위버전을 요구한다. 스프링 부트 버전에 따라 적재된 스프링 프레임워크의 버전은 다르니 이를 확인하기 바란다. 스프링 부트가 정식출시되면서 스프링 4.X 버전을 적재하고 있기에 이에 맞춰 애플리케이션의 기능을 설계하고 구현하기를 권한다. 필요하다면 Java 버전과 스프링 버전을 변경할 수 있지만 그에 따라 별도로 구성을 추가하여야할 것들이 있고 최근에 나온 플러그인들이나 라이브러리들이 Java 7에 맞춰진 경우가 많아서 특별한 경우가 아니라면 Java 7을 기준으로 사용하길 권한다.</p>
+<p>스프링 부트2.0.0.RELEASE는 기본적으로 <a href="http://www.java.com/">Java 7</a> 과 Spring Framework 4.3.5.RELEASE혹은 상위버전을 요구한다. 스프링 부트버전에 따라 적재된 스프링프레임워크의 버전은 다르니 이를 확인하기 바란다. 스프링 부트가 정식출시되면서 스프링4.X 버전을 적재하고 있기에 이에 맞춰 <strong>애플리케이션의 기능을 설계하고 구현하기를 권한다</strong>. 필요하다면 Java 버전과 스프링버전을 변경할 수는 있지만 그에 따라 별도로 구성을 작성해야 하는 것들이 있고 최근에 나온 플러그인들이나 라이브러리들이 Java 7에 맞춰진 경우가 많아서 특별한 경우가 아니라면 Java 7을 기준으로 사용하길 권한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1299,22 +1295,144 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트 개발팀에서는 가능하면 Java 8 을 사용하기를 권한다. 스프링 프레임워크 4.x 부터 Java8 을 완벽하게 지원했다.
-나 역시, Java 8 이 제공하는 &#8230;&#8203; &#8230;&#8203; &#8230;&#8203; 의 혜택을 볼 수 있도록 하길 Java 8 을 사용하기를 권한다.</p>
+<p>Java 6 를 사용하는 방법에 대해서는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-use-java-6" class="bare">http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-use-java-6</a> 를 살펴보자.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>스프링 부트개발팀에서는 가능하면 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements"><strong>Java 8 을 사용하기</strong></a>를 권한다. 스프링프레임워크 4.x 부터 Java 8 을 완벽하게 지원했다.
+나 역시, Java 8 에서 제공하는 스트림(Stream) API 와 람다식의 혜택을 누릴 수 있도록 Java 8 을 사용하기를 권한다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html">Java 8 새로운 점</a></p>
+</li>
+</ul>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>애플리케이션에 필요한 기능들을 가진 의존성을 확보하기 위해서는 메이븐 혹은 그레이들 빌드도구가 필요하다. 스프링 부트는 대표적인 빌드도구인 메이븐과 그레이들 에서 사용할 수 있는 플러그인을 제공한다.</p>
+<p>애플리케이션에 필요한 기능들을 가진 의존성을 확보하기 위해서는 빌드도구를 사용하는 것이 편리하다. 빌드도구는 애플리케이션 패키징 외에도 의존성 관리, 빌드전처리 등의 작업을 지원한다. 스프링 부트는 자바 개발환경의 대표적인 빌드도구인 메이븐과 그레이들에서 사용할 수 있는 플러그인을 제공한다.</p>
 </div>
 <div class="paragraph">
-<p>이 빌드 도구를 통해서 메이븐 저장소에서 starter POM 을 가져오고 그와 관련된 라이브러리들을 추가할 수 있기 때문이다.<br>
-이 책에서는 그레이들 을 기본 빌드도구로 이야기를 진행한다. 메이븐 혹은 그레이들 래퍼(wrapper) 를 이용하게 되면 다른 팀원들은 프로젝트 빌드를 위해서 메이븐 혹은 그레이들 을 설치하지 않아도 된다. 이에 대한 설명은 <a href="#build-system">빌드 시스템</a> 에서 자세히 할 예정이다.</p>
+<p>이 빌드도구를 통해서 메이븐 저장소에서 starter POM 을 가져오고 그와 관련된 라이브러리들을 추가할 수 있다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>이 책에서는 그레이들을 기본 빌드도구로 이야기를 진행한다. 그레이들래퍼(wrapper) 를 이용하게 되면 다른 팀원들은 프로젝트 빌드를 위해서 그레이들을 설치하지 않아도 된다. 이에 대한 설명은 <a href="#build-system">빌드 시스템</a> 에서 자세히 할 예정이다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>메이븐도 래퍼가 존재한다. 사용하는 방식은 유사하니 넘어가도록 하자. 이에 대한 정보는 <a href="https://github.com/takari/maven-wrapper">Maven Wrapper</a> 와 <a href="http://www.popit.kr/how-to-use-maven-wrapper/">Maven Wrapper 소개와 사용 - 윤병화, pop-it</a> 에서 볼 수 있다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Java 사용버전을 고려하는 데 있어서 가장 큰 영향을 주는 것은 사용하는 컨테이너가 무엇이냐 하는 것이다. 스프링 부트는 기본적으로 톰캣(tomcat)을 내장형 컨테이너로 사용하지만 필요에 따라 손쉽게 제티(jetty)와 언더토우(Undertow) 로 변경이 용이하다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>내장 서블릿 컨테이너별 지원사양</p>
+</li>
+</ol>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Servlet Version</th>
+<th class="tableblock halign-left valign-top">Java Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tomcat 8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java 7+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tomcat 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java 6+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jetty 9.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java 8+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jetty 9.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java 7+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jetty 8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java 6+</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Undertow 1.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java 7+</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>이 외에도 스프링 부트는 서블릿 3.0+ 이상을 지원하는 컨테이너라면 어디에든 배포가능하다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>참고: <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#_servlet_containers">Servlet container</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1343,79 +1461,437 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div class="sect2">
 <h3 id="spring-boot-installation">1.3. 스프링 부트 설치</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>스프링부트는 별도로 설치할 것은 없다. spring-boot-cli 가 있지만 크게 많이 쓰지는 않는다.</p>
-</li>
-<li>
-<p>IDE  에서 spring-boot-initializer 를 이용해서 설치하는 것이 일반적이지 않을까?</p>
-</li>
-<li>
-<p>스프링부트의 배포기능을 사용하기 위해서는 빌드도구에서 사용할 수 있는 플러그인을 설치해야한다.</p>
-</li>
-<li>
-<p>그것을 위해서는 메이븐, 그레들 중 하나가 설치되어야 한다.</p>
-</li>
-<li>
-<p>자신에게 익숙한 도구를 선택하자.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>나는 멀티프로젝트 관리가 손쉬운 그레이들을 사용한다.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="_설치방법_소개">1.3.1. 설치방법 소개</h4>
 <div class="paragraph">
-<p>스프링 부트 CLI 를 사용한 방법은 생략한다. 내가 많이 안쓴다.
-. JDK 설치
-. SDKMAN 설치
-. maven, gradle  설치</p>
+<p>스프링 부트 를 이용하기 위해서  설치해야할 것은 없다.</p>
 </div>
-<div class="sect4">
-<h5 id="_메이븐_설치">메이븐 설치</h5>
-
+<div class="paragraph">
+<p>스프링 부트가 나온 이후 대부분의 IDE 에서는 스프링 부트와 관련된 편의기능을 제공한다. STS 의 경우에는 스프링 부트 용 대시보드를 제공하여 시작, 디버깅, 원격지 배포실행 등의 기능을 제공하고 있다. 많은 책에서 스프링 부트 CommandLine Client 설치, 실행방법과 프로젝트 생성 방식을 다루지만 여기서는 다루지 않는다.</p>
 </div>
-<div class="sect4">
-<h5 id="_그레이들_설치">그레이들 설치</h5>
-
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>개인적으로 스프링 부트 CommandLine Client 를 사용한 경험이 거의 없다. IDE에서 'Spring Initializer&#8217;를 이용해서 프로젝트를 생성하고 관리해왔다. 터미널 사용을 좋아한다면 한번 익혀보는 것도 좋을 듯 하다.  익혀볼 의사가 있다면 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-installing-the-cli">Installing the Spring Boot CLI</a> (<a href="https://goo.gl/d9wkiw" class="bare">https://goo.gl/d9wkiw</a>)를 살펴보기 바란다.</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>빌드도구의 래퍼 기능을 이용하면 별도로 빌드도구를 설치할 필요가 없다. 이에 대한 내용은 <a href="#wrapper">래퍼</a> 를 살펴보기 바란다.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="spring-boot-application-development">1.4. 스프링 부트 애플리케이션 개발 시작</h3>
+<div class="paragraph">
+<p>스프링 부트 애플리케이션을 개발하기 위해서는 플러그인과 의존성을 포함한 프로젝트를 생성해야 한다.</p>
+</div>
 <div class="sect3">
 <h4 id="_프로젝트_생성">1.4.1. 프로젝트 생성</h4>
-
+<div class="paragraph">
+<p>STS(Spring Tool Suite, <a href="https://spring.io/tools/sts" class="bare">https://spring.io/tools/sts</a>) 와 IntelliJ(<a href="https://www.jetbrains.com/idea/" class="bare">https://www.jetbrains.com/idea/</a>) 에서 프로젝트를 생성한다. 이후에는 STS 를 기준으로 진행한다.<br>
+IDE에서 스프링 부트 프로젝트를 생성하는 방식은
+'Spring Initializer' 사이트에서 생성한 <code>zip</code> 파일을 내려받아 이를 지정된 위치에 압축해제한 후에 불러내기(import) 한다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>'Spring Initializer' 에서 프로젝트 초기파일을 내려받는 방식이기 때문에 인터넷 연결이 되지 않는 경우에는 스프링 부트프로젝트를 생성하기 어렵다. 이를 해결하기 위한 방법으로 인트라넷에 'spring initializer' 프로젝트를 가동해야할 듯 하다. 여기에 오픈소스의 위대함이 깃드는데, <a href="https://github.com/spring-io/initializr/">Spring Initializr(https://github.com/spring-io/initializr/)</a> 프로젝트에서 소스를 내려받아 인트라넷에 구성할 수 있다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_sts_or_eclipse_스프링_부트_프로젝트_생성">STS(or Eclipse): 스프링 부트 프로젝트 생성</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>'File' - 'New' - 'Spring Starter Project' 선택 <br>
+image::[Spring Starter Project 생성하기]</p>
+</li>
+<li>
+<p>프로젝트 정보를 다음과 같이 입력하고 '[Next &gt;]'  버튼 클릭
+image::[프로젝트 정보 입력]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'Type' 선택</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'Maven'</p>
+</li>
+<li>
+<p>'Gradle(Buildship)'</p>
+</li>
+<li>
+<p>'Gradle(STS)' &#8592; 선택</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>'Packaging' 선택</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'Jar': WAS 에 배포하지 않고 커맨드로 실행시 선택</p>
+</li>
+<li>
+<p>'War': WAS 에 배포하는 경우 선택</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>'Java' 선택</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'1.8' &#8592; 권장</p>
+</li>
+<li>
+<p>'1.7'</p>
+</li>
+<li>
+<p>'1.6'</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>'Language' 선택</p>
+<div class="ulist">
+<ul>
+<li>
+<p>'Java'</p>
+</li>
+<li>
+<p>'Groovy'</p>
+</li>
+<li>
+<p>'Kotlin'</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>group: <code>io.honeymon</code></p>
+</li>
+<li>
+<p>artifact: <code>boot-spring-boot</code></p>
+</li>
+<li>
+<p>package: <code>io.honeymon.springboot.book</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>스프링 부트 버전 및 의존성을 선택하고 '[Finish]' 를 누른다.
+image::[선택항목]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>선택항목: <code>web</code>, <code>jpa</code>, <code>h2</code>, <code>lombok</code>, <code>thymeleaf</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web</code></p>
+</li>
+<li>
+<p><code>jpa</code></p>
+</li>
+<li>
+<p><code>h2</code></p>
+</li>
+<li>
+<p><code>lombok</code></p>
+</li>
+<li>
+<p><code>thymeleaf</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>'[Make Default]' 버튼을 누르면 'Frequently Used' 항목에 추가된다.</p>
+</li>
+<li>
+<p>'[Next &gt;]'를 누르는 경우 다음과 같은 정보를 확인할 수 있다.
+image::[Spring Boot initializer Site]</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>http://start.spring.io/starter.zip?name=boot-demo&amp;groupId=io.honeymon&amp;artifactId=bootdemo&amp;version=0.0.1-SNAPSHOT&amp;description=Demo+project+for+Spring+Boot&amp;packageName=io.honeymon.bootdemo&amp;type=gradle-project&amp;packaging=jar&amp;javaVersion=1.8&amp;language=java&amp;bootVersion=1.4.4.RELEASE&amp;dependencies=lombok&amp;dependencies=data-jpa&amp;dependencies=h2&amp;dependencies=thymeleaf&amp;dependencies=web</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>해당 창에 있는 'Full URL' 항목을 브라우저 주소창에 복사해서 붙여넣으면 zip 파일이 'artifact' 에 입력값을 파일명으로 가지는 <code>bootdemo.zip</code> 와 같은 파일이 다운로드 된다. 이 파일을 특정위치로 옮겨 압축해제하고 IDE에서 불러오는 것도 가능하다.</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_intellij_스프링_부트_프로젝트_생성">IntelliJ: 스프링 부트 프로젝트 생성</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>'File' &#8594; 'New' 선택</p>
+</li>
+<li>
+<p>'Spring Initializer' 선택</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>SDK 선택</p>
+</li>
+<li>
+<p>[Next] 선택</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>'New Project' 창에서 프로젝트 기본정보 등록 &#8594; [Next]</p>
+</li>
+<li>
+<p>사용될  ''의존성'' 선택 &#8594; [Next]</p>
+</li>
+<li>
+<p>프로젝트 설치 위치 지정 &#8594; [Finish]</p>
+</li>
+</ol>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_의존성_추가">1.4.2. 의존성 추가</h4>
+<div class="paragraph">
+<p><code>build.gradle</code>  중에서 의존성에 대한 선언이 된 부분이다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
+        compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-web</span><span class="delimiter">'</span></span>)
 
+        testCompile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-test</span><span class="delimiter">'</span></span>)
+}</code></pre>
 </div>
-<div class="sect3">
-<h4 id="_코드_작성하기">1.4.3. 코드 작성하기</h4>
+</div>
 <div class="paragraph">
-<p><a href="#code-structure">코드 구조</a> 에서 설명하긴 하겠지만, 애플리케이션 메인 클래스를 제외한 새롭게 생성하는 클래스들은 기본<code>default</code> 패키지에 두지 않기를 권한다.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_실행하기">1.4.4. 실행하기</h4>
-<div class="paragraph">
-<p>보다 자세한 내용은 <a href="#running-spring-boot">애플리케이션 실행하기</a> 에서</p>
+<p><code>build.gradle</code> 중에서 <code>dependencies</code> 안에 의존성을 선언한다. <a href="https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html">Chapter 7. Dependency Management Basics(https://goo.gl/iLaf7v)</a> 를 살펴보면 <code>compile</code>, <code>testCompile</code> 등의 정보를 확인할 수 있다.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_실행가능한_code_jar_code_생성">1.4.5. 실행가능한 <code>jar</code> 생성</h4>
+<h4 id="_예제_code_examplecontroller_code_작성">1.4.3. 예제: <code>ExampleController</code> 작성</h4>
 <div class="paragraph">
-<p><code>./gradlew clean build</code>
-생성되는 과정 설명하기
-. jar 파일 생성
-. spring-boot 패키지 제공</p>
+<p><a href="#code-structure">코드 구조</a> 에서 설명하긴 하겠지만, 애플리케이션 메인 클래스를 제외한 새롭게 생성하는 클래스들은 기본<code>default</code> 패키지에 두지 않기를 권한다. 지금 작성하는 코드는 어디까지나 간단하게 코드작성법을 설명하기 위한 예제일 뿐이다.</p>
+</div>
+<div class="paragraph">
+<p>앞에서 보여준 과정을 따라 했다면 <code>BootSpringBootApplicaion</code> 혹은 변경한 프로젝트 명을 접두사로 가지는 <code>~Application</code> 클래스가 자동생성되어 있다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>BootSpringBootApplicaion</code> 클래스는 수정할 일이 별로 없다. 여기에 {spring-boo} 의 마술이 있다. 이 마술에 대해서는 <a href="#using-spring-boot-application-annotation"><code>@SpringBootApplication</code> 애노테이션 이용</a> 에서 설명한다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>이 클래스가 위치한 클래스에서 <code>api</code> 패키지를 생성 한다. 그 후 <code>ExampleController</code> 이란 이름으로 클래스를 생성하자. 이 클래스는 이후에 여러분이 자주 작성하게될 API 클래스의 기본구조를 가진다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">io.honeymon.springboot.book.api</span>;
+
+<span class="keyword">import</span> <span class="include">org.springframework.web.bind.annotation.GetMapping</span>;
+<span class="keyword">import</span> <span class="include">org.springframework.web.bind.annotation.RestController</span>;
+
+<span class="annotation">@RestController</span>                        <b class="conum">(1)</b>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ExampleController</span> {
+
+    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/greeting</span><span class="delimiter">&quot;</span></span>)                <b class="conum">(2)</b>
+    <span class="directive">public</span> <span class="predefined-type">String</span> helloWorld() {
+        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, World</span><span class="delimiter">&quot;</span></span>;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p><code>ExampleController</code> 클래스에서 제일 먼저 선언된 <code>@RestController</code> 은 스프링 4.0 때 추가된 메타 애너테이션 이다. <code>@Controller</code> 와 <code>@ResponseBody</code> 애너테이션 을 포함하고 있다.</p>
+</li>
+<li>
+<p>스프링 4.3 에 추가된 메타 애너테이션 으로 <code>@RequestMapping(method = RequestMethod.GET)</code> 을 짧게 쓸 수 있다. '그렇다면? 혹시&#8230;&#8203;' 하고 생각하는대로 {enum} <code>RequestMethod</code> 에 선언되어 있는 <code>GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</code> 에 대응하는 <code>~Mapping</code> 들이 존재한다.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_예제_code_examplecontroller_code_실행하기">1.4.4. 예제: <code>ExampleController</code> 실행하기</h4>
+<div class="paragraph">
+<p>이제 예제를 실행해보자. <code>BootSpringBootApplication</code> 를 우클릭하고 팝업메뉴에서 'Run as ' &#8594; 'Spring Boot App' 을 선택한다.</p>
+</div>
+<div class="paragraph">
+<p>'Spring Boot Dashboard' 의 항목이 변경된다.
+콘솔(Console)  창에 스프링부트가 실행되는 과정에서 로그가 출력된다.</p>
+</div>
+<div class="paragraph">
+<div class="title"><code>BootSpringBootApplication</code> 실행모습</div>
+<p>image::[]</p>
+</div>
+<div class="paragraph">
+<p>브라우저에서 <a href="http://localhost:8080" class="bare">http://localhost:8080</a> 으로 접근해보면 다음과 같이
+	"Hello, World"
+가 출력되는 것을 볼 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>애플리케이션을 중지시키려면 콘솔이나 IDE 의 정지버튼을 누르면 된다.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_실행가능한_jar_만들기">1.4.5. 실행가능한 JAR 만들기</h4>
+<div class="paragraph">
+<p>예제의 마지막 단계로 내장 컨테이너(Embedded Container) 를 포함한, 실제로 운영에서도 사용가능한 형태의, 실행가능한 JAR 를 생성해보자. 실행가능한 JAR('Fat Jars&#8217;라고도 불림)는 우리가 작성한 코드를 컴파일한 클래스와 이를 실행하는데 필요한 모든 의존성 jar 가 함께 압축되어 있다(여기에는 톰캣과 같은 WAS도 내장형 컨테이너로 포함되는데 여기에는 스프링 부트 플러그인의 <code>bootRepackage</code> 가 관여한다).</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">실행가능한 JAR 와 Java</div>
+<div class="paragraph">
+<p>Java does not provide any standard way to load nested jar files (i.e. jar files that are themselves contained within a jar). This can be problematic if you are looking to distribute a self-contained application.</p>
+</div>
+<div class="paragraph">
+<p>To solve this problem, many developers use “uber” jars. An uber jar simply packages all classes, from all jars, into a single archive. The problem with this approach is that it becomes hard to see which libraries you are actually using in your application. It can also be problematic if the same filename is used (but with different content) in multiple jars.</p>
+</div>
+<div class="paragraph">
+<p>Spring Boot takes a different approach and allows you to actually nest jars directly.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>실행가능한 JAR를 생성하기 위해서는 <code>build.gradle</code> 에 <code>spring-boot-gradle-plugin</code> 가 추가되어야 한다. <code>build.gradle</code> 첫번째 줄에 다음 코드를 추가하자.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">buildscript {                                        <b class="conum">(1)</b>
+  ext {
+    springBootVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.0.0.RELEASE</span><span class="delimiter">'</span></span>
+  }
+        repositories {
+                mavenCentral()
+        }
+        dependencies {
+                classpath(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-gradle-plugin:</span><span class="inline"><span class="inline-delimiter">${</span>springBootVersion<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
+        }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p><code>buildscript</code> 선언을 통해서 그레이들 빌드시 <code>spring-boot-gradle-plugin</code> 을 이용할 수 있게 된다.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>스프링 부트 플러그인을 설치하면 <code>bootRepackage</code>, <code>bootRun</code> 태스크(task)를 실행할 수 있게 된다. 이 태스크들에 대해서는 <a href="#spring-boot-gradle-plugin">스프링 부트 그레이들 플러그인</a> 에서 설명한다.
+그레이들 의 <code>buildscript</code> 에 대한 설명은 <a href="https://docs.gradle.org/current/userguide/custom_plugins.html#sec:using_your_plugin_in_another_project">Using your plugin in another project(https://goo.gl/vdE77Q)</a> 을 읽어보길 바란다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프로젝트를 선택하고 우클릭하여 'Run AS' &#8594; 'Grdle' &#8594; 'Task Quick Launcher' 를 클릭한다. 팝업된 실행창에서 <code>bootRepackage</code> 를 입력하자. 자동완성 기능을 제공하기 때문에 <code>boot</code> 까지 입력하면 <code>bootRun</code> 과 <code>bootRepackage</code> 가 나열될 것이다.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">image::[Gradle Task Quick Launcher </dt>
+<dd>
+<p>bootRepackage]</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>[sts] -----------------------------------------------------
+[sts] Starting Gradle build for the following tasks:
+[sts]      bootRepackage
+[sts] -----------------------------------------------------
+:compileJava
+:processResources UP-TO-DATE
+:classes
+:findMainClass
+:jar
+:bootRepackage
+
+BUILD SUCCESSFUL
+
+Total time: 1.31 secs
+[sts] -----------------------------------------------------
+[sts] Build finished succesfully!
+[sts] Time taken: 0 min, 1 sec
+[sts] -----------------------------------------------------</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>위와 같은 내용이 콘솔에 출력될 것이다. <code>boot-spring-boot</code> 프로젝트에서 <code>build/libs</code> 폴더를 보면 <code>boot-spring-boot-0.0.1-SNAPSHOT.jar</code> 와 <code>boot-spring-boot-0.0.1-SNAPSHOT.jar.original</code> 이 생성되어 있다. <code>boot-spring-boot-0.0.1-SNAPSHOT.jar.original</code> 는 우리가 작성한 코드가 컴파일되어 있다. 이를 스프링 부트 플러그인에서 실행에 필요한 컨테이너와 의존성을 추가하여 재압축(repackage) 한 것이 <code>boot-spring-boot-0.0.1-SNAPSHOT.jar</code> 으로 대략 10MB 정도의 용량이 늘어나게 된다. 이에 대해서는 <a href="#chap06">빌드 도구 플러그인</a> 에서 자세히 설명한다.</p>
+</div>
+<div class="paragraph">
+<p><code>jar tvf</code> 명령으로 <code>boot-spring-boot-0.0.1-SNAPSHOT.jar</code> 내에 어떤 것들이 담겼는지 확인해볼 수 있다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>$ jar tvf build/libs/boot-spring-boot-0.0.1-SNAPSHOT.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>bootRepakcage</code> 을 통해서 생성된 <code>boot-spring-boot-0.0.1-SNAPSHOT.jar</code> 파일은 <code>java -jar</code> 명령으로 커맨드라인에서 실행할 수 있다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>$ java -jar build/libs/boot-spring-boot-0.0.1-SNAPSHOT.jar
+... 스프링부트 로고
+ :: Spring Boot ::        (v1.5.1.RELEASE)
+
+...  i.h.s.book.BootSpringBootApplication     : Starting BootSpringBootApplication on jake-mac.local with PID 42838 (/Users/honeymon/workspace/boot-spring-boot/build/libs/boot-spring-boot-0.0.1-SNAPSHOT.jar started by honeymon in /Users/honeymon/workspace/boot-spring-boot)
+... i.h.s.book.BootSpringBootApplication     : No active profile set, falling back to default profiles: default
+... 로그 생략 ..
+... [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+... [           main] i.h.s.book.BootSpringBootApplication     : Started BootSpringBootApplication in 2.668 seconds (JVM running for 3.09)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>실행중인 애플리케이션은 <code><code>Ctrl + C</code></code> 를 누르면 간단하게 종료된다.</p>
 </div>
 </div>
 </div>
@@ -1440,7 +1916,7 @@ table.CodeRay td.code>pre{padding:0}
 
 </div>
 <div class="sect3">
-<h4 id="_스타터">2.1.2. 스타터</h4>
+<h4 id="starter-poms">2.1.2. 스타터</h4>
 
 </div>
 <div class="sect3">
@@ -1452,7 +1928,7 @@ table.CodeRay td.code>pre{padding:0}
 
 </div>
 <div class="sect3">
-<h4 id="__wrapper">2.1.5. {wrapper}</h4>
+<h4 id="wrapper">2.1.5. 래퍼</h4>
 
 </div>
 </div>
@@ -1576,13 +2052,6 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>스프링 애플리케이션 구성에 어느 정도 익숙해지면 개인적인 역량에 따라 메인 클래스 위치를 변경할 수 있겠지만, 최상위 패키지 에 메인 클래스를 위치시키는 게 여러모로 편리하다는 것을 알아두길 바란다. 프로젝트의 패키지 구성은 사소한듯 하면서도 신경쓸 부분들이 많은데, 이와 관련해서는 <a href="https://slipp.net/questions/36">패키지 구조는 어떻게 가져가는 것이 좋을까?</a> , <a href="https://dzone.com/articles/package-structure">Get Your Java Package Structures Right</a> 와 <a href="http://www.javapractices.com/topic/TopicAction.do?Id=205">Package by feature, not layer</a> 등을 읽어본 후에 팀원들과 이야기를 나누며 적절한 구조를 잡길 바란다. 딱 '이게 정답이다! 이렇게 해라!' 라고 할 수 있는 건 없다.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>여러분이 행하고 싶은대로 행하라. 그게 길이 될 테니.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1592,7 +2061,7 @@ table.CodeRay td.code>pre{padding:0}
 
 </div>
 <div class="sect3">
-<h4 id="_xml_구성_불러오기">2.3.2. XML 구성 불러오기</h4>
+<h4 id="import-xml-context">2.3.2. XML 구성 불러오기</h4>
 
 </div>
 </div>
@@ -1619,44 +2088,25 @@ table.CodeRay td.code>pre{padding:0}
 
 </div>
 <div class="sect2">
-<h3 id="__code_springbootapplication_code_애노테이션_이용">2.6. <code>@SpringBootApplication</code> 애노테이션 이용</h3>
+<h3 id="using-spring-boot-application-annotation">2.6. <code>@SpringBootApplication</code> 애노테이션 이용</h3>
 
 </div>
 <div class="sect2">
 <h3 id="running-spring-boot">2.7. 애플리케이션 실행하기</h3>
-<div class="listingblock console">
-<div class="title">간단한 실행 예</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>$ ssh honeymon@honeymon.io
-~~
-$ cd workspace/sample
-$ ./shutdown.sh
-$ git pull origin master
-~~
-$ ./startup.sh</code></pre>
-</div>
-</div>
 <div class="sect3">
-<h4 id="_커맨드라인에서_빌드없이_소스코드를_실행하기">2.7.1. 커맨드라인에서 빌드없이 소스코드를 실행하기</h4>
+<h4 id="_ide_에서_실행하기">2.7.1. IDE 에서 실행하기</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_ide_에서_실행하기">2.7.2. IDE 에서 실행하기</h4>
+<h4 id="_패키징된_애플리케이션_실행하기">2.7.2. 패키징된 애플리케이션 실행하기</h4>
 
 </div>
 <div class="sect3">
-<h4 id="_빌드도구_플러그인으로_실행하기">2.7.3. 빌드도구 플러그인으로 실행하기</h4>
-<div class="sect4">
-<h5 id="_메이븐_플러그인으로_실행하기">메이븐 플러그인으로 실행하기</h5>
+<h4 id="_메이븐_플러그인으로_실행하기">2.7.3. 메이븐 플러그인으로 실행하기</h4>
 
-</div>
-<div class="sect4">
-<h5 id="_그레이들_플러그인으로_실행하기">그레이들 플러그인으로 실행하기</h5>
-
-</div>
 </div>
 <div class="sect3">
-<h4 id="_패키징된_애플리케이션_실행하기">2.7.4. 패키징된 애플리케이션 실행하기</h4>
+<h4 id="_그레이들_플러그인으로_실행하기">2.7.4. 그레이들 플러그인으로 실행하기</h4>
 
 </div>
 <div class="sect3">
@@ -2814,7 +3264,7 @@ $ ./startup.sh</code></pre>
 
 </div>
 <div class="sect2">
-<h3 id="_그레이들_설치_2">그레이들 설치</h3>
+<h3 id="_그레이들_설치">그레이들 설치</h3>
 
 </div>
 </div>
@@ -2873,7 +3323,7 @@ $ ./startup.sh</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.2<br>
-Last updated 2017-01-30 14:22:26 KST
+Last updated 2017-02-04 18:11:20 KST
 </div>
 </div>
 </body>
