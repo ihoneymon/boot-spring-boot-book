@@ -1,2 +1,6 @@
 #ignore list
 Gemfile.lock
+*.html
+*.pdf
+vendor
+.bundle
