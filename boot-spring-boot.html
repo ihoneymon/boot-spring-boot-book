@@ -658,20 +658,18 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel3">
 <li><a href="#boot-features-logging-format">3.4.1. 로그 형식</a></li>
 <li><a href="#boot-features-logging-console-output">3.4.2. 콘솔 출력</a></li>
-<li><a href="#boot-features-logging-color-coded-output">3.4.3. 파일 출력</a></li>
+<li><a href="#boot-features-logging-color-coded-output">3.4.3. 안시를 이용한 컬러 출력</a></li>
 <li><a href="#boot-features-logging-file-outpu">3.4.4. 파일 출력</a></li>
 <li><a href="#boot-features-custom-log-levels">3.4.5. 로그 레벨</a></li>
-<li><a href="#로그-구성-재정의">로그 구성 재정의</a></li>
-<li><a href="#boot-features-logback-extensions">3.4.6. 로그백 확장</a></li>
+<li><a href="#boot-features-custom-log-configuration">3.4.6. 로그 구성 재정의</a></li>
+<li><a href="#boot-features-logback-extensions">3.4.7. 로그백 확장</a></li>
 </ul>
 </li>
-<li><a href="#web-application-development">3.5. 웹애플리케이션 개발</a>
+<li><a href="#boot-features-developing-web-applications">3.5. 웹애플리케이션 개발</a>
 <ul class="sectlevel3">
 <li><a href="#boot-features-spring-mvc">3.5.1. '스프링 Web MVC framework'</a></li>
-<li><a href="#boot-features-error-handling">3.5.2. 에러 처리</a></li>
-<li><a href="#boot-features-spring-hateoas">3.5.3. 스프링 HATEOAS</a></li>
-<li><a href="#boot-features-cors">3.5.4. CORS 지원</a></li>
-<li><a href="#boot-features-embedded-container">3.5.5. 내장 서블릿 컨테이너 지원</a></li>
+<li><a href="#boot-features-webflux">3.5.2. '스프링 WebFlux framework'</a></li>
+<li><a href="#boot-features-embedded-container">3.5.3. 내장 서블릿 컨테이너 지원</a></li>
 </ul>
 </li>
 <li><a href="#boot-features-security">3.6. 보안</a>
@@ -4761,15 +4759,15 @@ my.servers[1]=honeymon.io</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code>[main] ERROR org.springframework.boot.SpringApplication - Application startup failed
 java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with ! operator
-	at org.springframework.core.env.AbstractEnvironment.validateProfile(AbstractEnvironment.java:367)
-	at org.springframework.core.env.AbstractEnvironment.setActiveProfiles(AbstractEnvironment.java:255)
-	at org.springframework.core.env.AbstractEnvironment.doGetActiveProfiles(AbstractEnvironment.java:241)
-	at org.springframework.core.env.AbstractEnvironment.getActiveProfiles(AbstractEnvironment.java:225)
-	at org.springframework.boot.SpringApplication.configureProfiles(SpringApplication.java:487)
-	at org.springframework.boot.SpringApplication.configureEnvironment(SpringApplication.java:444)
-	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:324)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
-	at io.honeymon.boot.springboot.BootSpringBootApplication.main(BootSpringBootApplication.java:14)</code></pre>
+    at org.springframework.core.env.AbstractEnvironment.validateProfile(AbstractEnvironment.java:367)
+    at org.springframework.core.env.AbstractEnvironment.setActiveProfiles(AbstractEnvironment.java:255)
+    at org.springframework.core.env.AbstractEnvironment.doGetActiveProfiles(AbstractEnvironment.java:241)
+    at org.springframework.core.env.AbstractEnvironment.getActiveProfiles(AbstractEnvironment.java:225)
+    at org.springframework.boot.SpringApplication.configureProfiles(SpringApplication.java:487)
+    at org.springframework.boot.SpringApplication.configureEnvironment(SpringApplication.java:444)
+    at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:324)
+    at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
+    at io.honeymon.boot.springboot.BootSpringBootApplication.main(BootSpringBootApplication.java:14)</code></pre>
 </div>
 </div>
 </td>
@@ -5432,7 +5430,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>위에서 나열한 것들은 자바에서 사용가능한 로깅 프레임워크들이다. 많은 숫자에 당황할 필요는 없다. 로깅 의존성을 변경할 필요없이 스프링 부트 기본 로깅구성으로도 충분히 잘 동작한다.</p>
+<p>위에서 나열한 것들은 자바에서 사용가능한 로깅 프레임워크다. 많은 숫자에 당황할 필요는 없다. 로깅 의존성을 변경하지 않아도 스프링 부트 기본 로깅구성으로도 충분히 잘 동작한다.</p>
 </div>
 </td>
 </tr>
@@ -5520,16 +5518,16 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </table>
 </div>
 <div class="paragraph">
-<p>디버그 모드가 활성화되었을때, 주요 로거(내장 컨테이너, 하이버네이트와 스프링 부트)를 선택도록 구성되어 추가적인 정보를 출력한다. 디버그 모드가 활성화된다고 해서 애플리케이션의 모든 <code>DEBUG</code> 레벨 메시지가 출력되지는 않는다.</p>
+<p>디버그 모드가 활성화되면 주요 로거(내장 컨테이너, 하이버네이트와 스프링 부트)를 선택하도록 구성되어 추가적인 정보를 출력한다. 디버그 모드가 활성화된다고 해서 <strong>애플리케이션의 모든 <code>DEBUG</code> 레벨 메시지가 출력되지는 않는다</strong>.</p>
 </div>
 <div class="paragraph">
 <p>선택적으로, 애플리케이션이 시작될 때 <code>--trace</code> 플래그(<code>trace:true</code>를 <code>application.yml</code>에 지정) "trace" 모드로 시동하는 것도 가능하다. 주요 로거(내장 컨테이너, 하이버네이트 스키마 생성과 스프링 포트폴리오)가 선택되어 트레이스 로깅이 활성화된다.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="boot-features-logging-color-coded-output">3.4.3. 파일 출력</h4>
+<h4 id="boot-features-logging-color-coded-output">3.4.3. 안시를 이용한 컬러 출력</h4>
 <div class="paragraph">
-<p>터미널에서 안시(ANSI)을 지원하는 경우, 컬러로 출력되면 가독성에 더욱 도움이 될 것이다. <code>spring.output.ansi.enabled</code> 속성을 지정하여  <a href="http://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/api/org/springframework/boot/ansi/AnsiOutput.Enabled.html">지원하는 값(<code>ALWAYS</code>, <code>DETECT</code>, <code>NAVER</code>)</a>으로 설정을 변경할 수 있다.</p>
+<p>터미널에서 안시(ANSI)을 지원하는 경우, 컬러로 출력되면 가독성에 더욱 도움이 될 것이다. <code>spring.output.ansi.enabled</code> 속성을 지정하여  <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ansi/AnsiOutput.Enabled.html">지원하는 값(<code>ALWAYS</code>, <code>DETECT</code>, <code>NAVER</code>)(https://goo.gl/d2qb3W)</a>으로 설정을 변경할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p><code>%crl</code> 관례를 이용해서 색상을 변경할 수 있다. 가장 간단한 형태로 컨버터는 로그 수준에 따라서 출력색상을 지정한다, 예를 들자면:</p>
@@ -5672,7 +5670,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>로깅 시스템은 애플리케이션 생애주기 중 초기에 구성되기 때문에 <code>@PropertySource</code> 애너테이션 등이 적재될 때 로깅과 관련된 속성을 찾지 못할 수도 있다.</p>
+<p>로깅 시스템은 애플리케이션 생애주기 중 초기에 구성되기 때문에 <code>@PropertySource</code> 애너테이션으로 정의된 로깅과 관련된 속성을 찾지 못할 수도 있다.</p>
 </div>
 </td>
 </tr>
@@ -5686,7 +5684,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>로깅 속성은 실제 로깅 기반에 의존적이다. 그때문에 스프링 부트에서는 로깅 시스템에서 사용하는 구성키(<code>logback.configurationFile</code> 같은)를 관리하지 못한다.</p>
+<p>로깅 속성은 실제 로깅 기반 인프라에 의존적이다. 그 때문에 스프링 부트에서는 로깅 시스템에서 사용하는 구성키(로그백을 위한 <code>logback.configurationFile</code> 같은)를 관리하지 못한다.</p>
 </div>
 </td>
 </tr>
@@ -5696,7 +5694,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <div class="sect3">
 <h4 id="boot-features-custom-log-levels">3.4.5. 로그 레벨</h4>
 <div class="paragraph">
-<p>지원되는 모든 로깅 시스템에 대해서는 스프링 <code>Environment</code>의 <code>logging.level.*={LEVEL}</code>(LEVEL: <code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>OFF</code> 중 하나) 이용해서 로거 레벨을 설정할 수 있다. <code>root</code> 로거는 <code>logging.level.root</code>를 사용하여 구성할 수 있다.</p>
+<p>지원되는 모든 로깅 시스템에 대해서는 스프링 <code>Environment</code>의 <code>logging.level.*={LEVEL}</code>(LEVEL: <code>TRACE</code>, <code>DEBUG</code>, <code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, <code>OFF</code> 중 하나) 이용해서 로깅 레벨을 설정할 수 있다. <code>root</code> 로거는 <code>logging.level.root</code>를 사용하여 구성할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5715,7 +5713,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트는 타임리프 <code>INFO</code> 메시지를 <code>DEBUG</code> 레벨로 기록한다. 이는 로그 출력을 표준화 하고 잡음을 감소시키는 효과를 가져오는데,  <a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot/src/main/java/org/springframework/boot/logging/logback/LevelRemappingAppender.java"><code>LevelRemappingAppender</code></a>를 살펴보면 구성에서 어떻게 자용하는지 이해할 수 있다.</p>
+<p>스프링 부트는 타임리프 <code>INFO</code> 메시지를 <code>DEBUG</code> 레벨로 기록한다. 이는 로그 출력을 표준화 하고 잡음을 감소시키는 효과를 가져오는데,  <a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot/src/main/java/org/springframework/boot/logging/logback/LevelRemappingAppender.java"><code>LevelRemappingAppender</code>(https://goo.gl/mKMUCV)</a>를 살펴보면 구성에서 어떻게 자용하는지 이해할 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -5723,10 +5721,9 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </div>
 </div>
 <div class="sect3">
-<h4 id="로그-구성-재정의">로그 구성 재정의</h4>
+<h4 id="boot-features-custom-log-configuration">3.4.6. 로그 구성 재정의</h4>
 <div class="paragraph">
-<p><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-custom-log-configuration" class="bare">http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-custom-log-configuration</a>
-다양한 로깅 시스템이 라이브러리를 적절한 클래스패스에 포함하고 있고 클래스패스 최상위에 적합한 구성 파일을 제공하거나, 스프링 <code>Environment</code> 속성 <code>logging.config</code>로 위치를 지정하면 로그 설정을 재정의 할 수 있다.</p>
+<p>다양한 로깅 시스템 라이브러리를 적절한 클래스패스에 가지고 있고 클래스패스 최상위에 적합한 구성 파일을 제공하거나, 스프링 <code>Environment</code> 속성 <code>logging.config</code>로 위치를 지정하면 로그 설정을 재정의 할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트에서 <code>org.springframework.boot.logging.LoggingSystem</code> 시스템 속성을 이용해서 특정 로깅 시스템을 사용하도록 강제할 수 있다. 대응하는 값으로 <code>LoggingSystem</code> 구현체의 절대경로를 포함한 클래스명을 사용한다. 혹은 <code>none</code> 값을 사용하여 스프링 부트 로깅 구성을 완전히 비활성화할 수도 있다.</p>
@@ -5739,14 +5736,14 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>로깅은 <code>ApplicationContext</code>가 생성되기 전에 초기화 되기 때문에 스프링 <code>@Configuration</code> 파일에서 <code>@PropertySource</code>으로 로깅 시스템을 제어하는 것은 불가능하다. 시스템 속성 및 스프링 부트 외부 구성 파일에서는 잘 동작한다.</p>
+<p>로깅은 <code>ApplicationContext</code>가 생성되기 전에 초기화 되기 때문에 스프링 <code>@Configuration</code>에서 <code>@PropertySource</code>으로 로깅 시스템을 제어하는 것은 불가능하다. 시스템 속성 및 스프링 부트 외부 구성 파일에 대해서는 정상적으로 동작한다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>로깅시스템에 따라, 다음의 파일들이 적재된다:</p>
+<p>로깅시스템에 따라 다음의 파일이 적재되어야 한다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5782,7 +5779,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>로깅 구성을 위해 <code>-spring</code> 접미사를 사용하길 권장한다(예를 들어 <code>logback.xml</code> 보다는 <code>logback-spring.xml</code>). 로깅 재정의 파일이 지정된 위치에 있다면, {sping}은 로그 초기화를 완벽하게 제어할 수 있다.</p>
+<p>로깅 구성을 위해 <code>-spring</code> 접미사를 사용하길 권장한다(예를 들어 <code>logback.xml</code> 보다는 <code>logback-spring.xml</code>). 로깅 재정의 파일이 지정된 위치에 있다면, 스프링은 로그 초기화를 완벽하게 제어할 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -5796,14 +5793,14 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p>실행가능한 jar에서 실행될 때 Java Util Logging의 클래스로딩 이슈(<a href="https://goo.gl/MPELec" class="bare">https://goo.gl/MPELec</a>, <a href="https://goo.gl/9rfccZ" class="bare">https://goo.gl/9rfccZ</a>)로 인해 문제가 발생할 수 있다. 그러니 이 문제를 가급적이면 피하기를 권한다(Logback, Log4j2, Slf4j 등의 라이브러리를 이용).</p>
+<p>실행가능한 jar에서 실행될 때 Java Util Logging의 클래스로딩 이슈(<a href="https://goo.gl/MPELec" class="bare">https://goo.gl/MPELec</a>, <a href="https://goo.gl/9rfccZ" class="bare">https://goo.gl/9rfccZ</a>)로 인해 문제가 발생할 수 있다. 그러니 이 문제를 가급적이면 피하기를 권한다(<strong>Logback, Log4j2, Slf4j 등의 라이브러리를 이용</strong>).</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>스프링 <code>Environment</code> 속성과 시스템 속성 중 일부를 이용하여 재정의가 가능하다:</p>
+<p>스프링 <code>Environment</code> 속성과 시스템 속성 중 이용하여 로깅 시스템 이부를 재정의 가능하다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5875,7 +5872,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </div>
 </div>
 <div class="sect3">
-<h4 id="boot-features-logback-extensions">3.4.6. 로그백 확장</h4>
+<h4 id="boot-features-logback-extensions">3.4.7. 로그백 확장</h4>
 <div class="paragraph">
 <p>스프링 부트는 로그백에 대한 많은 확장포인트를 가지고 있어서 보다 나은 구성을 할 수 있다. <code>logback-spring.xml</code> 구성파일을 확장할 수 있다.</p>
 </div>
@@ -5957,7 +5954,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>Environment</code> 속성접근에는 <code>RelaxedPropertyResolver</code>을 사용한다. <code>source</code> 를 지정할 때 대시(<code>-</code>)를 사용(<code>my-property-name</code>)하면 다양한 변형에 대해 시도해볼 수 있다(<code>myPropertyName</code>, <code>MY_PROPERTY_NAME</code> 등).</p>
+<p><code>Environment</code> 속성에 접근할 때는 <code>RelaxedPropertyResolver</code>를 사용한다. <code>source</code> 를 지정할 때 대시(<code>-</code>)를 사용(예: <code>my-property-name</code>)하면 다양한 변형에 대해 대응할 수 있다(<code>myPropertyName</code>, <code>MY_PROPERTY_NAME</code> 등).</p>
 </div>
 </td>
 </tr>
@@ -5967,9 +5964,9 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 <div class="sect2">
-<h3 id="web-application-development">3.5. 웹애플리케이션 개발</h3>
+<h3 id="boot-features-developing-web-applications">3.5. 웹애플리케이션 개발</h3>
 <div class="paragraph">
-<p>스프링 부트는 웹애플리케이션 개발에 최적화되어 있다. 내장컨테이너(톰캣, 제티 혹은 언더토우)를 사용하여 손쉽게 HTTP 서버를 제작할 수 있다. 대부분의 웹애플리케이션은 <code>spring-boot-starter-web</code> 모듈을 사용하여 빠른 실행이 가능하다.</p>
+<p>스프링 부트는 웹애플리케이션 개발에 최적화되어 있다. 내장컨테이너(톰캣, 제티 혹은 언더토우)를 사용하여 손쉽게 별도로 WAS를 설치하지 않아도 독립된 HTTP 서버를 제작할 수 있다. 대부분의 웹애플리케이션은 <code>spring-boot-starter-web</code> 모듈을 사용하여 빠른 실행이 가능하다.</p>
 </div>
 <div class="sect3">
 <h4 id="boot-features-spring-mvc">3.5.1. '스프링 Web MVC framework'</h4>
@@ -5982,21 +5979,29 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RestController</span>
-<span class="annotation">@RequestMapping</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">UserRestController</span> {
+    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">public</span> <span class="predefined-type">List</span>&lt;User&gt; getUsers() {
+      <span class="comment">//....</span>
+    }
 
-    <span class="annotation">@RequestMapping</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>, method=RequestMethod.GET)
+    <span class="annotation">@PostMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">public</span> User createUser(<span class="annotation">@RequestBody</span> User user) {
+      <span class="comment">//...</span>
+    }
+
+    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>)
     <span class="directive">public</span> User getUser(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
         <span class="comment">// ...</span>
     }
 
-    <span class="annotation">@RequestMapping</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}/customers</span><span class="delimiter">&quot;</span></span>, method=RequestMethod.GET)
+    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}/customers</span><span class="delimiter">&quot;</span></span>)
     <span class="predefined-type">List</span>&lt;Customer&gt; getUserCustomers(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
         <span class="comment">// ...</span>
     }
 
-    <span class="annotation">@RequestMapping</span>(value=<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>, method=RequestMethod.DELETE)
-    <span class="directive">public</span> User deleteUser(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
+    <span class="annotation">@DeleteMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">public</span> <span class="type">void</span> deleteUser(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
         <span class="comment">// ...</span>
     }
 
@@ -6004,7 +6009,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 <div class="paragraph">
-<p>스프링 MVC는 주요 스프링 프레임워크 중 일부이며 자세한 내용은 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/spring-framework-reference/htmlsingle#mvc">참조 문서</a>를 살펴보기 바란다. 스프링 MVC에 대해 다루는 <a href="https://spring.io/guides" class="bare">https://spring.io/guides</a> 에서도 여러가지를 안내받을 수 있다.</p>
+<p>스프링 MVC는 주요 스프링 프레임워크 중 일부이며 자세한 내용은 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">스프링참조 문서#Spring Web MVC(https://goo.gl/EVDNop)</a>를 살펴보기 바란다. 스프링 MVC에 대해 다루는 <a href="https://spring.io/guides" class="bare">https://spring.io/guides</a> 에서도 여러가지를 안내받을 수 있다.</p>
 </div>
 <div class="sect4">
 <h5 id="boot-features-spring-mvc-auto-config">스프링 MVC 자동구성</h5>
@@ -6043,7 +6048,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </ul>
 </div>
 <div class="paragraph">
-<p>스프링 부트 MVC 기능을 유지하면서 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/spring-framework-reference/htmlsingle#mvc">MVC 구성</a>(인터셉터, 포맷터, 뷰 컨트롤러 등)을 추가하고 싶다면 <code>@EnableWebMvc</code>없이 <code>WebMvcConfigurerAdapter</code> 타입의 클래스에 <code>@Configuration</code> 추가하면 된다. <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> 혹은 <code>ExceptionHandlerExceptionResolver</code> 에 대한 인스턴스를 재정의하고 싶다면 <code>WebMvcRegistrationsAdapter</code>를 이용할 수 있다.</p>
+<p>스프링 부트 MVC 기능을 유지하면서 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">MVC 구성(https://goo.gl/EVDNop)</a>(인터셉터, 포맷터, 뷰 컨트롤러 등)을 추가하고 싶다면 <code>@EnableWebMvc</code>없이 <code>WebMvcConfigurerAdapter</code> 타입의 클래스에 <code>@Configuration</code> 추가하면 된다. <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> 혹은 <code>ExceptionHandlerExceptionResolver</code> 에 대한 인스턴스를 재정의하고 싶다면 <code>WebMvcRegistrationsAdapter</code>를 이용할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>만약 스프링 MVC를 완벽히 제어하고 싶다면 <code>@Configuration</code> 선언에 추가적으로 <code>@EnableWebMvc</code>를 선언하면 된다.</p>
@@ -6052,10 +6057,10 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="sect4">
 <h5 id="boot-features-spring-mvc-http-message-converter"><code>HttpMessageConverters</code></h5>
 <div class="paragraph">
-<p>스프링 MVC는 HTTP 요청과 응답에 <code>HttpMessageConverter</code> 인터페이스를 사용한다. 기본적인 처리방식은 이미 정해져 있는데, 예를 들어 객체를 자동으로 JSON(Jackson 라이브러리 사용) 혹은 XML(JAXB를 사용하거나 가능하다면 Jackson XML 확장을 사용)로 변환가능하다.</p>
+<p>스프링 MVC는 HTTP 요청과 응답에 <code>HttpMessageConverter</code> 인터페이스를 사용한다. 기본적인 처리방식은 객체를 자동으로 JSON(Jackson 라이브러리 사용) 혹은 XML(JAXB를 사용하거나 가능하다면 Jackson XML 확장을 사용)로 변환가능하도록 되어있다.</p>
 </div>
 <div class="paragraph">
-<p>컨버터를 추가하거나 재정의하려는 경우 스프링 부트의 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/web/HttpMessageConverters.html"><code>HttpMessageConverters</code></a>를 사용할 수 있다:</p>
+<p>컨버터를 추가하거나 재정의하려는 경우 스프링 부트의 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/web/HttpMessageConverters.html"><code>HttpMessageConverters</code>(https://goo.gl/kFcFje)</a>를 사용할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6075,13 +6080,13 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 <div class="paragraph">
-<p>어떤 <code>HttpMessageConverter</code> 빈이든지 목록에 추가하면 컨버터 목록에 추가되어 컨텍스트에 적용된다. 기본 컨버터도 동일한 방식으로 덮어쓸 수 있다.</p>
+<p>어떤 <code>HttpMessageConverter</code> 빈이든지 목록에 추가하면 컨버터 목록에 추가되어 컨텍스트에 등록된다. 기본 컨버터도 동일한 방식으로 덮어쓸 수 있다.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="boot-features-json-components">JSON 직렬화와 역직렬화 사용자정의</h5>
+<h5 id="boot-features-json-components">JSON 직렬화와 역직렬화 재정의</h5>
 <div class="paragraph">
-<p>JSON 데이터에 대해서 직렬화(serialize)와 역직렬화(deserialize)에 Jackson을 사용한다면 <code>JsonSerializer</code>와 <code>JsonDeserializer</code> 클래스를 작성할 수 있다. 재정의한 직렬화기(Serializers)는 <a href="https://github.com/FasterXML/jackson-docs/wiki/JacksonHowToCustomSerializers">Jackson 모듈로 등록</a>가능하지만, 스프링 부트는 대안으로 <code>@JsonComponent</code> 애너테이션을 통해서 스프링 빈으로 바로 등록가능하다.</p>
+<p>JSON 데이터에 대해서 직렬화(serialize)와 역직렬화(deserialize)에 Jackson을 사용한다면 <code>JsonSerializer</code>와 <code>JsonDeserializer</code> 클래스를 작성할 수 있다. 재정의한 시리얼라이저(Serializers)는 <a href="https://github.com/FasterXML/jackson-docs/wiki/JacksonHowToCustomSerializers">Jackson 모듈로 등록(https://goo.gl/xy8nCB)</a>가능하지만, 스프링 부트는 대안으로 <code>@JsonComponent</code> 애너테이션을 통해서 스프링 빈으로 바로 등록가능하다.</p>
 </div>
 <div class="paragraph">
 <p><code>JsonSerializer</code> 혹은 <code>JsonDeserializer</code> 구현체에 <code>@JsonComponent</code>를 사용할 수 있다. 혹은 내부 클래스에 포함하는 방식을 사용할 수도 있다. 예를 들자면:</p>
@@ -6108,13 +6113,13 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <p><code>ApplicationContext</code> 에 있는 모든 <code>@JsonComponent</code> 빈은 Jackson과 함께 자동으로 등록된다. <code>@JsonComponent</code>는 <code>@Component</code>처럼 메타애너테이션 이기에 컴포넌트 스캔규칙에 적용된다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 <a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectSerializer.java">JsonObjectSerializer</a>과 <a href="https://github.com/spring-projects/spring-boot/tree/v1.5.4.RELEASE/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectDeserializer.java">JsonObjectDeserializer</a> 기본 클래스를 제공하여 객체 표준화와 관련하여 표준 Jackson 버전에 대한 유용한 대안을 제공한다. 자세한 내용에 대해서는 Javadoc 문서를 살펴보기 바란다.</p>
+<p>스프링 부트는 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectSerializer.java"><code>JsonObjectSerializer</code>(https://goo.gl/g9VSQp)</a>과 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectDeserializer.java"><code>JsonObjectDeserializer</code>(https://goo.gl/ESkx4h)</a> 기본 클래스를 제공하여 객체 표준화와 관련하여 표준 Jackson 버전에 대한 유용한 대안을 제공한다. 자세한 내용에 대해서는 Javadoc 문서를 살펴보기 바란다.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="boot-features-spring-message-codes"><code>MessageCodeResolver</code></h5>
 <div class="paragraph">
-<p>스프링 MVC는 발생한 에러에 대응하여 <code>MessageCodeResolver</code>을 바탕으로 에러 메시지를 랜더링하여 에러코드를 생성하는 전략을 가지고 있다. 스프링 부트는 <code>spring.mvc.message-codes-resolver.format</code> 속성에 <code>PREFIX_ERROR_CODE</code> 혹은 <code>POSTFIX_ERROR_CODE</code>를 설정할 수 있다(사용가능한 enum은 <code>DefaultMessageCodesResolver.Format</code>에 정의되어 있다).</p>
+<p>스프링 MVC는 에러가 발생하는 경우 <code>MessageCodeResolver</code>를 바탕으로 에러 메시지를 랜더링하여 에러코드를 생성하는 전략을 가지고 있다. 스프링 부트는 <code>spring.mvc.message-codes-resolver.format</code> 속성에 <code>PREFIX_ERROR_CODE</code> 혹은 <code>POSTFIX_ERROR_CODE</code>를 설정할 수 있다(사용가능한 enum은 <a href="https://github.com/spring-projects/spring-framework/blob/master/spring-context/src/main/java/org/springframework/validation/DefaultMessageCodesResolver.java"><code>DefaultMessageCodesResolver.Format</code>(https://goo.gl/K9G3SX)</a>에 정의되어 있다).</p>
 </div>
 </div>
 <div class="sect4">
@@ -6137,7 +6142,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <p><code>spring.resources.static-locations</code> 속성(앞에서 나열했던 기본 디렉터리 위치를 대체)을 사용하면 정적자원 위치에 대해서 재정의할 수 있다. 만약 기본 환영페이지(보통 <code>index.html</code>) 위치를 재정의한 위치가 애플리케이션의 시작페이지가 될 것이다.</p>
 </div>
 <div class="paragraph">
-<p><a href="http://www.webjars.org/">Webjars 컨텐츠</a>의 경우에는 앞에서 살펴본 '표준' 정적 자원 위치와는 다르다. 어떤 자원이든지 Webjar 형식으로 패키징된 jar 파일으로 부터 <code>/webjars/**</code> 에 파일이 위치하게 된다.</p>
+<p><a href="http://www.webjars.org/">Webjars 컨텐츠(http://www.webjars.org/)</a>의 경우에는 앞에서 살펴본 '표준' 정적 자원 위치와는 다르다. 어떤 자원이든지 Webjar 형식으로 패키징된 jar 파일으로 부터 <code>/webjars/**</code> 에 파일이 위치하게 된다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -6190,7 +6195,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </td>
 <td class="content">
 <div class="paragraph">
-<p>자동설정된 타임리프와 프리마커 경우에는 <code>ResourceUrlEncodingFilter</code>가 연결된 자원에 대한 재작성을 수행한다. JSP 를 사용하는 경우에는 수동으로 설정해야 한다. 다른 템플릿 엔진에서는 자동지원을 하지 않지만 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASEE/javadoc-api/org/springframework/web/servlet/resource/ResourceUrlProvider.html">ResourceUrlProvider</a> 을 사용하거나 템플릿 매크로/헬퍼(helper)를 재정의하여 사용할 수 있다.</p>
+<p>자동설정된 타임리프와 프리마커 경우에는 <code>ResourceUrlEncodingFilter</code>가 연결된 자원에 대한 재작성을 수행한다. JSP 를 사용하는 경우에는 수동으로 설정해야 한다. 다른 템플릿 엔진에서는 자동지원을 하지 않지만 <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/resource/ResourceUrlProvider.html"><code>ResourceUrlProvider</code>(https://goo.gl/JK78xb)</a> 을 사용하거나 템플릿 매크로/헬퍼(helper)를 재정의하여 사용할 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -6222,7 +6227,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <p>이렇게 구성하면 <code>/js/lib/</code> 하위에 위치한 자바스크립트 모듈에 대해서 고정된 버전관리 전략을 사용하여 <code>/v12/js/lib/mymodule.js</code> 으로 처리하며, 다른 자원들에 대해서는 <code>&lt;link href="/css/spring-2a2d595e6ed9a0b24f027f2b63b134d6.css"/&gt;</code> 처럼 처리할 것이다.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ResourceProperties.java">ResourceProperties</a>을 살펴보면 보다 자세한 선택사항을 살펴볼 수 있다.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ResourceProperties.java"><code>ResourceProperties</code>(https://goo.gl/qJC911)</a>을 살펴보면 보다 자세한 선택사항을 살펴볼 수 있다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -6232,7 +6237,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </td>
 <td class="content">
 <div class="paragraph">
-<p>이 기능에 대한 보다 자세한 설명은 <a href="https://spring.io/blog/2014/07/24/spring-framework-4-1-handling-static-web-resources">블로그 포스트</a>와 스프링 프레임워크 <a href="http://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/htmlsingle/#mvc-config-static-resources">참조문서</a>에 기술되어 있다.</p>
+<p>이 기능에 대한 보다 자세한 설명은 <a href="https://spring.io/blog/2014/07/24/spring-framework-4-1-handling-static-web-resources">블로그 포스트(https://goo.gl/UBHVtx)</a>와 스프링 프레임워크 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-caching-cachecontrol">Spring MVC#참조문서(https://goo.gl/FTDUS5)</a>에 기술되어 있다.</p>
 </div>
 </td>
 </tr>
@@ -6254,7 +6259,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="sect4">
 <h5 id="boot-features-spring-mvc-template-engines">템플릿 엔진</h5>
 <div class="paragraph">
-<p>훌륭한 REST 웹 서비스에서도, 스프링 MVC를 이용해서 동적인 HTML 컨텐츠를 제공할 수 있다. 스프링 MVC는 타임리프, 프리마커와 JSP를 포함한 다양한 템플릿 기술을 지원한다. 그외에도 스프링 MVC에서 지원하는 다양한 템플릿 엔진을 적용할 수 있다.</p>
+<p>REST 웹서비스에서도 스프링 MVC를 이용해서 동적인 HTML 컨텐츠를 제공할 수 있다. 스프링 MVC는 타임리프, 프리마커와 JSP를 포함한 다양한 템플릿 기술을 지원한다. 그외에도 스프링 MVC에서 지원하는 다양한 템플릿 엔진을 적용할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트에서 자동구성을 지원하는 템플릿 엔진은 다음과 같다:</p>
@@ -6262,16 +6267,16 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://freemarker.org/docs/">프라마커(FreeMarker)</a></p>
+<p>프리마커(FreeMarker): <a href="http://freemarker.org/docs/" class="bare">http://freemarker.org/docs/</a></p>
 </li>
 <li>
-<p><a href="http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_the_markuptemplateengine">그루비(Groovy)</a></p>
+<p>그루비(Groovy):  <a href="http://docs.groovy-lang.org/docs/next/html/documentation/template-engines.html#_the_markuptemplateengine">https://goo.gl/jq1jev</a></p>
 </li>
 <li>
-<p><a href="http://www.thymeleaf.org/">타임리프(Thymeleaf)</a></p>
+<p>타임리프(Thymeleaf): <a href="http://www.thymeleaf.org/" class="bare">http://www.thymeleaf.org/</a></p>
 </li>
 <li>
-<p><a href="https://mustache.github.io/">머스태쉬(Mustache)</a></p>
+<p>머스태쉬(Mustache): <a href="https://mustache.github.io/" class="bare">https://mustache.github.io/</a></p>
 </li>
 </ul>
 </div>
@@ -6283,7 +6288,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </td>
 <td class="content">
 <div class="paragraph">
-<p>JSP는 내장 서블릿 컨테이너를 사용할 때 알려져 있는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-jsp-limitations">여러가지 제약사항</a>들이 있어서 가급적이면 사용하지 않길 바란다.</p>
+<p>JSP는 내장 서블릿 컨테이너를 사용할 때 알려져 있는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-jsp-limitations">여러가지 제약사항(https://goo.gl/QhAA5L)</a>이 있어서 가급적이면 사용하지 않길 바란다.</p>
 </div>
 </td>
 </tr>
@@ -6300,16 +6305,15 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </td>
 <td class="content">
 <div class="paragraph">
-<p>인텔리제이 는 애플리케이션 실행 방법에 따라 클래스패스를 다르게 정렬한다. IDE에서 메인 메서드를 이용해서 애플리케이션을 실행할 때와 메이븐 과 그레이들을 사용하여 실행할 때와 패키징된 jar를 이용해서 실행할 때 각기 다른 방식을 사용한다. 이런 경우 스프링 부트가 클래스패스에서 템플릿을 찾을 때 실패하게 된다. 이런 문제를 피할 수 있는 대안으로 클래스패스 상에서 모든 템플릿 파일을 탐색하도록 템플릿 접미사를 <code>classpath*:/templates/</code>로 구성할 수 있다(자동구성에서는 <code>classpath:/templates/</code>으로 정의되어 있다. <a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/resources.html#resources-app-ctx-wildcards-in-resource-paths"><code>classpath*</code></a>(<a href="https://goo.gl/8hQFei" class="bare">https://goo.gl/8hQFei</a>)를 사용하는 경우에는 프로젝트오 가놔련된 모든 jar를 탐색한다).</p>
+<p>인텔리제이 는 애플리케이션 실행 방법에 따라 클래스패스를 다르게 정렬한다. IDE에서 메인 메서드를 이용해서 애플리케이션을 실행할 때와 메이븐 과 그레이들을 사용하여 실행할 때와 패키징된 jar를 이용해서 실행할 때 각기 다른 방식을 사용한다. 이런 경우 스프링 부트가 클래스패스에서 템플릿을 찾을 때 실패하게 된다. 이런 문제를 피할 수 있는 대안으로 클래스패스 상에서 모든 템플릿 파일을 탐색하도록 템플릿 접미사를 <code>classpath*:/templates/</code>로 구성할 수 있다(자동구성에서는 <code>classpath:/templates/</code>으로 정의되어 있다. <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#resources-app-ctx-classpathxml"><code>classpath*</code>(https://goo.gl/eeJoMg)</a>를 사용하는 경우에는 프로젝트와 관련된 모든 jar를 탐색한다).</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="boot-features-error-handling">3.5.2. 에러 처리</h4>
+<div class="sect4">
+<h5 id="boot-features-error-handling">에러 처리</h5>
 <div class="paragraph">
 <p>스프링 부트는 모든 에러에 대해서 <code>/error</code> 대응을 제공하며, 이를 이용해서 서블릿 컨테이너에서 '전역' 에러페이지를 등록할 수 있다. 클라이언트를 위해서 에러에 대한 상세한 내용(HTTP 상태와 예외 메시지)을 JSON 응답으로 제공할 수도 있다. 브라우저 클라이언트는 동일한 데이터가 HTML로 렌더링 되어 'whitelabel' 에러 뷰로 처리된 것을 보게 될 것이다(<code>error</code> 에 대응한 <code>View</code>를 추가하면 재정의 된다). <code>ErrorController</code>를 구현하고 빈으로 등록거나 ErrorAttributes 유형의 빈을 추가하면 컨텐츠가 변경되긴 하지만 기본 동작을 완벽하게 대체할 수 있다.</p>
 </div>
@@ -6365,6 +6369,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </li>
 </ol>
 </div>
+</div>
 <div class="sect4">
 <h5 id="boot-features-error-handling-custom-error-pages">에러 페이지 재정의</h5>
 <div class="paragraph">
@@ -6403,7 +6408,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 <div class="paragraph">
-<p>보다 복잡한 대응전략을 가지고 싶다면 <code>ErrorViewResolver</code> 인터페이스를 구현체를 빈으로 추가하면 된다.</p>
+<p>보다 복잡한 대응전략을 구사하고 싶다면 <code>ErrorViewResolver</code> 인터페이스 구현체를 빈으로 추가하면 된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6420,7 +6425,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 <div class="paragraph">
-<p>그에 더해 기존 스프링 MVC 기능에서 제공하던 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/spring-framework-reference/htmlsingle/#mvc-exceptionhandlers"><code>@ExceptionHandler</code></a>와 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/spring-framework-reference/htmlsingle/#mvc-ann-controller-advice"><code>@ControllerAdvice</code></a>를 사용할 수 있다. <code>ErrorController</code>는 제어하지 않는 예외들을 처리할 것이다.</p>
+<p>그에 더해 기존 스프링 MVC 기능에서 제공하던 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler"><code>@ExceptionHandler</code>(https://goo.gl/WPfmww)</a>와 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice"><code>@ControllerAdvice</code>(https://goo.gl/gWKLxp)</a>를 사용할 수 있다. 제어하지 않는 예외들은 <code>ErrorController</code>가 처리할 것이다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6447,24 +6452,94 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 }</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Jersey와 Wicket과 같은 일부 비스프링 웹애플리케이션에서 일반적인으로 처리하듯 필터로 처리하는 경로에 <code>ErrorPage</code>를 등록하면 다음과 같이 필터를 <code>ERROR</code> 디스패처 타입을 명시적으로 등록해야 한다:</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> FilterRegistrationBean myFilter() {
+    FilterRegistrationBean registration = <span class="keyword">new</span> FilterRegistrationBean();  <b class="conum">(1)</b>
+    registration.setFilter(<span class="keyword">new</span> MyFilter());
+    ...
+    registration.setDispatcherTypes(<span class="predefined-type">EnumSet</span>.allOf(DispatcherType.class));
+    <span class="keyword">return</span> registration;
+}</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="boot-features-spring-hateoas">3.5.3. 스프링 HATEOAS</h4>
+<div class="colist arabic">
+<ol>
+<li>
+<p><code>FilterRegistrationBean</code>은 <code>Error</code> 디스패처 타입에 해당하지 않는다.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="boot-features-spring-hateoas">스프링 HATEOAS</h5>
 <div class="paragraph">
 <p>하이퍼미디어를 사용하는 RESTful API를 개발하고 있다면, 스프링 부트는 대부분의 애플리케이션에서 동작하는 스프링 HATEOAS를 위한 자동구성을 제공한다. 자동구성을 대체하기 위해서는 <code>@EnableHypermediaSupport</code>를 사용해야 하며 <code>LinkDiscoverers</code>(클라이언트측 지원용)를 포함하고 하이퍼미디어 기반 애플리케이션을 등록해야 하고 <code>ObjectMapper</code>가 구성되어 있어야 응답에 대해서 마샬링할 수 있다. <code>ObjectMapper</code>는 <code>spring.jackson.*</code> 속성을 기반으로 재정의하거나 <code>Jackson2ObjectMapperBuilder</code> 빈을 이용할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p><code>@EnableHypermediaSupport</code>를 사용하여 스프링 HATEOAS 구성을 제어할 수 있다. 그렇게 되면 앞에서 설명한 <code>ObjectMapper</code> 재정의는 비활성화 될 덧이다.</p>
+<p><code>@EnableHypermediaSupport</code>를 사용하여 스프링 HATEOAS 구성을 제어할 수 있다. 그렇게 되면 앞에서 설명한 <code>ObjectMapper</code> 재정의는 비활성화된다.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="boot-features-cors">3.5.4. CORS 지원</h4>
+<div class="sect4">
+<h5 id="boot-features-cors">CORS 지원</h5>
 <div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin_resource_sharing</a>(CORS)는 <a href="https://www.w3.org/TR/cors/">W3C 명세서</a>에 있는 것을  <a href="http://caniuse.com/#feat=cors">대부분의 브라우저</a>에서 구현하고 있다. IFRAME 혹은 JSONP 같은 강력한 연계를 줄이고 인증을 하거나 보안성을 약화시키는 것을 대신하여 크로스 도메인(다른 도메인) 사이에 요청에 대한 유연한 방법을 기술하고 있다.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin_resource_sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="http://caniuse.com/#feat=cors">대부분의 브라우저(http://caniuse.com/#feat=cors)</a>에서 구현하고 있는 <a href="https://www.w3.org/TR/cors/">'W3C 사양'(https://www.w3.org/TR/cors/)</a>으로, IFRAME 혹은 JSONP 와 같이 덜 안전하고 덜 강력한 접근 방식을 사용하는 대신 어떤 종류의 크로스 도메인 요청이 승인되었는지를 유연하게 지정할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 MVC 4.2 버전까지는 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/spring-framework-reference/htmlsingle/#cors">CORS 지원</a>을 하지 않았다. 스프링 부트 애플리케이션에서는 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/spring-framework-reference/htmlsingle/#_controller_method_cors_configuration">CORS를 구성하려는 메서드</a>에서 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html"><code>CrossOrigin</code></a> 애너테이션를 사용하면 별다른 구성을 필요로 하지 않는다. <a href="http://docs.spring.io/spring/docs/4.3.9.RELEASE/spring-framework-reference/htmlsingle/#_global_cors_configuration">전역 CORS 구성</a>은 <code>WebMvcConfigurer</code> 빈에서 <code>addCorsMappings(CorsRegistry)</code> 메서드를 이용해서 재정의하여 등록가능하다:</p>
+<p>스프링 MVC 4.2 버전부터 <a href="https://docs.spring.io/spring/docs/4.2.0.RELEASE/spring-framework-reference/htmlsingle/#cors"><strong>CORS 지원</strong>(https://goo.gl/rfuQes)</a>을 시작했다. 스프링 부트 애플리케이션에서는 별다른 구성없이  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-controller">CORS를 구성하려는 메서드(https://goo.gl/qvLLMA)</a>에서 <a href="https://docs.spring.io/spring-framework/docs/5.0.1.RELEASE/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html"><code>@CrossOrigin</code></a> 애너테이션를 사용하면 된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RestController</span>
+<span class="annotation">@RequestMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/account</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">AccountController</span> {
+
+        <span class="annotation">@CrossOrigin</span>
+        <span class="annotation">@RequestMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{id}</span><span class="delimiter">&quot;</span></span>)
+        <span class="directive">public</span> Account retrieve(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> id) {
+                <span class="comment">// ...</span>
+        }
+
+        <span class="annotation">@RequestMapping</span>(method = RequestMethod.DELETE, path = <span class="string"><span class="delimiter">&quot;</span><span class="content">/{id}</span><span class="delimiter">&quot;</span></span>)
+        <span class="directive">public</span> <span class="type">void</span> remove(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> id) {
+                <span class="comment">// ...</span>
+        }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-global">'전역 CORS 구성'(https://goo.gl/ozNgD5)</a>은 <code>WebMvcConfigurer#addCorsMappings(CorsRegistry)</code> 메서드를 재정의하여 등록가능하다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@EnableWebMvc</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebConfig</span> <span class="directive">implements</span> WebMvcConfigurer {
+
+        <span class="annotation">@Override</span>
+        <span class="directive">public</span> <span class="type">void</span> addCorsMappings(CorsRegistry registry) {
+                registry.addMapping(<span class="string"><span class="delimiter">&quot;</span><span class="content">/**</span><span class="delimiter">&quot;</span></span>);
+        }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>혹은 다음과 같은 <code>WebMvcConfigurer</code>를 빈으로 등록하는 방식도 가능하다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6473,7 +6548,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 
     <span class="annotation">@Bean</span>
     <span class="directive">public</span> WebMvcConfigurer corsConfigurer() {
-        <span class="keyword">return</span> <span class="keyword">new</span> WebMvcConfigurerAdapter() {
+        <span class="keyword">return</span> <span class="keyword">new</span> WebMvcConfigurer() {
             <span class="annotation">@Override</span>
             <span class="directive">public</span> <span class="type">void</span> addCorsMappings(CorsRegistry registry) {
                 registry.addMapping(<span class="string"><span class="delimiter">&quot;</span><span class="content">/api/**</span><span class="delimiter">&quot;</span></span>);
@@ -6484,8 +6559,263 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="boot-features-embedded-container">3.5.5. 내장 서블릿 컨테이너 지원</h4>
+<h4 id="boot-features-webflux">3.5.2. '스프링 WebFlux framework'</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>영상: <a href="https://youtu.be/2E_1yb8iLKk">스프링캠프 2017:: SpringWebFlux - 이일민(https://youtu.be/2E_1yb8iLKk)</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>스프링 WebFlux는 스프링 프레임워크 5.0에서 소개된 새로운 리액티브 웹 프레임워크다. 스프링 MVC와는 달리 서블릿 API가 필요없으며 완전히 비동기이며 비블로킹 방식이고 <a href="http://projectreactor.io/">Reactor project(http://projectreactor.io/)</a>의 <a href="http://www.reactive-streams.org/">Reactive Streams(http://www.reactive-streams.org/)</a>를 구현했다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 WebFlux에는 두 가지 방식을 이용한다: 함수형(functional)과 애너테이션 기반. 애너테이션 기반은 우리가 알고 있는 스프링 MVC 모델과 매우 유사(<strong>똑같지는 않다</strong>)하여 다음과 같다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RestController</span>
+<span class="annotation">@RequestMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyRestController</span> {
+
+    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">public</span> Mono&lt;User&gt; getUser(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
+        <span class="comment">// ...</span>
+    }
+
+    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}/customers</span><span class="delimiter">&quot;</span></span>)
+    Flux&lt;Customer&gt; getUserCustomers(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
+        <span class="comment">// ...</span>
+    }
+
+    <span class="annotation">@DeleteMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>)
+    <span class="directive">public</span> Mono&lt;User&gt; deleteUser(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
+        <span class="comment">// ...</span>
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>함수형 변형체 'WebFlux,fn&#8217;은 다음과 같이 라우팅 구성을 실제 요청 처리와 분리한다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">RoutingConfiguration</span> {
+
+    <span class="annotation">@Bean</span>
+    <span class="directive">public</span> RouterFunction&lt;ServerResponse&gt; monoRouterFunction(UserHandler userHandler) {
+        <span class="keyword">return</span> route(GET(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>).and(accept(APPLICATION_JSON)), userHandler::getUser)
+                .andRoute(GET(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}/customers</span><span class="delimiter">&quot;</span></span>).and(accept(APPLICATION_JSON)), userHandler::getUserCustomers)
+                .andRoute(DELETE(<span class="string"><span class="delimiter">&quot;</span><span class="content">/{user}</span><span class="delimiter">&quot;</span></span>).and(accept(APPLICATION_JSON)), userHandler::deleteUser);
+    }
+
+}
+
+<span class="annotation">@Component</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">UserHandler</span> {
+
+    <span class="directive">public</span> Mono&lt;ServerResponse&gt; getUser(ServerRequest request) {
+        <span class="comment">// ...</span>
+    }
+
+    <span class="directive">public</span> Mono&lt;ServerResponse&gt; getUserCustomers(ServerRequest request) {
+        <span class="comment">// ...</span>
+    }
+
+    <span class="directive">public</span> Mono&lt;ServerResponse&gt; deleteUser(ServerRequest request) {
+        <span class="comment">// ...</span>
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>WebFlux는 스프링 프레임워크 중 한 부분이며 자세한 정보는 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#spring-web-reactive">스프링#참고문서(https://goo.gl/836axn)</a>를 참고하기 바란다.</p>
+</div>
+<div class="paragraph">
+<p>시작하기 위해서는 <code>spring-boot-starter-webflux</code> 의존성을 추가해야 한다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>spring-boot-starter-web</code>과 <code>spring-boot-starter-webflux</code> 모듈을 함께 추가하면 스프링 부트는 애플리케이션에서  WebFlux가 아니라 스프링 MVC를 자동구성한다. 이런 행동을 취하는 이유는 많은 스프링 개발자들이 스프링 MVC 애플리케이션에 <code>spring-boot-starter-webflux</code>를 추가하고 리액티브 <code>WebClient</code>를 사용한다. 사용하는 구성방식을 강제하고 싶다면 다음과 같이 타입을 선택하면 된다(<code>SpringApplication.setWebApplicationType(WebApplicationType.REACTIVE)</code>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="boot-features-webflux-auto-configuration">스프링 WebFlux 자동구성</h5>
+<div class="paragraph">
+<p>스프링 부트는 대부분의 애플리케이션에서 잘 동작하는 스프링 WebFlux를 위한 자동구성
+을 제공한다.</p>
+</div>
+<div class="paragraph">
+<p>자동구성는 스프링 기본값 위에 다음과 같은 기능을 추가한다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>HttpMessageReader</code>와 <code>HttpMessageWriter</code> 인스턴스를 위한 커덱 구성</p>
+</li>
+<li>
+<p>WebJas 지원을 포함한 정적 자원 제공 지원</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>스프링 부트 WebFlux 기능은 유지하면서 추가적으로 WebFlux 구성을 하고 싶다면 <strong><code>@EnableWebFlux</code> 없이</strong> <code>WebFluxConfigurer 타입의 클래스에 </code>@Configuration``을 선언하면 된다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 WebFlux를 완벽히 제어하고 싶다면 <code>@Configuration</code>과 함께 <code>@EnableWebFlux</code> 애너테이션를 선언하면 된다.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="boot-features-webflux-httpcodecs">HTTP 코덱 <code>HttpMessageReaders</code>와 <code>HttpMessageWriters</code></h5>
+<div class="paragraph">
+<p>스프링 WebFlux는 HTTP 요청과 응답을 처리하기 취해 <code>HttpMessageReaders</code>와 <code>HttpMessageWriters</code> 인터페이스를 사용한다. 클래스패스에서 사용할 수 있는 라이브러리를 살펴보고 적절한 기본값을 갖도록 <code>CodecConfigurer</code>를 이용해서 구성한다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트는 <code>CodecCustomizer</code> 인스턴스를 이용한 재정의 기능을 제공한다. 예를 들어, <code>spring.jackson.*</code> 구성키는 잭슨 코덱을 지원한다.</p>
+</div>
+<div class="paragraph">
+<p>만약 재정의 코덱이 필요하다면, 다음 예제처럼 <code>CodecCustomizer</code> 컴포넌트를 재정의하면 된다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">mport org.springframework.boot.web.codec.CodecCustomizer;
+
+<span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyConfiguration</span> {
+
+    <span class="annotation">@Bean</span>
+    <span class="directive">public</span> CodecCustomizer myCodecCustomizer() {
+        <span class="keyword">return</span> codecConfigurer -&gt; {
+            <span class="comment">// ...</span>
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>"<a href="#boot-features-json-components">JSON 직렬화와 역직렬화 재정의</a>"를 활용할 수도 있다.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="boot-features-webflux-static-content">정적 자원 제공</h5>
+<div class="paragraph">
+<p>기본적으로 스프링 부트는 클래스패스 <code>/static</code> 디렉토리(혹은 <code>/public</code> 혹은 <code>/resources</code> 혹은 <code>/META-INF/resources</code>)에 있는 정적자원 컨텐츠를 제공한다. 스프링 WebFlux에서는 <code>ResourceWebHandler</code>를 사용하는데 <code>WebFluxConfigurer</code>를 추가하고 <code>addResourceHandlers</code> 메서드를 재정의하여 해당 동작을 수정할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>기본적으로 자원에 대해서는 <code>/<strong></code>에 대응하지만, <code>spring.webflux.static-path-pattern</code> 속성을 이용해서 설정을 조정할 수 있다. 예를 들어, 모든 자원의 위치를 <code>/resources/</strong></code>로 변경했다고 하면 다음과 같이 선언할 수 있다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">spring.webflux.static-path-pattern</span>: <span class="string"><span class="content">/resources/**</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>spring.resources.static-locations</code>를 사용해서도 정적 자원의 위치를 재정의할 수 있다. 재정의하면 기본값이 디렉토리 위치목록으로 변경된다. 이렇게하면 기본 환영(welcome) 페이지 탐색이 재정의로 지정된 위치로 변경된다. 따라서 재정의한 위치에 <code>index.html</code>이 있다면 애플리케이션의 시작페이지가 된다.</p>
+</div>
+<div class="paragraph">
+<p>now-<a href="http://www.webjars.org/">Webjars 컨텐츠(http://www.webjars.org/)</a>의 경우에는 앞에서 살펴본 '표준' 정적 자원 위치와는 다르다. 어떤 자원이든지 Webjar 형식으로 패키징된 jar 파일으로 부터 <code>/webjars/**</code> 에 파일이 위치하게 된다.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>스프링 WebFlux 애플리케이션은 서블릿 API에 크게 의존적이지 않아서 war 파일로 배포할 수 없으며 <code>src/main/webapp</code> 디렉토리를 이용하지 않는다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="boot-features-webflux-template-engines">템플릿 엔진</h5>
+<div class="paragraph">
+<p>스프링 WebFlux를 이용해서 동적인 HTML 컨텐츠를 제공할 수 있다. 스프링 WebFlux는 타임리프, 프리마커와 머스태쉬를 포함한 다양한 템플릿 기술을 지원한다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트는 다음 템플릿 엔진에 대한 자동구성 지원을 포함하고 있다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>프리마커(FreeMarker): <a href="http://freemarker.org/docs/" class="bare">http://freemarker.org/docs/</a></p>
+</li>
+<li>
+<p>타임리프(Thymeleaf): <a href="http://www.thymeleaf.org/" class="bare">http://www.thymeleaf.org/</a></p>
+</li>
+<li>
+<p>머스태쉬(Mustache): <a href="https://mustache.github.io/" class="bare">https://mustache.github.io/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>기본 구성으로 위의 템플릿 엔진 중 하나를 사용한다면 자동으로 <code>src/main/resources/templates</code>에서 템플릿 파일을 탐색한다.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="boot-features-webflux-error-handling">에러 처리</h5>
+<div class="paragraph">
+<p>스프링 부트는 <code>WebExceptionHandler</code>를 제공하여 모든 에러에 대한 세밀한 제어가 가능하다. 처리 우선순위는 WebFlux가 제공하는 핸들러 바로 앞에 위치하게 된다. 클라이언트를 위해서 에러에 대한 상세한 내용(HTTP 상태와 예외 메시지)을 JSON 응답으로 제공할 수도 있다. 브라우저 클라이언트는 동일한 데이터가 HTML로 렌더링 되어 'whitelabel' 에러 뷰로 처리된 것을 보게 될 것이다. "<a href="#boot-features-error-handling-custom-error-pages">에러 페이지 재정의</a>"에서 설명했듯 템플릿 엔진을 통해서 HTML 템플릿으로 랜더링하여 보여줄 수도 있다.</p>
+</div>
+<div class="paragraph">
+<p>이 기능을 재정의하는 첫 단계는 기존 메커니즘을 유지하면서 오류 내용을 변경하거나 보완하는 것이다. 간단히 <code>ErrorAttributes</code> 타입의 빈을 추가하면 된다.</p>
+</div>
+<div class="paragraph">
+<p>에러 처리 방식을 변경하려면 <code>ErrorWebExceptionHandler</code>를 구현하고 빈으로 등록선언하면 된다. <code>WebExceptionHandler</code>는 상당히 낮은 수준이라 스프링 부트에서는 다음과 같이 WebFlux에서 <code>AbstractErrorWebExceptionHandler</code>를 제공한다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">CustomErrorWebExceptionHandler</span> <span class="directive">extends</span> AbstractErrorWebExceptionHandler {
+    <span class="comment">// Define constructor here</span>
+
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> RouterFunction&lt;ServerResponse&gt; getRoutingFunction(ErrorAttributes errorAttributes) {
+
+        <span class="keyword">return</span> RouterFunctions
+                .route(aPredicate, aHandler)
+                .andRoute(anotherPredicate, anotherHandler);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>보다 세밀하게 제어하고 싶다면 <code>DefaultErrorWebExceptionHandler</code>를 상속해서 특정 메서드를 재정의하면 된다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>에러 페이지  처리방식은 스프링 MVC의 "<a href="#boot-features-error-handling-custom-error-pages">에러 페이지 재정의</a>"와 동일하다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="boot-features-embedded-container">3.5.3. 내장 서블릿 컨테이너 지원</h4>
 <div class="paragraph">
 <p>스프링 부트는 톰캣, 제티와 언더토우 서버를 내장 컨테이너로 사용할 수 있다. 개발자 대부분이 스타터를 통해 완벽하게 구성된 인스턴스를 간단하게 사용할 수 있다. 내장 서버는 기본적으로 <code>8080</code> 포트를 기준으로 한다.</p>
 </div>
