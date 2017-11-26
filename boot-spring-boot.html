@@ -9279,7 +9279,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>자동구성을 간단하게 정리하자면 표준 <code>@Configuration</code> 애너테이션이 선언되어 있는 구현체다. 거기에 더하여 <code>@Conditional</code> 애너테이션으로 자동구성이 사용될 상황을 제어한다. 일반적으로 자동구성 클래스는 <code>@ConditionalOnClass</code>와 <code>@ConditionalOnMissingBean</code> 애너테이션을 사용한다. 이 조건은 관련된 클래스가 있을 때 자동구성이 존재하고 이와 관련된 <code>@Configuration</code> 정의가 없는 경우 발동된다.</p>
 </div>
 <div class="paragraph">
-<p>이와 관련된 소스코드는 <a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure"><code>spring-boot-autoconfigure</code></a> 에서 살펴볼 수 있으며 스프링 부트에서 제공하는 자동구성 목록을 <a href="https://github.com/spring-projects/spring-boot/blob/v2.0.0.RELEASE/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories"><code>/META-INF/spring.factories</code></a>에서 확인할 수 있다. 파일 내에 <code>EnableAutoConfiguration</code> 키에 구성 클래스 목록이 위치한다.</p>
+<p>이와 관련된 소스코드는 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure"><code>spring-boot-autoconfigure</code>(https://goo.gl/ydcqY3)</a> 에서 살펴볼 수 있으며 스프링 부트에서 제공하는 자동구성 목록을 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories"><code>/META-INF/spring.factories</code>(https://goo.gl/MyJ4k1)</a>에서 확인할 수 있다. 파일 내에 <code>EnableAutoConfiguration</code> 키에 구성 클래스 목록이 위치한다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -9295,7 +9295,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="paragraph">
-<p>지정된 순서에 따라서 구성되어야 한다면 <a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureAfter.java"><code>AutoConfigureAfter</code></a> 혹은 <a href="https://github.com/spring-projects/spring-boot/tree/v2.0.0.RELEASE/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureBefore.java"><code>AutoConfigureBefore</code></a> 애너테이션을 사용할 수 있다. 예를 들어, 웹과 관련된 구성을 제공하고 싶다면 <code>WebMvcAutoConfiguration</code> 구성 후에 실행되도록 할 수 있다.</p>
+<p>지정된 순서에 따라서 구성되어야 한다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureAfter.java"><code>AutoConfigureAfter</code>(https://goo.gl/NukfYA)</a> 혹은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureBefore.java"><code>AutoConfigureBefore</code>(https://goo.gl/cWSw6i)</a> 애너테이션을 사용할 수 있다. 예를 들어, 웹과 관련된 구성을 제공하고 싶다면 <code>WebMvcAutoConfiguration</code> 구성 후에 실행되도록 할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>다른 구성에 영향이 없는 상황에서 자동구성 순서를 확정하고 싶다면 <code>@AutoconfigureOrder</code>를 사용할 수 있다. 이 애너테이션은 일반적인 <code>@Order</code>와 동일한 형태로 동작하지만 자동구성 클래스를 위한 순서를 정의한다.</p>
@@ -9326,7 +9326,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="boot-features-class-conditions">클래스 조건</h5>
 <div class="paragraph">
-<p><code>@ConditionalOnClass</code> 과 <code>@ConditionalOnMissingClass</code> 애너테이션은 지정된 클래스가 존재하거나 부재하는 경우 구성한다. <a href="http://asm.ow2.org/">ASM</a>을 사용하여 애너테이션 메타데이터를 파싱하여 <code>value</code> 속성에 정의되어 있는 클래스의 존재여부를 점검한다. 또한 <code>name</code> 속성을 사용하여 클래스 이름을 <code>String</code> 값을 사용하여 클래스 이름을 정의할 수 있다.</p>
+<p><code>@ConditionalOnClass</code> 과 <code>@ConditionalOnMissingClass</code> 애너테이션은 지정된 클래스가 존재하거나 부재하는 경우 구성한다. <a href="http://asm.ow2.org/">ASM(http://asm.ow2.org/)</a>을 사용하여 애너테이션 메타데이터를 파싱하여 <code>value</code> 속성에 정의되어 있는 클래스의 존재여부를 점검한다. 또한 <code>name</code> 속성을 사용하여 클래스 이름을 <code>String</code> 값을 사용하여 클래스 이름을 정의할 수 있다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9515,12 +9515,12 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>스프링 부트에는 운영시 사용할 수 있도록 애플리케이션을 관리하고 관측하는데 도움이 되는 여러가지 기능들이 포함되어 있다. 애플리케이션을 관리하고 관측하기 위해 HTTP 종단점(<code>endpoint</code>), JMX 혹은 리모트 쉘(SSH 혹은 Telnet) 중에서 선택할 수 있다. 애플리케이션에 대한 감시, 상태확인 그리고 계측을 할 수 있도록 자동구성된다.</p>
 </div>
 <div class="paragraph">
-<p>액츄에이터 HTTP 종단점은 스프링 MVC 기반의 애플리케이션에서만 지원한다. 저지(Jersey)를 이용하면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-use-actuator-with-jersey">스프링 MVC를 사용하지 않아도 동작</a>하게 할 수는 있다.</p>
+<p>액츄에이터 HTTP 종단점은 스프링 MVC 기반의 애플리케이션에서만 지원한다. 저지(Jersey)를 이용하면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-use-actuator-with-jersey">스프링 MVC를 사용하지 않아도 동작(https://goo.gl/77EYYv)</a>하게 할 수는 있다.</p>
 </div>
 <div class="sect2">
 <h3 id="production-ready-enabling">4.1. 출시준비 기능 활성화</h3>
 <div class="paragraph">
-<p><a href="https://github.com/spring-projects/spring-boot/tree/v1.5.4.RELEASE/spring-boot-actuator"><code>spring-boot-actuator</code></a> 모듈은 스프링 부트 출시준비 기능과 관련된 것들을 제공한다. <code>spring-boot-starter-actuator</code> 스타터 의존성만 추가하면 기능들이 활성화된다.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator"><code>spring-boot-actuator</code>(https://goo.gl/UHH8Yv)</a> 모듈은 스프링 부트 출시준비 기능과 관련된 것들을 제공한다. <code>spring-boot-starter-actuator</code> 스타터 의존성만 추가하면 기능들이 활성화된다.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -9535,6 +9535,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>그레이들 기반 프로젝트에서 액츄에이터를 추가하려면 다음과 같이 스타터 의존성을 추가하면 된다:</p>
 </div>
 <div class="listingblock">
+<div class="title"><code>build.gradle</code></div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
     <span class="comment">//......</span>
@@ -9547,6 +9548,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>메이븐 기반 프로젝트에서는 다음과 같다:</p>
 </div>
 <div class="listingblock">
+<div class="title"><code>pom.xml</code></div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencies&gt;</span>
     <span class="tag">&lt;dependency&gt;</span>
@@ -9559,7 +9561,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-endpoints">4.1.1. 종단점(Endpoint)</h4>
 <div class="paragraph">
-<p>액츄에이터 종단점은 애플리케이션에 대한 모니터링 및 조작을 가능하도록 한다. 스프링 부트는 빌트-인(built-in, 사전에 제작되어 제공되는) 다양한 종단점을 제공하며 개발자가 필요에 따라서 얼마든지 추가할 수 있다. 예를 들어 <code>health</code> 종단점의 경우 기본적인 애플리케이션의 건강 정보를 제공한다.</p>
+<p>액츄에이터 종단점은 애플리케이션에 대한 모니터링 및 조작이 가능하다. 스프링 부트는 다양한 빌트-인(built-in, 사전에 제작되어 제공되는) 종단점을 제공하며 필요에 따라서 개발자가 얼마든지 추가할 수 있다. 예를 들어 <code>health</code> 종단점의 경우 기본적인 애플리케이션의 건강 정보를 제공한다.</p>
 </div>
 <div class="paragraph">
 <p>종단점 노출을 결정하는 것은 개발자가 사용하려는 기능과 그에 대한 사용여부 결정에 따른다. 대부분의 애플리케이션은 종단점에 ID를 부여하고 이를 URL 에 매칭하여 HTTP 모니터링하는 방식을 선택한다. 예를 들어 <code>health</code> 종단점는 <code>/health</code> 에 매칭된다.</p>
@@ -14405,7 +14407,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.9.2<br>
-Last updated 2017-11-24 16:35:20 KST
+Last updated 2017-11-25 00:31:32 KST
 </div>
 </div>
 </body>
