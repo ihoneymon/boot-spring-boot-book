@@ -625,7 +625,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel2">
 <li><a href="#boot-features-spring-application">3.1. 스프링애플리케이션(<code>SpringApplication</code>)</a>
 <ul class="sectlevel3">
-<li><a href="#boot-features-startup-failure">3.1.1. 시동 실패</a></li>
+<li><a href="#boot-features-startup-failure">3.1.1. 구동 실패</a></li>
 <li><a href="#boot-features-banner">3.1.2. 배너(banner) 기능</a></li>
 <li><a href="#boot-features-customization-spring-application">3.1.3. <code>SpringApplication</code> 재정의</a></li>
 <li><a href="#boot-features-fluent-builder-api">3.1.4. 유연한(<code>Fluent</code>) 빌더 API</a></li>
@@ -3553,7 +3553,7 @@ Unconditional classes:
 
 2017-11-11 06:48:03.250  INFO 3925 --- [           main] i.h.s.boot.BootSpringBootApplication     : Starting BootSpringBootApplication on honeymon-ThinkPad with PID 3925
 
-// 애플리케이션 시동과 관련된 로그가 출력된다.
+// 애플리케이션 구동과 관련된 로그가 출력된다.
 
 2017-11-11 06:48:11.694  INFO 3925 --- [           main] i.h.s.boot.BootSpringBootApplication     : Started BootSpringBootApplication in 10.572 seconds (JVM running for 12.216)</code></pre>
 </div>
@@ -3562,9 +3562,9 @@ Unconditional classes:
 <p>애플리케이션이 시작되면서 보여주는 <code>INFO</code> 로깅 메시지로 보여주는 것은 애플리케이션과 관련된 상세한 정보를 포함하고 있다.</p>
 </div>
 <div class="sect3">
-<h4 id="boot-features-startup-failure">3.1.1. 시동 실패</h4>
+<h4 id="boot-features-startup-failure">3.1.1. 구동 실패</h4>
 <div class="paragraph">
-<p>애플리케이션이 시동 중 실패하면, 등록되어있는 <code>FailureAnalyzers</code> 를 통해서 발생한 문제를 출력하고 이 문제를 해결할 수 있는 기회를 제공한다. 예를 들어, <code>8080</code>포트를 이미 사용하고 있는 상황에서 동일한 포트를 사용하는 웹 애플리케이션을 시작한다면 다음과 같은 메시지를 보게된다.</p>
+<p>애플리케이션이 구동 중 실패하면, 등록되어있는 <code>FailureAnalyzers</code> 를 통해서 발생한 문제를 출력하고 이 문제를 해결할 수 있는 기회를 제공한다. 예를 들어, <code>8080</code>포트를 이미 사용하고 있는 상황에서 동일한 포트를 사용하는 웹 애플리케이션을 시작한다면 다음과 같은 메시지를 보게된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3619,7 +3619,7 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 <div class="sect3">
 <h4 id="boot-features-banner">3.1.2. 배너(banner) 기능</h4>
 <div class="paragraph">
-<p>실제 서비스 운영과는 크게 관련은 없지만(!), 개발자들이 크게 환호할 만한 기능이 하나 있다. 바로 <strong>배너</strong> 기능이다. 애플리케이션이 시동될 때 출력되는 배너에 왜 그렇게 열광하는 지 이해가 잘 되지 않는다.</p>
+<p>실제 서비스 운영과는 크게 관련은 없지만(!), 개발자들이 크게 환호할 만한 기능이 하나 있다. 바로 <strong>배너</strong> 기능이다. 애플리케이션이 구동될 때 출력되는 배너에 왜 그렇게 열광하는 지 이해가 잘 되지 않는다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3919,7 +3919,7 @@ io.honeymon.boot.springboot.listener.MyEventListener</code></pre>
 <p><code>ApplicationReadyEvent</code>는 새로고침 후 관련된 콜백이 처리된 후  애플리케이션이 서비스 요청을 처리할 준비가 되었을 때 전송한다.</p>
 </li>
 <li>
-<p><code>ApplicationFailedEvent</code>는 시동 중에 예외가 발생했을 때 전송한다.</p>
+<p><code>ApplicationFailedEvent</code>는 구동 중에 예외가 발생했을 때 전송한다.</p>
 </li>
 </ol>
 </div>
@@ -4378,7 +4378,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spring.config.name</code>과 <code>spring.config.location</code>은 애플리케이션 시동시에 어떤 파일을 적재해야하는지 결정하기 위해 매우 일찍 사용되므로 환경속성(운영체제 환경변수, 시스템 속성 또는 커맨드라인 실행인자)으로 정의해야 한다. <code>application.yml(or .properties)</code>에서 정의하는 것은 반영되지 않는다.</p>
+<p><code>spring.config.name</code>과 <code>spring.config.location</code>은 애플리케이션 구동시에 어떤 파일을 적재해야하는지 결정하기 위해 매우 일찍 사용되므로 환경속성(운영체제 환경변수, 시스템 속성 또는 커맨드라인 실행인자)으로 정의해야 한다. <code>application.yml(or .properties)</code>에서 정의하는 것은 반영되지 않는다.</p>
 </div>
 </td>
 </tr>
@@ -4701,7 +4701,7 @@ my.servers[1]=honeymon.io</code></pre>
 <p>반면 <code>application.properties</code> 를 사용하는 경우에는 프로파일 선언을 위해  <code>application-local.properties</code>, <code>application-test.properties</code>, <code>application-dev.properties</code>, <code>application-prd.properties</code> 를 만들어서 각각의 설정을 추가해야한다.</p>
 </div>
 <div class="paragraph">
-<p>애플리케이션 컨텍스트가 시동할 때 특정 프로파일을 지정하지 않은 경우에는 기본(none) 프로파일이 적용된다. <strong>YAML</strong>에서 다음과 같은 경우에는  <code>security.user.password</code> 가 <code>dev</code> 프로파일에만 정의되어 있다면 <code>dev</code> 프로파일이 활성화될 때만 적용된다.</p>
+<p>애플리케이션 컨텍스트가 구동할 때 특정 프로파일을 지정하지 않은 경우에는 기본(none) 프로파일이 적용된다. <strong>YAML</strong>에서 다음과 같은 경우에는  <code>security.user.password</code> 가 <code>dev</code> 프로파일에만 정의되어 있다면 <code>dev</code> 프로파일이 활성화될 때만 적용된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5519,7 +5519,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <p>디버그 모드가 활성화되면 주요 로거(내장 컨테이너, 하이버네이트와 스프링 부트)를 선택하도록 구성되어 추가적인 정보를 출력한다. 디버그 모드가 활성화된다고 해서 <strong>애플리케이션의 모든 <code>DEBUG</code> 레벨 메시지가 출력되지는 않는다</strong>.</p>
 </div>
 <div class="paragraph">
-<p>선택적으로, 애플리케이션이 시작될 때 <code>--trace</code> 플래그(<code>trace:true</code>를 <code>application.yml</code>에 지정) "trace" 모드로 시동하는 것도 가능하다. 주요 로거(내장 컨테이너, 하이버네이트 스키마 생성과 스프링 포트폴리오)가 선택되어 트레이스 로깅이 활성화된다.</p>
+<p>선택적으로, 애플리케이션이 시작될 때 <code>--trace</code> 플래그(<code>trace:true</code>를 <code>application.yml</code>에 지정) "trace" 모드로 구동하는 것도 가능하다. 주요 로거(내장 컨테이너, 하이버네이트 스키마 생성과 스프링 포트폴리오)가 선택되어 트레이스 로깅이 활성화된다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -6877,7 +6877,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </td>
 <td class="content">
 <div class="paragraph">
-<p>내장 컨테이너가 아닌 별도로 설치운영하는 컨테이너에서 운영할 때는 운영중인 '컨테이너의 시동 발견기작&#8217;을 사용하기 때문에 <code>@ServletComponentScan</code> 효과를 볼 수 없다.</p>
+<p>내장 컨테이너가 아닌 별도로 설치운영하는 컨테이너에서 운영할 때는 운영중인 '컨테이너의 구동발견기작&#8217;을 사용하기 때문에 <code>@ServletComponentScan</code> 효과를 볼 수 없다.</p>
 </div>
 </td>
 </tr>
@@ -7031,7 +7031,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <p>스프링 시큐리티가 클래스패스상에 존재하고 웹애플리케이션이라면 모든 HTTP 종단점(EndPoints)에는 '기본(basic)' 인증방식이 기본 적용된다. <code>@EnableGlobalMethodSecurity</code>를 추가로 사용하면 웹 애플리케이션의 메서드 수준까지 보안을 확대할 수 있다. 추가적인 정보는 <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#jc-method">스프링 시큐리티 참조문서#Method Security(https://goo.gl/BFDCGf)</a>를 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
-<p>기본 <code>AuthenticationManager</code>는 유저 1명이 등록되어 있다('유저&#8217;의 username과 무작위 비밀번호는 애플리케이션이 시동될 때 <strong>INFO</strong> 레벨로 출력된다)</p>
+<p>기본 <code>AuthenticationManager</code>는 유저 1명이 등록되어 있다('유저&#8217;의 username과 무작위 비밀번호는 애플리케이션이 구동될 때 <strong>INFO</strong> 레벨로 출력된다)</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8364,7 +8364,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>spring.cache.cache-names</code> 속성을 통해 시동시 캐시를 생성할 수 있다. <code>javax.cache.configuration.Configuration</code> 빈을 재정의하면 재정의된 캐시를 사용한다.</p>
+<p><code>spring.cache.cache-names</code> 속성을 통해 구동시 캐시를 생성할 수 있다. <code>javax.cache.configuration.Configuration</code> 빈을 재정의하면 재정의된 캐시를 사용한다.</p>
 </li>
 <li>
 <p><code>org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer</code> 빈은 완벽한 재정의를 위해 <code>CacheManager</code>를 참조한다.</p>
@@ -8400,7 +8400,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-caching-provider-redis">Redis</h5>
 <div class="paragraph">
-<p>Redis가 구성 및 사용가능하다면, <code>RedisCacheManager</code>가 자동구성된다. <code>spring.cache.cache-names</code> 속성을 사용하여 시동시에 캐시를 생성하는 것이 가능하다.</p>
+<p>Redis가 구성 및 사용가능하다면, <code>RedisCacheManager</code>가 자동구성된다. <code>spring.cache.cache-names</code> 속성을 사용하여 구동시에 캐시를 생성하는 것이 가능하다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -14479,7 +14479,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2017-11-27 15:53:22 KST
+Last updated 2017-11-27 16:06:04 KST
 </div>
 </div>
 </body>
