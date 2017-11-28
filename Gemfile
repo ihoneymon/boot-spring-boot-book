@@ -9,6 +9,7 @@ gem 'awesome_print'
 gem 'asciidoctor-epub3'
 gem 'asciidoctor-pdf'
 gem 'asciidoctor-pdf-cjk-kai_gen_gothic'
+gem 'nokogiri'
 
 gem 'coderay'
 gem 'pygments.rb'
