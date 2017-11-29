@@ -525,8 +525,8 @@ table.CodeRay td.code>pre{padding:0}
 <div class="details">
 <span id="author" class="author">Honeymon(Jiheon Kim)</span><br>
 <span id="email" class="email"><a href="mailto:ihoneymon@gmail.com">ihoneymon@gmail.com</a></span><br>
-<span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2017-11-27</span>
+<span id="revnumber">version 1.1.0,</span>
+<span id="revdate">2017-11-29</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -684,6 +684,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#boot-features-jpa-and-spring-data">3.7.3. <code>JPA</code> 그리고 '스프링 Data'</a></li>
 <li><a href="#boot-features-h2">3.7.4. H2 사용</a></li>
 <li><a href="#boot-features-jooq">3.7.5. jOOQ 사용하기</a></li>
+<li><a href="#boot-features-mybatis">3.7.6. MyBatis 사용하기</a></li>
 </ul>
 </li>
 <li><a href="#using-no-sql-database">3.8. NoSQL 기술 이용</a>
@@ -734,14 +735,15 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#production-ready-enabling">4.1. 출시준비 기능 활성화</a>
 <ul class="sectlevel3">
 <li><a href="#production-ready-endpoints">4.1.1. 종단점(Endpoint)</a></li>
-<li><a href="#production-ready-endpoints-security">4.1.2. 종단점 보안</a></li>
-<li><a href="#production-ready-customizing-endpoints">4.1.3. 종단점 재정의</a></li>
-<li><a href="#production-ready-endpoint-hypermedia">4.1.4. 액츄에이터 MVC 종단점 를 위한 하이퍼미디어</a></li>
-<li><a href="#production-ready-endpoint-cors">4.1.5. CORS 지원</a></li>
-<li><a href="#production-ready-customizing-endpoints-programmatically">4.1.6. 재정의 종단점 추가하기</a></li>
-<li><a href="#production-ready-health">4.1.7. 건강(health)정보</a></li>
-<li><a href="#_security_with_healthindicators">4.1.8. <code>HealthIndicator</code> 보안</a></li>
-<li><a href="#production-ready-application-info">4.1.9. 애플리케이션 정보</a></li>
+<li><a href="#production-ready-endpoints-exposing-endpoints">4.1.2. 종단점 노출</a></li>
+<li><a href="#production-ready-endpoints-security">4.1.3. 종단점 보안</a></li>
+<li><a href="#production-ready-customizing-endpoints">4.1.4. 종단점 재정의</a></li>
+<li><a href="#production-ready-endpoint-hypermedia">4.1.5. 액츄에이터 MVC 종단점 를 위한 하이퍼미디어</a></li>
+<li><a href="#production-ready-endpoint-custom-mapping">4.1.6. 액츄에이터 웹 종단점 경로</a></li>
+<li><a href="#production-ready-endpoint-cors">4.1.7. CORS 지원</a></li>
+<li><a href="#production-ready-customizing-endpoints-programmatically">4.1.8. 재정의 종단점 추가하기</a></li>
+<li><a href="#production-ready-health">4.1.9. 건강(health)정보</a></li>
+<li><a href="#production-ready-application-info">4.1.10. 애플리케이션 정보</a></li>
 </ul>
 </li>
 <li><a href="#production-ready-monitoring">4.2. HTTP 로 모니터링하고 관리하기</a>
@@ -751,7 +753,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#production-ready-management-specific-ssl">4.2.3. 관리를 위한 SSL 재정의</a></li>
 <li><a href="#production-ready-customizing-management-server-address">4.2.4. 관리 서버 주소 재정의</a></li>
 <li><a href="#production-ready-disabling-http-endpoints">4.2.5. HTTP 종단점 비활성화</a></li>
-<li><a href="#production-ready-health-access-restrictions">4.2.6. HTTP 건강(health) 종단점 접근 제한</a></li>
 </ul>
 </li>
 <li><a href="#production-ready-metrics">4.3. 측량(Metrics)</a></li>
@@ -1017,7 +1018,7 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </div>
 <div class="paragraph">
-<p>저장소에 들어오면 바로 볼 수 있도록 하겠다는 생각으로 <code>README.md</code> 파일에 마크다운을 이용하여 무식하게 했다. 그러다가 지쳐서 딴짓 하다가 다른 분들에게 도움을 받아 80% 정도의 번역을 끝으로 방치상태로 내버려두고 있습니다(&#8230;&#8203; 마무리를 지어볼까 하는 시점에는 <code>1.3.0.RELEASE</code>가 출시되어버렸고 초반에 제대로 구성하지 않은 문서를 가지고는 변경사항들만 적용하기도 어려워서 포기). 이 무모했던 번역문서를 만질까 말까 망설이고 있던 제게 또 다른 번역 제안이 들어왔습니다. 내용도 괜찮고 분량도 적당하다는 생각에 5개월 동안 번역하고 손질하는데 많은 시간이 들여서 <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=E3493022562">'Spring MVC 4 익히기'(https://goo.gl/4uMdgw)</a> 라는 번역서를 내놓았습니다. 이 번역서를 쓰면서 어떻게 책을 쓰면 좋겠다는 생각을 했습니다.</p>
+<p>저장소에 들어오면 <strong>바로 볼 수 있도록 하겠다</strong>는 생각으로 <code>README.md</code> 파일에 마크다운을 이용하여 무식하게 했다. 그러다가 지쳐서 딴짓 하다가 다른 분들에게 도움을 받아 80% 정도의 번역을 끝으로 방치상태로 내버려두고 있습니다(&#8230;&#8203; 마무리를 지어볼까 하는 시점에는 <code>1.3.0.RELEASE</code>가 출시되어버렸고 초반에 제대로 구성하지 않은 문서를 가지고는 변경사항들만 적용하기도 어려워서 포기). 이 무모했던 번역문서를 만질까 말까 망설이고 있던 제게 또 다른 번역 제안이 들어왔습니다. 내용도 괜찮고 분량도 적당하다는 생각에 5개월 동안 번역하고 손질하는데 많은 시간이 들여서 <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=E3493022562">'Spring MVC 4 익히기'(https://goo.gl/4uMdgw)</a> 라는 번역서를 내놓았습니다. 이 번역서를 쓰면서 어떻게 책을 쓰면 좋겠다는 생각을 했습니다.</p>
 </div>
 <div class="paragraph">
 <p>그리고 현재 이 책을 쓰고 있습니다. 두둠칫&#8230;&#8203;.!</p>
@@ -1089,14 +1090,14 @@ table.CodeRay td.code>pre{padding:0}
 '스프링 부트&#8217;는 스프링 부트 개발팀에서 권장(Recommend) 하는 방식이 있다. 그렇지만 스프링 부트 를 사용하는 개발자가 확장할 수 있는  다양한 포인트를 제공한다. 이는 스프링 부트 의 근간이 되는 스프링 프레임워크가 가지고 있는 특징이기도 하다. '다 써볼 수 있을까?' 싶을만큼 너무나 다양하고 방대한 내용을 다루고 있다.</p>
 </div>
 <div class="paragraph">
-<p>"<a href="#chap08">정리</a>"은 책의 내용을 정리한다.<br>
-"<strong>'자바 개발자+스프링 프레임워크 사용자' 라면 </strong>스프링 부트<strong> 를 능숙하게 다룰 수 있는 게 좋다</strong>" 그러니까 "스프링 부트를 살펴보자" 라는 게 결론이다.</p>
+<p>"<a href="#chap08">정리</a>"는 다뤘던 내용들을 정리한다.<br>
+"<strong>'자바 개발자+스프링 프레임워크 사용자' 라면 스프링 부트 를 능숙하게 다룰 수 있는 게 좋다</strong>" 그러니까 "스프링 부트를 당장 써보자".</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="책을-따라하기-위해-필요한-것">책을 따라하기 위해 필요한 것</h3>
 <div class="paragraph">
-<p>스프링 부트  <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">참고문서#시스템 요구사항</a>(<a href="https://goo.gl/byHFzg" class="bare">https://goo.gl/byHFzg</a>) 을 보면 2.0.0.RELEASE 은 <a href="https://docs.oracle.com/javase/8/">Java 8(https://docs.oracle.com/javase/8/)</a> 과 5.0.1.RELEASE 혹은 상위버전을 요구한다. Java 6도 지원을 하지만 사용할 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements-servlet-containers">컨테이너의 종류(https://goo.gl/T54pv4)</a>에 따라서 제한되거나 영향을 받을 수 있다. 책에서 작성한 코드들 중에 일부는 Java 8에서 제공하는 <code>Optional</code>, <code>Stream</code> 등을 사용하기에 Java 8 이상을 사용하길 <strong>권장</strong>(recommendation)한다.</p>
+<p><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">스프링 부트 참고문서#시스템 요구사항</a>(<a href="https://goo.gl/byHFzg" class="bare">https://goo.gl/byHFzg</a>) 을 보면 2.0.0.RELEASE 은 <a href="https://docs.oracle.com/javase/8/">Java 8(https://docs.oracle.com/javase/8/)</a> 과 5.0.1.RELEASE 혹은 상위버전을 요구한다. Java 6도 지원을 하지만 사용할 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements-servlet-containers">컨테이너의 종류(https://goo.gl/T54pv4)</a>에 따라서 제한되거나 영향을 받을 수 있다. 책에서 작성한 코드들 중에 일부는 Java 8에서 제공하는 <code>Optional</code>, <code>Stream</code> 등을 사용하기에 Java 8 이상을 사용하길 <strong>권장</strong>(recommendation)한다.</p>
 </div>
 <div class="paragraph">
 <p>IDE 는 <a href="https://spring.io/tools/sts">STS(Spring Tool Suite, https://spring.io/tools/sts)</a> 와 <a href="https://www.jetbrains.com/idea/">IntelliJ(https://www.jetbrains.com/idea/)</a> 등이 있는데 이 책은 <strong>STS 를 기준</strong>으로 한다.</p>
@@ -1254,7 +1255,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="예제">예제</h3>
 <div class="paragraph">
-<p>이 책에서 사용된 예제는 <a href="https://github.com/ihoneymon/boot-spring-boot"><code>https://github.com/ihoneymon/boot-spring-boot</code></a> 에서 살펴볼 수 있다. 메이븐이나 그레이들없이 실행할 수 있도록 래퍼(wrapper)가 구성되어 있지만 이 래퍼를 실행하기 위해서는 JDK(Java Development Kit)이 설치되어있어야 한다. <br>
+<p>이 책에서 사용된 예제는 <a href="https://github.com/ihoneymon/boot-spring-boot"><code>https://github.com/ihoneymon/boot-spring-boot</code></a> 에서 살펴볼 수 있다. 메이븐이나 그레이들설치없이 실행할 수 있도록 래퍼(wrapper)가 구성되어 있지만 이 래퍼를 실행하기 위해서는 JDK(Java Development Kit)이 설치되어있어야 한다. <br>
 프로젝트는 Java 8 을 기준으로 작성됐다. 필요하다면 리파지토리를 복제(clone) 해서 Java 7 에서도 실행가능하게 구성하고 공유해주면 다른 개발자들에게 도움이 될 것이다.</p>
 </div>
 </div>
@@ -1264,7 +1265,7 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="chap01">1. '스프링 부트' 시작하기</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>'스프링 부트를 이용한 기본적인 개발흐름&#8217;을 살펴본다. 스프링 부트는 개발자들에게 스프링 기반의 웹 애플리케이션을 개발하던 때와는 확연하게 다른 개발경험을 선사해준다. 다른 언어가 제공했던  '빠른 프로토타이핑' 및 '개발/운영' 까지 이어지도록 해주는 근사한 경험을 자바 개발자들에게도 제공한다. 그 안에는 개발자가 애플리케이션에 필요한 구조를 XML로 문맥(<code>Context</code>)을 작성하던 방식에서 애플리케이션에 필요한 컴포넌트와 설정을 조합하는 Java로 구성(<code>Configuration</code>) 하는 방식으로 역동적인 변화가 있었다.</p>
+<p>'스프링 부트를 이용한 기본적인 개발흐름&#8217;을 살펴본다. 스프링 부트는 개발자들에게 스프링 기반의 웹 애플리케이션을 개발하던 때와는 확연하게 다른 개발경험을 선사해준다. 다른 언어가 제공했던  '빠른 프로토타이핑' 및 '개발/운영' 까지 이어지도록 해주는 근사한 경험을 자바 개발자들에게도 제공한다. 그 안에는 개발자가 애플리케이션에 필요한 구조를 XML을 이용해서 문맥(<code>Context</code>)을 작성하던 방식에서 애플리케이션에 필요한 컴포넌트와 설정을 조합하는 Java를 이용해서 구성(<code>Configuration</code>) 하는 방식으로 역동적인 변화가 있었다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트가 제공하는 신세계를 경험하러 가보자.</p>
@@ -1272,7 +1273,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="spring-boot-introduction">1.1. 스프링 부트 소개</h3>
 <div class="paragraph">
-<p>스프링 부트는 '개발 플랫폼&#8217;이다. 스프링 프레임워크를 기반으로 자바 개발환경에서 유행가는 기능들을 쉽게 추가하고 관례적인 자동구성을 제공하고  '프로토타이핑'-'개발'-'운영/모니터링' 까지 이어지는 다양한 기능을 지원한다.</p>
+<p>스프링 부트는 '개발 플랫폼(Platform)'이다. 스프링 프레임워크를 기반으로 자바에서 유행하는 기능들을 이용하여 '프로토타이핑'-'개발'-'운영/모니터링' 까지 이어지는 일괄된 개발환경을 제공한다.</p>
 </div>
 <div class="paragraph">
 <p><a href="http://projects.spring.io/spring-boot">스프링 부트 프로젝트 페이지(http://projects.spring.io/spring-boot)</a>에 작성되어 있는 <strong>스프링 부트 기능 정의</strong>를 살펴보면 스프링 부트 의 <strong>특징</strong>을 이해할 수 있다.</p>
@@ -1280,27 +1281,27 @@ table.CodeRay td.code>pre{padding:0}
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#feature-standalone-application">단독실행 가능한 스프링 애플리케이션 생성</a></p>
+<p>"<a href="#feature-standalone-application">단독실행 가능한 스프링 애플리케이션 생성</a>"</p>
 </li>
 <li>
-<p><a href="#feature-embedded-containers">내장 컨테이너로 톰캣, 제티 혹은 언더토우 중에서 선택가능(WAR   배포 필요없음)</a></p>
+<p>"<a href="#feature-embedded-containers">내장 컨테이너로 톰캣, 제티 혹은 언더토우 중에서 선택가능(WAR   배포 필요없음)</a>"</p>
 </li>
 <li>
-<p><a href="#feature-starter-pom">스타터('starter') POM 을 제공하여 간결한 의존성 구성 지원</a></p>
+<p>"<a href="#feature-starter-pom">스타터('starter') POM 을 제공하여 간결한 의존성 구성 지원</a>"</p>
 </li>
 <li>
-<p><a href="#feature-spring-auto-config">스프링에 대한 자동구성 제공</a></p>
+<p>"<a href="#feature-spring-auto-config">스프링에 대한 자동구성 제공</a>"</p>
 </li>
 <li>
-<p><a href="#feature-production-ready">제품출시 후 운영에 필요한 상태, 건강 점검과 외부구성 등 다양한 기능 제공</a></p>
+<p>"<a href="#feature-production-ready">제품출시 후 운영에 필요한 상태, 건강 점검과 외부구성 등 다양한 기능 제공</a>"</p>
 </li>
 <li>
-<p><a href="#feature-no-xml-context">구성을 위한 XML 코드를 필요로 하지 않으며 작성하지 않아도 됨</a></p>
+<p>"<a href="#feature-no-xml-context">구성을 위한 XML 코드를 필요로 하지 않으며 작성하지 않아도 됨</a>"</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>위 여섯가지 기능정의에 대해 간단하게 설명하자면 다음과 같다:</p>
+<p>위 여섯가지 기능정의를 간단하게 설명하자면 다음과 같다:</p>
 </div>
 <hr>
 <div class="sect3">
@@ -1364,7 +1365,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="syste-requirements">1.2. 시스템 요구사항</h3>
 <div class="paragraph">
-<p><strong class="red">스프링 부트2.0.0.RELEASE는 기본적으로 <a href="http://www.java.com/">Java 8</a> 과 5.0.1.RELEASE 혹은 상위버전을 요구한다</strong>. 스프링 부트 버전에 따라 적재된 스프링 프레임워크 버전이 다르니 사용된 버전을  확인하기 바란다. 확인하는 방법은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">'시스템 요구사항' 항목(https://goo.gl/5Gs4k2)</a>을 살펴보면 된다. 스프링 부트 버전에 따라 이용하는 스프링 프레임워크 버전이 달라지므로 이에 고려하여 <strong>애플리케이션의 기능을 설계하고 구현하기를 권한다</strong>. 필요하다면 Java 버전과 스프링버전을 변경할 수는 있지만 그에 따라 별도로 구성을 작성해야한다. 빌드도구 그레이들 4.x+과 메이븐 3.2+ 이상을 사용해야 제대로 이용가능하다.</p>
+<p><strong class="red">스프링 부트 2.0.0.RELEASE는 기본적으로 <a href="http://www.java.com/">Java 8</a> 과 5.0.1.RELEASE 혹은 상위버전을 요구한다</strong>. 스프링 부트 버전에 따라 적재된 스프링 프레임워크 버전이 다르니 사용된 버전을  확인하기 바란다. 확인하는 방법은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">'시스템 요구사항' 항목(https://goo.gl/5Gs4k2)</a>을 살펴보면 된다. 스프링 부트 버전에 따라 이용하는 스프링 프레임워크 버전이 달라지므로 이에 고려하여 <strong>애플리케이션의 기능을 설계하고 구현하기를 권한다</strong>. 필요하다면 Java 버전과 스프링버전을 변경할 수는 있지만 그에 따라 별도로 구성을 작성해야한다. 빌드도구 그레이들 4.x+과 메이븐 3.2+ 이상을 사용해야 제대로 이용가능하다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -6071,7 +6072,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <p><code>Favicon</code> 재정의 지원</p>
 </li>
 <li>
-<p><code>ConfigurableWebBindingInitializer</code> 빈 자동지원</p>
+<p><code>ConfigurableWebBindingInitializer</code> 빈  자동지원("<a href="#boot-features-spring-mvc-web-binding-initializer"><code>ConfigurableWebBindingInitializer</code></a>" 참조)</p>
 </li>
 </ul>
 </div>
@@ -6276,7 +6277,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="boot-features-spring-mvc-favicon">파비콘(Favicon)footnote[<a href="https://goo.gl/K5QJHF">파비콘</a> 인터넷 웹 브라우저의 주소창에 표시되는 웹사이트나 웹피이지를 대표하는 아이콘] 사용자 정의</h5>
+<h5 id="boot-features-spring-mvc-favicon">파비콘(Favicon)<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> 사용자 정의</h5>
 <div class="paragraph">
 <p>스프링 부트는 정의되어 있는 정적 컨텐츠 위치와 클래스패스 최상위에서 <code>favicon.ico</code>를 찾는다(순서에 따라). 만약 파일이 존재한다면 애플리케이션 파비콘으로 적용한다.</p>
 </div>
@@ -6326,7 +6327,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>기본구성과 함께 템플릿 엔진을 사용할 때, <code>src/main/resources/templates</code> 에서 템플릿 파일을 찾는다.</p>
+<p>기본구성과 함께 템플릿 엔진을 사용할 때는 <code>src/main/resources/templates</code> 에서 템플릿 파일을 찾는다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6336,7 +6337,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>인텔리제이 는 애플리케이션 실행 방법에 따라 클래스패스를 다르게 정렬한다. IDE에서 메인 메서드를 이용해서 애플리케이션을 실행할 때와 메이븐 과 그레이들을 사용하여 실행할 때와 패키징된 jar를 이용해서 실행할 때 각기 다른 방식을 사용한다. 이런 경우 스프링 부트가 클래스패스에서 템플릿을 찾을 때 실패하게 된다. 이런 문제를 피할 수 있는 대안으로 클래스패스 상에서 모든 템플릿 파일을 탐색하도록 템플릿 접미사를 <code>classpath*:/templates/</code>로 구성할 수 있다(자동구성에서는 <code>classpath:/templates/</code>으로 정의되어 있다. <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#resources-app-ctx-classpathxml"><code>classpath*</code>(https://goo.gl/eeJoMg)</a>를 사용하는 경우에는 프로젝트와 관련된 모든 jar를 탐색한다).</p>
+<p>인텔리제이는 애플리케이션 실행 방법에 따라 클래스패스를 다르게 정렬한다. IDE에서 메인 메서드를 이용해서 애플리케이션을 실행할 때와 메이븐 과 그레이들을 사용하여 실행할 때와 패키징된 jar를 이용해서 실행할 때 각기 다른 방식을 사용한다. 이런 경우 스프링 부트가 클래스패스에서 템플릿을 찾을 때 실패하게 된다. 이런 문제를 피할 수 있는 대안으로 클래스패스 상에서 모든 템플릿 파일을 탐색하도록 템플릿 접미사를 <code>classpath*:/templates/</code>로 구성할 수 있다(자동구성에서는 <code>classpath:/templates/</code>으로 정의되어 있다. <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#resources-app-ctx-classpathxml"><code>classpath*</code>(https://goo.gl/eeJoMg)</a>를 사용하는 경우에는 프로젝트와 관련된 모든 jar를 탐색한다).</p>
 </div>
 </td>
 </tr>
@@ -6456,13 +6457,13 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>그에 더해 기존 스프링 MVC 기능에서 제공하던 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler"><code>@ExceptionHandler</code>(https://goo.gl/WPfmww)</a>와 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice"><code>@ControllerAdvice</code>(https://goo.gl/gWKLxp)</a>를 사용할 수 있다. 제어하지 않는 예외들은 <code>ErrorController</code>가 처리할 것이다.</p>
+<p>그에 더해 기존 스프링 MVC 기능에서 제공하던 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-exceptionhandler"><code>@ExceptionHandler</code>(https://goo.gl/WPfmww)</a>와 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-controller-advice"><code>@ControllerAdvice</code>(https://goo.gl/gWKLxp)</a>를 사용할 수 있다. 제어하지 않는 예외들은 <code>ErrorController</code>가 처리할 것이다. 이에 대한 보다 자세한 내용은 "<a href="#howto-customize-the-whitelabel-error-page"><code>whitelabel</code> 오류 페이지 재정의</a>"에서 설명한다.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="boot-features-error-handling-mapping-error-pages-without-mvc">스프링 MVC 영역 외부에서 에러 페이지 매핑</h5>
 <div class="paragraph">
-<p>스프링 MVC를 사용하지 않는 애플리케이션이라면 <code>ErrorPageRegistrar</code>를 이용해서 <code>ErrorPages</code>를 바로 등록할 수 있다. 이 추상화는 내장 컨테이너에 있어도 잘 동작하며 스프링 MVC <code>DispatcherServlet</code>가 없어도 잘 동작한다.</p>
+<p>스프링 MVC를 사용하지 않는 애플리케이션이라면 <code>ErrorPageRegistrar</code>를 이용해서 <code>ErrorPages</code>를 바로 등록할 수 있다. 이 추상화는 내장 컨테이너에 있어도 잘 동작하며 스프링 MVC <code>DispatcherServlet</code>이 없어도 잘 동작한다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6520,7 +6521,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="sect4">
 <h5 id="boot-features-spring-hateoas">스프링 HATEOAS</h5>
 <div class="paragraph">
-<p>하이퍼미디어를 사용하는 RESTful API를 개발하고 있다면, 스프링 부트는 대부분의 애플리케이션에서 동작하는 스프링 HATEOAS를 위한 자동구성을 제공한다. 자동구성을 대체하기 위해서는 <code>@EnableHypermediaSupport</code>를 사용해야 하며 <code>LinkDiscoverers</code>(클라이언트측 지원용)를 포함하고 하이퍼미디어 기반 애플리케이션을 등록해야 하고 <code>ObjectMapper</code>가 구성되어 있어야 응답에 대해서 마샬링할 수 있다. <code>ObjectMapper</code>는 <code>spring.jackson.*</code> 속성을 기반으로 재정의하거나 <code>Jackson2ObjectMapperBuilder</code> 빈을 이용할 수 있다.</p>
+<p>하이퍼미디어 <sup class="footnote" id="_footnote_hypermedia">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>를 사용하는 RESTful API를 개발하고 있다면, 스프링 부트는 대부분의 애플리케이션에서 동작하는 스프링 HATEOAS <sup class="footnote" id="_footnote_hateoas">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>를 위한 자동구성을 제공한다. 자동구성을 대체하기 위해서는 <code>@EnableHypermediaSupport</code>를 사용해야 하며 <code>LinkDiscoverers</code>(클라이언트측 지원용)를 포함하는 하이퍼미디어 기반 애플리케이션을 등록한 후 응답에 대해서 마샬링(marshalling)<sup class="footnote" id="_footnote_marshalling">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup>하기 위한 <code>ObjectMapper</code>를 구성해야한다. <code>ObjectMapper</code>는 <code>spring.jackson.*</code> 속성을 기반으로 재정의하거나 <code>Jackson2ObjectMapperBuilder</code> 빈을 이용할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p><code>@EnableHypermediaSupport</code>를 사용하여 스프링 HATEOAS 구성을 제어할 수 있다. 그렇게 되면 앞에서 설명한 <code>ObjectMapper</code> 재정의는 비활성화된다.</p>
@@ -6529,10 +6530,10 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="sect4">
 <h5 id="boot-features-cors">CORS 지원</h5>
 <div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin_resource_sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="http://caniuse.com/#feat=cors">대부분의 브라우저(http://caniuse.com/#feat=cors)</a>에서 구현하고 있는 <a href="https://www.w3.org/TR/cors/">'W3C 사양'(https://www.w3.org/TR/cors/)</a>으로, IFRAME 혹은 JSONP 와 같이 덜 안전하고 덜 강력한 접근 방식을 사용하는 대신 어떤 종류의 크로스 도메인 요청이 승인되었는지를 유연하게 지정할 수 있다.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin_resource_sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="http://caniuse.com/#feat=cors">대부분의 브라우저(http://caniuse.com/#feat=cors)</a>에서 구현하고 있는 <a href="https://www.w3.org/TR/cors/">'W3C 사양'(https://www.w3.org/TR/cors/)</a>으로, IFRAME 혹은 JSONP 와 같이 덜 안전하고 덜 강력한 접근 방식을 사용하는 대신 <strong>어떤 종류의 크로스 도메인 요청이 승인되었는지를 유연하게 지정</strong>할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 MVC 4.2 버전부터 <a href="https://docs.spring.io/spring/docs/4.2.0.RELEASE/spring-framework-reference/htmlsingle/#cors"><strong>CORS 지원</strong>(https://goo.gl/rfuQes)</a>을 시작했다. 스프링 부트 애플리케이션에서는 별다른 구성없이  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-controller">CORS를 구성하려는 메서드(https://goo.gl/qvLLMA)</a>에서 <a href="https://docs.spring.io/spring-framework/docs/5.0.1.RELEASE/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html"><code>@CrossOrigin</code></a> 애너테이션를 사용하면 된다.</p>
+<p>스프링 MVC 4.2 버전부터 <a href="https://docs.spring.io/spring/docs/4.2.0.RELEASE/spring-framework-reference/htmlsingle/#cors"><strong>CORS 지원</strong>(https://goo.gl/rfuQes)</a>을 시작했다. 스프링 부트 애플리케이션에서는 별다른 구성없이  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-controller">CORS를 구성하려는 메서드(https://goo.gl/qvLLMA)</a>에서 <a href="https://docs.spring.io/spring-framework/docs/5.0.1.RELEASE/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html"><code>@CrossOrigin</code>(https://goo.gl/BQafXY)</a> 애너테이션를 사용하면 된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6593,15 +6594,8 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 <div class="sect3">
 <h4 id="boot-features-webflux">3.5.2. '스프링 WebFlux framework'</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>영상: <a href="https://youtu.be/2E_1yb8iLKk">스프링캠프 2017:: SpringWebFlux - 이일민(https://youtu.be/2E_1yb8iLKk)</a></p>
-</li>
-</ul>
-</div>
 <div class="paragraph">
-<p>스프링 WebFlux는 스프링 프레임워크 5.0에서 소개된 새로운 리액티브 웹 프레임워크다. 스프링 MVC와는 달리 서블릿 API가 필요없으며 완전히 비동기이며 비블로킹 방식이고 <a href="http://projectreactor.io/">Reactor project(http://projectreactor.io/)</a>의 <a href="http://www.reactive-streams.org/">Reactive Streams(http://www.reactive-streams.org/)</a>를 구현했다.</p>
+<p><a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-module">스프링 WebFlux(https://goo.gl/zgHrkv)</a>는 스프링 프레임워크 5.0에서 소개된 새로운 리액티브 웹 프레임워크다. 스프링 MVC와는 달리 서블릿 API가 필요없으며 완전한 비동기(asynchronous )방식이자 넌블로킹(non-blocking) 방식이고 <a href="http://projectreactor.io/">Reactor project(http://projectreactor.io/)</a>의 <a href="http://www.reactive-streams.org/">Reactive Streams(http://www.reactive-streams.org/)</a>를 구현했다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 WebFlux에는 두 가지 방식을 이용한다: 함수형(functional)과 애너테이션 기반. 애너테이션 기반은 우리가 알고 있는 스프링 MVC 모델과 매우 유사(<strong>똑같지는 않다</strong>)하여 다음과 같다:</p>
@@ -6631,7 +6625,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>함수형 변형체 'WebFlux,fn&#8217;은 다음과 같이 라우팅 구성을 실제 요청 처리와 분리한다:</p>
+<p>함수형 변형체 <a href="https://goo.gl/3XVjEk">'WebFlux.fn'(https://goo.gl/3XVjEk)</a>은 다음과 같이 라우팅 구성과 실제 요청 처리를 분리한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6668,7 +6662,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p>WebFlux는 스프링 프레임워크 중 한 부분이며 자세한 정보는 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#spring-web-reactive">스프링#참고문서(https://goo.gl/836axn)</a>를 참고하기 바란다.</p>
 </div>
 <div class="paragraph">
-<p>시작하기 위해서는 <code>spring-boot-starter-webflux</code> 의존성을 추가해야 한다.</p>
+<p>WebFlux를 스프링 부트에서 시작하기 위해서는 <code>spring-boot-starter-webflux</code> 의존성을 추가해야 한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -6678,7 +6672,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spring-boot-starter-web</code>과 <code>spring-boot-starter-webflux</code> 모듈을 함께 추가하면 스프링 부트는 애플리케이션에서  WebFlux가 아니라 스프링 MVC를 자동구성한다. 이런 행동을 취하는 이유는 많은 스프링 개발자들이 스프링 MVC 애플리케이션에 <code>spring-boot-starter-webflux</code>를 추가하고 리액티브 <code>WebClient</code>를 사용한다. 사용하는 구성방식을 강제하고 싶다면 다음과 같이 타입을 선택하면 된다(<code>SpringApplication.setWebApplicationType(WebApplicationType.REACTIVE)</code>).</p>
+<p><code>spring-boot-starter-web</code>과 <code>spring-boot-starter-webflux</code> 모듈을 함께 추가하면 <strong>스프링 부트는 애플리케이션에서  WebFlux가 아니라 스프링 MVC를 자동구성</strong>한다. 이런 행동을 취하는 이유는 많은 스프링 개발자들이 스프링 MVC 애플리케이션에 리액티브 <code>WebClient</code>를 사용하기 위해 <code>spring-boot-starter-webflux</code>를 추가하는 식으로 사용한다. 사용하는 구성방식을 강제하고 싶다면 다음과 같이 타입을 선택하면 된다(<code>SpringApplication.setWebApplicationType(WebApplicationType.REACTIVE)</code>).</p>
 </div>
 </td>
 </tr>
@@ -6687,11 +6681,10 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="sect4">
 <h5 id="boot-features-webflux-auto-configuration">스프링 WebFlux 자동구성</h5>
 <div class="paragraph">
-<p>스프링 부트는 대부분의 애플리케이션에서 잘 동작하는 스프링 WebFlux를 위한 자동구성
-을 제공한다.</p>
+<p>스프링 부트는 대부분의 애플리케이션에서 잘 동작하는 스프링 WebFlux를 위한 자동구성을 제공한다.</p>
 </div>
 <div class="paragraph">
-<p>자동구성는 스프링 기본값 위에 다음과 같은 기능을 추가한다:</p>
+<p>자동구성은 스프링 기본값 위에 다음과 같은 기능을 추가한다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -6704,10 +6697,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>스프링 부트 WebFlux 기능은 유지하면서 추가적으로 WebFlux 구성을 하고 싶다면 <strong><code>@EnableWebFlux</code> 없이</strong> <code>WebFluxConfigurer 타입의 클래스에 </code>@Configuration``을 선언하면 된다.</p>
-</div>
-<div class="paragraph">
-<p>스프링 WebFlux를 완벽히 제어하고 싶다면 <code>@Configuration</code>과 함께 <code>@EnableWebFlux</code> 애너테이션를 선언하면 된다.</p>
+<p>스프링 부트 WebFlux 기능은 유지하면서 추가적으로 WebFlux 구성을 하고 싶다면 <strong><code>@EnableWebFlux</code> 없이</strong> <code>WebFluxConfigurer</code> 타입의 클래스에 <code>@Configuration</code>을 선언하면 된다. 반대로 스프링 WebFlux를 완벽히 제어하고 싶다면 <code>@Configuration</code>과 함께 <code>@EnableWebFlux</code> 애너테이션를 선언하면 된다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6716,7 +6706,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p>스프링 WebFlux는 HTTP 요청과 응답을 처리하기 취해 <code>HttpMessageReaders</code>와 <code>HttpMessageWriters</code> 인터페이스를 사용한다. 클래스패스에서 사용할 수 있는 라이브러리를 살펴보고 적절한 기본값을 갖도록 <code>CodecConfigurer</code>를 이용해서 구성한다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 <code>CodecCustomizer</code> 인스턴스를 이용한 재정의 기능을 제공한다. 예를 들어, <code>spring.jackson.*</code> 구성키는 잭슨 코덱을 지원한다.</p>
+<p>스프링 부트는 <code>CodecCustomizer</code> 인스턴스를 이용한 재정의 기능을 제공한다. 예를 들어, <code>spring.jackson.*</code> 구성키는 Jackson 코덱을 지원한다.</p>
 </div>
 <div class="paragraph">
 <p>만약 재정의 코덱이 필요하다면, 다음 예제처럼 <code>CodecCustomizer</code> 컴포넌트를 재정의하면 된다:</p>
@@ -6747,7 +6737,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p>기본적으로 스프링 부트는 클래스패스 <code>/static</code> 디렉토리(혹은 <code>/public</code> 혹은 <code>/resources</code> 혹은 <code>/META-INF/resources</code>)에 있는 정적자원 컨텐츠를 제공한다. 스프링 WebFlux에서는 <code>ResourceWebHandler</code>를 사용하는데 <code>WebFluxConfigurer</code>를 추가하고 <code>addResourceHandlers</code> 메서드를 재정의하여 해당 동작을 수정할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>기본적으로 자원에 대해서는 <code>/<strong></code>에 대응하지만, <code>spring.webflux.static-path-pattern</code> 속성을 이용해서 설정을 조정할 수 있다. 예를 들어, 모든 자원의 위치를 <code>/resources/</strong></code>로 변경했다고 하면 다음과 같이 선언할 수 있다:</p>
+<p>기본적으로 자원에 대해서는 <code>/**</code>에 대응하지만, <code>spring.webflux.static-path-pattern</code> 속성을 이용해서 설정을 조정할 수 있다. 예를 들어, 모든 자원의 위치를 <code>/resources/**</code>로 변경했다고 하면 다음과 같이 선언할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6755,10 +6745,10 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>spring.resources.static-locations</code>를 사용해서도 정적 자원의 위치를 재정의할 수 있다. 재정의하면 기본값이 디렉토리 위치목록으로 변경된다. 이렇게하면 기본 환영(welcome) 페이지 탐색이 재정의로 지정된 위치로 변경된다. 따라서 재정의한 위치에 <code>index.html</code>이 있다면 애플리케이션의 시작페이지가 된다.</p>
+<p><code>spring.resources.static-locations</code>를 통해서도 정적 자원의 위치를 재정의할 수 있다. 재정의하면 기본값이 디렉토리 위치목록으로 변경된다. 이렇게하면 기본 환영(welcome) 페이지 탐색이 재정의로 지정된 위치로 변경된다. 따라서 재정의한 위치에 <code>index.html</code>이 있다면 애플리케이션의 시작페이지가 된다.</p>
 </div>
 <div class="paragraph">
-<p>now-<a href="http://www.webjars.org/">Webjars 컨텐츠(http://www.webjars.org/)</a>의 경우에는 앞에서 살펴본 '표준' 정적 자원 위치와는 다르다. 어떤 자원이든지 Webjar 형식으로 패키징된 jar 파일으로 부터 <code>/webjars/**</code> 에 파일이 위치하게 된다.</p>
+<p><a href="http://www.webjars.org/">Webjars 컨텐츠(http://www.webjars.org/)</a>의 경우에는 앞에서 살펴본 '표준' 정적 자원 위치와는 다르다. 어떤 자원이든지 Webjar 형식으로 패키징된 jar 파일으로 부터 <code>/webjars/**</code> 에 파일이 위치하게 된다.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -7795,6 +7785,65 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-jooq">스프링 부트 참고문서#Using jOOQ(https://goo.gl/iYDAKX)</a>를 참고하기 바란다.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="boot-features-mybatis">3.7.6. MyBatis 사용하기</h4>
+<div class="paragraph">
+<p>MyBatis 는 사용하지 않은 지 꽤 오래되었기에 다루고 싶지는 않다. 어쨌든 스프링 부트에서 <a href="http://www.mybatis.org/mybatis-3/ko/">MyBatis(http://www.mybatis.org/mybatis-3/ko/)</a>를 사용하는 분들이 많은 것도 사실이기에 이를 사용할 수 있는 스타터가 제공되고 있다. <a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/"><code>mybatis-spring-boot-autoconfigure</code>(https://goo.gl/p9cEt3)</a>를 이용하면 스프링 부트에서도 MyBatis를 이용할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>그레이들에서는 다음과 같이 <code>mybatis-spring-boot-starter</code>에 대한 의존성을 추가하면 된다:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code></div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
+    compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1</span><span class="delimiter">&quot;</span></span>)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>메이븐에서는 다음과 같이 <code>mybatis-spring-boot-starter</code>에 대한 의존성을 추가하면 된다:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>pom.xml</code></div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.3.1<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>mybatis-spring-boot-starter</code>가 추가되면 다음과 같은 작업이 진행되며 MyBatis를 사용할 수 있게 된다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>존재하는 <code>DataSource</code> 탐색</p>
+</li>
+<li>
+<p><code>SqlSessionFactoryBean</code>을 이용해서 찾아낸 <code>DataSource</code>를 전달하여 <code>SqlSessionFactory</code> 인스턴스를 생성하고 등록</p>
+</li>
+<li>
+<p><code>SqlSessionFactory</code>를 통해서 <code>SqlSessionTemplate</code> 인스턴스를 생성하고 등록</p>
+</li>
+<li>
+<p>매퍼(mapper)를 자동으로 탐색하여 <code>SqlSessionTemplate</code>에 연결하고 스프링 컨텍스트에 등록하여 Bean에 주입가능</p>
+<div class="ulist">
+<ul>
+<li>
+<p>매퍼는 <code>@Mapper</code> 애너테이션를 선언하여 자동검색 노출</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>보다 자세한 내용은 <code>mybatis-spring-boot-autoconfigure</code> 페이지를 살펴보기 바란다.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="using-no-sql-database">3.8. NoSQL 기술 이용</h3>
@@ -8665,7 +8714,17 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect2">
 <h3 id="boot-features-testing">3.13. 테스트</h3>
 <div class="paragraph">
-<p>스프링 부트는 애플리케이션 테스트를 지원하는 다양한 유틸리티와 애너테이션을 제공한다. 두 모듈에 의해 테스트 지원이 제공된다: <code>spring-boot-test</code>는 핵심 아이템들이 포함되어 있으며, <code>spring-boot-test-autoconfigure</code>는 테스트를 위한 자동구성를 지원한다.</p>
+<p>스프링 부트는 애플리케이션 테스트를 지원하는 다양한 유틸리티와 애너테이션을 제공한다. 두 모듈에 의해 테스트 지원이 제공된다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spring-boot-test</code>는 핵심 아이템들 포함</p>
+</li>
+<li>
+<p><code>spring-boot-test-autoconfigure</code>는 테스트를 위한 자동구성을 지원</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>대부분의 개발자는 <code>spring-boot-starter-test</code> 스타터를 사용하여 스프링 부트 테스트 모듈과 JUnit, AssertJ, Hamcrest 와 다른 유용한 라이브러리를 불러올 수 있다.</p>
@@ -8754,7 +8813,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>테스트에서 <code>@Transactional</code>을 사용하면, 기본적으로 각 테스트 메서드가 끝나는 시점에 트랜잭션에 대한 롤백이 발생한다. <code>RANDOM_PORT</code> 혹은 <code>DEFINED_PORT</code>를 사용한다면, 테스트가 서버와는 다른 스레드에서 실행될 때 서버에서 시작된 트랜잭션은 롤백되지 않는다.</p>
+<p>테스트에서 <code>@Transactional</code>을 사용하면 <strong>기본적으로 각 테스트 메서드가 끝나는 시점에 트랜잭션에 대한 롤백</strong>이 발생한다. <code>RANDOM_PORT</code> 혹은 <code>DEFINED_PORT</code>를 사용한다면 테스트와는 별개로 <strong>서버에서 시작된 트랜잭션은 롤백되지 않는다</strong>.</p>
 </div>
 </td>
 </tr>
@@ -8768,7 +8827,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@SpringBootTest</code>를 비롯해서 애플리케이션을 테스트하는데 필요한 다양한 애너테이션를 제공한다. 자세한 내용에 대해서는 아래에서 기술한다.</p>
+<p><code>@SpringBootTest</code>를 비롯해서 애플리케이션을 테스트하는데 필요한 다양한 애너테이션를 제공한다. 자세한 내용은 아래에서 기술한다.</p>
 </div>
 </td>
 </tr>
@@ -8794,10 +8853,24 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>스프링 테스트 프레임워크에 친숙하다면, <code>@ContextConfiguration(classes=…​)</code>를 사용하여 스프링 <code>@Configuration</code>이 적재되는 순서를 지정해봤을 것이다. 그에 대한 대안으로 테스트 코드 내부 클래스에 <code>@Configuration</code>를 선언하여 사용할 수도 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트 애플리케이션에서는 많이 사용되지 않는 방법이다. 스프링 부트의 <code>@*Test</code> 애너테이션는 명확하게 설정하지 않는 경우에는 주구성을 자동으로 탐색한다.</p>
+<p>스프링 부트 애플리케이션에서는 많이 사용되지 않는 방법이다. 스프링 부트의 <code>@*Test</code> 애너테이션은 명시적으로 선언된 것이 없을 때는  주(primary)구성을 자동으로 탐색한다.</p>
 </div>
 <div class="paragraph">
 <p>탐색 알고리듬은 <code>@SpringBootApplication</code> 혹은 <code>@SpringBootConfiguration</code> 애너테이션가 선언되어 있는 클래스를 찾을 때까지 진행된다. 꽤 이전에 "<a href="#code-structure">코드 구조</a>"에서 설명했던 것을 잘 이행하고 있다면 주 구성클래스를 찾아낼 것이다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>만약 "<a href="#boot-features-testing-spring-boot-applications-testing-autoconfigured-tests">자동구성된 테스트</a>"를 사용하고 있다면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-testing-user-configuration">메인 메서드의 애플리케이션 클래스에 특정 영역에 대한 특정한 구성(https://goo.gl/SYgb9D)</a>을 설정하지 않는 것이 좋다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>주 구성을 재정의하고 싶다면 <code>@TestConfiguration</code>를 선언한 내부클래스를 사용할 수 있다. <code>@Configuration</code>을 사용한 내부 클래스와는 달리 애플리케이션 주구성을 대신할 수 있고 <code>@TestConfiguration</code> 이 선언된 클래스를 추가할 수도 있다.</p>
@@ -9364,10 +9437,10 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-understanding-auto-configured-beans">3.16.1. 자동구성 빈 이해하기</h4>
 <div class="paragraph">
-<p>자동구성을 간단하게 정리하자면 표준 <code>@Configuration</code> 애너테이션이 선언되어 있는 구현체다. 거기에 더하여 <code>@Conditional</code> 애너테이션으로 자동구성이 사용될 상황을 제어한다. 일반적으로 자동구성 클래스는 <code>@ConditionalOnClass</code>와 <code>@ConditionalOnMissingBean</code> 애너테이션을 사용한다. 이 조건은 관련된 클래스가 있을 때 자동구성이 존재하고 이와 관련된 <code>@Configuration</code> 정의가 없는 경우 발동된다.</p>
+<p>자동구성을 간단하게 정리하자면 표준 <code>@Configuration</code> 애너테이션이 선언되어 있는 구현체다. 거기에 더하여 <code>@Conditional</code> 애너테이션으로 자동구성이 사용될 상황을 제어한다. 일반적으로 자동구성 클래스는 <code>@ConditionalOnClass</code>와 <code>@ConditionalOnMissingBean</code> 애너테이션을 사용한다. <code>@ConditionalOnClass</code>는 의존성이 추가되어 클래스패스에서 지정한 클래스가 있을 경우 발동되며 <code>@ConditionalOnMissingBean</code>는 지정한 타입의 빈이 없는 경우에 발동된다.</p>
 </div>
 <div class="paragraph">
-<p>이와 관련된 소스코드는 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure"><code>spring-boot-autoconfigure</code>(https://goo.gl/ydcqY3)</a> 에서 살펴볼 수 있으며 스프링 부트에서 제공하는 자동구성 목록을 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories"><code>/META-INF/spring.factories</code>(https://goo.gl/MyJ4k1)</a>에서 확인할 수 있다. 파일 내에 <code>EnableAutoConfiguration</code> 키에 구성 클래스 목록이 위치한다.</p>
+<p>이와 관련된 소스코드는 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure"><code>spring-boot-autoconfigure</code>(https://goo.gl/ydcqY3)</a> 에서 살펴볼 수 있으며 스프링 부트에서 제공하는 자동구성 목록은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/resources/META-INF/spring.factories"><code>/META-INF/spring.factories</code>(https://goo.gl/MyJ4k1)</a>에서 확인할 수 있다. 파일 내에 <code>org.springframework.boot.autoconfigure.EnableAutoConfiguration</code> 키에 구성 클래스 목록이 위치한다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -9383,10 +9456,10 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="paragraph">
-<p>지정된 순서에 따라서 구성되어야 한다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureAfter.java"><code>AutoConfigureAfter</code>(https://goo.gl/NukfYA)</a> 혹은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureBefore.java"><code>AutoConfigureBefore</code>(https://goo.gl/cWSw6i)</a> 애너테이션을 사용할 수 있다. 예를 들어, 웹과 관련된 구성을 제공하고 싶다면 <code>WebMvcAutoConfiguration</code> 구성 후에 실행되도록 할 수 있다.</p>
+<p>지정된 순서에 따라서 구성되어야 한다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureAfter.java"><code>AutoConfigureAfter</code>(https://goo.gl/NukfYA)</a> 혹은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/AutoConfigureBefore.java"><code>AutoConfigureBefore</code>(https://goo.gl/cWSw6i)</a> 애너테이션을 사용할 수 있다. 예를 들어, 웹과 관련된 구성을 제공하고 싶다면 클래스에 <code>AutoConfigureAfter</code> 애너테이션을 선언하여  <code>WebMvcAutoConfiguration</code> 구성 후에 실행되도록 할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>다른 구성에 영향이 없는 상황에서 자동구성 순서를 확정하고 싶다면 <code>@AutoconfigureOrder</code>를 사용할 수 있다. 이 애너테이션은 일반적인 <code>@Order</code>와 동일한 형태로 동작하지만 자동구성 클래스를 위한 순서를 정의한다.</p>
+<p>다른 구성에 영향이 없는 상황에서 자동구성 순서를 확정하고 싶다면 <code>@AutoConfigureOrder</code>를 사용할 수 있다. 이 애너테이션은 일반적인 <code>@Order</code>와 동일한 형태로 동작하지만 자동구성 클래스를 위한 순서를 정의한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -9409,7 +9482,29 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>대부분의 자동구성 클래스에는 한 개 이상의 <code>@Conditional</code> 애너테이션을 포함하게 된다. <code>@ConditionalOnMissingBean</code>이 가장 일반적인 예로 개발자에게 '기본&#8217;적인 구성이 맘에 들지 않을 때 자동구성을 덮어쓰기할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트에 포함된 많은 <code>@Configuration</code> 애너테이션은 <code>@Configuration</code>가 선언된 클래스 혹은 <code>@Bean</code> 메서드에서 사용할 수 있다.</p>
+<p>스프링 부트에 포함된 많은 <code>@Configuration</code> 애너테이션은 <code>@Configuration</code>가 선언된 클래스 혹은 <code>@Bean</code> 메서드에서 사용할 수 있다. 다음의 애너테이션을 포함한다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"<a href="#boot-features-class-conditions">클래스 조건</a>"</p>
+</li>
+<li>
+<p>"<a href="#boot-features-bean-conditions">빈 조건</a>"</p>
+</li>
+<li>
+<p>"<a href="#boot-features-property-conditions">속성 조건</a>"</p>
+</li>
+<li>
+<p>"<a href="#boot-features-resource-conditions">자원 조건</a>"</p>
+</li>
+<li>
+<p>"<a href="#boot-features-web-application-conditions">웹애플리케이션 조건</a>"</p>
+</li>
+<li>
+<p>"<a href="#boot-features-spel-conditions">SpEL 표현 조건</a>"</p>
+</li>
+</ul>
 </div>
 <div class="sect4">
 <h5 id="boot-features-class-conditions">클래스 조건</h5>
@@ -9652,146 +9747,183 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>액츄에이터 종단점은 애플리케이션에 대한 모니터링 및 조작이 가능하다. 스프링 부트는 다양한 빌트-인(built-in, 사전에 제작되어 제공되는) 종단점을 제공하며 필요에 따라서 개발자가 얼마든지 추가할 수 있다. 예를 들어 <code>health</code> 종단점의 경우 기본적인 애플리케이션의 건강(health) 정보를 제공한다.</p>
 </div>
 <div class="paragraph">
-<p>종단점 노출을 결정하는 것은 개발자가 사용하려는 기능과 그에 대한 사용여부 결정에 따른다. 대부분의 애플리케이션은 종단점에 ID를 부여하고 이를 URL 에 매칭하여 HTTP 모니터링하는 방식을 선택한다. 예를 들어 <code>health</code> 종단점는 <code>/health</code> 에 매칭된다.</p>
+<p>종단점 노출을 결정하는 것은 개발자가 사용하려는 기능과 그에 대한 사용여부 결정에 따른다. 대부분의 애플리케이션은 종단점에 ID를 부여하고 이를 URL 에 매칭하여 HTTP 모니터링하는 방식을 선택한다. 예를 들어 <code>health</code> 종단점은 <code>/actuator/health</code> 에 매칭된다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>애플리케이션이 시작될 때 로그를 살펴보면 각 종단점에 매칭된 URL 정보를 확인할 수 있다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>사용할 수 있는 종단점는 다음과 같다:</p>
+<p>사용할 수 있는 종단점은 다음과 같다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">ID</th>
 <th class="tableblock halign-left valign-top">설명</th>
-<th class="tableblock halign-left valign-top">민감정보여부(Sensitive) 기본설정</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>actuator</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">다른 종단점를 살펴볼 수 있는 하이퍼미디어 기반의 페이지를 제공한다. {spring-hateoas}가 클래스패스 에 있어야 한다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">다른 종단점을 살펴볼 수 있는 하이퍼미디어 기반의 페이지를 제공한다. {spring-hateoas}가 클래스패스 에 있어야 한다.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditevents</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">현재 애플리케이션의 감시 이벤트 정보를 제공한다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>autoconfig</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">모든 자동구성에 대한 자동구성 상태 보고서를 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>conditions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">구성 및 자동구성클래스가 생성되거나 그렇지 않은 사유를 보여준다.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>beans</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">애플리케이션에 등록된 모든 빈(bean) 목록을 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>configprops</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">모든 <code>@ConfigurationProperties</code> 목록을 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>dump</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">스레드 덤프를 수행한다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>env</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">스프링 <code>ConfigurableEnvironment</code> 속성들을 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>flyway</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Flyway를 사용하는 경우 데이터베이스 마이그레이션 정보를 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>health</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">애플리케이션 건강(health) 정보(애플리케이션에 대한 보안정책이 활성화되어 있는 경우 인증되지 않은 접속인 경우에는 <code>status</code>만 보여주고 인증된 접속인 경우에는 상세정보 제공)를 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>info</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">애플리케이션 정보를 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>loggers</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">애플리케이션 로거 구성을 보여주고 변경할 수 있다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>liquibase</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Liquibase를 사용하는 경우 데이터베이스 마이그레이션 정보를 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>metrics</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">현재 애플리케이션 '측량' 정보를 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>mappings</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">모든 <code>@RequestMapping</code> 경로에 대한 목록을 보여준다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>scheduledtasks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">애플리케이션 내에 등록되어 있는 스케줄러 태스크 목록을 보여준다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sessions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스프링  세션을 지원하는 세션 저장소에서 사용자 세션을 검색하고 제거할 수 있다. 리액티브 웹애플리케이션을 지원하는 스프링  세션을 사용할 때는 사용할 수 없다.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutdown</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">애플리케이션을 정상적으로 종료시킨다(비활성화가 기본상)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>shutdown</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">깔끔하게 애플리케이션을 종료한다(기본적으로는 비활성화 되어 있다).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>threaddump</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">스레드 덤프를 수행한다.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>trace</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">트레이스 정보를 보여준다(기본적으로 최근 HTTP 요청 100개까지).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>trure</code></p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>스프링 MVC를 사용하면 다음 종단점을 추가사용할 수 있다:</p>
+<p>애플리케이션이 웹애플리케이션(스프링 MVC, 스프링 WebFlux 혹은  Jersey)이라면 다음 종단점을 추가적으로 사용할 수 있다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">ID</th>
 <th class="tableblock halign-left valign-top">설명</th>
-<th class="tableblock halign-left valign-top">민감정보여부(Sensitive) 기본설정</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">액츄에이터 종단점에 대한 문서(요청 및 응답 예제를 포함한) 를 제공한다. 클래스패스 상에 <code>spring-boot-actuator-docs</code>를 필요로 한다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>heapdump</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GZip 으로 압축된 <code>hprof</code> 헤드 덤프파일을 반환한다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>jolokia</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP으로 JMX 빈을 노출한다(클래스패스 상에 Jolokia가 있는 경우).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>logfile</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">로그파일 내용(<code>logging.file</code> 혹은 <code>logging.path</code> 속성을 정의했을 경우)을 반환한다. 로그 파일의 내용에 대해서 HTTP <code>Range</code> 헤더를 사용할 수 있다.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>prometheus</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로메테우스(Prometheus) 서버에서  수집할 수 있는 형식의 측량를 제공한다.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>액츄에이터 종단점와 이에 대한 요청 및 응답 형식에 대한 자세한 내용은 다음 형식으로 제공되는 별도의 API 문서를 참조하기 바란다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>link: <a href="https://docs.spring.io/spring-boot/docs/2.0.0.RELEASE/actuator-api/html/">HTML(https://goo.gl/mNwBzp)</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-boot/docs/2.0.0.BUILD-SNAPSHOT/actuator-api/pdf/spring-boot-actuator-web-api.pdf">PDF</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="production-ready-endpoints-exposing-endpoints">4.1.2. 종단점 노출</h4>
+<div class="paragraph">
+<p>종단점는 민감한 정보가 포함될 수 있기 때문에 노출 시점에서 신중하게 고려해야 한다. 기본적으로 스프링 부트는 JMX를 통해서는 모든 종단점를 활성화하여 표시하지만, HTTP를 통해서는 <code>health</code>와 <code>info</code> 종단점만 표시한다.</p>
+</div>
+<div class="paragraph">
+<p>종단점의 노출 여부를 변경하려면 각 기술과 관련한 <code>expose</code>와 <code>exclude</code> 속성을 사용하면 된다. 예를 들어 JMX에서 <code>health</code> 만 노출하고 싶은 경우에는 다음과 같이 한다:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>application.yml</code></div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.jmx.expose</span>: <span class="string"><span class="content">health</span></span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>\*</code>를 이용하면 모든 종단점를 포함시킬 수 있다. 예를 들어, HTTP 요청에서 <code>env</code>를 제외한 모든 종단점를 노출하고 싶다면 다음과 같이 한다:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>application.yml</code></div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web</span>:
+  <span class="key">expose</span>: <span class="error">*</span>
+  <span class="key">exclude</span>: <span class="string"><span class="content">env</span></span></code></pre>
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -9800,17 +9932,11 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>민감한 정보는 기본적으로 '민감정보여부(Sensitive)'가 <code>true</code>로 되어 있어서 종단점가 <strong>비활성</strong>상태다. 필요한 경우 사용하려는 종단점의 <code>sensitive</code> 속성을 <code>true</code>로 표기하면 바로 <strong>활성</strong>상태가 되어 접근가능하다.</p>
+<p>애플리케이션이 공개적으로 노출되는 경우 <strong>"<a href="#production-ready-endpoints-security">종단점 보안</a>"을 강화할 것을 강력하게 권한다</strong>.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="production-ready-endpoints-security">4.1.2. 종단점 보안</h4>
-<div class="paragraph">
-<p>기본적으로 모든 HTTP 종단점는 <code>ACTUATOR</code> 역할을 가지고 있는 이들만 접근가능하다. 보안은 기본적으로  <code>HttpServletRequest.isUserInRole</code> 메서드를 사용하도록 강제한다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9820,74 +9946,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>ACTUATOR</code> 와 다른 것을 원하는 경우에는  <code>management.security.roles</code> 속성을 사용한다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>방화벽 뒤에서 애플리케이션을 배포한다면, 액츄에이터 종단점는 인증할 필요없이 접근하도록 하고 싶을 것이다. 그런 경우에는 <code>management.security.enabled</code> 속성을 변경하면 된다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.security.enabled</span>: <span class="string"><span class="content">false</span></span></code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>기본적으로 액츄에이터 종단점는 일반적인 HTTP 트래픽을 제공하는 동일한 포트로 노출된다. 민감한 정보가 의도치 않은 상황에서 노출되지 않도록 신경쓸 필요가 없다면 <code>management.security.enabled</code> 속성을 변경하면 된다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>공개적으로 노출되는 애플리케이션을 배포하려 한다면, 스프링 시큐리티를 추가하여 사용자 인증을 제어하도록 하자. 스프링 시큐리티가 추가되면 기본 인증은 username <code>user</code> 에 생성된 비밀번호를 애플리케이션 구동시 콘솔에 출력한다.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>생성된 패스워드는 애플리케이션 구동시 로그로 출력된다. <code>Using default security password</code>로 찾아보자.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>스프링 프로퍼티를 통해서 종단점에 접근하는 접근권한(ROLE)을 변경하고 사용자명(username)과 비밀번호를 변경할 수 있다. 예를 들어, 다음과 같이 <code>application.yml</code> 파일을 설정하면 된다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">security</span>:
-    <span class="key">user.name</span>: <span class="string"><span class="content">admin</span></span>
-    <span class="key">user.password</span>: <span class="string"><span class="content">secret</span></span>
-<span class="key">management.security.roles</span>: <span class="string"><span class="content">SUPERUSER</span></span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>만약 애플리케이션이 사용자정의한 보안구성을 가지고 있고 인증없이 액츄에이터 종단점에 접근가능하길 원한다면, 구성시 <code>management.security.enabled</code> 속성을 <code>false</code>로 변경해야 한다. 액츄에이터 종단점에 대한 접근권한을 재정의하고 싶다면 <code>management.security.roles</code> 에 인증된 사용자가 가지고 있어야할 권한을 정의하면 된다.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>만약 미인증 사용자들에게 기본적인 건강(health) 정보를 노출하고 싶지 않다면, 액츄에이터 종단점에 대한 <code>management.security.enabled</code> 보안속성을 <code>false</code>로 재정의 하면 된다.</p>
+<p>종단점 노출전략을 직접 구현하고 싶다면 <code>EndpointFilter</code>을 등록하면 된다.</p>
 </div>
 </td>
 </tr>
@@ -9895,17 +9954,63 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-customizing-endpoints">4.1.3. 종단점 재정의</h4>
+<h4 id="production-ready-endpoints-security">4.1.3. 종단점 보안</h4>
 <div class="paragraph">
-<p>종단점는 스프링 속성을 사용해서 재정의가 가능하다. 종단점의 <code>enabled</code> 와 <code>id</code> 를 변경할 수 있다.</p>
+<p>다른 민감한 URL과 동일한 방식으로 HTTP 종단점을 보호해야 한다.</p>
 </div>
 <div class="paragraph">
-<p>예를 들어, <code>beans</code> 종단점 에 대한 <code>id</code>를 변경하고 <code>shutdown</code> 이 가능하도록 한 <code>application.yml</code>이 여기있다:</p>
+<p>일반적인 스프링 시큐리티 구성은 다음과 같은 구조로 되어 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">endpoints</span>:
-    <span class="key">beans.id</span>: <span class="string"><span class="content">springbeans</span></span>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ActuatorSecurity</span> <span class="directive">extends</span> WebSecurityConfigurerAdapter {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> <span class="type">void</span> configure(HttpSecurity http) <span class="directive">throws</span> <span class="exception">Exception</span> {
+        http.requestMatcher(EndpointRequest.toAnyEndpoint()).authorizeRequests()  <b class="conum">(1)</b>
+                .anyRequest().hasRole(<span class="string"><span class="delimiter">&quot;</span><span class="content">ENDPOINT_ADMIN</span><span class="delimiter">&quot;</span></span>) <b class="conum">(2)</b>
+                .and()
+            .httpBasic();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/EndpointRequest.java"><code>EndpointRequest.toAnyEndpoint()</code>(https://goo.gl/Qmmm87)</a>는 어느 종단점든지 적용이 된다.</p>
+</li>
+<li>
+<p><code>ENDPOINT_ADMIN</code> 라는 권한을 가지고 있어야 한다.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>EndpointRequest</code> 에서는 여러가지 matcher 메서드가 가능하다(자세한 내용은 API 문서를 참조).</p>
+</div>
+<div class="paragraph">
+<p>만약 방화벽 뒤에 애플리케이션을 배포하는 경우라면 인증요구없이 모든 액츄에이터 종단점에 접근할 수 있다. 그럴 경우에는 <code>management.endpoints.web.expose</code> 속성을 다음과 같이 설정한다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web.expose</span>: <span class="error">*</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="production-ready-customizing-endpoints">4.1.4. 종단점 재정의</h4>
+<div class="paragraph">
+<p>종단점은 스프링 속성을 사용해서 재정의가 가능하다. 종단점의 <code>enabled</code> 와 <code>id</code> 를 변경할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>다음과 같이 <code>beans</code> 종단점 에 대한 캐시 생존시간을 10초로 변경하고 <code>shutdown</code> 이 가능하도록 설정할 수 있다:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>application.yml</code></div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoint</span>:
+    <span class="key">cache.time-to-live</span>: <span class="string"><span class="content">10s</span></span>
     <span class="key">shutdown.enabled</span>: <span class="string"><span class="content">true</span></span></code></pre>
 </div>
 </div>
@@ -9917,35 +10022,65 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>접두사 '<code>endpoints</code> + <code>.</code> + <code>{name}</code>'은 종단점에 대한 고유한 식별자로 사용된다.</p>
+<p>접두사 <code>management.endpoint.&lt;name&gt;</code>은 종단점에 대한 고유한 식별자로 사용된다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>기본적으로 모든 종단점에 대한 <code>shutdonw</code> 은 활성화되어 있다. 만약 종단점 활성화를 제어하고 싶다면 <code>endpoint.enabled</code> 속성을 사용할 수 있다.
-예를 들어, 다음 설정에서는 <code>info</code>를 제외한 모든 종단점를 비활성화 한다.</p>
+<p>기본적으로 <code>shutdonw</code>를 제외한 모든 종단점은 사용가능하다. 만약 종단점 활성화를 제어하고 싶다면 <code>management.endpoints.enabled-by-default</code> 속성을 사용할 수 있다.
+예를 들어, 다음 설정에서는 <code>info</code>를 제외한 모든 종단점을 비활성화 한다:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>application.yml</code></div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.enabled-by-default</span>: <span class="string"><span class="content">false</span></span>
+<span class="key">management.endpoint.info.enalbed</span>: <span class="string"><span class="content">true</span></span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>비활성화된 종단점은 <code>ApplicationContext</code>에서 제외된다. 종단점가 노출되는 기술만 변경하려면 <code>expose</code> 및 <code>exclude</code> 속성을 사용할 수 있다(자세한 내용은 "<a href="#production-ready-endpoints-exposing-endpoints">종단점 노출</a>"를 참조).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="production-ready-endpoint-hypermedia">4.1.5. 액츄에이터 MVC 종단점 를 위한 하이퍼미디어</h4>
+<div class="paragraph">
+<p>디스커버리 페이지("Discovery Page")는 모든 종단점에 대한 링크를 제공한다. 기본적으로 <code>/actuator</code>에서 디스커버리 페이지를 볼 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>관리 컨텍스트 경로를 재정의한 경우, 디스커버리 페이지는 <code>/actuator</code> 에서 자동적으로 관리 컨텍스트의 최상위로 이동한다. 예를 들어, 관리 컨텍스트 경로가 <code>/management</code> 인 경우 <code>/management</code>에서 디스커버리 페이지를 발견할 수 있다. 관리 컨텍스트 경로를 <code>/</code>으로 설정하면 디스커버리 페이지는 비활성화되어 다른 매핑과 충돌을 방지한다.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="production-ready-endpoint-custom-mapping">4.1.6. 액츄에이터 웹 종단점 경로</h4>
+<div class="paragraph">
+<p>기본적으로 종단점의 경로는 <code>/actuator</code> 경로 하위에 종단점 ID를 이용한다. 예를 들어 <code>beans</code> 종단점의 경우 <code>/actuator/beans</code>으로 접근할 수 있다. 만약 종단점의 경로를 다르게 변경하고 싶을 경우에는 <code>management.endpoints.web.path-mapping</code> 속성을 이용할 수 있다. 또한 <code>management.endpoints.web.base-path</code> 속성을 이용해서 기본 경로를 변경하는 것도 가능하다.</p>
+</div>
+<div class="paragraph">
+<p>다음 예에서는 <code>/actuator/health</code>를 <code>/healthcheck</code>로 변경했다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">endpoints</span>:
-    <span class="key">enbaled</span>: <span class="string"><span class="content">false</span></span>
-    <span class="key">info.enalbed</span>: <span class="string"><span class="content">true</span></span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints</span>:
+  <span class="key">web.base-path</span>: <span class="string"><span class="content">/</span></span>
+  <span class="key">path-mapping.health</span>: <span class="string"><span class="content">healthcheck</span></span></code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-endpoint-hypermedia">4.1.4. 액츄에이터 MVC 종단점 를 위한 하이퍼미디어</h4>
-<div class="paragraph">
-<p>디스커버리 페이지("Discovery Page")는 모든 종단점에 대한 링크를 제공한다. 디스커버리 페이지는 <code>/application</code>으로 접근가능하다.</p>
-</div>
-<div class="paragraph">
-<p>관리 컨텍스트 경로를 재정의한 경우, 디스커버리 페이지는 <code>/application</code> 에서 자동적으로 관리 컨텍스트의 최상위로 이동한다. 예를 들어, 관리 컨텍스트 경로가 <code>/management</code> 인 경우 <code>/management</code>에서 디스커버리 페이지를 발견할 수 있다.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="production-ready-endpoint-cors">4.1.5. CORS 지원</h4>
+<h4 id="production-ready-endpoint-cors">4.1.7. CORS 지원</h4>
 <div class="paragraph">
 <p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin resource sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="https://www.w3.org/TR/cors/">W3C 명세(https://www.w3.org/TR/cors/)</a>되어 있는 서로 다른 도메인사이 요청에 대한 인증을 유연하게 정의하는 것을 허용한다. 액츄에이터는 MVC 종단점에 대해서 여러가지 상황에 따른 구성을 지원한다.</p>
 </div>
@@ -9954,7 +10089,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">endpoints.cors</span>:
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web.cors</span>:
   <span class="key">allowed-origins</span>: <span class="string"><span class="content">http://example.com</span></span>
   <span class="key">allowed-method</span>: <span class="string"><span class="content">GET,POST</span></span></code></pre>
 </div>
@@ -9975,24 +10110,38 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-customizing-endpoints-programmatically">4.1.6. 재정의 종단점 추가하기</h4>
+<h4 id="production-ready-customizing-endpoints-programmatically">4.1.8. 재정의 종단점 추가하기</h4>
 <div class="paragraph">
-<p>만약 <code>EndPoint</code> 타입의 <code>@Bean</code>을 추가한다면 자동으로 JMX 및 HTTP(서버에서 설정되어 있다면)가 가능하다. HTTP 종단점는 <code>MvcEndpoint</code> 타입의 빈으로 생성하여 재정의할 수 있다. <code>MvcEndpoint</code>는 <code>@Controller</code>는 아니지만 <code>@RequestMapping</code>(그리고 <code>@Managed*</code>)를 사용하여 자원을 노출할 수 있다.</p>
+<p>만약 <code>@EndPoint</code> 애너테이션와 함께 <code>@Bean</code>을 <code>@ReadOperation</code>, <code>@WriteOperation</code> 혹은 <code>@DeleteOperation</code> 애너테이션을 선언한 모든 메서드가 추가한다면 JMX 및 HTTP(서버에서 설정되어 있다면)에서 자동으로 노출된다.</p>
+</div>
+<div class="paragraph">
+<p><code>@JmxEndpoint</code> 혹은 <code>@WebEndpoint</code>을 사용하여 종단점이 사용할 기술을 지정하는 것도 가능하다. 저 애너테이션를 사용하는 것만으로 종단점가 기술에 따라 분류된다. 예를 들어, <code>@WebEndpoint</code>을 사용하면 JMX에는 노출되지 않고 HTTP에만 노출된다.</p>
+</div>
+<div class="paragraph">
+<p>마지막으로 <code>@EndpointWebExtension</code>와 <code>@EndpointJmxExtension</code>를 사용하여 확장을 지정하는 것이 가능하다. 이 애너테이션은 존재하는 종단점에 대한 특정 명령과 확장을 허용한다.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>종단점를 라이브러리 기능으로 추가하는 경우 <code>@ManagementContextConfiguration</code>를 선언한 클래스를 추가하고 <code>/META-INF/spring.factories</code>에 <code>org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration</code> 목록을 추가한다. 그렇게 하면 별도의 관리포트 또는 주소를 요청하면 종단점은 다른 웹 종단점이 있는 하위 컨텍스트로 이동한다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-health">4.1.7. 건강(health)정보</h4>
+<h4 id="production-ready-health">4.1.9. 건강(health)정보</h4>
 <div class="paragraph">
-<p>건강(health) 정보는 실행중인 애플리케이션의 상태를 점검하는데 사용할 수 있다. 운영 시스템이 다운되었을 때 누군가에게 경고할 수 있는 모니터링 소프트웨어로 사용된다. 기본 정보는 <code>health</code> 종단점를 통해서 노출되며 접근상황에 따라 다른 정보를 보여준다. 비인증 접속의 경우 보안이 활성화된 애플리케이션에서는 간단한 상태 메시지만 반환하며 인증 접속의 경우에는 추가적인 상세정보를 보여줄 수 있다(이와 관련해서는 "<a href="#production-ready-health-access-restrictions">HTTP 건강(health) 종단점 접근 제한</a>"에서 보다 자세하게 설명하겠다).</p>
+<p>건강(health) 정보는 실행중인 애플리케이션의 상태를 점검하는데 사용할 수 있다. 운영 시스템이 다운되었을 때 누군가에게 경고할 수 있는 모니터링 소프트웨어로 사용된다. 기본 정보는 <code>management.endpoint.health.show-details</code> 속성에 따라 <code>health</code> 종단점으로 노출된다. 기본적으로 이 속성의 값은 <code>false</code>이며 간단한 '상태' 메시지를 반환한다. 속성값을 <code>true</code>로 설정하면, 건강(health) 인디케이터에서 보다 상세한 내용을 보여준다.</p>
 </div>
 <div class="paragraph">
-<p>건강(health) 정보는 <code>ApplicationContext</code> 에 정의되어 있는 모든 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/HealthIndicator.java"><code>HealthIndicator</code>(https://goo.gl/LFonW7)</a> 빈으로부터 수집되어 보여진다. 스프링 부트는 자동구성된 다양한 <code>HealthIndicator</code> 외에도 개발자가 Indicator 를 작성할 수도 있다. 기본적으로, 시스템 상태는 지정된 목록을 기반으로 각각의 <code>HealthAggregator</code>를 통해서 전달한 값을 <code>HealthIndicator</code>가 정렬하여 제공한다. 맨먼저 노출되는 상태는 전체적인 건강(health)상태를 보여준다. 만약 <code>HealthAggregator</code>가 반환하는 상태가 없다면 <code>HealthIndicator</code>는 <code>UNKNOWN</code> 상태를 보여준다.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_with_healthindicators">4.1.8. <code>HealthIndicator</code> 보안</h4>
-<div class="paragraph">
-<p>건강(health)에 대한 응답은 캐시처리되어 '서비스 거부 공격(Denial of service attack, DDoS)'를 방지한다. 1000 밀리세컨드 단위로 캐시되는 기본값을 변경하고 싶다면 <code>endpoints.health.time-to-live</code> 속성을 이용하면 된다.</p>
+<p>건강(health) 정보는 <code>ApplicationContext</code> 에 정의되어 있는 모든 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/HealthIndicator.java"><code>HealthIndicator</code>(https://goo.gl/LFonW7)</a> 빈에서 수집하여 보여준다. 스프링 부트는 자동구성된 다양한 <code>HealthIndicator</code> 외에도 개발자가 Indicator 를 작성할 수도 있다. 기본적으로, 시스템 상태는 지정된 목록을 기반으로 각각의 <code>HealthAggregator</code>를 통해서 전달한 값을 <code>HealthIndicator</code>가 정렬하여 제공한다. 정렬된 목록에서 제일 먼저 노출되는 상태는 전체적인 건강(health)상태를 보여준다. 만약 <code>HealthAggregator</code>가 반환하는 상태가 없다면 <code>HealthIndicator</code>는 <code>UNKNOWN</code> 상태를 보여준다.</p>
 </div>
 <div class="sect4">
 <h5 id="_auto_configured_healthindicators">자동구성 HealthIndicator</h5>
@@ -10075,7 +10224,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="_writing_custom_healthindicators">HealthIndicator 작성하기</h5>
 <div class="paragraph">
-<p>사용자정의한 건강(health)정보를 제공하려면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/HealthIndicator.java"><code>HealthIndicator</code>(https://goo.gl/PbJ1Y4)</a> 인터페이스를 구현한 빈을 등록하면 된다. <code>health()</code> 메서드를 구현하면서 <code>Health</code> 응답을 반환하면 된다. <code>Health</code> 응답은 상태와 보여주고 싶은 선택적인 정보들을 추가하면 된다.</p>
+<p>사용자정의한 건강(health)정보를 제공하려면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/HealthIndicator.java"><code>HealthIndicator</code>(https://goo.gl/PbJ1Y4)</a> 인터페이스를 구현한 빈을 등록하면 된다. <code>health()</code> 메서드를 구현하면서 <code>Health</code> 응답을 반환하면 된다. <code>Health</code> 응답은 상태와 보여주고 싶은 선택적인 정보들을 추가하면 된다. 다음 코드는 <code>HealthIndicator</code> 구현체 예제다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10158,15 +10307,89 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <td class="tableblock halign-left valign-top"><p class="tableblock">기본적으로 대응하는 값은 없고, HTTP 상태가 200인 경우</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DOWN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UNKNOWN</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">기본적으로 대응하는 값은 없고, HTTP 상태가 200인 경우</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+<div class="sect4">
+<h5 id="reactive-health-indicators">리액티브 건강(health) Indicators</h5>
+<div class="paragraph">
+<p>스프링 WebFlux를 사용하는 리액티브 애플리케이션을 위해 <code>ReactiveHealthIndicators</code>는 애플리케이션 건강(health)를 확보하기 위한 넌블로킹 계약을 제공한다. 일반적인 <code>HealthIndicator</code>와 유사하게 <code>ApplicationContext</code>에 정의되어 있는 모든 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/ReactiveHealthIndicator.java"><code>ReactiveHealthIndicator</code>(https://goo.gl/NPtcNV)</a>를 수집하여 보여준다. 리액티브 API에 대해 확인하지 않는 일반 <code>HealthIndicators</code>는 <a href="https://projectreactor.io/docs/core/snapshot/reference/#schedulers">엘라스틱 스케줄러(https://goo.gl/YgHSuC)</a>에 의해 실행된다.</p>
+</div>
+<div class="paragraph">
+<p>리액티브 API로부터 건강(health) 정보를 재정의하려면, <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/ReactiveHealthIndicator.java"><code>ReactiveHealthIndicator</code>(https://goo.gl/rZG1GQ)</a> 인터페이스를 구현하여 스프링 빈으로 등록하면 된다. 다음 예제 코드는 <code>ReactiveHealthIndicator</code>를 구현하고 있다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Component</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">MyReactiveHealthIndicator</span> <span class="directive">implements</span> ReactiveHealthIndicator {
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> Mono&lt;Health&gt; health() {
+        <span class="keyword">return</span> doHealthCheck() <span class="comment">//perform some specific health check that returns a Mono&lt;Health&gt;</span>
+            .onErrorResume(ex -&gt; Mono.just(<span class="keyword">new</span> Health.Builder().down(ex).build())));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>자동으로 오류를 처리하려면 <code>AbstractReactiveHealthIndicator</code>를 확장하는 것이 좋다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_auto_configured_reactivehealthindicators">자동구성 ReactiveHealthIndicators</h5>
+<div class="paragraph">
+<p>스프링 부트에서 사용하는 자동구성된 <code>ReactiveHealthIndicators</code>는 다음과 같다:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">이름</th>
+<th class="tableblock halign-left valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/redis/RedisReactiveHealthIndicator.java"><code>RedisReactiveHealthIndicator</code>(https://goo.gl/PRgkYZ)</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">레디스 서버가 동작중인지 점검한다.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>필요한 경우 일반 Indicator 중에서 하나가 리액티브 Indicator를 대체한다. 또한 명시적으로 처리하지 않은 <code>HealthIndicator</code>는 자동으로 랩핑된다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-application-info">4.1.9. 애플리케이션 정보</h4>
+<h4 id="production-ready-application-info">4.1.10. 애플리케이션 정보</h4>
 <div class="paragraph">
 <p>애플리케이션 정보는 <code>ApplicationContext</code> 에 등록되어 있는 모든 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/info/InfoContributor.java"><code>InfoContributor</code>(https://goo.gl/h5M718)</a> 빈으로부터 수집된 다양한 정보를 제공한다. 스프링 부트는 다양한 자동구성된 <code>InfoContributor</code>과 작성한 것들을 포함하여 제공가능하다.</p>
 </div>
@@ -10219,15 +10442,14 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="production-ready-application-info-env">재정의한 애플리케이션 정보</h5>
 <div class="paragraph">
-<p>스프링 속성으로 정의된 <code>info.*</code>에 를 노출하는 <code>info</code> 종단점를 재정의할 수 있다. 모든 <code>Environment</code> 속성에서 <code>info</code>키 이하의 것들은 자동으로 노출된다. 예를 들어, <code>application.yml</code> 에 다음과 같이 추가할 수 있다:</p>
+<p>스프링 속성으로 정의된 <code>info.*</code>에 를 노출하는 <code>info</code> 종단점을 재정의할 수 있다. 모든 <code>Environment</code> 속성에서 <code>info</code>키 이하의 것들은 자동으로 노출된다. 예를 들어, <code>application.yml</code> 에 다음과 같이 추가할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">info</span>:
-  <span class="key">app</span>:
-    <span class="key">encoding</span>: <span class="string"><span class="content">UTF-8</span></span>
-    <span class="key">java.source</span>: <span class="string"><span class="content">1.8</span></span>
-    <span class="key">java.target</span>: <span class="string"><span class="content">1.8</span></span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">info.app</span>:
+  <span class="key">encoding</span>: <span class="string"><span class="content">UTF-8</span></span>
+  <span class="key">java.source</span>: <span class="string"><span class="content">1.8</span></span>
+  <span class="key">java.target</span>: <span class="string"><span class="content">1.8</span></span></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -10244,8 +10466,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="listingblock">
 <div class="title"><code>application.properties</code></div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="properties">info:
-  app:
+<pre class="CodeRay highlight"><code data-lang="properties">info.app:
     encoding: ${file.encoding}
     java.source: ${java.version}
     java.target: ${java.version}</code></pre>
@@ -10287,7 +10508,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="production-ready-application-info-build">빌드(build) 정보</h5>
 <div class="paragraph">
-<p><code>info</code> 종단점는 <code>BuildProperties</code> 빈이 등록되어 있다면 빌드 정보를 제공할 수 있다. <code>META-INF/build-info.properties</code> 파일이 클래스패스에 있다면 가능하다.</p>
+<p><code>info</code> 종단점은 <code>BuildProperties</code> 빈이 등록되어 있다면 빌드 정보를 제공할 수 있다. <code>META-INF/build-info.properties</code> 파일이 클래스패스에 있다면 가능하다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -10315,20 +10536,20 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect2">
 <h3 id="production-ready-monitoring">4.2. HTTP 로 모니터링하고 관리하기</h3>
 <div class="paragraph">
-<p>스프링 MVC 애플리케이션을 개발하고 있다면 스프링 부트 액츄에이터는 자동구성으로 활성화된 모든 종단점를 HTTP로 노출한다. 기본관례에 의해 종단점 ID를 URL 경로로 사용한다. 예를 들어 <code>health</code> 의 경우 <code>/health</code> 로 노출된다.</p>
+<p>스프링 MVC 애플리케이션을 개발하고 있다면 스프링 부트 액츄에이터는 자동구성으로 활성화된 모든 종단점을 HTTP로 노출한다. 기본관례에 의해 종단점 ID를 URL 경로로 사용한다. 예를 들어 <code>health</code> 의 경우 <code>/health</code> 로 노출된다.</p>
 </div>
 <div class="sect3">
 <h4 id="production-ready-customizing-management-server-context-path">4.2.1. 관리 종단점 경로 재정의</h4>
 <div class="paragraph">
-<p>관리 종단점의 접두사를 재정의하는 것은 유용할 때가 있다. 예를 들어, 애플리케이션에서 이미 <code>/application</code>을 다른 목적으로 사용하고 있는 경우가 그렇다. <code>management.context-path</code> 속성을 사용하여 관리 종단점 접두사를 변경할 수 있다:</p>
+<p>관리 종단점의 접두사를 재정의하는 것은 유용할 때가 있다. 예를 들어, 애플리케이션에서 이미 <code>/application</code>을 다른 목적으로 사용하고 있는 경우가 그렇다. <code>management.endpoints.web.base-path</code> 속성을 사용하여 관리 종단점 접두사를 변경할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.context-path</span>: <span class="string"><span class="content">/manage</span></span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web.base-path</span>: <span class="string"><span class="content">/manage</span></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>위의 <code>application.yml</code> 예제에 따르면 <code>/application/{id}</code>는 <code>/manage/{id}</code>(예로, <code>/manage/info</code>)로 변경된다.</p>
+<p>위의 <code>application.yml</code> 예제에 따르면 <code>/actuator/{id}</code>는 <code>/manage/{id}</code>(예로, <code>/manage/info</code>)로 변경된다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -10338,7 +10559,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>종단점가 각각 정의되어 있다고 하더라도, <code>management.context-path</code> 속성은 상대경로로 적용된다.</p>
+<p>"<a href="#production-ready-customizing-management-server-port">관리 서버 포트 재정의</a>"를 통해서 관리 포트를 구성하지 않은 경우에는 <code>management.endpoints.web.base-path</code>는 <code>server.context-path</code>에 영향을 받는다. 만약 <code>management.server.port</code>가 정의되어있다면 <code>management.endpoints.web.base-path</code>는 <code>management.server.servlet.context-path</code>에 영향을 받는다.</p>
 </div>
 </td>
 </tr>
@@ -10348,14 +10569,14 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-customizing-management-server-port">4.2.2. 관리 서버 포트 재정의</h4>
 <div class="paragraph">
-<p>기본 HTTP 포트를 통해서 노출되는 관리 종단점는 클라우드 기반에 배포될 때 변경해야할 경우가 생긴다. 그러나 애플리케이션을 데이터 센터에서 애플리케이션을 실행하려면 다른 HTTP 포트를 사용해야할 수도 있다.</p>
+<p>기본 HTTP 포트를 통해서 노출되는 관리 종단점은 클라우드 기반에 배포될 때 변경해야할 경우가 생긴다. 그러나 애플리케이션을 데이터 센터에서 애플리케이션을 실행하려면 다른 HTTP 포트를 사용해야할 수도 있다.</p>
 </div>
 <div class="paragraph">
 <p><code>management.port</code> 속성으로 HTTP 포트를 변경할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.port</span>: <span class="string"><span class="content">8081</span></span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.server.port</span>: <span class="string"><span class="content">8081</span></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -10377,7 +10598,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-management-specific-ssl">4.2.3. 관리를 위한 SSL 재정의</h4>
 <div class="paragraph">
-<p>재정의한 포트를 사용하도록 구성하는 경우에 관리서버는 <code>management.ssl.*</code> 속성을 이용해서 SSL 구성이 가능하다. 예를 들어, 메인 애플리케이션이 HTTPS를 사용하는 동안 관리 서버는 HTTP를 사용하는 것이 가능하다:</p>
+<p>재정의한 포트를 사용하도록 구성하는 경우에 관리서버는 <code>management.server.ssl.*</code> 속성을 이용해서 SSL 구성이 가능하다. 예를 들어, 메인 애플리케이션이 HTTPS를 사용하는 동안 관리 서버는 HTTP를 사용하는 것이 가능하다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10387,7 +10608,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
     <span class="key">enabled</span>: <span class="string"><span class="content">true</span></span>
     <span class="key">key-store</span>: <span class="string"><span class="content">classpath:store.jks</span></span>
     <span class="key">key-password</span>: <span class="string"><span class="content">secret</span></span>
-<span class="key">management</span>:
+<span class="key">management.server</span>:
   <span class="key">port</span>: <span class="string"><span class="content">8080</span></span>
   <span class="key">ssl.enabled</span>: <span class="string"><span class="content">false</span></span></code></pre>
 </div>
@@ -10403,7 +10624,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
     <span class="key">enabled</span>: <span class="string"><span class="content">true</span></span>
     <span class="key">key-store</span>: <span class="string"><span class="content">classpath:store.jks</span></span>
     <span class="key">key-password</span>: <span class="string"><span class="content">secret</span></span>
-<span class="key">management</span>:
+<span class="key">management.server</span>:
   <span class="key">port</span>: <span class="string"><span class="content">8080</span></span>
   <span class="key">ssl</span>:
     <span class="key">enabled</span>: <span class="string"><span class="content">true</span></span>
@@ -10415,7 +10636,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-customizing-management-server-address">4.2.4. 관리 서버 주소 재정의</h4>
 <div class="paragraph">
-<p>관리 종단점의 주소를 재정의하고 싶다면 <code>management.address</code> 속성으로 설정가능하다. 이 기능은 내부 네트워크 혹은 <code>localhost</code>를 통해서만 접속하도록 설정하고 싶을 때 유용하다.</p>
+<p>관리 종단점의 주소를 재정의하고 싶다면 <code>management.server.address</code> 속성으로 설정가능하다. 이 기능은 내부 네트워크 혹은 <code>localhost</code>를 통해서만 접속하도록 설정하고 싶을 때 유용하다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -10436,7 +10657,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management</span>:
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.server</span>:
   <span class="key">port</span>: <span class="string"><span class="content">8081</span></span>
   <span class="key">address</span>: <span class="string"><span class="content">127.0.0.1</span></span></code></pre>
 </div>
@@ -10449,68 +10670,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.port</span>: <span class="string"><span class="content">-1</span></span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="production-ready-health-access-restrictions">4.2.6. HTTP 건강(health) 종단점 접근 제한</h4>
-<div class="paragraph">
-<p><code>health</code> 종단점은 익명으로 접근했을 때와 인증된 접근인 경우에 노출되는 정보가 다르다. 기본적으로 보안관리 중인 <strong>애플리케이션에 익명으로 접근</strong>하면 서버의 세부적인 건강(health) 상태는 감춰지며 종단점은 단순히 서버가 작동중인지 작동중지 상태인지 여부만 보여준다.</p>
-</div>
-<div class="paragraph">
-<p>서버가 <strong>작동중</strong>인 경우에 HTTP 응답(익명으로 요청시):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ curl -i localhost:8080/health
-HTTP/1.1 200
-X-Application-Context: application:8080
-Content-Type: application/vnd.spring-boot.actuator.v1+json;charset=UTF-8
-Content-Length: 15
-
-{&quot;status&quot;:&quot;UP&quot;}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>서버가 <strong>작동중지</strong>인 경우에 HTTP 응답으로 "DOWN"과 (503 상태코드 전달):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ curl -i localhost:8080/health
-HTTP/1.1 503
-X-Application-Context: application:8080
-Content-Type: application/vnd.spring-boot.actuator.v1+json;charset=UTF-8
-Content-Length: 17
-
-{&quot;status&quot;:&quot;DOWN&quot;}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>HTTP 응답의 상세내용 예제는 다음과 같다(설정에 따라 보다 자세한 내용이 노출된다):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ curl -i localhost:8080/health
-HTTP/1.1 200 OK
-X-Application-Context: application:8080
-Content-Type: application/vnd.spring-boot.actuator.v1+json;charset=UTF-8
-Content-Length: 221
-
-{
-  &quot;status&quot; : &quot;UP&quot;,
-  &quot;diskSpace&quot; : {
-    &quot;status&quot; : &quot;UP&quot;,
-    &quot;total&quot; : 63251804160,
-    &quot;free&quot; : 31316164608,
-    &quot;threshold&quot; : 10485760
-  },
-  &quot;db&quot; : {
-    &quot;status&quot; : &quot;UP&quot;,
-    &quot;database&quot; : &quot;H2&quot;,
-    &quot;hello&quot; : 1
-  }
-}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.server.port</span>: <span class="string"><span class="content">-1</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -10518,7 +10678,7 @@ Content-Length: 221
 <div class="sect2">
 <h3 id="production-ready-metrics">4.3. 측량(Metrics)</h3>
 <div class="paragraph">
-<p>스프링 부트 액츄에이터는 <a href="https://micrometer.io/">Micrometer(https://micrometer.io/)</a>를 위한 자동구성와 의존성 관리를 제공하며, 애플리케이션 {metric}를 통해 다양한 모니터링 시스템을 지원하고 있다:</p>
+<p>스프링 부트 액츄에이터는 <a href="https://micrometer.io/">Micrometer(https://micrometer.io/)</a>를 위한 자동구성와 의존성 관리를 제공하며, 애플리케이션 측량를 통해 다양한 모니터링 시스템을 지원하고 있다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -10592,7 +10752,7 @@ Content-Length: 221
 <p>Micrometer에서 사용할 수 있는 형식으로 변경된 듯 하다.</p>
 </div>
 <div class="listingblock">
-<div class="title">스프링 부트 2.0.0.RELEASE <code>/application/metrics</code></div>
+<div class="title">스프링 부트 2.0.0.RELEASE <code>/actuator/metrics</code></div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
   <span class="error">n</span><span class="error">a</span><span class="error">m</span><span class="error">e</span><span class="error">s</span>: [
@@ -10613,10 +10773,10 @@ Content-Length: 221
 </div>
 </div>
 <div class="paragraph">
-<p>각 측량에 대해서는 <code>/application/metrics/{metricsName}</code> 으로 상세정보를 확인할 수 있다. 예로 <code>/application/metrics/http.server.requests</code> 으로 요청을 하면 다음과 같은 내용을 확인할 수 있다.</p>
+<p>각 측량에 대해서는 <code>/actuator/metrics/{metricsName}</code> 으로 상세정보를 확인할 수 있다. 예로 <code>/actuator/metrics/http.server.requests</code> 으로 요청을 하면 다음과 같은 내용을 확인할 수 있다.</p>
 </div>
 <div class="listingblock">
-<div class="title"><code>/application/metrics/http.server.requests</code> 요청시 예제</div>
+<div class="title"><code>/actuator/metrics/http.server.requests</code> 요청시 예제</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="json">{
     <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">http.server.requests</span><span class="delimiter">&quot;</span></span>,
@@ -10646,7 +10806,7 @@ Content-Length: 221
 </div>
 </div>
 <div class="paragraph">
-<p>사용하는 기능에 따라 자동구성된 측량 정보를 확인할 수 있다. <code>/application/metrics/{metricsName}</code>를 살펴보면 살펴볼 수 있는 측량 상세의 이름, 측정치와 사용 가능한 태그 정보를 확인할  수 있다. 지원하는 기능에 대한 보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics">스프링 부트 참고문서(https://goo.gl/NmYMYb) 'Metrics'</a> 관련내용을 살펴보기 바란다.</p>
+<p>사용하는 기능에 따라 자동구성된 측량 정보를 확인할 수 있다. <code>/actuator/metrics/{metricsName}</code>를 살펴보면 살펴볼 수 있는 측량 상세의 이름, 측정치와 사용 가능한 태그 정보를 확인할  수 있다. 지원하는 기능에 대한 보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics">스프링 부트 참고문서(https://goo.gl/NmYMYb) 'Metrics'</a> 관련내용을 살펴보기 바란다.</p>
 </div>
 </div>
 <div class="sect2">
@@ -10671,10 +10831,10 @@ Content-Length: 221
             <span class="key"><span class="delimiter">&quot;</span><span class="content">timestamp</span><span class="delimiter">&quot;</span></span>: <span class="integer">1511157217254</span>,
             <span class="key"><span class="delimiter">&quot;</span><span class="content">info</span><span class="delimiter">&quot;</span></span>: {
                 <span class="key"><span class="delimiter">&quot;</span><span class="content">method</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">GET</span><span class="delimiter">&quot;</span></span>,
-                <span class="key"><span class="delimiter">&quot;</span><span class="content">path</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">/application/trace</span><span class="delimiter">&quot;</span></span>,
+                <span class="key"><span class="delimiter">&quot;</span><span class="content">path</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">/actuator/trace</span><span class="delimiter">&quot;</span></span>,
                 <span class="key"><span class="delimiter">&quot;</span><span class="content">headers</span><span class="delimiter">&quot;</span></span>: {
                     <span class="key"><span class="delimiter">&quot;</span><span class="content">request</span><span class="delimiter">&quot;</span></span>: {
-                        <span class="key"><span class="delimiter">&quot;</span><span class="content">host</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">localhost:20000</span><span class="delimiter">&quot;</span></span>,
+                        <span class="key"><span class="delimiter">&quot;</span><span class="content">host</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">localhost:8080</span><span class="delimiter">&quot;</span></span>,
                         <span class="key"><span class="delimiter">&quot;</span><span class="content">connection</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">keep-alive</span><span class="delimiter">&quot;</span></span>,
                         <span class="key"><span class="delimiter">&quot;</span><span class="content">upgrade-insecure-requests</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>,
                         <span class="key"><span class="delimiter">&quot;</span><span class="content">user-agent</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36</span><span class="delimiter">&quot;</span></span>,
@@ -10738,7 +10898,7 @@ Content-Length: 221
 <div class="sect3">
 <h4 id="production-ready-custom-tracing">4.5.1. 추적 재정의</h4>
 <div class="paragraph">
-<p>추가적으로 이벤트 추적을 해야한다면, 스프링 빈에 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/trace/TraceRepository.java"><code>TraceRepository</code></a>를 주입한다. 그리고 <code>add</code> 메서드(<code>void add(Map&lt;String, Object&gt; traceInfo)</code>)에 <code>Map</code> 구조의 객체를 등록하면 JSON과 로그로 변환된다.</p>
+<p>추가적으로 이벤트 추적을 해야한다면, 스프링 빈에 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/trace/TraceRepository.java"><code>TraceRepository</code>(https://goo.gl/7Rcjnv)</a>를 주입한다. 그리고 <code>add</code> 메서드(<code>void add(Map&lt;String, Object&gt; traceInfo)</code>)에 <code>Map</code> 구조의 객체를 등록하면 JSON과 로그로 변환된다.</p>
 </div>
 <div class="paragraph">
 <p>기본적으로 <code>InMemoryTraceRepository</code>에 최근 100개 이벤트가 보관된다. 만약 용량을 확장해야할 필요성이 있다면 <code>InMemoryTraceRepository</code>를 구현하여 정의하면 된다. <code>TraceRepository</code>를 구현하여 생성하는 방법도 있다.</p>
@@ -11560,7 +11720,7 @@ dependencies {
 <div class="sect2">
 <h3 id="build-tool-plugins-other-build-systems">6.3. 그 외의 빌드 시스템</h3>
 <div class="paragraph">
-<p>만약 메이븐, 그레이들 혹은 앤트 이외의 빌드 도구를 사용하길 원한다면 스스로 플러그인을 개발해야할 수도 있다. 실행가능한 jar는 특정한 형식과 압축되지 않은 양식으로 작성된 목록을 포함하고 있어야 한다(보다 자세한 사항은 스프링 부트 참조문서의 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#executable-jar">'executable-jar'(https://goo.gl/2Y9E3R)</a>를 살펴보기 바란다).</p>
+<p>만약 메이븐, 그레이들 혹은 앤트 이외의 빌드 도구를 사용하길 원한다면 스스로 플러그인을 개발해야할 수도 있다. 실행가능한 jar는 특정한 형식과 압축되지 않은 양식으로 작성된 목록을 포함하고 있어야 한다(보다 자세한 사항은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#executable-jar">스프링 부트 참조문서#executable-jar(https://goo.gl/2Y9E3R)</a>를 살펴보기 바란다).</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트 메이븐과 그레이들 플러그인 모두 <code>spring-boot-loader-tools</code>를 이용해서 jar를 생성한다. 필요하다면 자유롭게 이 라이브러리를 직접 사용할 수 있다.</p>
@@ -11583,7 +11743,7 @@ dependencies {
 <div class="sect3">
 <h4 id="build-tool-plugins-find-a-main-class">6.3.3. 메인 클래스 찾기</h4>
 <div class="paragraph">
-<p><code>Repackager.setMainClass()</code>를 사용하여 메인 클래스를 정의하지 않았다면 repackager는 <a href="http://asm.ow2.org/">ASM</a>을 사용하여 클래스 파일을 읽고 <code>public static void main(String[] args)</code> 메서드를 가지고 있는 적합한 클래스를 찾아내려고 한다. 한 개 이상을 찾았을 경우에는 예외가 발생한다.</p>
+<p><code>Repackager.setMainClass()</code>를 사용하여 메인 클래스를 정의하지 않았다면 repackager는 <a href="http://asm.ow2.org/">ASM(http://asm.ow2.org/)</a>을 사용하여 클래스 파일을 읽고 <code>public static void main(String[] args)</code> 메서드를 가지고 있는 적합한 클래스를 찾아내려고 한다. 한 개 이상을 찾았을 경우에는 예외가 발생한다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -11671,7 +11831,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code><strong>AutoConfiguration</code> 이란 이름을 가지고 있는 클래스를 찾아서 소스코드를 살펴보고, <code>@Conditional</strong></code> 애너테이션가 선언되어 있는 부분을 살펴보면 그 기능이 언제 활성화될 지 알 수 있다. 커맨드라인에서 실행시 <code>--debug</code>이나 <code>-Ddebug</code> 시스템 속성을 추가하면 애플리케이션이 구동되면서 구성한 자동구성과 관련된 정보를 콘솔 로그로 볼 수 있다. 실행중인 애플리케이션의 액츄에이터 <code>autoconf</code> 종단점(<code>/application/autoconfig</code>)에서도 동일한 정보를 확인할 수 있다.</p>
+<p><code><strong>AutoConfiguration</code> 이란 이름을 가지고 있는 클래스를 찾아서 소스코드를 살펴보고, <code>@Conditional</strong></code> 애너테이션가 선언되어 있는 부분을 살펴보면 그 기능이 언제 활성화될 지 알 수 있다. 커맨드라인에서 실행시 <code>--debug</code>이나 <code>-Ddebug</code> 시스템 속성을 추가하면 애플리케이션이 구동되면서 구성한 자동구성과 관련된 정보를 콘솔 로그로 볼 수 있다. 실행중인 애플리케이션의 액츄에이터 <code>autoconf</code> 종단점(<code>/actuator/autoconfig</code>)에서도 동일한 정보를 확인할 수 있다.</p>
 </li>
 <li>
 <p><code>@ConfigurationProperties</code>를 사용하고 있는 클래스(예: <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code>(https://goo.gl/FsDpzc)</a>)를 찾아보고 그 클래스와 관련된 외부 구성옵션을 찾아본다. <code>@ConfigurationProperties</code>는 <code>prefix</code> 속성을 가지고 있는데 외부 속성들의 접두사로 동작하며 <code>ServerProperties</code>는 <code>prefix="server"</code>으로 선언되어 이를 통해 구현된 구성속성들은 <code>server.port</code>, <code>server.address</code> 와 기타 등등이 있다. 애플리케이션 액츄에이터가 실행중이라면 <code>configprops</code> 종단점에서 찾아볼 수 있다.</p>
@@ -11903,7 +12063,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="sect3">
 <h4 id="howto-externalize-configuration">7.2.2. <code>SpringApplication</code>  외부 구성</h4>
 <div class="paragraph">
-<p><code>SpringApplication</code>는 Java API를 사용하여 애플리케이션를 생성하면서 빈속성을 이용해서(세터를 사용) 동작을 조작하는 것이 가능하다. 혹은 <code>application.yml</code>에 <code>spring.main.*</code>속성을 정의하는 것도 가능하다. 예로 다음과 같다:</p>
+<p><code>SpringApplication</code>는 Java API를 사용하여 애플리케이션을 생성하면서 빈속성을 이용해서(세터를 사용) 동작을 조작하는 것이 가능하다. 혹은 <code>application.yml</code>에 <code>spring.main.*</code>속성을 정의하는 것도 가능하다. 예로 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12055,7 +12215,7 @@ server.port=9000</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ java -jar -Dspring.profiles.active=prod boot-spring-boot-0.0.1-SNAPSHOT.jar</code></pre>
+<pre class="CodeRay highlight"><code data-lang="console">$ java -jar boot-spring-boot-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod</code></pre>
 </div>
 </div>
 </div>
@@ -12102,10 +12262,10 @@ server.port=9000</code></pre>
 <p>스프링 부트는 애플리케이션 실행시 <code>application.yml</code> 혹은 (<code>.properties</code>)로부터 외부 속성을 연결한다. 애플리케이션 실행에 필요한 속성들을 한 곳에서 제공하는 것은 기술적으로 불가능 하다. 클래스패스에 추가된 jar 파일에서 제공하는 경우도 있기 때문이다.</p>
 </div>
 <div class="paragraph">
-<p>실행중인 애플리케이션의 액츄에이터 기능에서 <code>configprops</code> 종단점를 살펴보면 연결되거나 <code>@ConfigurationProperties</code>을 통하여 연결가능한 속성들을 모두 보여준다.</p>
+<p>실행중인 애플리케이션의 액츄에이터 기능에서 <code>configprops</code> 종단점을 살펴보면 연결되거나 <code>@ConfigurationProperties</code>을 통하여 연결가능한 속성들을 모두 보여준다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트 부록에 있는 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties"><code>application.yml(or .properties)</code></a>에서 사용가능한 목록을 살펴보면, 스프링 부트에서 사용가능한 속성들이 나열되어 있다. 최종목록은 소스 코드에서 <code>@ConfigurationProperties</code> 및 <code>@Value</code> 주석을 검색하고 <code>RelaxedPropertyResolver</code>에서 추출되어 나열된다.</p>
+<p>스프링 부트 부록에 있는 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties">`application.yml(or .properties)`에서 사용가능한 목록(https://goo.gl/Nat6x5)</a>을 살펴보면, 스프링 부트에서 사용가능한 속성들이 나열되어 있다. 최종목록은 소스 코드에서 <code>@ConfigurationProperties</code> 및 <code>@Value</code> 주석을 검색하고 <code>RelaxedPropertyResolver</code>에서 추출되어 나열된다.</p>
 </div>
 <div class="paragraph">
 <p><code>@Value</code> 에서 지정된 속성값이 애플리케이션 실행시 정의되어 있지 않다면 실행되지 않는다. 다음과 같이 <code>app.info</code> 속성이 정의되어 있지 않다면</p>
@@ -12216,7 +12376,7 @@ server.port=9000</code></pre>
 <p>애플리케이션이 실행될 때 기본포트는 <code>8080</code>이지만 <code>server.port</code>(예: <code>application.yml</code> 혹은 시스템 속성)으로 설정할 수 있다. <code>Environment</code>의 느슨한 연결방식으로 <code>SERVER_PORT</code>(OS 환경변수)를 사용할 수도 있다.</p>
 </div>
 <div class="paragraph">
-<p><code>WebApplicationContext</code>를 생성하지만 HTTP 종단점를 완벽히 끄고자 한다면 <code>server.port: -1</code>을 사용한다(테스트시 유용하다).</p>
+<p><code>WebApplicationContext</code>를 생성하지만 HTTP 종단점을 완벽히 끄고자 한다면 <code>server.port: -1</code>을 사용한다(테스트시 유용하다).</p>
 </div>
 <div class="paragraph">
 <p>보다 자세한 내용을 살펴보고 싶다면, "<a href="#chap03">'스프링 부트' 기능소개</a>"의 "<a href="#boot-features-customizing-configurableembeddedservletcontainerfactory-directly">내장 서블릿 컨테이너 재정의</a>"를 찾아보거나 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code>(https://goo.gl/FsDpzc)</a>) 소스코드를 살펴보기 바란다.</p>
@@ -13598,6 +13758,90 @@ dependencies {
 <p>에러 페이지를 덮어쓰려고 한다면 템플릿 기술에 의존적이 된다. 예를 들어 타임리프를 사용한다면 <code>error.html</code> 템플릿을 추가할 수 있다. 만약 프리마커를 사용한다면 <code>error.ftl</code> 템플릿을 추가해야 한다. 일반적으로 <code>error</code>라는 이름의 <code>View</code> 리졸버가 필요하거나 <code>@Controller</code>에서 <code>/error</code> 경로를 제어하면 된다. 기본 구성에서 일부를 변경하지 않는 경우 <code>ApplicationContext</code>에서 <code>BeanNameViewResolver</code>를 찾을 수 있으며 <code>error</code>라는 이름의 <code>@Bean</code>을 정의하는 것도 간단한 처리방법 중 하나다. 보다 자세한 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration.java"><code>ErrorMvcAutoConfiguration</code>(https://goo.gl/8tM5PS)</a>을 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
+<p><code>ErrorMvcAutoConfiguration</code>를 살펴보면 <code>SpelView</code>를 이용해서 <code>defaultErrorView</code>를 생성하는 코드를 볼 수 있다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">private</span> <span class="directive">final</span> SpelView defaultErrorView = <span class="keyword">new</span> SpelView(
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;html&gt;&lt;body&gt;&lt;h1&gt;Whitelabel Error Page&lt;/h1&gt;</span><span class="delimiter">&quot;</span></span>
+          + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;p&gt;This application has no explicit mapping for /error, so you are seeing this as a fallback.&lt;/p&gt;</span><span class="delimiter">&quot;</span></span>
+          + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div id='created'&gt;${timestamp}&lt;/div&gt;</span><span class="delimiter">&quot;</span></span>
+          + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div&gt;There was an unexpected error (type=${error}, status=${status}).&lt;/div&gt;</span><span class="delimiter">&quot;</span></span>
+          + <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;div&gt;${message}&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;</span><span class="delimiter">&quot;</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이렇게 생성된 기본뷰는 다음과 같은 형태로 출력된다:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/07-10-whitelable.png" alt="07 10 whitelable">
+</div>
+</div>
+<div class="paragraph">
+<p><code>defaultErrorView</code>에서 사용할 수 있는 속성은 <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/autoconfigure/web/DefaultErrorAttributes.html"><code>DefaultErrorAttributes</code>(https://goo.gl/5j9umG) Javadoc</a> 문서를 살펴보면 다음과 같은 속성을 가진다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>timestamp</code>: 오류가 발생한 시간</p>
+</li>
+<li>
+<p><code>status</code>: 상태코드</p>
+</li>
+<li>
+<p><code>error</code>: 에러 발생원인</p>
+</li>
+<li>
+<p><code>exception</code>: 상위 예외 클래스명</p>
+</li>
+<li>
+<p><code>message</code>: 예외 메시지</p>
+</li>
+<li>
+<p><code>errors</code>: <code>BindingResult</code>가 던져주는 <code>ObjectErrors</code></p>
+</li>
+<li>
+<p><code>trace</code>: Exception stack trace</p>
+</li>
+<li>
+<p><code>path</code>: 예외가 발생한 URL 경로(되돌아가거나 어디서 발생하는지 파악하는 용도)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>를 활용하여 스프링 부트에서 발생한 예외를 분석하기가 용이해진다.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>error.html</code> 예</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="html"><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attribute-name">xmlns:th</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.thymeleaf.org</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="tag">&lt;head</span> <span class="attribute-name">lang</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">en</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attribute-name">charset</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">utf-8</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+    <span class="comment">&lt;!-- 중략 --&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+<span class="tag">&lt;div&gt;</span>
+    <span class="tag">&lt;h1</span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${status}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Status<span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;h2&gt;</span>Honeymon, we have a problem([[${error}]])<span class="tag">&lt;/h2&gt;</span>
+    <span class="tag">&lt;p</span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${message}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> Error Message<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;p&gt;</span>
+        <span class="tag">&lt;a</span> <span class="attribute-name">href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">index.html</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">th:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">@{/}</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">class</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">btn red btn-outline</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span> Return home <span class="tag">&lt;/a&gt;</span>
+        <span class="tag">&lt;br&gt;</span>
+    <span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${timeStamp}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">th:text</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${exception}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span><span class="tag">&lt;/div&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attribute-name">th:utext</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${trace}</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Trace!<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>위 <code>DefaultErrorAttributes</code> 속성을 가지고 구미에 맞는 에러페이지를 만들어볼 수 있겠다.</p>
+</div>
+<div class="paragraph">
 <p>서블릿 컨테이너에서 어떻게 핸들러를 등록하는지에 대해서는 "<a href="#boot-features-error-handling">에러 처리</a>"를 살펴보기 바란다.</p>
 </div>
 </div>
@@ -14429,6 +14673,54 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </table>
 </div>
 </li>
+<li>
+<p><code>@Profile</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>링크:  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#beans-definition-profiles-java">스프링 참고문서#@Profilehttps://goo.gl/PJLB12</a></p>
+</li>
+<li>
+<p>링크:  <a href="https://docs.spring.io/spring-framework/docs/5.0.2.RELEASE/javadoc-api/org/springframework/context/annotation/Profile.html"><code>@Profile</code> Javadoc(https://goo.gl/Fhmzh2)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>스프링 Web MVC</p>
+<div class="ulist">
+<ul>
+<li>
+<p>링크:  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">스프링 참고문서#Spring Web MVC(https://goo.gl/iDNwgY)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>스프링 WebFlux</p>
+<div class="ulist">
+<ul>
+<li>
+<p>영상: <a href="https://youtu.be/2E_1yb8iLKk">스프링캠프 2017:: SpringWebFlux - 이일민(https://youtu.be/2E_1yb8iLKk)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>링크: <a href="https://bclozel.github.io/webflux-workshop/">Spring WebFlux Workshop(https://goo.gl/Lq168g)</a></p>
+</li>
+<li>
+<p>링크: <a href="https://bclozel.github.io/webflux-workshop/">Spring WebFlux Workshop - Brian Clozel, Violeta Georgieva - Pivotal</a></p>
+</li>
+<li>
+<p>스프링 시큐리티</p>
+</li>
+<li>
+<p>링크: <a href="https://projects.spring.io/spring-security/">Spring Security project(https://goo.gl/HxLfQ8)</a></p>
+</li>
+<li>
+<p>링크: <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/">Spring Security 참고문서(https://goo.gl/h12ij8)</a></p>
+</li>
 </ul>
 </div>
 </li>
@@ -14515,13 +14807,25 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footnotes">
 <hr>
 <div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. <a href="https://goo.gl/K5QJHF">파비콘</a> 인터넷 웹 브라우저의 주소창에 표시되는 웹사이트나 웹피이지를 대표하는 아이콘
+</div>
+<div class="footnote" id="_footnote_1">
 <a href="#_footnoteref_1">1</a>. <a href="https://curtistimson.co.uk/post/front-end-dev/what-is-cache-busting/">What is cache busting?(https://goo.gl/xewdEd)</a> 'URL 쿼리를 이용한 캐시관리 기능&#8217;으로 정적 파일명이 변경되지 않는 한 브라우저에서는 정적 파일을 보관한다
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://goo.gl/SUKHBe" class="bare">https://goo.gl/SUKHBe</a> 다양한 미디어를 모아서 만든 정보매체
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. <a href="http://projects.spring.io/spring-hateoas/" class="bare">http://projects.spring.io/spring-hateoas/</a> 쉽게 REST를 구현할 수 있게 해준다.
+</div>
+<div class="footnote" id="_footnote_4">
+<a href="#_footnoteref_4">4</a>. <a href="https://goo.gl/MqZPs4" class="bare">https://goo.gl/MqZPs4</a> 데이터를 다른 표현 데이터 형식으로 변환하는 과정
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.0.0<br>
-Last updated 2017-11-27 16:06:04 KST
+Version 1.1.0<br>
+Last updated 2017-11-29 18:26:44 KST
 </div>
 </div>
 </body>
