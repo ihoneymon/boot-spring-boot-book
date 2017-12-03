@@ -734,25 +734,25 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel2">
 <li><a href="#production-ready-enabling">4.1. 출시준비 기능 활성화</a>
 <ul class="sectlevel3">
-<li><a href="#production-ready-endpoints">4.1.1. 종단점(Endpoint)</a></li>
-<li><a href="#production-ready-endpoints-exposing-endpoints">4.1.2. 종단점 노출</a></li>
-<li><a href="#production-ready-endpoints-security">4.1.3. 종단점 보안</a></li>
-<li><a href="#production-ready-customizing-endpoints">4.1.4. 종단점 재정의</a></li>
-<li><a href="#production-ready-endpoint-hypermedia">4.1.5. 액츄에이터 MVC 종단점 를 위한 하이퍼미디어</a></li>
-<li><a href="#production-ready-endpoint-custom-mapping">4.1.6. 액츄에이터 웹 종단점 경로</a></li>
+<li><a href="#production-ready-endpoints">4.1.1. 종점(Endpoint)</a></li>
+<li><a href="#production-ready-endpoints-exposing-endpoints">4.1.2. 종점 노출</a></li>
+<li><a href="#production-ready-endpoints-security">4.1.3. 종점 보안</a></li>
+<li><a href="#production-ready-customizing-endpoints">4.1.4. 종점 재정의</a></li>
+<li><a href="#production-ready-endpoint-hypermedia">4.1.5. 액츄에이터 MVC 종점 를 위한 하이퍼미디어</a></li>
+<li><a href="#production-ready-endpoint-custom-mapping">4.1.6. 액츄에이터 웹 종점 경로</a></li>
 <li><a href="#production-ready-endpoint-cors">4.1.7. CORS 지원</a></li>
-<li><a href="#production-ready-customizing-endpoints-programmatically">4.1.8. 재정의 종단점 추가하기</a></li>
+<li><a href="#production-ready-customizing-endpoints-programmatically">4.1.8. 재정의 종점 추가하기</a></li>
 <li><a href="#production-ready-health">4.1.9. 건강(health)정보</a></li>
 <li><a href="#production-ready-application-info">4.1.10. 애플리케이션 정보</a></li>
 </ul>
 </li>
 <li><a href="#production-ready-monitoring">4.2. HTTP 로 모니터링하고 관리하기</a>
 <ul class="sectlevel3">
-<li><a href="#production-ready-customizing-management-server-context-path">4.2.1. 관리 종단점 경로 재정의</a></li>
+<li><a href="#production-ready-customizing-management-server-context-path">4.2.1. 관리 종점 경로 재정의</a></li>
 <li><a href="#production-ready-customizing-management-server-port">4.2.2. 관리 서버 포트 재정의</a></li>
 <li><a href="#production-ready-management-specific-ssl">4.2.3. 관리를 위한 SSL 재정의</a></li>
 <li><a href="#production-ready-customizing-management-server-address">4.2.4. 관리 서버 주소 재정의</a></li>
-<li><a href="#production-ready-disabling-http-endpoints">4.2.5. HTTP 종단점 비활성화</a></li>
+<li><a href="#production-ready-disabling-http-endpoints">4.2.5. HTTP 종점 비활성화</a></li>
 </ul>
 </li>
 <li><a href="#production-ready-metrics">4.3. 측량(Metrics)</a></li>
@@ -847,7 +847,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#howto-use-undertow-instead-of-tomcat">7.3.8. 톰캣을 언더토우로 대체하기</a></li>
 <li><a href="#howto-configure-undertow">7.3.9. 언더토우 구성</a></li>
 <li><a href="#howto-enable-multiple-listeners-in-undertow">7.3.10. 언더토우 멀티 리스너 활성화</a></li>
-<li><a href="#howto-create-websocket-endpoints-using-serverendpoint">7.3.11. <code>@ServerEndpoint</code> 를 사용한 웹소켓 종단점 생성</a></li>
+<li><a href="#howto-create-websocket-endpoints-using-serverendpoint">7.3.11. <code>@ServerEndpoint</code> 를 사용한 웹소켓 종점 생성</a></li>
 <li><a href="#howto-enable-http-response-compression">7.3.12. HTTP 응답 압축 활성화</a></li>
 </ul>
 </li>
@@ -885,7 +885,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#howto-use-two-entity-managers">7.7.7. 복수 <code>EntityManager</code> 이용</a></li>
 <li><a href="#howto-use-traditional-persistence-xml">7.7.8. 전통적인 <code>persistence.xml</code> 이용</a></li>
 <li><a href="#howto-use-spring-data-jpa--and-mongo-repositories">7.7.9. 스프링 Data JPA 와 몽고 리파지토리 이용</a></li>
-<li><a href="#howto-use-exposing-spring-data-repositories-rest-endpoint">7.7.10. REST 종단점 로 스프링 Data 리파지토리 노출</a></li>
+<li><a href="#howto-use-exposing-spring-data-repositories-rest-endpoint">7.7.10. REST 종점 로 스프링 Data 리파지토리 노출</a></li>
 </ul>
 </li>
 <li><a href="#howto-database-initialization">7.8. 데이터베이스 초기화</a>
@@ -904,7 +904,7 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#howto-actuator">7.10. 액츄에이터</a>
 <ul class="sectlevel3">
-<li><a href="#howto-change-the-http-port-or-address-of-the-actuator-endpoints">7.10.1. 액츄에이터 종단점 포트 혹은 주소 변경</a></li>
+<li><a href="#howto-change-the-http-port-or-address-of-the-actuator-endpoints">7.10.1. 액츄에이터 종점 포트 혹은 주소 변경</a></li>
 <li><a href="#howto-customize-the-whitelabel-error-page">7.10.2. <code>whitelabel</code> 오류 페이지 재정의</a></li>
 </ul>
 </li>
@@ -3524,7 +3524,7 @@ Unconditional classes:
 <p>실행가능한 jar는 운영배포에 사용할 수 있다. 컨테이너를 포함하고 있기 때문에 클라우드 기반 배포에 최적화되어 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 "운영준비"를 위한 기능으로 건강(health)상태확인, 감시 및 측량 종단점에 대한 REST 혹은 JMX 방식으로 접근할 수 있는 기능을 <code>spring-boot-actuator</code>를 통해서 제공하니 운영을 고려할 때 모듈추가를 고려해보자. 보다 자세한 내용은 "<a href="#chap04">'스프링 부트' 출시준비: 액츄에이터</a>" 을 살펴보기 바란다.</p>
+<p>스프링 부트는 "운영준비"를 위한 기능으로 건강(health)상태확인, 감시 및 측량 종점에 대한 REST 혹은 JMX 방식으로 접근할 수 있는 기능을 <code>spring-boot-actuator</code>를 통해서 제공하니 운영을 고려할 때 모듈추가를 고려해보자. 보다 자세한 내용은 "<a href="#chap04">'스프링 부트' 출시준비: 액츄에이터</a>" 을 살펴보기 바란다.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5313,7 +5313,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spring-boot-actuator</code> 모듈은 종단점(endpoint)과 관련한 모든 <code>@ConfigurationProperties</code>를 보여주는 기능을 포함하고 있다. <code>/configprops</code>를 웹브라우저로 살펴보거나 유사한 기능을 제공하는 <code>JMX</code> 종단점을 사용하면 된다. "<a href="#production-ready-endpoints">종단점(Endpoint)</a>"에서 보다 자세한 내용을 살펴볼 수 있다.</p>
+<p><code>spring-boot-actuator</code> 모듈은 종점(endpoint)과 관련한 모든 <code>@ConfigurationProperties</code>를 보여주는 기능을 포함하고 있다. <code>/configprops</code>를 웹브라우저로 살펴보거나 유사한 기능을 제공하는 <code>JMX</code> 종점을 사용하면 된다. "<a href="#production-ready-endpoints">종점(Endpoint)</a>"에서 보다 자세한 내용을 살펴볼 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -7051,7 +7051,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="sect2">
 <h3 id="boot-features-security">3.6. 보안(Security)</h3>
 <div class="paragraph">
-<p>스프링 시큐리티가 클래스패스상에 존재하고 웹애플리케이션이라면 모든 HTTP 종단점(EndPoints)에는 '기본(basic)' 인증방식이 기본 적용된다. <code>@EnableGlobalMethodSecurity</code>를 추가로 사용하면 웹 애플리케이션의 메서드 수준까지 보안을 확대할 수 있다. 추가적인 정보는 <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#jc-method">스프링 시큐리티 참조문서#Method Security(https://goo.gl/BFDCGf)</a>를 살펴보기 바란다.</p>
+<p>스프링 시큐리티가 클래스패스상에 존재하고 웹애플리케이션이라면 모든 HTTP 종점(EndPoints)에는 '기본(basic)' 인증방식이 기본 적용된다. <code>@EnableGlobalMethodSecurity</code>를 추가로 사용하면 웹 애플리케이션의 메서드 수준까지 보안을 확대할 수 있다. 추가적인 정보는 <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#jc-method">스프링 시큐리티 참조문서#Method Security(https://goo.gl/BFDCGf)</a>를 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
 <p>기본 <code>AuthenticationManager</code>는 유저 1명이 등록되어 있다('유저&#8217;의 username과 무작위 비밀번호는 애플리케이션이 구동될 때 <strong>INFO</strong> 레벨로 출력된다)</p>
@@ -7120,7 +7120,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>액츄에이터가 클래스패스에 포함되어 있을 경우 액츄에이터 종단점도 포함</p>
+<p>액츄에이터가 클래스패스에 포함되어 있을 경우 액츄에이터 종점도 포함</p>
 </li>
 </ul>
 </div>
@@ -7131,7 +7131,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>접근규칙은 <code>WebSecurityConfigurerAdapter</code>를 이용해서 재정의 가능하다. 스프링 부트는 액츄에이터 종단점와 정적 자원에 대한 접근 규칙을 재정의할 수 있는 메서드를 제공한다.  <code>management.endpoints.web.base-path</code> 속성을 기반으로 하여 <code>RequestMatcher</code>에서 <code>EndpointRequest</code>를 생성할 수 있다. 정적자원의 공통적인 위치를 기준으로 해서 <code>RequestMatcher</code>에서 <code>StaticResourceRequest</code>를 만들 수 있다.</p>
+<p>접근규칙은 <code>WebSecurityConfigurerAdapter</code>를 이용해서 재정의 가능하다. 스프링 부트는 액츄에이터 종점와 정적 자원에 대한 접근 규칙을 재정의할 수 있는 메서드를 제공한다.  <code>management.endpoints.web.base-path</code> 속성을 기반으로 하여 <code>RequestMatcher</code>에서 <code>EndpointRequest</code>를 생성할 수 있다. 정적자원의 공통적인 위치를 기준으로 해서 <code>RequestMatcher</code>에서 <code>StaticResourceRequest</code>를 만들 수 있다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7155,7 +7155,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>애플리케이션 종단점에 대해서 보안관리를 하지 않는다해도 관리(management) 종단점은 보안관리 대상이 된다.</p>
+<p>애플리케이션 종점에 대해서 보안관리를 하지 않는다해도 관리(management) 종점은 보안관리 대상이 된다.</p>
 </li>
 <li>
 <p>보안 이벤트는 <code>AuditEvent</code> 인스턴스로 변형되어 <code>AuditEventRepository</code>로 발행된다.</p>
@@ -9695,10 +9695,10 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <h2 id="chap04">4. '스프링 부트' 출시준비: 액츄에이터</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>스프링 부트에는 운영시 사용할 수 있도록 애플리케이션을 관리하고 관측하는데 도움이 되는 여러가지 기능들이 포함되어 있다. 애플리케이션을 관리하고 관측하기 위해 HTTP 종단점(<code>endpoint</code>), JMX 혹은 리모트 쉘(SSH 혹은 Telnet) 중에서 선택할 수 있다. 애플리케이션에 대한 감시, 상태확인 그리고 계측을 할 수 있도록 자동구성된다.</p>
+<p>스프링 부트에는 운영시 사용할 수 있도록 애플리케이션을 관리하고 관측하는데 도움이 되는 여러가지 기능들이 포함되어 있다. 애플리케이션을 관리하고 관측하기 위해 HTTP 종점(<code>endpoint</code>), JMX 혹은 리모트 쉘(SSH 혹은 Telnet) 중에서 선택할 수 있다. 애플리케이션에 대한 감시, 상태확인 그리고 계측을 할 수 있도록 자동구성된다.</p>
 </div>
 <div class="paragraph">
-<p>액츄에이터 HTTP 종단점은 스프링 MVC 기반의 애플리케이션에서만 지원한다. 저지(Jersey)를 이용하면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-use-actuator-with-jersey">스프링 MVC를 사용하지 않아도 동작(https://goo.gl/77EYYv)</a>하게 할 수는 있다.</p>
+<p>액츄에이터 HTTP 종점은 스프링 MVC 기반의 애플리케이션에서만 지원한다. 저지(Jersey)를 이용하면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-use-actuator-with-jersey">스프링 MVC를 사용하지 않아도 동작(https://goo.gl/77EYYv)</a>하게 할 수는 있다.</p>
 </div>
 <div class="sect2">
 <h3 id="production-ready-enabling">4.1. 출시준비 기능 활성화</h3>
@@ -9742,12 +9742,12 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-endpoints">4.1.1. 종단점(Endpoint)</h4>
+<h4 id="production-ready-endpoints">4.1.1. 종점(Endpoint)</h4>
 <div class="paragraph">
-<p>액츄에이터 종단점은 애플리케이션에 대한 모니터링 및 조작이 가능하다. 스프링 부트는 다양한 빌트-인(built-in, 사전에 제작되어 제공되는) 종단점을 제공하며 필요에 따라서 개발자가 얼마든지 추가할 수 있다. 예를 들어 <code>health</code> 종단점의 경우 기본적인 애플리케이션의 건강(health) 정보를 제공한다.</p>
+<p>액츄에이터 종점은 애플리케이션에 대한 모니터링 및 조작이 가능하다. 스프링 부트는 다양한 빌트-인(built-in, 사전에 제작되어 제공되는) 종점을 제공하며 필요에 따라서 개발자가 얼마든지 추가할 수 있다. 예를 들어 <code>health</code> 종점의 경우 기본적인 애플리케이션의 건강(health) 정보를 제공한다.</p>
 </div>
 <div class="paragraph">
-<p>종단점 노출을 결정하는 것은 개발자가 사용하려는 기능과 그에 대한 사용여부 결정에 따른다. 대부분의 애플리케이션은 종단점에 ID를 부여하고 이를 URL 에 매칭하여 HTTP 모니터링하는 방식을 선택한다. 예를 들어 <code>health</code> 종단점은 <code>/actuator/health</code> 에 매칭된다.</p>
+<p>종점 노출을 결정하는 것은 개발자가 사용하려는 기능과 그에 대한 사용여부 결정에 따른다. 대부분의 애플리케이션은 종점에 ID를 부여하고 이를 URL 에 매칭하여 HTTP 모니터링하는 방식을 선택한다. 예를 들어 <code>health</code> 종점은 <code>/actuator/health</code> 에 매칭된다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -9757,14 +9757,14 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>애플리케이션이 시작될 때 로그를 살펴보면 각 종단점에 매칭된 URL 정보를 확인할 수 있다.</p>
+<p>애플리케이션이 시작될 때 로그를 살펴보면 각 종점에 매칭된 URL 정보를 확인할 수 있다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>사용할 수 있는 종단점은 다음과 같다:</p>
+<p>사용할 수 있는 종점은 다음과 같다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -9780,7 +9780,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>actuator</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">다른 종단점을 살펴볼 수 있는 하이퍼미디어 기반의 페이지를 제공한다. {spring-hateoas}가 클래스패스 에 있어야 한다.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">다른 종점을 살펴볼 수 있는 하이퍼미디어 기반의 페이지를 제공한다. {spring-hateoas}가 클래스패스 에 있어야 한다.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>auditevents</code></p></td>
@@ -9857,7 +9857,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </tbody>
 </table>
 <div class="paragraph">
-<p>애플리케이션이 웹애플리케이션(스프링 MVC, 스프링 WebFlux 혹은  Jersey)이라면 다음 종단점을 추가적으로 사용할 수 있다:</p>
+<p>애플리케이션이 웹애플리케이션(스프링 MVC, 스프링 WebFlux 혹은  Jersey)이라면 다음 종점을 추가적으로 사용할 수 있다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -9886,7 +9886,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </tbody>
 </table>
 <div class="paragraph">
-<p>액츄에이터 종단점와 이에 대한 요청 및 응답 형식에 대한 자세한 내용은 다음 형식으로 제공되는 별도의 API 문서를 참조하기 바란다:</p>
+<p>액츄에이터 종점와 이에 대한 요청 및 응답 형식에 대한 자세한 내용은 다음 형식으로 제공되는 별도의 API 문서를 참조하기 바란다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -9900,12 +9900,12 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-endpoints-exposing-endpoints">4.1.2. 종단점 노출</h4>
+<h4 id="production-ready-endpoints-exposing-endpoints">4.1.2. 종점 노출</h4>
 <div class="paragraph">
-<p>종단점는 민감한 정보가 포함될 수 있기 때문에 노출 시점에서 신중하게 고려해야 한다. 기본적으로 스프링 부트는 JMX를 통해서는 모든 종단점를 활성화하여 표시하지만, HTTP를 통해서는 <code>health</code>와 <code>info</code> 종단점만 표시한다.</p>
+<p>종점는 민감한 정보가 포함될 수 있기 때문에 노출 시점에서 신중하게 고려해야 한다. 기본적으로 스프링 부트는 JMX를 통해서는 모든 종점를 활성화하여 표시하지만, HTTP를 통해서는 <code>health</code>와 <code>info</code> 종점만 표시한다.</p>
 </div>
 <div class="paragraph">
-<p>종단점의 노출 여부를 변경하려면 각 기술과 관련한 <code>expose</code>와 <code>exclude</code> 속성을 사용하면 된다. 예를 들어 JMX에서 <code>health</code> 만 노출하고 싶은 경우에는 다음과 같이 한다:</p>
+<p>종점의 노출 여부를 변경하려면 각 기술과 관련한 <code>expose</code>와 <code>exclude</code> 속성을 사용하면 된다. 예를 들어 JMX에서 <code>health</code> 만 노출하고 싶은 경우에는 다음과 같이 한다:</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>application.yml</code></div>
@@ -9914,7 +9914,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="paragraph">
-<p><code>\*</code>를 이용하면 모든 종단점를 포함시킬 수 있다. 예를 들어, HTTP 요청에서 <code>env</code>를 제외한 모든 종단점를 노출하고 싶다면 다음과 같이 한다:</p>
+<p><code>\*</code>를 이용하면 모든 종점를 포함시킬 수 있다. 예를 들어, HTTP 요청에서 <code>env</code>를 제외한 모든 종점를 노출하고 싶다면 다음과 같이 한다:</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>application.yml</code></div>
@@ -9932,7 +9932,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>애플리케이션이 공개적으로 노출되는 경우 <strong>"<a href="#production-ready-endpoints-security">종단점 보안</a>"을 강화할 것을 강력하게 권한다</strong>.</p>
+<p>애플리케이션이 공개적으로 노출되는 경우 <strong>"<a href="#production-ready-endpoints-security">종점 보안</a>"을 강화할 것을 강력하게 권한다</strong>.</p>
 </div>
 </td>
 </tr>
@@ -9946,7 +9946,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>종단점 노출전략을 직접 구현하고 싶다면 <code>EndpointFilter</code>을 등록하면 된다.</p>
+<p>종점 노출전략을 직접 구현하고 싶다면 <code>EndpointFilter</code>을 등록하면 된다.</p>
 </div>
 </td>
 </tr>
@@ -9954,9 +9954,9 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-endpoints-security">4.1.3. 종단점 보안</h4>
+<h4 id="production-ready-endpoints-security">4.1.3. 종점 보안</h4>
 <div class="paragraph">
-<p>다른 민감한 URL과 동일한 방식으로 HTTP 종단점을 보호해야 한다.</p>
+<p>다른 민감한 URL과 동일한 방식으로 HTTP 종점을 보호해야 한다.</p>
 </div>
 <div class="paragraph">
 <p>일반적인 스프링 시큐리티 구성은 다음과 같은 구조로 되어 있다:</p>
@@ -9979,7 +9979,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="colist arabic">
 <ol>
 <li>
-<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/EndpointRequest.java"><code>EndpointRequest.toAnyEndpoint()</code>(https://goo.gl/Qmmm87)</a>는 어느 종단점든지 적용이 된다.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/EndpointRequest.java"><code>EndpointRequest.toAnyEndpoint()</code>(https://goo.gl/Qmmm87)</a>는 어느 종점든지 적용이 된다.</p>
 </li>
 <li>
 <p><code>ENDPOINT_ADMIN</code> 라는 권한을 가지고 있어야 한다.</p>
@@ -9990,7 +9990,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p><code>EndpointRequest</code> 에서는 여러가지 matcher 메서드가 가능하다(자세한 내용은 API 문서를 참조).</p>
 </div>
 <div class="paragraph">
-<p>만약 방화벽 뒤에 애플리케이션을 배포하는 경우라면 인증요구없이 모든 액츄에이터 종단점에 접근할 수 있다. 그럴 경우에는 <code>management.endpoints.web.expose</code> 속성을 다음과 같이 설정한다:</p>
+<p>만약 방화벽 뒤에 애플리케이션을 배포하는 경우라면 인증요구없이 모든 액츄에이터 종점에 접근할 수 있다. 그럴 경우에는 <code>management.endpoints.web.expose</code> 속성을 다음과 같이 설정한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9999,12 +9999,12 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-customizing-endpoints">4.1.4. 종단점 재정의</h4>
+<h4 id="production-ready-customizing-endpoints">4.1.4. 종점 재정의</h4>
 <div class="paragraph">
-<p>종단점은 스프링 속성을 사용해서 재정의가 가능하다. 종단점의 <code>enabled</code> 와 <code>id</code> 를 변경할 수 있다.</p>
+<p>종점은 스프링 속성을 사용해서 재정의가 가능하다. 종점의 <code>enabled</code> 와 <code>id</code> 를 변경할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>다음과 같이 <code>beans</code> 종단점 에 대한 캐시 생존시간을 10초로 변경하고 <code>shutdown</code> 이 가능하도록 설정할 수 있다:</p>
+<p>다음과 같이 <code>beans</code> 종점 에 대한 캐시 생존시간을 10초로 변경하고 <code>shutdown</code> 이 가능하도록 설정할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>application.yml</code></div>
@@ -10022,15 +10022,15 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>접두사 <code>management.endpoint.&lt;name&gt;</code>은 종단점에 대한 고유한 식별자로 사용된다.</p>
+<p>접두사 <code>management.endpoint.&lt;name&gt;</code>은 종점에 대한 고유한 식별자로 사용된다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>기본적으로 <code>shutdonw</code>를 제외한 모든 종단점은 사용가능하다. 만약 종단점 활성화를 제어하고 싶다면 <code>management.endpoints.enabled-by-default</code> 속성을 사용할 수 있다.
-예를 들어, 다음 설정에서는 <code>info</code>를 제외한 모든 종단점을 비활성화 한다:</p>
+<p>기본적으로 <code>shutdonw</code>를 제외한 모든 종점은 사용가능하다. 만약 종점 활성화를 제어하고 싶다면 <code>management.endpoints.enabled-by-default</code> 속성을 사용할 수 있다.
+예를 들어, 다음 설정에서는 <code>info</code>를 제외한 모든 종점을 비활성화 한다:</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>application.yml</code></div>
@@ -10047,7 +10047,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>비활성화된 종단점은 <code>ApplicationContext</code>에서 제외된다. 종단점가 노출되는 기술만 변경하려면 <code>expose</code> 및 <code>exclude</code> 속성을 사용할 수 있다(자세한 내용은 "<a href="#production-ready-endpoints-exposing-endpoints">종단점 노출</a>"를 참조).</p>
+<p>비활성화된 종점은 <code>ApplicationContext</code>에서 제외된다. 종점가 노출되는 기술만 변경하려면 <code>expose</code> 및 <code>exclude</code> 속성을 사용할 수 있다(자세한 내용은 "<a href="#production-ready-endpoints-exposing-endpoints">종점 노출</a>"를 참조).</p>
 </div>
 </td>
 </tr>
@@ -10055,18 +10055,18 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-endpoint-hypermedia">4.1.5. 액츄에이터 MVC 종단점 를 위한 하이퍼미디어</h4>
+<h4 id="production-ready-endpoint-hypermedia">4.1.5. 액츄에이터 MVC 종점 를 위한 하이퍼미디어</h4>
 <div class="paragraph">
-<p>디스커버리 페이지("Discovery Page")는 모든 종단점에 대한 링크를 제공한다. 기본적으로 <code>/actuator</code>에서 디스커버리 페이지를 볼 수 있다.</p>
+<p>디스커버리 페이지("Discovery Page")는 모든 종점에 대한 링크를 제공한다. 기본적으로 <code>/actuator</code>에서 디스커버리 페이지를 볼 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>관리 컨텍스트 경로를 재정의한 경우, 디스커버리 페이지는 <code>/actuator</code> 에서 자동적으로 관리 컨텍스트의 최상위로 이동한다. 예를 들어, 관리 컨텍스트 경로가 <code>/management</code> 인 경우 <code>/management</code>에서 디스커버리 페이지를 발견할 수 있다. 관리 컨텍스트 경로를 <code>/</code>으로 설정하면 디스커버리 페이지는 비활성화되어 다른 매핑과 충돌을 방지한다.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-endpoint-custom-mapping">4.1.6. 액츄에이터 웹 종단점 경로</h4>
+<h4 id="production-ready-endpoint-custom-mapping">4.1.6. 액츄에이터 웹 종점 경로</h4>
 <div class="paragraph">
-<p>기본적으로 종단점의 경로는 <code>/actuator</code> 경로 하위에 종단점 ID를 이용한다. 예를 들어 <code>beans</code> 종단점의 경우 <code>/actuator/beans</code>으로 접근할 수 있다. 만약 종단점의 경로를 다르게 변경하고 싶을 경우에는 <code>management.endpoints.web.path-mapping</code> 속성을 이용할 수 있다. 또한 <code>management.endpoints.web.base-path</code> 속성을 이용해서 기본 경로를 변경하는 것도 가능하다.</p>
+<p>기본적으로 종점의 경로는 <code>/actuator</code> 경로 하위에 종점 ID를 이용한다. 예를 들어 <code>beans</code> 종점의 경우 <code>/actuator/beans</code>으로 접근할 수 있다. 만약 종점의 경로를 다르게 변경하고 싶을 경우에는 <code>management.endpoints.web.path-mapping</code> 속성을 이용할 수 있다. 또한 <code>management.endpoints.web.base-path</code> 속성을 이용해서 기본 경로를 변경하는 것도 가능하다.</p>
 </div>
 <div class="paragraph">
 <p>다음 예에서는 <code>/actuator/health</code>를 <code>/healthcheck</code>로 변경했다:</p>
@@ -10082,7 +10082,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-endpoint-cors">4.1.7. CORS 지원</h4>
 <div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin resource sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="https://www.w3.org/TR/cors/">W3C 명세(https://www.w3.org/TR/cors/)</a>되어 있는 서로 다른 도메인사이 요청에 대한 인증을 유연하게 정의하는 것을 허용한다. 액츄에이터는 MVC 종단점에 대해서 여러가지 상황에 따른 구성을 지원한다.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin resource sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="https://www.w3.org/TR/cors/">W3C 명세(https://www.w3.org/TR/cors/)</a>되어 있는 서로 다른 도메인사이 요청에 대한 인증을 유연하게 정의하는 것을 허용한다. 액츄에이터는 MVC 종점에 대해서 여러가지 상황에 따른 구성을 지원한다.</p>
 </div>
 <div class="paragraph">
 <p>CORS 지원은 기본적으로 비활성화되어 있으며 <code>endpoints.cors.allowed-origins</code> 속성을 통해서만 활성화가 가능하다. 다음과 같이 정의하면 <code>example.com</code> 도메인으로부터 <code>GET</code>과 <code>POST</code> 요청에 대해서만 허용한다:</p>
@@ -10102,7 +10102,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/endpoint/web/servlet/CorsEndpointProperties.java">CORS 종단점 속성(https://goo.gl/AEexsc)</a>에서 선택가능한 항목 전체를 살펴볼 수 있다.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/endpoint/web/servlet/CorsEndpointProperties.java">CORS 종점 속성(https://goo.gl/AEexsc)</a>에서 선택가능한 항목 전체를 살펴볼 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -10110,15 +10110,15 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-customizing-endpoints-programmatically">4.1.8. 재정의 종단점 추가하기</h4>
+<h4 id="production-ready-customizing-endpoints-programmatically">4.1.8. 재정의 종점 추가하기</h4>
 <div class="paragraph">
 <p>만약 <code>@EndPoint</code> 애너테이션와 함께 <code>@Bean</code>을 <code>@ReadOperation</code>, <code>@WriteOperation</code> 혹은 <code>@DeleteOperation</code> 애너테이션을 선언한 모든 메서드가 추가한다면 JMX 및 HTTP(서버에서 설정되어 있다면)에서 자동으로 노출된다.</p>
 </div>
 <div class="paragraph">
-<p><code>@JmxEndpoint</code> 혹은 <code>@WebEndpoint</code>을 사용하여 종단점이 사용할 기술을 지정하는 것도 가능하다. 저 애너테이션를 사용하는 것만으로 종단점가 기술에 따라 분류된다. 예를 들어, <code>@WebEndpoint</code>을 사용하면 JMX에는 노출되지 않고 HTTP에만 노출된다.</p>
+<p><code>@JmxEndpoint</code> 혹은 <code>@WebEndpoint</code>을 사용하여 종점이 사용할 기술을 지정하는 것도 가능하다. 저 애너테이션를 사용하는 것만으로 종점가 기술에 따라 분류된다. 예를 들어, <code>@WebEndpoint</code>을 사용하면 JMX에는 노출되지 않고 HTTP에만 노출된다.</p>
 </div>
 <div class="paragraph">
-<p>마지막으로 <code>@EndpointWebExtension</code>와 <code>@EndpointJmxExtension</code>를 사용하여 확장을 지정하는 것이 가능하다. 이 애너테이션은 존재하는 종단점에 대한 특정 명령과 확장을 허용한다.</p>
+<p>마지막으로 <code>@EndpointWebExtension</code>와 <code>@EndpointJmxExtension</code>를 사용하여 확장을 지정하는 것이 가능하다. 이 애너테이션은 존재하는 종점에 대한 특정 명령과 확장을 허용한다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -10128,7 +10128,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>종단점를 라이브러리 기능으로 추가하는 경우 <code>@ManagementContextConfiguration</code>를 선언한 클래스를 추가하고 <code>/META-INF/spring.factories</code>에 <code>org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration</code> 목록을 추가한다. 그렇게 하면 별도의 관리포트 또는 주소를 요청하면 종단점은 다른 웹 종단점이 있는 하위 컨텍스트로 이동한다.</p>
+<p>종점를 라이브러리 기능으로 추가하는 경우 <code>@ManagementContextConfiguration</code>를 선언한 클래스를 추가하고 <code>/META-INF/spring.factories</code>에 <code>org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration</code> 목록을 추가한다. 그렇게 하면 별도의 관리포트 또는 주소를 요청하면 종점은 다른 웹 종점이 있는 하위 컨텍스트로 이동한다.</p>
 </div>
 </td>
 </tr>
@@ -10138,7 +10138,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-health">4.1.9. 건강(health)정보</h4>
 <div class="paragraph">
-<p>건강(health) 정보는 실행중인 애플리케이션의 상태를 점검하는데 사용할 수 있다. 운영 시스템이 다운되었을 때 누군가에게 경고할 수 있는 모니터링 소프트웨어로 사용된다. 기본 정보는 <code>management.endpoint.health.show-details</code> 속성에 따라 <code>health</code> 종단점으로 노출된다. 기본적으로 이 속성의 값은 <code>false</code>이며 간단한 '상태' 메시지를 반환한다. 속성값을 <code>true</code>로 설정하면, 건강(health) 인디케이터에서 보다 상세한 내용을 보여준다.</p>
+<p>건강(health) 정보는 실행중인 애플리케이션의 상태를 점검하는데 사용할 수 있다. 운영 시스템이 다운되었을 때 누군가에게 경고할 수 있는 모니터링 소프트웨어로 사용된다. 기본 정보는 <code>management.endpoint.health.show-details</code> 속성에 따라 <code>health</code> 종점으로 노출된다. 기본적으로 이 속성의 값은 <code>false</code>이며 간단한 '상태' 메시지를 반환한다. 속성값을 <code>true</code>로 설정하면, 건강(health) 인디케이터에서 보다 상세한 내용을 보여준다.</p>
 </div>
 <div class="paragraph">
 <p>건강(health) 정보는 <code>ApplicationContext</code> 에 정의되어 있는 모든 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator/src/main/java/org/springframework/boot/actuate/health/HealthIndicator.java"><code>HealthIndicator</code>(https://goo.gl/LFonW7)</a> 빈에서 수집하여 보여준다. 스프링 부트는 자동구성된 다양한 <code>HealthIndicator</code> 외에도 개발자가 Indicator 를 작성할 수도 있다. 기본적으로, 시스템 상태는 지정된 목록을 기반으로 각각의 <code>HealthAggregator</code>를 통해서 전달한 값을 <code>HealthIndicator</code>가 정렬하여 제공한다. 정렬된 목록에서 제일 먼저 노출되는 상태는 전체적인 건강(health)상태를 보여준다. 만약 <code>HealthAggregator</code>가 반환하는 상태가 없다면 <code>HealthIndicator</code>는 <code>UNKNOWN</code> 상태를 보여준다.</p>
@@ -10272,7 +10272,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="paragraph">
-<p>HTTP 상태코드는 건강(health) 상태(예: <code>UP</code>은 200, <code>OUT_OF_SERVICE</code> 혹은 <code>DOWN</code>은 503)를 통합하여 보여준다. HTTP를 통해서 건강(health) 종단점에 접근할 수 있다면 <code>HealthMvcEndpoint</code>를 통해서 추가적으로 재정의한 상태를 보여주는 것도 가능하다. 예를 들어, <code>FATAL</code>을 <code>HttpStatus.SERVICE_UNAVAILABLE</code>에 연결하고 싶다면 다음처럼 하면 된다:</p>
+<p>HTTP 상태코드는 건강(health) 상태(예: <code>UP</code>은 200, <code>OUT_OF_SERVICE</code> 혹은 <code>DOWN</code>은 503)를 통합하여 보여준다. HTTP를 통해서 건강(health) 종점에 접근할 수 있다면 <code>HealthMvcEndpoint</code>를 통해서 추가적으로 재정의한 상태를 보여주는 것도 가능하다. 예를 들어, <code>FATAL</code>을 <code>HttpStatus.SERVICE_UNAVAILABLE</code>에 연결하고 싶다면 다음처럼 하면 된다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10442,7 +10442,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="production-ready-application-info-env">재정의한 애플리케이션 정보</h5>
 <div class="paragraph">
-<p>스프링 속성으로 정의된 <code>info.*</code>에 를 노출하는 <code>info</code> 종단점을 재정의할 수 있다. 모든 <code>Environment</code> 속성에서 <code>info</code>키 이하의 것들은 자동으로 노출된다. 예를 들어, <code>application.yml</code> 에 다음과 같이 추가할 수 있다:</p>
+<p>스프링 속성으로 정의된 <code>info.*</code>에 를 노출하는 <code>info</code> 종점을 재정의할 수 있다. 모든 <code>Environment</code> 속성에서 <code>info</code>키 이하의 것들은 자동으로 노출된다. 예를 들어, <code>application.yml</code> 에 다음과 같이 추가할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10480,7 +10480,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="production-ready-application-info-git">깃(Git) 커밋 정보</h5>
 <div class="paragraph">
-<p><code>info</code> 종단점에서 유용한 기능이 하나있는데 프로젝트가 빌드될 때 <code>git</code> 소스코드 리파지토리의 상태를 보여줄 수 있는 기능이 있다. 만약 <code>GitProperties</code> 빈이 있다면 <code>git.branch</code>, <code>git.commit.id</code>과 <code>git.commit.time</code> 속성 값을 확인할 수 있다.</p>
+<p><code>info</code> 종점에서 유용한 기능이 하나있는데 프로젝트가 빌드될 때 <code>git</code> 소스코드 리파지토리의 상태를 보여줄 수 있는 기능이 있다. 만약 <code>GitProperties</code> 빈이 있다면 <code>git.branch</code>, <code>git.commit.id</code>과 <code>git.commit.time</code> 속성 값을 확인할 수 있다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -10508,7 +10508,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="production-ready-application-info-build">빌드(build) 정보</h5>
 <div class="paragraph">
-<p><code>info</code> 종단점은 <code>BuildProperties</code> 빈이 등록되어 있다면 빌드 정보를 제공할 수 있다. <code>META-INF/build-info.properties</code> 파일이 클래스패스에 있다면 가능하다.</p>
+<p><code>info</code> 종점은 <code>BuildProperties</code> 빈이 등록되어 있다면 빌드 정보를 제공할 수 있다. <code>META-INF/build-info.properties</code> 파일이 클래스패스에 있다면 가능하다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -10536,12 +10536,12 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect2">
 <h3 id="production-ready-monitoring">4.2. HTTP 로 모니터링하고 관리하기</h3>
 <div class="paragraph">
-<p>스프링 MVC 애플리케이션을 개발하고 있다면 스프링 부트 액츄에이터는 자동구성으로 활성화된 모든 종단점을 HTTP로 노출한다. 기본관례에 의해 종단점 ID를 URL 경로로 사용한다. 예를 들어 <code>health</code> 의 경우 <code>/health</code> 로 노출된다.</p>
+<p>스프링 MVC 애플리케이션을 개발하고 있다면 스프링 부트 액츄에이터는 자동구성으로 활성화된 모든 종점을 HTTP로 노출한다. 기본관례에 의해 종점 ID를 URL 경로로 사용한다. 예를 들어 <code>health</code> 의 경우 <code>/health</code> 로 노출된다.</p>
 </div>
 <div class="sect3">
-<h4 id="production-ready-customizing-management-server-context-path">4.2.1. 관리 종단점 경로 재정의</h4>
+<h4 id="production-ready-customizing-management-server-context-path">4.2.1. 관리 종점 경로 재정의</h4>
 <div class="paragraph">
-<p>관리 종단점의 접두사를 재정의하는 것은 유용할 때가 있다. 예를 들어, 애플리케이션에서 이미 <code>/application</code>을 다른 목적으로 사용하고 있는 경우가 그렇다. <code>management.endpoints.web.base-path</code> 속성을 사용하여 관리 종단점 접두사를 변경할 수 있다:</p>
+<p>관리 종점의 접두사를 재정의하는 것은 유용할 때가 있다. 예를 들어, 애플리케이션에서 이미 <code>/application</code>을 다른 목적으로 사용하고 있는 경우가 그렇다. <code>management.endpoints.web.base-path</code> 속성을 사용하여 관리 종점 접두사를 변경할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10569,7 +10569,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-customizing-management-server-port">4.2.2. 관리 서버 포트 재정의</h4>
 <div class="paragraph">
-<p>기본 HTTP 포트를 통해서 노출되는 관리 종단점은 클라우드 기반에 배포될 때 변경해야할 경우가 생긴다. 그러나 애플리케이션을 데이터 센터에서 애플리케이션을 실행하려면 다른 HTTP 포트를 사용해야할 수도 있다.</p>
+<p>기본 HTTP 포트를 통해서 노출되는 관리 종점은 클라우드 기반에 배포될 때 변경해야할 경우가 생긴다. 그러나 애플리케이션을 데이터 센터에서 애플리케이션을 실행하려면 다른 HTTP 포트를 사용해야할 수도 있다.</p>
 </div>
 <div class="paragraph">
 <p><code>management.port</code> 속성으로 HTTP 포트를 변경할 수 있다.</p>
@@ -10580,7 +10580,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="paragraph">
-<p>관리포트는 방화벽에 의해 보호되어 공개되지 않기 때문에 애플리케이션에 보안이 필요하더라도 관리 종단점에 대해서는 보안관리를 하지 않을 수 있다. 스프링 시큐리티가 클래스패스에 있다면, 다음과 같이 하여 관리 보안을 비활성화할 수 있다:</p>
+<p>관리포트는 방화벽에 의해 보호되어 공개되지 않기 때문에 애플리케이션에 보안이 필요하더라도 관리 종점에 대해서는 보안관리를 하지 않을 수 있다. 스프링 시큐리티가 클래스패스에 있다면, 다음과 같이 하여 관리 보안을 비활성화할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10636,7 +10636,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-customizing-management-server-address">4.2.4. 관리 서버 주소 재정의</h4>
 <div class="paragraph">
-<p>관리 종단점의 주소를 재정의하고 싶다면 <code>management.server.address</code> 속성으로 설정가능하다. 이 기능은 내부 네트워크 혹은 <code>localhost</code>를 통해서만 접속하도록 설정하고 싶을 때 유용하다.</p>
+<p>관리 종점의 주소를 재정의하고 싶다면 <code>management.server.address</code> 속성으로 설정가능하다. 이 기능은 내부 네트워크 혹은 <code>localhost</code>를 통해서만 접속하도록 설정하고 싶을 때 유용하다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -10664,9 +10664,9 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="production-ready-disabling-http-endpoints">4.2.5. HTTP 종단점 비활성화</h4>
+<h4 id="production-ready-disabling-http-endpoints">4.2.5. HTTP 종점 비활성화</h4>
 <div class="paragraph">
-<p>HTTP 로 종단점을 노출하고 싶지 않다면 관리포트에 <code>-1</code> 을 설정하면 된다:</p>
+<p>HTTP 로 종점을 노출하고 싶지 않다면 관리포트에 <code>-1</code> 을 설정하면 된다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -10821,7 +10821,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect2">
 <h3 id="production-ready-tracing">4.5. 추적(Tracing)</h3>
 <div class="paragraph">
-<p>추적은 모든 HTTP 요청에 대해서 자동으로 활성화된다. <code>trace</code> 종단점에서 볼 수 있으며 최근 100개 요청에 관한 기본정보가 유지된다. 기본 구성은 다음과 같다:</p>
+<p>추적은 모든 HTTP 요청에 대해서 자동으로 활성화된다. <code>trace</code> 종점에서 볼 수 있으며 최근 100개 요청에 관한 기본정보가 유지된다. 기본 구성은 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11823,7 +11823,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <p>스프링 부트 자동구성 '가급적 가장 적합하게' 구성하려고 시도하지만, 때때로 실패하는 경우가 발생하고 왜 그런지 설명하기 어려울 때가 있다.</p>
 </div>
 <div class="paragraph">
-<p>이런 경우에는 스프링 부트 <code>ApplicationContext</code> 에서 사용할 수 있는 <code>ConditionEvaluationReport</code>가 정말 유용하다. <code>DEBUG</code> 레벨의 로그를 출력하다록 했다면 볼 수 있다. 만약 <code>spring-boot-actuator</code>를 사용하고 있다면 <code>autoconfig</code> 종단점에서 JSON 형태로 리포트가 제공된다.</p>
+<p>이런 경우에는 스프링 부트 <code>ApplicationContext</code> 에서 사용할 수 있는 <code>ConditionEvaluationReport</code>가 정말 유용하다. <code>DEBUG</code> 레벨의 로그를 출력하다록 했다면 볼 수 있다. 만약 <code>spring-boot-actuator</code>를 사용하고 있다면 <code>autoconfig</code> 종점에서 JSON 형태로 리포트가 제공된다.</p>
 </div>
 <div class="paragraph">
 <p>'소스코드와 Javadoc 을 보면 질문에 대한 답변을 얻을 수 있다&#8217;고 고수들이 이야기 합니다. 몇 가지 규칙을 정리해보자면:</p>
@@ -11831,10 +11831,10 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code><strong>AutoConfiguration</code> 이란 이름을 가지고 있는 클래스를 찾아서 소스코드를 살펴보고, <code>@Conditional</strong></code> 애너테이션가 선언되어 있는 부분을 살펴보면 그 기능이 언제 활성화될 지 알 수 있다. 커맨드라인에서 실행시 <code>--debug</code>이나 <code>-Ddebug</code> 시스템 속성을 추가하면 애플리케이션이 구동되면서 구성한 자동구성과 관련된 정보를 콘솔 로그로 볼 수 있다. 실행중인 애플리케이션의 액츄에이터 <code>autoconf</code> 종단점(<code>/actuator/autoconfig</code>)에서도 동일한 정보를 확인할 수 있다.</p>
+<p><code><strong>AutoConfiguration</code> 이란 이름을 가지고 있는 클래스를 찾아서 소스코드를 살펴보고, <code>@Conditional</strong></code> 애너테이션가 선언되어 있는 부분을 살펴보면 그 기능이 언제 활성화될 지 알 수 있다. 커맨드라인에서 실행시 <code>--debug</code>이나 <code>-Ddebug</code> 시스템 속성을 추가하면 애플리케이션이 구동되면서 구성한 자동구성과 관련된 정보를 콘솔 로그로 볼 수 있다. 실행중인 애플리케이션의 액츄에이터 <code>autoconf</code> 종점(<code>/actuator/autoconfig</code>)에서도 동일한 정보를 확인할 수 있다.</p>
 </li>
 <li>
-<p><code>@ConfigurationProperties</code>를 사용하고 있는 클래스(예: <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code>(https://goo.gl/FsDpzc)</a>)를 찾아보고 그 클래스와 관련된 외부 구성옵션을 찾아본다. <code>@ConfigurationProperties</code>는 <code>prefix</code> 속성을 가지고 있는데 외부 속성들의 접두사로 동작하며 <code>ServerProperties</code>는 <code>prefix="server"</code>으로 선언되어 이를 통해 구현된 구성속성들은 <code>server.port</code>, <code>server.address</code> 와 기타 등등이 있다. 애플리케이션 액츄에이터가 실행중이라면 <code>configprops</code> 종단점에서 찾아볼 수 있다.</p>
+<p><code>@ConfigurationProperties</code>를 사용하고 있는 클래스(예: <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code>(https://goo.gl/FsDpzc)</a>)를 찾아보고 그 클래스와 관련된 외부 구성옵션을 찾아본다. <code>@ConfigurationProperties</code>는 <code>prefix</code> 속성을 가지고 있는데 외부 속성들의 접두사로 동작하며 <code>ServerProperties</code>는 <code>prefix="server"</code>으로 선언되어 이를 통해 구현된 구성속성들은 <code>server.port</code>, <code>server.address</code> 와 기타 등등이 있다. 애플리케이션 액츄에이터가 실행중이라면 <code>configprops</code> 종점에서 찾아볼 수 있다.</p>
 </li>
 <li>
 <p><code>Environment</code>의 구성값을 <code>Binder</code>의 <code>bind</code> 메서드를 사용하여 명시적으로 끌어올 수 있다. 접두사를 이용하는 경우가 많다(<code>server</code>, <code>spring</code> 등).</p>
@@ -12262,7 +12262,7 @@ server.port=9000</code></pre>
 <p>스프링 부트는 애플리케이션 실행시 <code>application.yml</code> 혹은 (<code>.properties</code>)로부터 외부 속성을 연결한다. 애플리케이션 실행에 필요한 속성들을 한 곳에서 제공하는 것은 기술적으로 불가능 하다. 클래스패스에 추가된 jar 파일에서 제공하는 경우도 있기 때문이다.</p>
 </div>
 <div class="paragraph">
-<p>실행중인 애플리케이션의 액츄에이터 기능에서 <code>configprops</code> 종단점을 살펴보면 연결되거나 <code>@ConfigurationProperties</code>을 통하여 연결가능한 속성들을 모두 보여준다.</p>
+<p>실행중인 애플리케이션의 액츄에이터 기능에서 <code>configprops</code> 종점을 살펴보면 연결되거나 <code>@ConfigurationProperties</code>을 통하여 연결가능한 속성들을 모두 보여준다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트 부록에 있는 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties">`application.yml(or .properties)`에서 사용가능한 목록(https://goo.gl/Nat6x5)</a>을 살펴보면, 스프링 부트에서 사용가능한 속성들이 나열되어 있다. 최종목록은 소스 코드에서 <code>@ConfigurationProperties</code> 및 <code>@Value</code> 주석을 검색하고 <code>RelaxedPropertyResolver</code>에서 추출되어 나열된다.</p>
@@ -12376,7 +12376,7 @@ server.port=9000</code></pre>
 <p>애플리케이션이 실행될 때 기본포트는 <code>8080</code>이지만 <code>server.port</code>(예: <code>application.yml</code> 혹은 시스템 속성)으로 설정할 수 있다. <code>Environment</code>의 느슨한 연결방식으로 <code>SERVER_PORT</code>(OS 환경변수)를 사용할 수도 있다.</p>
 </div>
 <div class="paragraph">
-<p><code>WebApplicationContext</code>를 생성하지만 HTTP 종단점을 완벽히 끄고자 한다면 <code>server.port: -1</code>을 사용한다(테스트시 유용하다).</p>
+<p><code>WebApplicationContext</code>를 생성하지만 HTTP 종점을 완벽히 끄고자 한다면 <code>server.port: -1</code>을 사용한다(테스트시 유용하다).</p>
 </div>
 <div class="paragraph">
 <p>보다 자세한 내용을 살펴보고 싶다면, "<a href="#chap03">'스프링 부트' 기능소개</a>"의 "<a href="#boot-features-customizing-configurableembeddedservletcontainerfactory-directly">내장 서블릿 컨테이너 재정의</a>"를 찾아보거나 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code>(https://goo.gl/FsDpzc)</a>) 소스코드를 살펴보기 바란다.</p>
@@ -12614,7 +12614,7 @@ dependencies {
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-create-websocket-endpoints-using-serverendpoint">7.3.11. <code>@ServerEndpoint</code> 를 사용한 웹소켓 종단점 생성</h4>
+<h4 id="howto-create-websocket-endpoints-using-serverendpoint">7.3.11. <code>@ServerEndpoint</code> 를 사용한 웹소켓 종점 생성</h4>
 <div class="paragraph">
 <p>내장 컨테이너를 사용하는 스프링 부트 app에서 <code>@ServerEndpoint</code>를 사용하려면 <code>ServerEndpointExporter</code>를 빈으로 선언해야 한다.</p>
 </div>
@@ -13509,9 +13509,9 @@ dependencies {
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-use-exposing-spring-data-repositories-rest-endpoint">7.7.10. REST 종단점 로 스프링 Data 리파지토리 노출</h4>
+<h4 id="howto-use-exposing-spring-data-repositories-rest-endpoint">7.7.10. REST 종점 로 스프링 Data 리파지토리 노출</h4>
 <div class="paragraph">
-<p>스프링 Data REST는 애플리케이션에서 스프링 MVC를 사용하고 있을 때 <code>Repository</code> 구현체를 REST 종단점로 노출할 수 있다.</p>
+<p>스프링 Data REST는 애플리케이션에서 스프링 MVC를 사용하고 있을 때 <code>Repository</code> 구현체를 REST 종점로 노출할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트는 <a href="https://docs.spring.io/spring-data/rest/docs/current/api/org/springframework/data/rest/core/config/RepositoryRestConfiguration.html"><code>RepositoryRestConfiguration</code>(https://goo.gl/rGbFGs)</a>를 재정의하여 <code>spring.data.rest</code> 네임스페이스로부터 쓸만한 속성들을 노출하도록 구성가능하다. 추가적인 재정의를 제공해야한다면 <a href="https://docs.spring.io/spring-data/rest/docs/current/api/org/springframework/data/rest/webmvc/config/RepositoryRestConfigurer.html"><code>RepositoryRestConfigurer</code>(https://goo.gl/Em1Sof)</a> 빈을 이용하면 된다.</p>
@@ -13727,7 +13727,7 @@ dependencies {
 <div class="sect2">
 <h3 id="howto-actuator">7.10. 액츄에이터</h3>
 <div class="sect3">
-<h4 id="howto-change-the-http-port-or-address-of-the-actuator-endpoints">7.10.1. 액츄에이터 종단점 포트 혹은 주소 변경</h4>
+<h4 id="howto-change-the-http-port-or-address-of-the-actuator-endpoints">7.10.1. 액츄에이터 종점 포트 혹은 주소 변경</h4>
 <div class="paragraph">
 <p>독립형 애플리케이션에서 액츄에이터 HTTP 포트는 기본적으로 메인 HTTP 포트와 동일하다. 애플리케이션에서 다른 포트를 사용하도록 하려면 <code>management.server.port</code> 속성을 설정하면 된다. 완전히 다른 네트워크 주소를 이용하려는 경우(관리를 위해 내부 네트워크와 애플리케이션을 위한 외부 네트워크가 있는 경우), 서버에서 연결가능한 서버 IP주소를 <code>management.server.address</code>으로 설정하면 된다.</p>
 </div>
@@ -13897,7 +13897,7 @@ dependencies {
 <div class="sect3">
 <h4 id="howto-enable-https">7.11.3. 프록시 서버 이용시  HTTPS 활성화</h4>
 <div class="paragraph">
-<p>모든 주요한 종단점가 HTTPS를 통해서만 사용가능하도록 보장하는 것은 어느 애플리케이션에서건 중요한 일이다. 만약 톰캣을 서블릿 컨테이너를 사용하고 있다면, 스프링 부트는 톰캣이 가지고 있는 <code>RemoteIpValve</code>을 자동으로 추가, <code>HttpServletRequest</code>를 사용하여 안전한지 여부를 확인할 수 있다(실제 SSL이 종료 처리하는 프록시 서버의 다운스트림도 가능). 표준 동작은 요청에서 특정헤더의 유무에 따라 결정된다(<code>x-forwarded-for</code>와 <code>x-forwarded-proto</code>), 관례적인 이름이며, 대부분의 프론트엔드 프록시에서 동작해야 한다. 다음 예시처럼 <code>application.yml</code>에서 몇가지 값을 추가하면 활성화할 수 있다:</p>
+<p>모든 주요한 종점가 HTTPS를 통해서만 사용가능하도록 보장하는 것은 어느 애플리케이션에서건 중요한 일이다. 만약 톰캣을 서블릿 컨테이너를 사용하고 있다면, 스프링 부트는 톰캣이 가지고 있는 <code>RemoteIpValve</code>을 자동으로 추가, <code>HttpServletRequest</code>를 사용하여 안전한지 여부를 확인할 수 있다(실제 SSL이 종료 처리하는 프록시 서버의 다운스트림도 가능). 표준 동작은 요청에서 특정헤더의 유무에 따라 결정된다(<code>x-forwarded-for</code>와 <code>x-forwarded-proto</code>), 관례적인 이름이며, 대부분의 프론트엔드 프록시에서 동작해야 한다. 다음 예시처럼 <code>application.yml</code>에서 몇가지 값을 추가하면 활성화할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14825,7 +14825,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.1.0<br>
-Last updated 2017-11-29 18:26:44 KST
+Last updated 2017-11-30 15:04:37 KST
 </div>
 </div>
 </body>
