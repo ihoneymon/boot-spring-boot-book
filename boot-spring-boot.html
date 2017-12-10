@@ -1653,6 +1653,32 @@ table.CodeRay td.code>pre{padding:0}
 IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 'Spring Initializer' 사이트에서 생성한 <code>zip</code> 파일을 내려받아 이를 지정된 위치에 압축해제한 후에 불러내기(import) 한다.</p>
 </div>
+<div class="paragraph">
+<p>프로젝트를 생성할 때 선택하는 기본적인 의존성은 다음과 같다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>선택항목:: <code>web</code>, <code>jpa</code>, <code>h2</code>, <code>lombok</code>, <code>thymeleaf</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>web</code>:: 톰캣을 내장 컨테이너로 가지며 스프링 웹애플리케이션 개발을 하는데 필요한 의존성을 포함하고 있음</p>
+</li>
+<li>
+<p><code>jpa</code>::  Hibernate, 스프링 Data JPA 및 JDBC를 포함하고 있음</p>
+</li>
+<li>
+<p><code>h2</code>:: 로컬 개발환경에서 손쉽게 사용할 수 있는 파일형 데이터베이스. 개발 및 운영 단계에서는 다른 데이터베이스로 변경</p>
+</li>
+<li>
+<p><code>lombok</code>::<code>@Getter</code>, <code>@Setter</code> 애너테이션를 통해 Getter/Setter 메서드를 손쉽게 생성가능</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1683,13 +1709,12 @@ image::[Spring Starter Project 생성하기]</p>
 <p>프로젝트 정보를 다음과 같이 입력하고 '[Next &gt;]'  버튼 클릭
 image::[프로젝트 정보 입력]</p>
 </li>
+<li>
+<p>'Type' 선택</p>
+</li>
 </ol>
 </div>
 </li>
-<li>
-<p>'Type' 선택</p>
-<div class="ulist">
-<ul>
 <li>
 <p>'Maven'</p>
 </li>
@@ -1698,43 +1723,46 @@ image::[프로젝트 정보 입력]</p>
 </li>
 <li>
 <p>'Gradle(STS)' &#8592; 선택</p>
-</li>
-</ul>
-</div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>'Packaging' 선택</p>
-<div class="ulist">
-<ul>
+</li>
+</ol>
+</div>
+</li>
 <li>
 <p>'Jar': WAS 에 배포하지 않고 커맨드로 실행시 선택</p>
 </li>
 <li>
 <p>'War': WAS 에 배포하는 경우 선택</p>
-</li>
-</ul>
-</div>
-</li>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>'Java' 선택</p>
-<div class="ulist">
-<ul>
-<li>
-<p>'1.8' &#8592; 권장</p>
 </li>
-<li>
-<p>'1.7'</p>
-</li>
-<li>
-<p>'1.6'</p>
-</li>
-</ul>
+</ol>
 </div>
 </li>
 <li>
+<p>'9'</p>
+</li>
+<li>
+<p>'8' &#8592; 권장</p>
+</li>
+<li>
+<p>'7'</p>
+</li>
+<li>
+<p>'6'</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>'Language' 선택</p>
-<div class="ulist">
-<ul>
+</li>
+</ol>
+</div>
+</li>
 <li>
 <p>'Java'</p>
 </li>
@@ -1743,8 +1771,12 @@ image::[프로젝트 정보 입력]</p>
 </li>
 <li>
 <p>'Kotlin'</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>메타 정보 입력</p>
 </li>
-</ul>
+</ol>
 </div>
 </li>
 <li>
@@ -1761,44 +1793,33 @@ image::[프로젝트 정보 입력]</p>
 <p>스프링 부트 버전 및 의존성을 선택하고 '[Finish]' 를 누른다.
 image::[선택항목]</p>
 </li>
-</ol>
-</div>
-</li>
-<li>
-<p>선택항목: <code>web</code>, <code>jpa</code>, <code>h2</code>, <code>lombok</code>, <code>thymeleaf</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>web</code></p>
-</li>
-<li>
-<p><code>jpa</code></p>
-</li>
-<li>
-<p><code>h2</code></p>
-</li>
-<li>
-<p><code>lombok</code>   &#8592; <code>@Getter</code>, <code>@Setter</code> 애너테이션를 통해 Getter/Setter 메서드를 손쉽게 생성가능</p>
-</li>
-</ul>
-</div>
-</li>
 <li>
 <p>'[Make Default]' 버튼을 누르면 'Frequently Used' 항목에 추가된다.</p>
 </li>
 <li>
-<p>'[Next &gt;]'를 누르는 경우 다음과 같은 정보를 확인할 수 있다.
-image::images/01-04-spring-initializer.png[Spring Boot initializer Site]</p>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>http://start.spring.io/starter.zip?name=boot-demo&amp;groupId=io.honeymon&amp;artifactId=bootdemo&amp;version=0.0.1-SNAPSHOT&amp;description=Demo+project+for+Spring+Boot&amp;packageName=io.honeymon.bootdemo&amp;type=gradle-project&amp;packaging=jar&amp;javaVersion=1.8&amp;language=java&amp;bootVersion=2.0.0.RELEASE&amp;dependencies=lombok&amp;dependencies=data-jpa&amp;dependencies=h2&amp;dependencies=web</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>해당 창에 있는 'Full URL' 항목을 브라우저 주소창에 복사해서 붙여넣으면 zip 파일이 'artifact' 에 입력값을 파일명으로 가지는 <code>bootdemo.zip</code> 와 같은 파일이 다운로드 된다. 이 파일을 특정위치로 옮겨 압축해제하고 IDE에서 불러오는 것도 가능하다.</p>
+<p>'[Next &gt;]'를 누르는 경우 다음과 같은 정보를 확인할 수 있다.</p>
+</li>
+</ol>
 </div>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/01-04-spring-initializer.png" alt="Spring Boot initializer Site">
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>http://start.spring.io/starter.zip?name=boot-spring-boot&amp;groupId=io.honeymon.boot&amp;artifactId=boot-spring-boot&amp;version=0.0.1-SNAPSHOT&amp;description=Demo+project+for+Spring+Boot&amp;packageName=io.honeymon.boot.springboot&amp;type=gradle-project&amp;packaging=jar&amp;javaVersion=1.8&amp;language=java&amp;bootVersion=2.0.0.RELEASE&amp;dependencies=lombok&amp;dependencies=data-jpa&amp;dependencies=h2&amp;dependencies=web</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+
+해당 창에 있는 'Full URL' 항목을 브라우저 주소창에 복사해서 붙여넣으면 zip 파일이 'artifact' 에 입력값을 파일명으로 가지는 <code>bootdemo.zip</code> 와 같은 파일이 다운로드 된다. 이 파일을 특정위치로 옮겨 압축해제하고 IDE에서 불러오는 것도 가능하다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1844,7 +1865,7 @@ image::images/01-04-spring-initializer.png[Spring Boot initializer Site]</p>
 <div class="sect3">
 <h4 id="의존성-추가">1.4.2. 의존성 추가</h4>
 <div class="paragraph">
-<p>프로젝트에서 사용하는 의존성 라이브러리가 선언된 부분이다.</p>
+<p>프로젝트에서 사용하는 라이브러리를 선언하는 부분이다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>build.gradle</code></div>
@@ -14873,7 +14894,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.1.0<br>
-Last updated 2017-12-04 12:06:17 KST
+Last updated 2017-12-11 08:29:57 KST
 </div>
 </div>
 </body>
