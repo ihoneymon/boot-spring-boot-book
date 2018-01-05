@@ -607,7 +607,6 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#using-boot-running-packaged-application">2.7.2. 패키징된 애플리케이션 실행하기</a></li>
 <li><a href="#using-boot-running-gradle-plugin">2.7.3. 그레이들 플러그인으로 실행하기</a></li>
 <li><a href="#using-boot-running-maven-plugin">2.7.4. 메이븐 플러그인으로 실행하기</a></li>
-<li><a href="#using-boot-hot-swapping">2.7.5. 핫 스와핑</a></li>
 </ul>
 </li>
 <li><a href="#using-boot-devtools">2.8. '스프링 부트' 개발자도구</a>
@@ -1462,16 +1461,16 @@ table.CodeRay td.code>pre{padding:0}
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html">Java 8 새로운 점</a></p>
+<p><a href="http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html">Java 8 새로운 점(https://goo.gl/iXifcj)</a></p>
 </li>
 <li>
-<p><a href="https://www.slideshare.net/arawnkr/api-42494051">씹고 뜯고 맛보고 즐기는 '스트림API'</a>(<a href="https://goo.gl/3b2M5D" class="bare">https://goo.gl/3b2M5D</a>)</p>
+<p><a href="https://www.slideshare.net/arawnkr/api-42494051">씹고 뜯고 맛보고 즐기는 '스트림API'(https://goo.gl/3b2M5D)</a></p>
 </li>
 <li>
-<p><a href="https://goo.gl/uZMUEM">나만 모르고 있던 – Java 9 (Java9 빠르게 훑어 보기)</a>(<a href="https://goo.gl/uZMUEM" class="bare">https://goo.gl/uZMUEM</a>)</p>
+<p><a href="https://goo.gl/uZMUEM">나만 모르고 있던 – Java 9 (Java9 빠르게 훑어 보기)(https://goo.gl/uZMUEM)</a></p>
 </li>
 <li>
-<p><a href="http://kwonnam.pe.kr/wiki/java/9">Java 9 - 권남님 위키</a>(<a href="http://kwonnam.pe.kr/wiki/java/9" class="bare">http://kwonnam.pe.kr/wiki/java/9</a>)</p>
+<p><a href="http://kwonnam.pe.kr/wiki/java/9">Java 9 - 권남님 위키(http://kwonnam.pe.kr/wiki/java/9)</a></p>
 </li>
 </ul>
 </div>
@@ -1504,7 +1503,7 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p>메이븐도 래퍼가 존재한다. 사용하는 방식은 그레이들과 유사하다. 이에 대한 정보는 <a href="https://github.com/takari/maven-wrapper">Maven Wrapper</a>(<a href="https://github.com/takari/maven-wrapper" class="bare">https://github.com/takari/maven-wrapper</a>) 와 <a href="http://www.popit.kr/how-to-use-maven-wrapper/">Maven Wrapper 소개와 사용 - 윤병화, pop-it</a>(<a href="https://goo.gl/F27iwq" class="bare">https://goo.gl/F27iwq</a>)에서 볼 수 있다.</p>
+<p>메이븐도 래퍼가 존재한다. 사용하는 방식은 그레이들과 유사하다. 이에 대한 정보는 <a href="https://github.com/takari/maven-wrapper">Maven Wrapper(https://github.com/takari/maven-wrapper)</a> 와 <a href="http://www.popit.kr/how-to-use-maven-wrapper/">Maven Wrapper 소개와 사용 - 윤병화, pop-it(https://goo.gl/F27iwq)</a>에서 볼 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -1580,17 +1579,36 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p>웹소켓 등 컨테이너에 따라 의존성을 가지고 있는 라이브러리 등이 영향을 받기 때문에 컨테이너를 선정할 때는 이런 영향도를 고려해야 한다. 간단한 예로 웹소켓(<a href="http://www.jcp.org/en/jsr/detail?id=356">JSR-356</a>)은 컨테이너에 따라 구현체가 각기 다르기에 컨테이너 변경시 많은 영향을 받을 수 있다.</p>
+<p>컨테이너에 따라 의존성을 가지고 있는 라이브러리들이 영향을 받기 때문에 컨테이너를 선정할 때는 이런 영향도를 고려해야 한다. 간단한 예로, 웹소켓(<a href="http://www.jcp.org/en/jsr/detail?id=356">JSR-356</a>)은 컨테이너에 따라 구현체가 각기 다르기에 컨테이너 변경시 많은 영향을 받을 수 있다. 이에 대해서는 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#websocket-server-deployment">스프링 참고문서#WebSocket deploymen(https://goo.gl/VePNSa)</a> 부분을 살펴보면 상세하게 알려준다.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://tomcat.apache.org/tomcat-8.0-doc/web-socket-howto.html">Tomcat WebSocket(<code>org.apache.tomcat.websocket</code>)</a></p>
+<p><a href="https://tomcat.apache.org/tomcat-9.0-doc/web-socket-howto.html">WebSocket How-To: Tomcat(<code>org.apache.tomcat.websocket</code>, https://goo.gl/j4ouUt)</a></p>
 </li>
 <li>
-<p><a href="https://www.eclipse.org/jetty/documentation/9.3.x/jetty-websocket-server-api.html">Jetty WebSocket(<code>org.eclipse.jetty.websocket</code>)</a></p>
+<p><a href="https://www.eclipse.org/jetty/documentation/9.3.x/jetty-websocket-server-api.html">Jetty WebSocket(<code>org.eclipse.jetty.websocket</code>, https://goo.gl/XChVQU)</a></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>웹소켓(WebSocket)은 상호작용하는 웹을 만들 수 있도록 해주는 <strong>서버와 클라이언트 사이를 양뱡향으로 연결하는 기능</strong>이다. 일반적인 웹소켓 클라이언트는 프로토콜(protocol)에는 종속적이지 않지만, 서버는 컨테이너에 따라 구현체가 조금씩 다르다. 웹소켓 클라이언트가 서버와 연결되면 적은 리소스를 차지하며 연결을 유지하여 통신을 주고받고 한쪽의 연결이 끝나면 일정시간이 지난 후 종료된다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.mozilla.org/ko/docs/WebSockets">WebSocket - MDN(Mozilla Developer Network, https://goo.gl/t8aozH)</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#websocket">WebSocket - Web on Servlet Stack, Spring(https://goo.gl/7mshPz)</a></p>
+</li>
+<li>
+<p><a href="http://d2.naver.com/helloworld/1336">WebSocket과 Socket.io - Naver D2(https://goo.gl/EXkhpu)</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>웹소켓은 노드(node.js)가 나온 후 <a href="https://socket.io/"><code>socket.io</code></a>가 소개되면서 관심을 받기 시작한 것으로 기억한다. 그 후 <a href="https://spring.io/blog/2013/05/23/spring-framework-4-0-m1-websocket-support">스프링 4.0(https://goo.gl/z3PLJe)</a>에서 재빠르게 웹소켓 기능을 추가했다.</p>
 </div>
 </td>
 </tr>
@@ -1819,7 +1837,7 @@ image::[선택항목]</p>
 </div>
 <div class="paragraph">
 <p>+
-해당 창에 있는 'Full URL' 항목을 브라우저 주소창에 복사해서 붙여넣으면 zip 파일이 'artifact' 에 입력값을 파일명으로 가지는 <code>bootdemo.zip</code> 와 같은 파일이 다운로드 된다. 이 파일을 특정위치로 옮겨 압축해제하고 IDE에서 불러오는 것도 가능하다.</p>
+해당 창에 있는 'Full URL' 항목을 브라우저 주소창에 복사해서 붙여넣으면 zip 파일이 'artifact' 에 입력값을 파일명으로 가지는 <code>boot-spring-boot.zip</code> 와 압축파일을 내려받게 된다. 이 압축파일을 특정위치로 옮겨 압축해제하거나 그대로 IDE에서 블러오는 것이 가능하다. IDE에서 제공하는 Starter의 경우에는 선택한 항목들을 이용해서 위와 같은 URL을 생성하여 압축파일을 내려받고 이를 압축해제하여 프로젝트로 등록한다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2146,7 +2164,7 @@ Total time: 1.31 secs
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트 개발팀에서는 그레이들와 메이븐 중에서 사용하길 권한다. 다른 빌드도구를 사용하는 경우 제대로 지원하지 못한다고 밝히고 있다(맺고 끊고가 분명해서 마음에 든다).</p>
+<p>스프링 부트 개발팀에서는 프로젝트 그레이들와 메이븐 중에서 사용하길 권한다. 다른 빌드도구를 사용하는 경우 제대로 지원하지 못한다고 밝히고 있다(맺고 끊고가 분명해서 마음에 든다).</p>
 </div>
 </td>
 </tr>
@@ -2165,14 +2183,14 @@ Total time: 1.31 secs
 </td>
 <td class="content">
 <div class="paragraph">
-<p>사용자가 필요하다면 스프링 부트에서 권장하는 버전을 자신이 원하는 버전으로 재정의할 수 있다(이런 경우 발생하는 충돌이나 호환성의 문제는 사용자가 처리해야한다). 사용하고 있는 스프링 부트 가 사용하는 의존성 모듈의 버전은 <code>spring-boot-dependencies</code> 프로젝트에 있는 <code>pom.xml</code> 을 살펴보거나 사용하는 버전의 스프링 부트 참고문서를 살펴보면 된다.</p>
+<p>스프링 부트 권장버전을 대신하여 개발자 자신이 원하는 버전으로 재정의할 수 있다(이런 경우 발생하는 충돌이나 호환성의 문제는 사용자가 부담해야한다). 사용하고 있는 스프링 부트가 의존성을 가지는 라이브러리 버전은 <code>spring-boot-dependencies</code> 프로젝트에 있는 <code>pom.xml</code>을 살펴보거나 사용하는 버전의 스프링 부트 참고문서를 살펴보면 된다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>선별된 목록에는 스프링 부트와 함께 사용할 수있는 모든 스프링 모듈과 서드파티(3rd party)  라이브러리 목록이 포함되어 있다. <code>spring-boot-parent</code> 프로젝트의 부모 프로젝트로 <code>spring-boot-dependencies</code> 가 정의되어 있다.</p>
+<p>선별된 목록에는 스프링 부트와 함께 사용할 수있는 모든 스프링 모듈과 서드파티(3rd party) 라이브러리 목록이 포함되어 있다. <code>spring-boot-parent</code> 프로젝트에는 <code>spring-boot-dependencies</code>가 부모프로젝트로 정의되어 있다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>spring-boot-parent/pom.xml</code> 중 일부</div>
@@ -2197,10 +2215,10 @@ Total time: 1.31 secs
 </ol>
 </div>
 <div class="paragraph">
-<p><code>spring-boot-dependencies</code> 프로젝트 <code>pom.xml</code> 을 살펴보면 <code>&lt;properties&gt;..&lt;/properties&gt;</code> 에는 스프링 부트에서 사용하는 의존성 라이브러리 버전만 정의되어 있는 것을 확인할 수 있다.</p>
+<p><code>spring-boot-dependencies</code> 프로젝트 <code>pom.xml</code>을 살펴보면 <code>&lt;properties&gt;..&lt;/properties&gt;</code> 에는 스프링 부트에서 사용하는 의존성 라이브러리 버전만 정의되어 있는 것을 확인할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p><code>$ ./gradlew dependencies</code> 명령을 통해서 그레이들 태스크 <code>compileJava</code> 와 <code>test</code> 시에 구성되는 의존성 관계를 확인할 수 있다.</p>
+<p>그레이들의 경우에는 <code>$ ./gradlew dependencies</code> 명령을 통해서 그레이들 태스크 <code>compileJava</code>와 <code>test</code>가 실행될 때 구성하는 의존성 관계를 확인할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="title">그레이들 :: Java 플러그인 의존성 구성(<a href="https://goo.gl/PIDuVX" class="bare">https://goo.gl/PIDuVX</a>)</div>
@@ -2302,7 +2320,7 @@ Total time: 4.04 secs</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>기본 컴파일러를  Java 1.6 사용</p>
+<p>기본 컴파일러 Java 1.8 사용</p>
 </li>
 <li>
 <p>UTF-8 소스 인코딩</p>
@@ -2348,19 +2366,19 @@ Total time: 4.04 secs</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트와 관련된 버전에 대해서는 여기에서 사용자가 원하는 대로 선언하면 된다.  이후에 <code>&lt;dependencies&gt;&gt;</code> 영역에서 스타터 를 추가할 때는 버전을 생략해도 <code>spring-boot-starter-parent</code> 버전에 따라 적용된다.</p>
+<p>스프링 부트와 관련된 버전에 대해서는 여기에서 사용자가 원하는 대로 선언하면 된다.  이후에 <code>&lt;dependencies&gt;</code> 영역에 스타터를 추가할 때는 버전을 생략해도 <code>spring-boot-starter-parent</code>에 사전에 정의된 버전이 적용된다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>프로젝트에서 의존성에 대해서 개별적으로 버전을 정의할 수도 있다. 예를 들어 스프링 Data release train 을 추가하고 싶다면 다음과 같이 <code>pom.xml</code> 에 추가하면 된다.</p>
+<p>프로젝트에서 사용하는 라이브러리들에 대한 의존성을 사전에 정의된 것과는 다른 버전을 정의할 수도 있다. 예를 들어, 정식버전은 아니지만 'Service Release&#8217;된 스프링 Data release train 을 사용하고 싶다면 다음과 같이 <code>pom.xml</code>에 추가하면 된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;properties&gt;</span>
-    <span class="tag">&lt;spring-data-releasetrain.version&gt;</span>Fowler-SR2<span class="tag">&lt;/spring-data-releasetrain.version&gt;</span>
+    <span class="tag">&lt;spring-data-releasetrain.version&gt;</span>Kay-SR2<span class="tag">&lt;/spring-data-releasetrain.version&gt;</span>
 <span class="tag">&lt;/properties&gt;</span></code></pre>
 </div>
 </div>
@@ -2372,7 +2390,24 @@ Total time: 4.04 secs</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>지원하는 속성들에 대해서 궁금하다면 <a href="https://github.com/spring-projects/spring-boot/blob/v2.0.0.RELEASE/spring-boot-dependencies/pom.xml"><code>spring-boot-dependencies</code>(https://goo.gl/tUruhG) pom</a> 을 살펴보자.</p>
+<p>'Release Train'</p>
+</div>
+<div class="paragraph">
+<p>스프링 데이터(Spring Data)는 서로 다른 출시주기를 가지는 독립적인 프로젝트로 구성된 포괄적 프로젝트다. 이 포트폴리오를 관리하기 위해 BOM은 프로젝트별로 설정되어 있는 종속성 세트와 함께 게시된다. 'Release Train&#8217;는 하위 프로젝트와의 혼동을 피하기 위해 버전이 아닌 이름을 사용한다. 사용되는 이름은 유명한 컴퓨터 과학자 및 소프트웨어 개발자의 이름을 알파벳순(정렬을 위해)이다. 프로젝트의 주요 출시시점이 되거나 모든 사용자가 사용할 법한 중대한 버그가 있는 경우 'Release Train&#8217;은 '-SRX&#8217;로 끝나는 이름의 'Service Release&#8217;를 푸시한다. 보다 자세한 내용은 <a href="http://projects.spring.io/spring-data/">Spring Data#'Release Train'</a>부분을  참조하기 바란다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>지원하는 속성들에 대해서 궁금하다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/pom.xml"><code>spring-boot-dependencies</code>(https://goo.gl/hMWdAa|) pom</a> 을 살펴보자.</p>
 </div>
 </td>
 </tr>
@@ -2696,13 +2731,13 @@ Total time: 7.554 secs</code></pre>
 <div class="sect3">
 <h4 id="root-package">2.2.2. 애플리케이션 메인 클래스 위치</h4>
 <div class="paragraph">
-<p>메인 애플리케이션 클래스는 <strong>최상위 패키지(예: <code>io.honeymon.boot.springboot</code>)에 위치하는 것을 권장</strong>한다. <code>@EnableAutoConfiguration</code> 처럼 애플리케이션 구성에 필요한 것을  탐색하는 것이 명백한 행위에 대한 선언은 메인 애플리케이션 클래스에 위치하는 경우가 많다(실제로 <code>@SpringBootApplication</code> 에 기본선언되어 있음). 예를 들어, JPA 를 사용한다면 <code>@EnableAutoConfiguration</code>이 선언되어 있다면 <code>@Entity</code>가 선언된 클래스를 탐색한다. 최상위 패키지에 있는 클래스에 <code>@ComponentScan</code> 를 선언하면 <code>basePakcage</code> 속성을 정의할 필요가 없다. 최상위 패키지에 있는 메인 클래스에 <code>@SpringBootApplication</code> 을 대신 사용할 수도 있다.</p>
+<p>애플리케이션 메인클래스는 <strong>최상위 패키지(예: <code>io.honeymon.boot.springboot</code>)에 위치하는 것을 권장</strong>한다. <code>@EnableAutoConfiguration</code>처럼 애플리케이션 구성과 관련하여 명백한 행위(프로젝트 전체 탐색)를 발생시키는 선언은 메인 애플리케이션 클래스에 위치하는 경우가 많다(실제로 많이 보게될 스프링 부트 메인 애플리케이션 클래스에 <code>@SpringBootApplication</code>가 선언되어 있으며 이 애너테이션는  있음). 예를 들어, JPA 를 사용한다면 <code>@EnableAutoConfiguration</code>이 선언되어 있다면 <code>@Entity</code>가 선언된 클래스를 탐색한다. 최상위 패키지에 있는 클래스에 <code>@ComponentScan</code> 를 선언하면 <code>basePakcage</code> 속성을 정의할 필요가 없다. 최상위 패키지에 있는 메인 클래스에 <code>@SpringBootApplication</code> 을 대신 사용할 수도 있다.</p>
 </div>
 <div class="paragraph">
 <p>여기 기본적인 스프링 부트 프로젝트 구조가 있다:</p>
 </div>
 <div class="listingblock">
-<div class="title">최상위 패키지 에 메인클래스가 있고 <code>@SpringBootApplication</code> 가 있는 경우</div>
+<div class="title"><code>@SpringBootApplication</code>을 선언한 메인클래스가 최상위 패키지에 위치하는 경우</div>
 <div class="content">
 <pre class="CodeRay highlight"><code>io
  +- honeymon
@@ -2739,7 +2774,7 @@ Total time: 7.554 secs</code></pre>
 <div class="colist arabic">
 <ol>
 <li>
-<p>스프링 부트 1.2.0.RELEASE 버전부터 적용된 <code>@SpringBootApplication</code> 덕분이다</p>
+<p>스프링 부트 1.2.0.RELEASE 버전부터 적용된 <code>@SpringBootApplication</code> 애너테이션에 대해서는 <a href="#using-spring-boot-application-annotation"><code>@SpringBootApplication</code> 애너테이션 이용</a> 에서 설명한다.</p>
 </li>
 </ol>
 </div>
@@ -2779,7 +2814,11 @@ Total time: 7.554 secs</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>의외로 '<strong><code>@SpringBootApplication</code> 이 선언된 메인 클래스 위치를 임의로 변경하고 애플리케이션이 실행되지 않는다(혹은 에러가 발생한다)</strong>'는 질문을 올리는 이들이 많다(제법 많다!!). <code>@SpringBootApplication</code> 이 선언된 메인 클래스 위치가 변경되면 해야할 작업들이 많아져서 번거롭다.</p>
+<p>의외로 '<strong><code>@SpringBootApplication</code> 이 선언된 메인 클래스 위치를 임의로 변경하고 애플리케이션이 실행되지 않는다(혹은 에러가 발생한다)</strong>'는 질문을 올리는 이들이 많다(제법 많다!!). <code>@SpringBootApplication</code>을 선언한 메인 클래스 위치가 변경되면 해야할 작업들이 많아져서 번거롭다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2805,10 +2844,6 @@ Total time: 7.554 secs</code></pre>
 </div>
 <div class="paragraph">
 <p>스프링 애플리케이션 구성에 어느 정도 익숙해지면 개인적인 역량에 따라 메인 클래스 위치를 변경할 수 있겠지만, 최상위 패키지에 메인 클래스를 위치시키는 게 여러모로 편리하다는 것을 알아두길 바란다. 프로젝트 패키지 구성은 사소한듯 하면서도 신경쓸 부분들이 많은데, 이와 관련해서는 <a href="https://slipp.net/questions/36">패키지 구조는 어떻게 가져가는 것이 좋을까?(https://slipp.net/questions/36)</a> , <a href="https://dzone.com/articles/package-structure">Get Your Java Package Structures Right(https://goo.gl/p6j1kc)</a> 와 <a href="http://www.javapractices.com/topic/TopicAction.do?Id=205">Package by feature, not layer(https://goo.gl/Qz2kqg)</a> 등을 읽어본 후에 팀원들과 이야기를 나누며 적절한 구조를 잡길 바란다.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
@@ -3171,7 +3206,7 @@ Unconditional classes:
 <div class="sect4">
 <h5 id="using-boot-running-sts">STS 실행방법</h5>
 <div class="paragraph">
-<p><code>@SpringBootApplication</code> 가 선언되어 있는 메인클래스를 호출한 상태에서 단축키를 누르면 애플리케이션 이 실행된다. 혹은 프로젝트를 선택한 상태에서 우클릭하여 'Run As &#8594; Spring Boot App' 을 선택해도 된다.</p>
+<p><code>@SpringBootApplication</code>가 선언되어 있는 메인클래스를 편집기로 호출한 상태에서 단축키를 누르면 애플리케이션이 실행된다. 혹은 'Package Explorer&#8217;영역에서 클래스를 선택한 상태에서 우클릭하여 'Run As &#8594; Spring Boot App' 을 선택해도 된다.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3189,7 +3224,7 @@ Unconditional classes:
 <div class="sect4">
 <h5 id="using-boot-running-intellij">인텔리제이 실행방법</h5>
 <div class="paragraph">
-<p><code>@SpringBootApplication</code> 가 선언되어 있는 메인클래스를 호출한 상태에서 단축키를 누르면 애플리케이션 이 실행된다. 혹은 프로젝트를 선택한 상태에서 우클릭하여 'Run As &#8594; Spring Boot App' 을 선택해도 된다.</p>
+<p><code>@SpringBootApplication</code> 가 선언되어 있는 메인클래스를 편집기로 호출한 상태에서 단축키를 누르면 애플리케이션 이 실행된다. 혹은 프로젝트영역에서 클래스를 선택한 상태에서 우클릭하여 'Run <code>BootSpringBootApplic&#8230;&#8203;</code>' 을 선택해도 된다.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3302,24 +3337,20 @@ Unconditional classes:
 <pre class="CodeRay highlight"><code>$ export MAVEN_OPTS=-Xmx1024m -XX:MaxPermSize=128M</code></pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="using-boot-hot-swapping">2.7.5. 핫 스와핑</h4>
-<div class="paragraph">
-<p>스프링 부트 애플리케이션은 정말 순수한 자바 애플리케이션이다. JVM 핫 스와핑은 즉시 사용가능하지만 바이트코드를 대체하는 정도로 사용이 제한되기 때문에, 이를 보다 완벽하게 지원할 수 있는 방법으로 <a href="http://zeroturnaround.com/software/jrebel/">JRebel</a> 혹은 <a href="https://github.com/spring-projects/spring-loaded">Spring Loaded</a> 프로젝트를 사용할 수 있다.</p>
-</div>
-<div class="paragraph">
-<p>"<a href="#using-boot-devtools">'스프링 부트' 개발자도구</a>"과 "<a href="#howto-hotswapping">핫스와핑(Hot swapping)</a>" 에서 상세한 내용을 살펴볼 수 있다.</p>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<div class="title">Tip</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>가벼운 애플리케이션을 개발하는 것이라면 "<a href="#using-boot-devtools">'스프링 부트' 개발자도구</a>" 만으로도 충분히 만족스런 효과를 얻을 수 있다. JRebel을 사용하다가 개발자도구 생각이 나서 사용을 해봤는데 큰 불편함이 없었다.</p>
+<p>윈도우즈 운영체제에서는 리눅스나 MacOS에서 설정에 사용하는 명령어가 다르다. <code>export</code> 대신 <code>set</code>을 사용하면 된다(사용하는 윈도우즈 버전과 환경에 따라 다를 수 있다). 혹은 '시스템 속성 - 고급' 탭에서 '환경변수&#8217;를 설정할 수 있다. 유투브에서 '윈도우즈 환경변수 설정&#8217;이라고 검색하면 관련 영상을 찾아볼 수 있다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>$ set MAVEN_OPTS=-Xmx1024m -XX:MaxPermSize=128M</code></pre>
+</div>
 </div>
 </td>
 </tr>
@@ -5279,7 +5310,7 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
 <div class="sect4">
 <h5 id="boot-features-external-config-conversion"><code>Properties</code> 관례</h5>
 <div class="paragraph">
-<p>스프링은 <code>@ConfigurationProperties</code> 빈에 외부 애플리케이션 속성을 연결할 때 적절한 유형(Type)으로 강제변환을 시도한다. 만약 유형 변환에 대한 재정의가 필요하다면 <code>ConversionService</code> 빈(ID <code>conversionService</code>) 혹은 재정의된 속성편집기(<code>CustomEditorConfigurer</code> 빈 같은) 혹은 <code>Converters</code>(<code>@ConfigurationPropertiesBinding</code>이 선언된 빈)를 사용하라.</p>
+<p>스프링은 <code>@ConfigurationProperties</code> 빈에 외부 애플리케이션 속성을 연결할 때 적절한 유형(Type)으로 강제변환을 시도한다. 만약 유형 변환에 대한 재정의가 필요하다면 <code>ConversionService</code> 빈(ID <code>conversionService</code>) 혹은 재정의된 속성편집기(<code>CustomEditorConfigurer</code> 빈 같은) 혹은 <code>Converters</code>(<code>@ConfigurationPropertiesBinding</code>을 선언한 빈)를 사용하라.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -12908,7 +12939,7 @@ dependencies {
 <p>스프링 부트는 파일 업로드를 지원하는 서블릿 3 <code>javax.servlet.http.Part</code> API를 품고 있다. 기본 스프링 부트가 구성한 스프링 MVC에서 파일 최대크기는 파일당 <code>1MB</code>이며 단일 요청에서 데이터 최대크기는 <code>10MB</code>다. 이 값을 재정의하고 싶다면, 데이터가 중간에 저장되는 위치(예: <code>/tmp</code> 디렉토리) 및 <code>MultipartProperties</code> 클래스 속성을 사용하여 데이터가 저장되는 임계값을 지정한다. 파일에 대한 제한을 하고 싶지 않다면 <code>spring.http.multipart.max-file-size</code> 속성을 <code>-1</code>로 설정하면 된다.</p>
 </div>
 <div class="paragraph">
-<p>멀티파트 지원은 스프링 MVC 컨트롤러 핸들러 메서드에서 <code>@RequestParam</code>이 선언된 <code>MultipartFile</code> 파일 데이터를 받고 싶을 때 유용하다.</p>
+<p>멀티파트 지원은 스프링 MVC 컨트롤러 핸들러 메서드에서 <code>@RequestParam</code>을 선언한 <code>MultipartFile</code> 파일 데이터를 받고 싶을 때 유용하다.</p>
 </div>
 <div class="paragraph">
 <p>보다 자세한 내용은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/MultipartAutoConfiguration.java"><code>MultipartAutoConfiguration</code>(https://goo.gl/XFHEPN)</a>를 살펴보기 바란다.</p>
