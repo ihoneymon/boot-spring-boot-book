@@ -532,13 +532,14 @@ table.CodeRay td.code>pre{padding:0}
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#저자-소개">저자 소개</a></li>
-<li><a href="#들어가며">들어가며</a>
+<li><a href="#preface">들어가며</a>
 <ul class="sectlevel2">
 <li><a href="#책에서-다루는-내용">책에서 다루는 내용</a></li>
 <li><a href="#책을-따라하기-위해-필요한-것">책을 따라하기 위해 필요한 것</a></li>
 <li><a href="#대상독자">대상독자</a></li>
 <li><a href="#관례-convention">관례(Convention)</a></li>
 <li><a href="#예제">예제</a></li>
+<li><a href="#오탈자">오탈자</a></li>
 </ul>
 </li>
 <li><a href="#chap01">1. '스프링 부트' 시작하기</a>
@@ -799,15 +800,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#build-tool-plugins-gradle-global-configuration">6.2.5. 스프링 부트 플러그인 구성</a></li>
 </ul>
 </li>
-<li><a href="#build-tool-plugins-other-build-systems">6.3. 그 외의 빌드 시스템</a>
-<ul class="sectlevel3">
-<li><a href="#build-tool-plugins-repackaging-archives">6.3.1. 재압축한 압축파일</a></li>
-<li><a href="#build-tool-plugins-nested-libraries">6.3.2. 라이브러리 포함하기</a></li>
-<li><a href="#build-tool-plugins-find-a-main-class">6.3.3. 메인 클래스 찾기</a></li>
-<li><a href="#build-tool-plugins-repackage-implementation">6.3.4. 재압축 구현 예제</a></li>
-</ul>
-</li>
-<li><a href="#다음-읽을꺼리-6">6.4. 다음 읽을꺼리</a></li>
+<li><a href="#다음-읽을꺼리-6">6.3. 다음 읽을꺼리</a></li>
 </ul>
 </li>
 <li><a href="#chap07">7. '스프링 부트' 활용 안내</a>
@@ -835,7 +828,7 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#howto-embedded-servlet-containers">7.3. 내장서블릿 컨테이너</a>
 <ul class="sectlevel3">
-<li><a href="#howto-add-a-servlet-filter-or-listener-as-spring-bean">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</a></li>
+<li><a href="#howto-add-a-servlet-filter-or-listener">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</a></li>
 <li><a href="#howto-change-the-http-port">7.3.2. HTTP  포트 변경</a></li>
 <li><a href="#howto-user-a-random-unassigned-http-port">7.3.3. 할당되지 않은 HTTP  포트 무작위 사용</a></li>
 <li><a href="#howto-discover-the-http-port-at-runtime">7.3.4. 실행시 HTTP 포트 할당</a></li>
@@ -1082,7 +1075,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect1">
-<h2 id="들어가며">들어가며</h2>
+<h2 id="preface">들어가며</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>스프링 부트가 <a href="https://spring.io/blog/2014/04/01/spring-boot-1-0-ga-released">소개(2014.04.01)</a>(<a href="https://goo.gl/MDjMZ2" class="bare">https://goo.gl/MDjMZ2</a>)된 지 2년이 넘은 시점에 국내에서 스프링 부트 관련 책들이 나오기 시작한다.<br>
@@ -1318,6 +1311,19 @@ table.CodeRay td.code>pre{padding:0}
 <h3 id="예제">예제</h3>
 <div class="paragraph">
 <p>이 책에서 사용된 예제는 <a href="https://github.com/ihoneymon/boot-spring-boot"><code>https://github.com/ihoneymon/boot-spring-boot</code></a>에서 살펴볼 수 있다. 메이븐이나 그레이들 설치없이 실행할 수 있도록 래퍼(wrapper)가 구성되어 있지만 이 래퍼를 실행하기 위해서는 JDK(Java Development Kit)이 설치되어있어야 한다. <strong>프로젝트는 Java 8 을 기준으로 작성됐다.</strong></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="오탈자">오탈자</h3>
+<div class="paragraph">
+<p>많은 과정을 거치면서 책에 오탈자를 수정하지만 책으로 출간해도 오탈자가 들어가 있는 경우가 많습니다. 저도 새로운 책을 사면 오탈자를 찾느라 책의 내용은 머리에 담지 못하고는 합니다. 오탈자를 찾으실 경우에는 다음에 있는 정오표에 기입해주시면 다음 인쇄에서는 수정하여 나올 수 있도록 노력하겠습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.google.com/spreadsheets/d/1Ztd5wKaGZOx5U6dhTux0ADwbERl_d1mDt9SdrLrwgxU/edit?usp=sharing">Boot Spring Boot 정오표(https://goo.gl/4YLkXB)</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -6990,7 +6996,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p>내장 서블릿 컨테이너를 사용할 때 <strong>서블릿</strong>, <strong>필터</strong>와 서블릿 사양(예, <code>HttpSessionListener</code>)에 있는 모든 <strong>리스너</strong>를 스프링 빈으로 선언하거나 혹은 서블릿 컴포넌트 탐색으로 등록할 수 있다.</p>
 </div>
 <div class="sect5">
-<h6 id="서블릿-필터와-리스너를-스프링-빈으로-등록하기">서블릿, 필터와 리스너를 스프링 빈으로 등록하기</h6>
+<h6 id="boot-features-embedded-container-servlets-filters-listeners-beans">서블릿, 필터와 리스너를 스프링 빈으로 등록하기</h6>
 <div class="paragraph">
 <p>어떤 <code>Servlet</code>, <code>Filter</code>혹은 서블릿 <code>*Listener</code> 인스턴스든지 스프링 빈으로 내장 컨테이너에 등록할 수 있다. 이러한 특징은 구성을 하는 동안 <code>application.yml</code>의 값을 이용하도록 하여 특별한 혜택을 얻을 수 있다.</p>
 </div>
@@ -6999,6 +7005,52 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 <div class="paragraph">
 <p>관례를 기반으로 한 대응만으로는 유연한 대응이 어렵지만 <code>ServletRegistrationBean</code>, <code>FilterRegistrationBean</code>과 <code>ServletListenerRegistrationBean</code> 클래스를 이용하면 완벽하게 대응 가능하다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트는 필터을 정의할 수 있는 다양한 자동구성을 제공한다. 다음은 필터 예제 및 각 필터의 순위(낮은 값을 가질수록 우선순위가 높음)다.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">서블릿 필터</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">순위</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OrderedCharacterEncodingFilter</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WebMvcMetricsFilter</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE + 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ErrorPageFilter</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE + 1</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HttpTraceFilter</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE - 10</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>일반적으로 필터는 순위를 유지하지 않는 것이 안전하다.</p>
+</div>
+<div class="paragraph">
+<p>순위를 지정해야 한다면, <code>Ordered.HIGHEST_PRECEDENCE</code> 에서 요청 바디를 읽도록 필터를 구성하면 안된다. 애플리케이션의 문자 인코딩 구성과 맞지 않을 수 있다. 서블릿 필터가 요청을 감싸는 경우에는 <code>FilterRegistrationBean.REQUEST_WRAPPER_FILTER_MAX_ORDER</code> 보다 작거나 같은 순위로 구성해야 한다.</p>
 </div>
 </div>
 </div>
@@ -9473,7 +9525,9 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
     <span class="directive">public</span> <span class="type">void</span> testExample() <span class="directive">throws</span> <span class="exception">Exception</span> {
         given(<span class="local-variable">this</span>.userVehicleService.getVehicleDetails(<span class="string"><span class="delimiter">&quot;</span><span class="content">sboot</span><span class="delimiter">&quot;</span></span>))
                 .willReturn(<span class="keyword">new</span> VehicleDetails(<span class="string"><span class="delimiter">&quot;</span><span class="content">Honda</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Civic</span><span class="delimiter">&quot;</span></span>));
+
         HtmlPage page = <span class="local-variable">this</span>.webClient.getPage(<span class="string"><span class="delimiter">&quot;</span><span class="content">/sboot/vehicle.html</span><span class="delimiter">&quot;</span></span>);
+
         assertThat(page.getBody().getTextContent()).isEqualTo(<span class="string"><span class="delimiter">&quot;</span><span class="content">Honda Civic</span><span class="delimiter">&quot;</span></span>);
     }
 }</code></pre>
@@ -9579,7 +9633,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p><code>@DataJpaTest</code>는 JPA 애플리케이션을 테스트할 때 사용할 수 있다. 기본적으로 인-메모리 내장 데이터베이스가 구성되며, <code>@Entity</code> 클래스를 탐색하고 스프링 Data JPA 리파지토리가 구성된다. 일반적인 <code>@Component</code> 빈은 <code>ApplicationContext</code>에 적재되지 않는다.</p>
 </div>
 <div class="paragraph">
-<p>Data JPA 테스트는 트랜잭션이 되며 기본적으로 각 테스트가 끝나면 롤백된다. <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#testcontext-tx-enabling-transactions">스프링 참조문서#Enabling and disabling transactions(https://goo.gl/BUb3St)</a>에서 보다 자세한 내용을 볼 수 있다. 트랜잭션 처리를 원치않는다면 다음과 같이 하여 테스트 동안에 트랜잭션 관리를 비활성화할 수 있다:</p>
+<p>Data JPA 테스트는 기본적으로 각 테스트마다 트랜잭션이 적용되어 테스트가 끝나면 롤백이 적용된다. <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#testcontext-tx-enabling-transactions">스프링 참조문서#Enabling and disabling transactions(https://goo.gl/BUb3St)</a>에서 보다 자세한 내용을 볼 수 있다. 트랜잭션 처리를 원치않는다면 다음과 같이 테스트 동안에 트랜잭션 관리를 비활성화할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9592,11 +9646,18 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 
 <span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@DataJpaTest</span>
-<span class="annotation">@Transactional</span>(propagation = Propagation.NOT_SUPPORTED)
+<span class="annotation">@Transactional</span>(propagation = Propagation.NOT_SUPPORTED) <b class="conum">(1)</b>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">ExampleNonTransactionalTests</span> {
   <span class="comment">// 코드 생략</span>
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>트랜잭션 기능 비활성화</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Data JPA 테스트에는 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-test-autoconfigure/src/main/java/org/springframework/boot/test/autoconfigure/orm/jpa/TestEntityManager.java"><code>TestEntityManager</code>(https://goo.gl/CRf7si)</a> 빈을 주입하여 표준 JPA <code>EntityManager</code>에 대한 대안으로 테스트에 제공할 수 있다. 만약 <code>TestEntityManager</code>를 <code>@DataJpaTest</code> 외부에서 사용하고 싶다면 <code>@AutoConfigureTestEntityManager</code> 애너테이션를 사용할 수 있다. 필요하다면 <code>JdbcTemplate</code>도 사용가능하다:</p>
@@ -9628,7 +9689,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>인-메모리 내장 데이터베이스 테스트는 개발자가 추가적으로 설치할 필요없이 빠르게 잘 동작한다. 그러나, 실제 데이터베이스 테스트를 하고 싶다면 <code>@AutoConfigureTestDatabase</code> 애너테이션를 사용할 수 있다.</p>
+<p>인-메모리 내장 데이터베이스 테스트는 개발자가 추가적으로 설치하는 것이 없어도 잘 동작한다. 그러나, 실제 데이터베이스 테스트를 하고 싶다면 <code>@AutoConfigureTestDatabase</code> 애너테이션를 사용할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9851,7 +9912,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="boot-features-web-application-conditions">웹애플리케이션 조건</h5>
 <div class="paragraph">
-<p><code>@ConditionalOnWebApplication</code> 과 <code>@ConditionalOnNotWebApplication</code> 애너테이션은 애플리케이션이 '웹 애플리케이션&#8217;인 경우에 구성을 허용한다. 웹 애플리케이션은 스프링 <code>WebApplicationContext</code>를 사용하며 <code>session</code> 스코프가 정의되었거나 <code>StandardServletEnvironment</code>를 가지고 있는 경우에 해당한다.</p>
+<p><code>@ConditionalOnWebApplication</code> 과 <code>@ConditionalOnNotWebApplication</code> 애너테이션은 애플리케이션이 '웹 애플리케이션&#8217;인지 그렇지 않은지에 대한 구성을 선언한다. 웹 애플리케이션으로 보는 조건은 <strong>스프링 <code>WebApplicationContext</code>를 사용</strong>하며 <strong><code>session</code> 스코프가 정의</strong>되었거나 <strong><code>StandardServletEnvironment</code></strong>를 가지고 있는 경우에 해당한다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -10962,7 +11023,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>Micrometer는 지원하는 모니터링 시스템에 맞춰 독립된 모듈을 제공한다. 이 모듈 중 하나(혹은 그 이상)에 따라서  스프링 부트 애플리케이션에서 Micrometer가 실행하기에 충분하다. Micrometer에 대해서 보다 자세히 알아보고자 한다면 <a href="https://micrometer.io/docs">Micrometer 참고문서(https://micrometer.io/docs)</a>를 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트 1.5.X.RELEASE <code>/metrics</code> 에서 보여지는 형식은 다음과 같다. 하지만 <code>2.0.0.RELEASE</code> 로 업그레이드되면서 측량 형식이 변경됐다.</p>
+<p>스프링 부트 1.5.X.RELEASE <code>/metrics</code> 에서 보여지는 형식은 다음과 같다.</p>
 </div>
 <div class="listingblock">
 <div class="title">스프링 부트 1.5.X.RELEASE <code>/metrics</code></div>
@@ -11005,7 +11066,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="paragraph">
-<p>Micrometer에서 사용할 수 있는 형식으로 변경된 듯 하다.</p>
+<p>하지만 <code>2.0.0.RELEASE</code> 로 업그레이드되면서 측량 형식이 변경됐다. Micrometer에서 사용할 수 있는 형식으로 변경된 듯 하다.</p>
 </div>
 <div class="listingblock">
 <div class="title">스프링 부트 2.0.0.RELEASE <code>/actuator/metrics</code></div>
@@ -11509,7 +11570,7 @@ WantedBy=multi-user.target</code></pre>
 <h2 id="chap06">6. '스프링 부트' 빌드도구 플러그인</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>에서는 '실행가능한(Excutable)' 배포본(jar or war)를 만들어내는 '빌드 도구' 를 살펴보도록 한다. 스프링 부트 는 자바 개발시 주로 사용하는 빌드도구인 메이븐과 그레이들 에서 사용할 수 있는 빌드 플러그인을 제공하고 있다. 이 빌드 플러그인을 이용하여 빌드할 때 고려할 수 있는 다양한 선택사항들을 제공하여 개발자의 다양한 욕구를 수용하고 있다. 여기서 '실행가능한' 배포본을 만들어내는 교모한 기술 '재포장(리패키징, Repackage)' 에 대해 설명한다.</p>
+<p>"<a href="#chap06">'스프링 부트' 빌드도구 플러그인</a>"에서는 '실행가능한(Excutable)' 배포본(jar or war)를 만들어내는 '스프링 부트 빌드도구 플러그인&#8217;을 살펴본다. 스프링 부트는 자바 개발시 주로 사용하는 빌드도구인 메이븐과 그레이들 에서 사용할 수 있는 빌드도구 플러그인을 제공한다. 프로젝트를 빌드할 때 고려할 수 있는 다양한 선택사항에 대해서 빌드도구 플러그인을 제공하여 개발자의 다양한 욕구를 수용하고 있다. 여기서 '실행가능한' 배포본을 만들어내는 교모한 기술 '재포장(리패키징, Repackage)'에 대해 설명한다.</p>
 </div>
 <div class="sect2">
 <h3 id="build-tool-plugins-maven-plugin">6.1. 스프링 부트 메이븐 플러그인</h3>
@@ -11568,7 +11629,7 @@ WantedBy=multi-user.target</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>이 구성은 메이븐 {lifecycle}에서 <code>package</code> 단계에서 빌드가 진행되는 동안 jar나 war를 재포장한다. 다음 예제에서는 리패키징된 jar와 원본 jar가 <code>target</code> 디렉토리에 있는 것을 보여준다:</p>
+<p>이 구성은 메이븐 생애주기에서 <code>package</code> 단계에서 빌드가 진행되는 동안 jar나 war를 재포장한다. 다음 예제에서는 리패키징된 jar와 원본 jar가 <code>target</code> 디렉토리에 있는 것을 보여준다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11740,7 +11801,7 @@ $ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">dependencies {
     compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-starter-web</span><span class="delimiter">&quot;</span></span>)
-    compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.thymeleaf:thymeleaf-spring4</span><span class="delimiter">&quot;</span></span>)
+    compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.thymeleaf:thymeleaf-spring5</span><span class="delimiter">&quot;</span></span>)
     compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect</span><span class="delimiter">&quot;</span></span>)
 }</code></pre>
 </div>
@@ -11837,12 +11898,18 @@ dependencies {
 <div class="sect3">
 <h4 id="build-tool-plugins-gradle-running-applications">6.2.4. 프로젝트를 빌드하지 않고 실행하기</h4>
 <div class="paragraph">
-<p><code>bootRun</code> 태스크를 사용하면 jar 파일을 빌드하지 않아도 프로젝트를 실행하는 것이 가능하다.</p>
+<p>그레이들 혹은 메이븐 래퍼를 통해서 프로젝트르 별도의 배포파일을 생성하지 않고 소스코드를 컴파일한 후 바로 실행하는 것이 가능하다. 각 빌드도구의 실행방법은 다음과 같다.</p>
+</div>
+<div class="paragraph">
+<p>그레이들 <code>bootRun</code> 태스크를 사용하면 jar 파일을 빌드하지 않아도 프로젝트를 실행하는 것이 가능하다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="console">$ gradle bootRun</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>메이븐에서는 <code>mvn spring-boot:run</code> 골을 실행하여 빌드없이 프로젝트를 실행하는 것이 가능하다.</p>
 </div>
 <div class="paragraph">
 <p>"<a href="#using-boot-devtools">'스프링 부트' 개발자도구</a>"를 프로젝트에 추가해두면 애플리케이션의 변경을 자동으로 감지한다. 혹은 대안으로, 애플리케이션이 실행했을 때 정적 자원 클래스패스(예: 기본구성은 <code>src/main/resources</code>으로 지정)가 동작중인 애플리케이션에서 재적재할 수 있도록 애플리케이션을 실행하는 기능은 개발시 유용할 수 있다.</p>
@@ -11856,6 +11923,20 @@ dependencies {
 </div>
 <div class="paragraph">
 <p>정적 자원 클래스패스를 재적재할 수 있게 만들면 <code>bootRun</code>이 <code>processResourcess</code> 태스크의 결과물을 사용하지 않음을 의미한다. 즉, <code>bootRun</code>을 사용하면 애플리케이션은 처리되지 않은 자원을 사용하게 된다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>"<a href="#build-tool-plugins-gradle-running-applications">프로젝트를 빌드하지 않고 실행하기</a>"는 생각욀로 유용하다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -11965,73 +12046,27 @@ dependencies {
 </tbody>
 </table>
 <div class="paragraph">
-<p>개발을 마친 애플리케이션을 배포하기 위해 빌드하는 과정에서 <code>springBoot</code>와 <code>bootRepackage</code> 태스크에 속성을 정의하여 개발자가 의도하는 메인 클래스를 정의하고 배포하는 환경에 맞춰 레이아웃을 구성하여 배포하는 상황은 빈번하게 발생한다. 별도의 서버에서 톰캣에 배포하던 애플리케이션을 클라우드 플랫폼에 배포하여 운영하려고 할 때 클라우드 플랫폼의 인스턴스에 톰캣을 구성하고 실행하는 것도 가능하지만, 실행가능한 jar 형태로 빌드하여 간단한 스크립트와 함께 실행하는 구성이 가능하다. 스프링 부트를 개발플랫폼으로 사용하면 이런 배포환경의 변화에 대해 유연하게 대처하는 것이 가능하다.</p>
+<p>개발을 마친 애플리케이션을 테스트 및 운영을 위해 배포를 해야 한다. 배포본을 빌드하는 과정에서 <code>springBoot</code>와 <code>bootRepackage</code> 태스크 속성에 애플리케이션 메인 클래스를 정의하고 운영환경에 맞춰 레이아웃을 구성하는 등의 작업을 해야 한다. 스프링 부트를 이용하면 서비스 운영환경의 변화에 대한 유연한 대처가 가능하다. 클라우드 서버에 배포하여 운영하고 있는 애플리케이션을 IDC에서 운영되고 있는 WAS서버에 배포하거나 소스코드 수준에서 실행하는 등의 작업에 어려움이 없다.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>우리회사에도 초창기에는 AWS에서 EC2 인스턴스를 생성하고 그 안에 톰캣을 구성하여 젠킨스로 빌드한 war를 배포하는 형태를 취했었다. AWS Beanstalk 를 이용하여 애플리케이션을 배포 및 실행할 수 있게 되면서 jar 형태로 변경해야 했다.</p>
+<p>지난 프로젝트 초창기에는 AWS EC2 인스턴스를 생성하고 그 안에 톰캣을 구성하여 젠킨스로 빌드한 <strong>war</strong>를 배포하는 형태를 취했었다. AWS Beanstalk가 제공하는 기능과 편의성을 알게되면서 <strong>jar</strong>로 빌드하여 배포하게 되었다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="build-tool-plugins-other-build-systems">6.3. 그 외의 빌드 시스템</h3>
-<div class="paragraph">
-<p>만약 메이븐, 그레이들 혹은 앤트 이외의 빌드 도구를 사용하길 원한다면 스스로 플러그인을 개발해야할 수도 있다. 실행가능한 jar는 특정한 형식과 압축되지 않은 양식으로 작성된 목록을 포함하고 있어야 한다(보다 자세한 사항은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#executable-jar">스프링 부트 참조문서#executable-jar(https://goo.gl/2Y9E3R)</a>를 살펴보기 바란다).</p>
-</div>
-<div class="paragraph">
-<p>스프링 부트 메이븐과 그레이들 플러그인 모두 <code>spring-boot-loader-tools</code>를 이용해서 jar를 생성한다. 필요하다면 자유롭게 이 라이브러리를 직접 사용할 수 있다.</p>
-</div>
-<div class="sect3">
-<h4 id="build-tool-plugins-repackaging-archives">6.3.1. 재압축한 압축파일</h4>
-<div class="paragraph">
-<p>이미 생성된 압축파일을 재압축하는 과정에서 컨테이너를 포함한 실행가능한 압축파일을 만들기 위해서 <code>org.springframework.boot.loader.tools.Repackager</code>를 사용한다. <code>Repackager</code> 클래스는 생성자를 하나 가지고 있으며 생성되어 있는 jar 혹은 war 파일을 참조한다. <code>repackage()</code> 메서드 중에서 하나를 사용하여 원본 파일을 대체하거나 새로운 위치에 작성할 수 있다. 변수 설정은 실행하기에 앞서 <code>Repackager</code>에거 구성가능하다.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="build-tool-plugins-nested-libraries">6.3.2. 라이브러리 포함하기</h4>
-<div class="paragraph">
-<p>압축파일을 재압축할 때 <code>org.springframework.boot.loader.tools.Libraries</code> 인터페이스를 사용하여 의존성 파일들에 대한 참조를 포함시킬 수 있다. <code>Libraries</code>에 대한 구현체를 제공하지는 않으며 사용하는 빌드 시스템에 따라 사용하면 된다.</p>
-</div>
-<div class="paragraph">
-<p>만약 압축파일에 라이브러리가 포함되어 있다면 <code>Libraries.NONE</code> 을 사용할 수 있다.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="build-tool-plugins-find-a-main-class">6.3.3. 메인 클래스 찾기</h4>
-<div class="paragraph">
-<p><code>Repackager.setMainClass()</code>를 사용하여 메인 클래스를 정의하지 않았다면 repackager는 <a href="http://asm.ow2.org/">ASM(http://asm.ow2.org/)</a>을 사용하여 클래스 파일을 읽고 <code>public static void main(String[] args)</code> 메서드를 가지고 있는 적합한 클래스를 찾아내려고 한다. 한 개 이상을 찾았을 경우에는 예외가 발생한다.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="build-tool-plugins-repackage-implementation">6.3.4. 재압축 구현 예제</h4>
-<div class="paragraph">
-<p>기본적인 재압축 예제를 살펴보자:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Repackager repackager = <span class="keyword">new</span> Repackager(sourceJarFile);
-repackager.setBackupSource(<span class="predefined-constant">false</span>);
-<span class="comment">// repackager.repackage(Libraries.NONE);  </span><b class="conum">(1)</b>
-repackager.repackage(<span class="keyword">new</span> Libaries() {
-    <span class="annotation">@Override</span>
-    <span class="directive">public</span> <span class="type">void</span> doWithLibraries(LibraryCallback callback) <span class="directive">throws</span> <span class="exception">IOException</span> {
-        <span class="comment">// Build system specific implementation, callback for each dependency</span>
-        <span class="comment">// callback.library(new Library(nestedFile, LibraryScope.COMPILE));</span>
-    }
-});</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>라이브러리가 포함되어 있을 때는 <code>Libraries.NONE</code>를 선언하여 라이브러리를 포함시키지 않을 수도 있다.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="다음-읽을꺼리-6">6.4. 다음 읽을꺼리</h3>
+<h3 id="다음-읽을꺼리-6">6.3. 다음 읽을꺼리</h3>
 <div class="paragraph">
 <p>빌드도구 플러그인에 흥미가 생겼다면 깃헙에서 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-tools">spring-boot-tools(https://goo.gl/UKgoK5)</a> 모듈을 살펴보기 바란다. 보다 기술적인 자세한 사항에 대해서는 부록 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/<mark>executable-jar">스프링 부트 참고문서</mark>'executable-jar'(<a href="https://goo.gl/2Y9E3R" class="bare">https://goo.gl/2Y9E3R</a>)</a>에서 살펴볼 수 있다.</p>
 </div>
@@ -12224,8 +12259,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">app</span>:
   <span class="key">encoding</span>: <span class="string"><span class="content">@project.build.sourceEncoding@</span></span>
-  <span class="key">java.version</span>: <span class="string"><span class="content">@java.version@</span></span>
-  <span class="error">YAML is a superset of JSON and</span></code></pre>
+  <span class="key">java.version</span>: <span class="string"><span class="content">@java.version@</span></span></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -12276,7 +12310,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="colist arabic">
 <ol>
 <li>
-<p>위치변환자 식별자를 <code>@</code>으로 지정</p>
+<p><code>@</code>를 위치변환자 식별자로 지정</p>
 </li>
 </ol>
 </div>
@@ -12294,32 +12328,26 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 </tr>
 </table>
 </div>
-</div>
-<div class="sect4">
-<h5 id="howto-automatic-expansion-gradle">그레이들을 사용하여 자동으로 속성 확장하기</h5>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>그레이들 프로젝트에서 자바 플러그인의 <code>processResources</code> 태스크를 사용하여 자동으로 속성을 확장할 수 이따:</p>
+<p>"그레이들 프로젝트에서도 자바 플러그인의 <code>processResources</code> 태스크를 구성하여 프로젝트 속성을 자동으로 확장할 수 있다"고 하는데, 그루비의 <code>SimpleTemplateEngine</code>이 파싱처리가 프로젝트 전체에 적용되면서 파싱 에러가 발생하기 때문에 사용하기를 권하고 싶지 않다.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">processResources {
-  expand(project.properties)    <b class="conum">(1)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>프로젝트 최상위 경로에 있는 <code>project.properties</code> 파일을 이용한다.</p>
-</li>
-</ol>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="howto-externalize-configuration">7.2.2. <code>SpringApplication</code>  외부 구성</h4>
 <div class="paragraph">
-<p><code>SpringApplication</code>는 Java API를 사용하여 애플리케이션을 생성하면서 빈속성을 이용해서(세터를 사용) 동작을 조작하는 것이 가능하다. 혹은 <code>application.yml</code>에 <code>spring.main.*</code>속성을 정의하는 것도 가능하다. 예로 다음과 같다:</p>
+<p><code>SpringApplication</code>은 Java API를 통해 애플리케이션을 실행하는 과정 중에 빈 속성을 이용(설정자 사용)해서 동작을 조작하는 것이 가능하다. 혹은 <code>application.yml</code>에서 <code>spring.main.*</code>속성을 통해 정의하는 것도 가능하다. 예로 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12360,7 +12388,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">new</span> SpringApplicationBuilder()
   .bannerMode(Banner.Mode.OFF)
-  .sources(io.honeymon.boot.{src-main-<span class="type">class</span>}.class)
+  .sources(io.honeymon.boot.springboot.{src-main-<span class="type">class</span>}.class)
   .run(<span class="class">args</span>);</code></pre>
 </div>
 </div>
@@ -12375,14 +12403,14 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>위와 같이 정의하면 애플리케이션이 실재로 동작할 때는 배너가 출력되고(구성에 의해 덮어씌어짐) <code>ApplicationContext</code>을 위해서 구성파일 3개를 이용한다: <code>io.honeymon.boot.BootSpringBootApplication</code>, <code>io.honeymon.boot.springboot.config.AppConfig</code>, <code>io.honeymon.boot.springboot.config.ExtraConfig</code></p>
+<p>위와 같이 정의하면 애플리케이션이 실재로 동작할 때는 배너가 출력되고(구성에 의해 덮어씌어짐) <code>ApplicationContext</code>을 위해서 구성파일 3개를 이용한다: <code>io.honeymon.boot.springboot.BootSpringBootApplication</code>, <code>io.honeymon.boot.springboot.config.AppConfig</code>, <code>io.honeymon.boot.springboot.config.ExtraConfig</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="howto-change-the-location-of-external-properties">7.2.3. 애플리케이션 속성 외부구성파일 위치변경</h4>
 <div class="paragraph">
 <p>서로 다른 소스에서 기본 속성들이 스프링 <code>Environment</code>에 추가될 때에는 정의된 순서에 따른다("<a href="#chap03">'스프링 부트' 기능소개</a>"의 "<a href="#boot-features-external-configuration">외부 구성(Externalized Configuration)</a>"에서 상세히 설명함).
-애플리케이션 소스에 <code>@PropertySource</code> 애너테이션를 추가하여 속성을 정의해두면 정의나 변경이 매우 용이하다. <code>SpringApplication</code>에 있는 정적 메서드 중 <code>setSources()</code>에 추가된 소스에서 <code>@PropertySource</code>를 가지고 있는지 검사하여 <code>ApplicationContext</code> {lifecycle}의 모든 과정에서 <code>Environment</code>에 속성을 추가할 수 있다. 이 방법으로 추가된 속성은 기본 위치 정의된 구성파일(예: <code>application.yml</code>), 시스템 속성, 환경변수 혹은 실행인자보다 낮은 순위로 추가된다.
+애플리케이션 소스에 <code>@PropertySource</code> 애너테이션를 추가하여 속성을 정의해두면 정의나 변경이 매우 용이하다. <code>SpringApplication</code>에 있는 정적 메서드 중 <code>setSources()</code>에 추가된 소스에서 <code>@PropertySource</code>를 가지고 있는지 검사하여 <code>ApplicationContext</code> 생애주기의 모든 과정에서 <code>Environment</code>에 속성을 추가할 수 있다. 이 방법으로 추가된 속성은 기본 위치 정의된 구성파일(예: <code>application.yml</code>), 시스템 속성, 환경변수 혹은 실행인자보다 낮은 순위로 추가된다.
 시스템 속성(혹은 환경변수)를 정의하여 동작을 변경할 수 있다:</p>
 </div>
 <div class="ulist">
@@ -12453,15 +12481,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>application.yml</code>라는 이름으로 파일을 생성하여 클래스패스의 최상위에 위치시킨 후 snakeyaml 의존성을 추가(메이븐이나 그레이들에서 <code>org.yaml:snakeyaml</code>을 추가하거나, <code>spring-boot-starter</code>을 사용한다면 이미 포함되어 있다). YAML 파일은 Java <code>Map&lt;String, Object&gt;</code>(JSON 객체처럼) 파싱되고, 스프링 부트에서는 독립된 키를 가지는 1단계 깊이를 가지는 맵으로 구성된다. 몇몇 이들은 <code>Properties</code> 파일을 사용하기를 선호하기도 한다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="properties">spring.application.name=boot-spring-boot
-spring.datasource.driverClassName=com.mysql.jdbc.Driver
-spring.datasource.url=jdbc:mysql://localhost/springboot
-server.port=9000</code></pre>
-</div>
+<p><code>application.yml</code>라는 이름으로 파일을 생성하여 클래스패스의 최상위에 위치시킨 후 snakeyaml 의존성을 추가(메이븐이나 그레이들에서 <code>org.yaml:snakeyaml</code>을 추가하거나, <code>spring-boot-starter</code>을 사용한다면 이미 포함되어 있다). YAML 파일은 Java <code>Map&lt;String, Object&gt;</code>(JSON 객체처럼) 파싱되고, 스프링 부트에서는 독립된 키를 가지는 1단계 깊이를 가지는 맵으로 구성된다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -12477,11 +12497,22 @@ server.port=9000</code></pre>
 </div>
 <div class="sect3">
 <h4 id="howto-change-configuration-depending-on-the-environment">7.2.7. 환경 의존적인 구성 변경</h4>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>YAML 파일은 <code>---</code> 라인으로 문서를 구분하며 각 문서는 평맵으로 파싱된다.</p>
+<p>YAML 문서는 문서구분자(<code>---</code>)을 기준으로 문서를 구분짓는다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>만약 YAML 문서에 <code>spring.profiles</code> 키가 있고 프로파일값(콤마(<code>,</code>)로 구분되는 프로파일 목록)은 스프링 <code>Environment.acceptsProfiles()</code> 으로 확인가능하며 활성화된 프로파일이 포함된 문서는 최종적으로 하나의 평맵으로 병합된다.</p>
+<p>만약 YAML 문서에 <code>spring.profiles</code>키가 있고 <strong>프로파일</strong>(콤마(<code>,</code>)로 구분되는 프로파일 목록)값은 애플리케이션이 구동된 후에는 스프링 <code>Environment.acceptsProfiles()</code> 으로 활성화된 프로파일 목록을 확인가능하다. 최종적으로 활성화된 프로파일이 포함된 문서들이 하나의 맵(Map, 키-값 으로 구성된 목록)으로 병합된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12505,8 +12536,19 @@ server.port=9000</code></pre>
 <div class="paragraph">
 <p>위 예에서 기본 포트는 <code>9000</code> 이지만, 스프링 프로파일 <code>dev</code>가 활성화되면 포트는 <code>9001</code>이 되고 <code>prd</code>가 활성화되면 <code>5000</code>이 된다.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>YAML 문서는 발견되는 순서대로 병합된다(나중에 값이 이전 것보다 우선함).</p>
+<p>YAML 문서는 발견되는 순서대로 병합된다(동일한 키 값을 설정할 때 나중에 발견된 값이 앞선 것보다 우선함). 가지고 있는 맵에서 키에 매칭되는 값이 있을 때 가장 마지막으로 읽은 문서의 값으로 덮어쓴다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>properties 파일에 동일한 내용을 적용하려면 <code>application-$프로파일.properties</code>로 각 프로파일 값을 지정해야 한다.</p>
@@ -12556,73 +12598,179 @@ server.port=9000</code></pre>
 <div class="sect2">
 <h3 id="howto-embedded-servlet-containers">7.3. 내장서블릿 컨테이너</h3>
 <div class="sect3">
-<h4 id="howto-add-a-servlet-filter-or-listener-as-spring-bean">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</h4>
+<h4 id="howto-add-a-servlet-filter-or-listener">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</h4>
 <div class="paragraph">
 <p>서블릿 스펙을 지원하는 <code>Servlet</code>, <code>Filter</code>, <code>ServletContextListener</code>와 다른 리스너를 애플리케이션에 추가하는 두 가지 방법이 있다. 스프링 빈을 제공하거나 서블릿 컴포넌트를 검색하도록 할 수 있다.</p>
 </div>
 <div class="sect4">
-<h5 id="스프링-빈을-통해-code-servlet-code-code-filter-code-혹은-code-listener-code-추가하기">스프링 빈을 통해 <code>Servlet</code>, <code>Filter</code> 혹은 <code>Listener</code> 추가하기</h5>
+<h5 id="howto-add-a-servlet-filter-or-listener-as-spring-bean">스프링 빈을 통해 <code>Servlet</code>, <code>Filter</code> 혹은 <code>Listener</code> 추가하기</h5>
 <div class="paragraph">
-<p><code>Servlet</code>, <code>Filter</code> 혹은 <code>Servlet*Listener</code>을 위한 빈을 정의하여 추가할 수 있다. 이 방법은 사용자가 원할 때 구성이나 의존성을 주입할 수 있어 매우 유용하다. 그러나, 애플리케이션 구동 초기에 컨테이너에 설치하기 때문에 많은 빈을 등록하요 초기화하지 않도록 주의해야 한다(<code>DataSource</code> 혹은 JPA 구성을 참조하도록 하는 것은 좋은 생각이 아니다). 초기화될 때 초반에 사용하기보다는 느슨하게 초기화되도록 제한하는 것이 좋다.</p>
+<p>스프링 빈을 이용해서 <code>Servlet</code>, <code>Filter</code> 혹은 서블릿 <code>*Listener</code> 추가할 수 있다. 이 방법은 사용자가 원할 때 구성이나 의존성을 주입할 수 있어 매우 유용하다. 그러나, 애플리케이션 구동 초기에 컨테이너에 설치하기 때문에 많은 빈을 등록하여 초기화하지 않도록 주의해야 한다(<code>DataSource</code> 혹은 JPA 구성을 참조하는 것은 좋은 생각이 아니다). 초기화 초반에 사용하기보다는 느슨하게 초기화되도록 제한하는 것이 좋다.</p>
 </div>
 <div class="paragraph">
-<p><code>Filter</code>와 <code>Servlet</code>의 경우 기본 컴포넌트 대신 <code>FilterRegistrationBean</code> 혹은 <code>ServletRegistrationBean</code>을 추가하여 매핑 및 초기화 매개변수를 추가할 수 있다.</p>
+<p><code>Filter</code>와 <code>Servlet</code>의 경우 기본 구성요소를 대신하거나 <code>FilterRegistrationBean</code> 혹은 <code>ServletRegistrationBean</code>을 추가하여 기본 구성요소에 매핑 및 초기화 매개변수를 추가할 수 있다.</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<div class="title">Note</div>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>필터 등록시 <code>dispatcherType</code>을 지정하지 않았다면, <code>FORWARD</code>, <code>INCLUDE</code> 그리고 <code>REQUEST</code>와 일치된다. 만약 비동기가 활성화된다면 <code>ASYNC</code>와도 일치한다.<br>
-만약 <code>web.xml</code>에서 <code>dispatcher</code> 속성을 정의하지 않았다면 <code>distpatcherType</code>을 지정해주는 줄 필요가 있다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
-<span class="directive">public</span> FilterRegistrationBean myFilterRegistration() {
-    FilterRegistrationBean registration = <span class="keyword">new</span> FilterRegistrationBean();
-    registration.setDispatcherTypes(DispatcherType.REQUEST);
-    ....
-
-    return registration;
-}</code></pre>
-</div>
+<p>필터 등록시 <code>dispatcherType</code>을 지정하지 않았다면 <code>REQUEST</code>가 사용된다. 이는 서블릿 사양에서 기본 디스패처 유형이다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>다른 스프링 빈처럼 서블릿 필터 빈의 순서를 정의할 수 있다. 이에 대한 자세한 내용은 "<a href="#boot-features-embedded-container-servlets-filters-listeners-beans">서블릿, 필터와 리스너를 스프링 빈으로 등록하기</a>"을 확인하기 바란다.</p>
+</div>
 </div>
 <div class="sect4">
-<h5 id="서블릿-혹은-필터-등록-비활성화">서블릿 혹은 필터 등록 비활성화</h5>
+<h5 id="howto-disable-registration-of-a-servlet-or-filter">서블릿 혹은 필터 등록 비활성화</h5>
 <div class="paragraph">
-<p>위에서 언급했던 <code>Servlet</code> 혹은 <code>Filter</code> 빈은 서블릿 컨테이너에 자동으로 등록될 것이다. <code>Filter</code>혹은 <code>Servlet</code>빈의 등록을 명시적으로 비활성화할 수 있다. 예로:</p>
+<p>위에서 언급했던 <code>Servlet</code> 혹은 <code>Filter</code> 빈은 서블릿 컨테이너에 자동으로 등록될 것이다. <code>Filter</code>혹은 <code>Servlet</code>빈의 등록을 다음과 같이 명시적으로 비활성화할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
-<span class="directive">public</span> FilterRegistrationBean registration(MyFilter filter) {
-    FilterRegistrationBean registration = <span class="keyword">new</span> FilterRegistrationBean(filter);
+<span class="directive">public</span> FilterRegistrationBean&lt;MyFilter&gt; registration(MyFilter filter) {
+    FilterRegistrationBean&lt;MyFilter&gt; registration = <span class="keyword">new</span> FilterRegistrationBean&lt;&gt;(filter);
     registration.setEnabled(<span class="predefined-constant">false</span>);   <b class="conum">(1)</b>
     <span class="keyword">return</span> registration;
+}
+
+<span class="annotation">@Bean</span>
+ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) {
+        ServletRegistrationBean&lt;MyServlet&gt; registration = <span class="keyword">new</span> ServletRegistrationBean&lt;&gt;(servlet);
+        registration.setEnabled(<span class="predefined-constant">false</span>);  <b class="conum">(2)</b>
+        <span class="keyword">return</span> registration;
 }</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <ol>
 <li>
-<p><code>Servlet</code> 혹은 <code>Filter</code>빈의 자동등록 비활성화</p>
+<p><code>MyFilter</code> 필터등록 비활성화</p>
+</li>
+<li>
+<p><code>MyServlet</code> 서블릿등록 비활성화</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect4">
-<h5 id="클래스패스-탐색을-이용해서-code-servlet-code-code-filter-code-그리고-code-listener-code-추가하기">클래스패스 탐색을 이용해서 <code>Servlet</code>, <code>Filter</code> 그리고 <code>Listener</code> 추가하기</h5>
+<h5 id="howto-add-a-servlet-filter-or-listener-using-scanning">클래스패스 탐색을 이용해서 <code>Servlet</code>, <code>Filter</code> 그리고 <code>Listener</code> 추가하기</h5>
 <div class="paragraph">
-<p><code>@WebServlet</code>, <code>@WebFilter</code> 그리고 <code>@WebListener</code> 애너테이션를 선언한 클래스를 내장 서블릿 컨테이너에 등록하려면 <code>@Configuration</code>과 함께 <code>@ServletComponentScan</code> 애너테이션를 사용하거나 등록을 원하는 컴포넌트가 위치한 패키지를 정의하여 등록할 수 있다. 기본적으로 <code>@ServletComponentScan</code>를 선언한 클래스가 위치한 패키지부터 탐색한다.</p>
+<p><code>@WebServlet</code>, <code>@WebFilter</code> 그리고 <code>@WebListener</code> 애너테이션를 선언한 클래스를 내장 서블릿 컨테이너에 등록하려면 <code>@Configuration</code>과 함께 <code>@ServletComponentScan</code> 애너테이션를 사용하거나 등록을 원하는 컴포넌트가 위치한 패키지를 정의하여 등록할 수 있다. 기본적으로 <strong><code>@ServletComponentScan</code>를 선언한 클래스가 위치한 패키지부터 탐색</strong>한다.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>BootSpringBootApplication</code>에 <code>@ServletComponentScan</code> 선언</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@ServletComponentScan</span>
+<span class="annotation">@SpringBootApplication</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootApplication</span> {
+        <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+                <span class="comment">// SpringApplication.run(BootSpringBootApplication.class, args);</span>
+
+                SpringApplication app = <span class="keyword">new</span> SpringApplication(BootSpringBootApplication.class);
+                app.addListeners(<span class="keyword">new</span> ApplicationPidFileWriter());
+                app.run(args);
+        }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>@WebListener</code> 예제</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">javax.servlet.ServletContextEvent</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.ServletContextListener</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.annotation.WebListener</span>;
+
+<span class="annotation">@WebListener</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">AttrListener</span> <span class="directive">implements</span> ServletContextListener {
+
+        <span class="annotation">@Override</span>
+        <span class="directive">public</span> <span class="type">void</span> contextInitialized(ServletContextEvent sce) {
+                sce.getServletContext().setAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">honeymon</span><span class="delimiter">&quot;</span></span>);
+        }
+  <span class="comment">//contextDestroyed 예제</span>
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>@WebServlet</code> 예제</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@WebServlet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloServlet</span> <span class="directive">extends</span> HttpServlet {
+
+        <span class="annotation">@Override</span>
+        <span class="directive">protected</span> <span class="type">void</span> doGet(HttpServletRequest req, HttpServletResponse resp) <span class="directive">throws</span> ServletException, <span class="exception">IOException</span> {
+                <span class="keyword">try</span> {
+                        resp.getOutputStream().write(<span class="string"><span class="delimiter">&quot;</span><span class="content">hello</span><span class="delimiter">&quot;</span></span>.getBytes());
+                } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+                        e.printStackTrace();
+                }
+        }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>@WebFilter</code> 예제</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">java.io.IOException</span>;
+
+<span class="keyword">import</span> <span class="include">javax.servlet.Filter</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.FilterChain</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.FilterConfig</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.ServletException</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.ServletRequest</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.ServletResponse</span>;
+<span class="keyword">import</span> <span class="include">javax.servlet.annotation.WebFilter</span>;
+
+<span class="annotation">@WebFilter</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">HelloFilter</span> <span class="directive">implements</span> <span class="predefined-type">Filter</span> {
+
+  <span class="comment">//init(FilterConfig filterConfig) 생략</span>
+
+        <span class="annotation">@Override</span>
+        <span class="directive">public</span> <span class="type">void</span> doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+                        <span class="directive">throws</span> <span class="exception">IOException</span>, ServletException {
+
+        response.getOutputStream().println(<span class="string"><span class="delimiter">&quot;</span><span class="content">filtering</span><span class="delimiter">&quot;</span></span>);
+                response.getOutputStream()
+                                .println(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr:</span><span class="delimiter">&quot;</span></span> + request.getServletContext().getAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr</span><span class="delimiter">&quot;</span></span>));
+
+                chain.doFilter(request, response);
+
+                chain.doFilter(request, response);
+        }
+  <span class="comment">//destroy() 생략</span>
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code><a href="http://localhost:9000/hello" class="bare">http://localhost:9000/hello</a></code>으로 접근해보면 다음과 같이 출력되는 것을 볼 수 있다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>filtering
+servlet-context-attr:honeymon
+hello</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -12872,7 +13020,7 @@ dependencies {
 <div class="sect3">
 <h4 id="howto-create-websocket-endpoints-using-serverendpoint">7.3.11. <code>@ServerEndpoint</code> 를 사용한 웹소켓 종점 생성</h4>
 <div class="paragraph">
-<p>내장 컨테이너를 사용하는 스프링 부트 app에서 <code>@ServerEndpoint</code>를 사용하려면 <code>ServerEndpointExporter</code>를 빈으로 선언해야 한다.</p>
+<p>내장 컨테이너를 사용하는 스프링 부트 애플리케이션에서 <code>@ServerEndpoint</code>를 사용하려면 <code>ServerEndpointExporter</code>를 빈으로 등록해야 한다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12883,7 +13031,7 @@ dependencies {
 </div>
 </div>
 <div class="paragraph">
-<p>이 빈은 <code>@ServerEndpoint</code> 애너테이션가 선언된 모든 빈을 기본 웹소켓 컨테이너에 등록한다. 독립형 서블릿 컨테이너에 배포할 때 서블릿 컨테이너가 초기화되면서 수행하기 때문에 <code>ServerEndpointExporter</code> 빈은 필요하지 않다.</p>
+<p>이 빈은 <code>@ServerEndpoint</code> 애너테이션가 선언된 모든 빈을 기본 웹소켓 컨테이너에 등록한다. 독립형 서블릿 컨테이너에 배포되었을 때는 서블릿 컨테이너가 초기화되면서 등록과정을 수행하기 때문에 <code>ServerEndpointExporter</code> 빈을 등록할 필요는 없다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -14434,7 +14582,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>다음단계로 jar 파일 대신 war 파일로 배포되도록 빌드 구성을 변경해야 한다. 만약 그레이들을 사용한다면 다음과 같이 <code>build.gradle</code>을 변경해야한다:</p>
+<p>다음단계로 jar 파일 대신 war 파일로 배포되도록 빌드 구성을 변경해야 한다. 만약 그레이들을 사용한다면 다음과 같이 <code>build.gradle</code>에 다음과 같이 <code>war</code> 플러그인을 추가해야한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14473,6 +14621,9 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <td class="content">
 <div class="paragraph">
 <p><code>providedRuntime</code>는 그레이들 <code>compileOnly</code> 구성을 참조한다. <code>compileOnly</code> 의존성은 테스트 클래스패스의 영향을 받지 않는다. <code>providedRuntime</code>는 컴파일(<code>compile</code>)과 실행(<code>runtime</code>)은 적용되지만 빌드(<code>build</code>) 과정에서는 제외된다고 생각하면 된다.</p>
+</div>
+<div class="paragraph">
+<p><code>providedRuntime</code> 선언된 의존성은 war 파일 생성시 제외된다. 톰캣 컨테이너에 배포하는데 굳이 war 파일 내부에 내장 컨테이너를 가지고 있을 필요가 없기 때문이다.</p>
 </div>
 </td>
 </tr>
@@ -15087,7 +15238,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.1.1<br>
-Last updated 2018-01-07 21:17:19 KST
+Last updated 2018-01-27 15:15:51 KST
 </div>
 </div>
 </body>
