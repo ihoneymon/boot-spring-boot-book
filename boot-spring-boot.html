@@ -525,14 +525,14 @@ table.CodeRay td.code>pre{padding:0}
 <div class="details">
 <span id="author" class="author">Honeymon(Jiheon Kim)</span><br>
 <span id="email" class="email"><a href="mailto:ihoneymon@gmail.com">ihoneymon@gmail.com</a></span><br>
-<span id="revnumber">version 1.1.1,</span>
-<span id="revdate">2017-11-29</span>
+<span id="revnumber">version 1.2.0,</span>
+<span id="revdate">2018-01-27</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#저자-소개">저자 소개</a></li>
-<li><a href="#preface">들어가며</a>
+<li><a href="#들어가며">들어가며</a>
 <ul class="sectlevel2">
 <li><a href="#책에서-다루는-내용">책에서 다루는 내용</a></li>
 <li><a href="#책을-따라하기-위해-필요한-것">책을 따라하기 위해 필요한 것</a></li>
@@ -596,8 +596,8 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#using-boot-auto-configuration">2.4. 자동구성(<code>auto-configuration</code>)</a>
 <ul class="sectlevel3">
-<li><a href="#자동구성-대체하기">2.4.1. 자동구성 대체하기</a></li>
-<li><a href="#특정-자동구성-비활성화하기">2.4.2. 특정 자동구성 비활성화하기</a></li>
+<li><a href="#using-boot-replacing-auto-configuration">2.4.1. 자동구성 대체하기</a></li>
+<li><a href="#using-boot-disabling-specific-auto-configuration">2.4.2. 특정 자동구성 비활성화하기</a></li>
 </ul>
 </li>
 <li><a href="#spring-bean-and-dependency-injection">2.5. 스프링 빈(Bean)과 의존성 주입(Dependency injection)</a></li>
@@ -949,7 +949,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="paragraph">
-<p>"개발활동은 <strong>스쿠바다이빙, 클라이밍, 라이딩, 수영 등의 취미생활을 즐기기 위한 부업활동</strong>이다." 라고 말하고 다니는 건방진(?) <strong>#월급쟁이개발자</strong>지만, <strong>허니몬</strong>이라는 이름으로 개발자로서 꾸준하게 온오프라인 활동을 해왔습니다. 2013년부터 지금까지(2017년 11월) KSUG(<a href="http://www.ksug.org/" class="bare">http://www.ksug.org/</a>) 일꾼단으로 활동하면서 스프링 캠프(Spring Camp, <a href="http://www.springcamp.io/" class="bare">http://www.springcamp.io/</a>)와 크고작은 세미나들을 준비하고 운영해왔습니다. 커뮤니티 활동을 통해 스프링을 비록해서 스프링 부트와 다양한 기술에 대한 정보를 얻을 수 있는 좋은 경험을 할 수 있었습니다.</p>
+<p>"개발활동은 <strong>스쿠바다이빙, 클라이밍, 라이딩, 수영 등의 취미생활을 즐기기 위한 부업활동</strong>이다." 라고 말하고 다니는 건방진(?) <strong>#월급쟁이개발자</strong>지만, <strong>허니몬</strong>이라는 이름으로 개발자로서 꾸준하게 온오프라인 활동을 해왔습니다. 2013년부터 지금까지(2017년 11월) KSUG(<a href="http://www.ksug.org/" class="bare">http://www.ksug.org/</a>) 일꾼단으로 활동하면서 스프링 캠프(Spring Camp, <a href="http://www.springcamp.io/" class="bare">http://www.springcamp.io/</a>)와 크고작은 세미나들을 준비하고 운영해왔습니다. 커뮤니티 활동을 하면서 스프링을 비롯해서 스프링 부트와 다양한 기술에 대한 정보를 얻으며 다양하고 좋은 경험을 할 수 있었습니다.</p>
 </div>
 <div class="paragraph">
 <p>제가 스프링 부트를 본격적으로 사용하게 된 계기는, 잘 다니던 회사를 2014년 5월 말에 그만두고 '스쿠바 다이빙 강사&#8217;가 되겠다며 양양 동해바다에서 3개월 동안 생활하다가 복귀해서, 솔루션 개발을 시작하면서 당면하게 되었던 <strong>요구사항</strong> 때문이었습니다.</p>
@@ -957,12 +957,12 @@ table.CodeRay td.code>pre{padding:0}
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p><strong>다양한 운영체제</strong>에서 <strong>실행가능한</strong> <strong>애플리케이션</strong>으로 개발해야 한다.</p>
+<p><strong>다양한 운영체제</strong>에서 <strong>운영가능해야 한다</strong>.</p>
 </div>
 </blockquote>
 </div>
 <div class="paragraph">
-<p>위 요구사항에 제일 먼저 떠오른 것이 '스프링 부트&#8217;였습니다. 스프링 부트가 가진 특징들이 이 요구사항에 딱딱 부합했습니다.</p>
+<p>위 요구사항에 제일 먼저 떠오른 것이 '스프링 부트&#8217;였습니다. 스프링 부트가 가진 특징들이 요구사항에 딱딱 부합된다고 판단했습니다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -977,10 +977,7 @@ table.CodeRay td.code>pre{padding:0}
 <p><strong>다양한 운영체제</strong>:: JVM 기반</p>
 </li>
 <li>
-<p><strong>실행가능한</strong>:: Executable JAR or WAR</p>
-</li>
-<li>
-<p><strong>애플리케이션</strong>:: 순수한 자바로 작성하고 실행할 수 있는 스프링 부트 애플리케이션</p>
+<p><strong>운영가능해야 한다</strong>:: Executable JAR or WAR 로 운영에 필요한 다양한 편의 기능을 제공해야 한다.</p>
 </li>
 </ul>
 </div>
@@ -989,7 +986,7 @@ table.CodeRay td.code>pre{padding:0}
 </table>
 </div>
 <div class="paragraph">
-<p>그 무렵 KSUG에서 스프링 부트와 관련된 발표들이 있었습니다. 그 때 귀동냥한 것이 있어서 큰 문제없이 프로젝트에 적용해서 써먹었습니다. 처음에는 이런저런 시행착오를 겪기도 했지만 꾸준하게 업그레이드되면서 결함도 수정되고  스프링 부트로 개발을 하면서 제일 많이 보게되는 것은 <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/">'스프링 부트 참고문서(reference document, https://goo.gl/TRaKm3)'</a>입니다(아마 이 책을 읽으시는 분들도 가장 많이 보게될 문서라고 생각합니다). 그 분량이 어마어마해서 이 책에서도 미처 다루지 못한 내용들이 많습니다.</p>
+<p>그 무렵 KSUG에서 스프링 부트와 관련된 발표들이 있었습니다. 그 때 귀동냥한 것이 있어서 큰 문제없이 프로젝트에 적용했습니다. 처음에는 이런저런 시행착오를 겪기도 했지만 꾸준하게 업그레이드되면서 결함도 수정되고  스프링 부트로 개발을 하면서 제일 많이 보게되는 것은 <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/">'스프링 부트 참고문서(reference document, https://goo.gl/TRaKm3)'</a>입니다(아마 이 책을 읽으시는 분들도 가장 많이 보게될 문서라고 생각합니다). 그 분량이 어마어마해서 이 책에서도 미처 다루지 못한 내용들이 많습니다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1011,7 +1008,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>'무식하면 용감하다' 라던가?</p>
+<p>'무식하면 용감하다'</p>
 </div>
 </blockquote>
 </div>
@@ -1075,7 +1072,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect1">
-<h2 id="preface">들어가며</h2>
+<h2 id="들어가며">들어가며</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>스프링 부트가 <a href="https://spring.io/blog/2014/04/01/spring-boot-1-0-ga-released">소개(2014.04.01)</a>(<a href="https://goo.gl/MDjMZ2" class="bare">https://goo.gl/MDjMZ2</a>)된 지 2년이 넘은 시점에 국내에서 스프링 부트 관련 책들이 나오기 시작한다.<br>
@@ -2947,7 +2944,7 @@ Total time: 7.554 secs</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>자동구성 기능을 활성화</strong> 하려면 <code>@Configuration</code> 이 선언된 클래스에 <code>@EnableAutoConfiguration</code>을 추가하면 된다.</p>
+<p><strong>자동구성 기능을 활성화</strong> 하려면 <code>@Configuration</code>이 선언된 클래스에 <code>@EnableAutoConfiguration</code>혹은 <code>@SpringBootApplication</code>을 추가하면 된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2959,28 +2956,27 @@ Total time: 7.554 secs</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>스프링 부트에서는 반복적으로 사용되는 애너테이션를 쓰는 번거로움을 줄일 수 있도록 <code>@EnableAutoConfiguration</code>와 <code>@SpringBootConfiguration(@Configuration 을 포함하고 있음)</code>을 합친 <code>@SpringBootApplication</code>를 제공한다. 스프링 부트 개발팀에서 제공하는 자동구성가 어떻게 구성되어 있는지를 살펴보려면  <code>~AutoConfiguration</code> 클래스(예: <code>WebMvcAutoConfiguration</code>)를 찾아보기 바란다.</p>
+<p>스프링 부트에서는 반복적으로 사용되는 애너테이션를 쓰는 번거로움을 줄일 수 있도록 <code>@EnableAutoConfiguration</code>과 <code>@SpringBootConfiguration(@Configuration 을 포함하고 있음)</code>을 합친 <code>@SpringBootApplication</code>를 제공한다. 스프링 부트 개발팀에서 제공하는 자동구성가 어떻게 구성되어 있는지를 살펴보려면  <code>~AutoConfiguration</code> 클래스(예: <code>WebMvcAutoConfiguration</code>)를 찾아보기 바란다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>WebMvcAutoConfiguration</code></div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
 <span class="annotation">@ConditionalOnWebApplication</span>
-<span class="annotation">@ConditionalOnClass</span>({ Servlet.class, DispatcherServlet.class,
-        WebMvcConfigurerAdapter.class })
+<span class="annotation">@ConditionalOnClass</span>({ Servlet.class, DispatcherServlet.class, WebMvcConfigurerAdapter.class })
 <span class="annotation">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class)
 <span class="annotation">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="integer">10</span>)
-<span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class,
-        ValidationAutoConfiguration.class })
-<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span>
-  <span class="comment">// 생략</span></code></pre>
+<span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class, ValidationAutoConfiguration.class })
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span> {
+  <span class="comment">// 생략</span>
+}</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="자동구성-대체하기">2.4.1. 자동구성 대체하기</h4>
+<h4 id="using-boot-replacing-auto-configuration">2.4.1. 자동구성 대체하기</h4>
 <div class="paragraph">
 <p>자동구성은 비침투적이기에, 자동구성 특정 부분에 대해서는 재정의한 부분으로 시작하는 것이 가능하다. 예를 들자면, <code>DataSource</code> 빈을 추가한다면, 기본 내장 데이터베이스 지원은 비활성화된다.<br>
-현재 제공되고 있는 자동구성이 무엇인지 찾아보려고 한다면, 애플리케이션이 시작될 때 <code>--debug</code> 를 활성화하면 된다. 디버그 로그가 활성화되어 자동구성 보고서가 콘솔에 출력된다.</p>
+현재 제공되고 있는 자동구성이 무엇인지 찾아보려면, 애플리케이션이 시작될 때 <code>--debug</code> 를 활성화하면 된다. 디버그 로그가 활성화되어 자동구성 보고서가 콘솔에 출력된다.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3051,7 +3047,7 @@ Unconditional classes:
 </div>
 </div>
 <div class="sect3">
-<h4 id="특정-자동구성-비활성화하기">2.4.2. 특정 자동구성 비활성화하기</h4>
+<h4 id="using-boot-disabling-specific-auto-configuration">2.4.2. 특정 자동구성 비활성화하기</h4>
 <div class="paragraph">
 <p>찾은 특정 자동구성 클래스를 사용하고 싶지 않다면, <code>@EnableAutoConfiguration</code> 의 <code>exculde</code> 속성을 이용해서 <strong>비활성화</strong> 할 수 있다. 다음 예제에서는 <code>DataSourceAutoConfiguration</code> 을 비활성화하고 있다.</p>
 </div>
@@ -3150,18 +3146,25 @@ Unconditional classes:
 <p>많은 스프링 부트 개발자들이 메인 클래스에 <code>@Configuration</code>, <code>@EnableAutoConfiguration</code> 와 <code>@ComponentScan</code>를 선언했었다. 이 애너테이션들은 자주 함께 사용한다. 스프링 부트 개발팀에서 간단하게 쓸 수 있는 <code>@SpringBootApplication</code> 를 제공한다(위에서 살펴본 "<a href="#code-structure">코드 구조</a>"에서 <code>BootSpringBootApplication</code>에 선언되어 있다).</p>
 </div>
 <div class="paragraph">
-<p><code>@SpringBootApplication</code> 애너테이션 을 사용하면 <code>@Configuration</code>, <code>@EnableAutoConfiguration</code> 와 <code>@ComponentScan</code>을 사용한 것과 동일하게 동작한다.</p>
+<p><code>@SpringBootApplication</code> 애너테이션을 사용하면 <code>@Configuration</code>, <code>@EnableAutoConfiguration</code>과 <code>@ComponentScan</code>를 함께 사용한 것과 동일하게 동작한다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>BootSpringBootApplication</code></div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@SpringBootApplication</span>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@SpringBootApplication</span>  <b class="conum">(1)</b>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootApplication</span> {
     <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
         SpringApplication.run(BootSpringBootApplication.class, args);
     }
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p><code>@Configuration</code>, <code>@EnableAutoConfiguration</code>과 <code>@ComponentScan</code>를 함께 사용한 것과 동일</p>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3171,10 +3174,10 @@ Unconditional classes:
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@SpringBootApplication</code>은 <code>@EnableAutoConfiguration</code> 와 <code>@ComponentScan</code> 의 속성을 재정의하는 앨리어스를 제공한다. 이 애너테이션은 스프링 부트 <a href="https://goo.gl/UveDGP">1.2.0.RELEASE(https://goo.gl/UveDGP)</a> 에서 추가됐다. <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java">1.4 버전(https://goo.gl/Bzv2E5)</a>에서는 <code>@SpringBootConfiguration</code> 이 <code>@Configuration</code> 을 대체했다.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/SpringBootApplication.java"><code>@SpringBootApplication</code>(https://goo.gl/RguXcz)</a>은 <code>@EnableAutoConfiguration</code> 와 <code>@ComponentScan</code> 의 속성을 재정의하는 앨리어스를 제공한다. 이 애너테이션은 스프링 부트 <a href="https://goo.gl/UveDGP">1.2.0.RELEASE(https://goo.gl/UveDGP)</a> 에서 추가됐다. <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java">1.4 버전(https://goo.gl/Bzv2E5)</a>에서는 <code>@SpringBootConfiguration</code>이 <code>@Configuration</code>을 대체했다.</p>
 </div>
 <div class="paragraph">
-<p><code>@SpringBootConfiguration</code>는 선언된 클래스가 <code>@SpringBootConfiguration</code>를 제공함을 나타낸다. 테스트에서 <code>@Configuration</code> 대안으로 사용하여 자동구성을 찾을 수 있다. 스프링 부트 애플리케이션에서는 <strong>하나(<code>@SpringBootApplication</code>에 포함되어 있음)만 사용해야 한다</strong>.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java"><code>@SpringBootConfiguration</code>(https://goo.gl/UsYvAL)</a>는 스프링 부트 애플리케이션에서 <code>@Configuration</code>를 사용한다고 나타낸다. 테스트에서 <code>@Configuration</code> 대안으로 사용하여 자동구성을 찾을 수 있다. 스프링 부트 애플리케이션에서는 <strong>하나(<code>@SpringBootApplication</code>에 포함되어 있음)만 사용해야 한다</strong>.</p>
 </div>
 </td>
 </tr>
@@ -4441,7 +4444,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <div class="sect3">
 <h4 id="boot-features-external-config-command-line-args">3.2.2. 커맨드라인 속성 접근</h4>
 <div class="paragraph">
-<p><code>SpringApplication</code>은 기본적으로 어떤 커맨드라인 실행인자(<code>--server.port=9000</code>처럼 <code>--</code>로 시작하는)를 스프링 <code>Environment</code> 에 속성으로 추가한다. 앞에서 언급했듯이 <strong>커맨드라인 속성은 언제나 다른유형의 속성정의보다 우선한다</strong>.</p>
+<p><code>SpringApplication</code>은 기본적으로 커맨드라인 실행인자(<code>--server.port=9000</code>처럼 <code>--</code>로 시작하는)를 스프링 <code>Environment</code> 에 속성으로 추가한다. 앞에서 언급했듯이 <strong>커맨드라인 속성은 언제나 다른유형의 속성정의보다 우선한다</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4456,7 +4459,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트에서 제공하는 공통속성외에도 <code>application.yml(or .properties)</code>에서 선언한 속성에 대해서도 실행인자 및 환경변수로 설정가능하다. 이 기능을 잘 활용하면 배포본 하나로 다양한 환경에서 운영이 가능하다.</p>
+<p>스프링 부트에서 제공하는 공통속성 외에도 <code>application.yml(or .properties)</code>에서 선언한 속성에 대해서도 실행인자 및 환경변수로 설정가능하다. 이 기능을 잘 활용하면 배포본 하나로 다양한 환경에서 운영이 가능하다.</p>
 </div>
 </td>
 </tr>
@@ -4684,7 +4687,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>properties 로 변환되면 다음과 같을 것이다:</p>
+<p>properties 로 변환되면 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7011,37 +7014,30 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 100%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">서블릿 필터</th>
+<th class="tableblock halign-left valign-top">순위</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">서블릿 필터</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">순위</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>OrderedCharacterEncodingFilter</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>WebMvcMetricsFilter</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE + 1</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>ErrorPageFilter</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE + 1</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>HttpTraceFilter</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Ordered.HIGHEST_PRECEDENCE - 10</code></p></td>
 </tr>
 </tbody>
@@ -11299,12 +11295,15 @@ org.springframework.boot.system.EmbeddedServerPortFileWriter</code></pre>
 <h2 id="chap05">5. '스프링 부트' 배포</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>편리하고 막강한 기능을 제공하는 클라우드 서비스들이 많이 등장했다. 그 클라우드 서비스에 우리가 만든 앱을 배포하는 과정을 살펴보면서 자신에게 맞는 클라우드 서비스를 선택하고 관리해보자.</p>
+<p>스프링 부트 애플리케이션을 만들었으면 실행할 수 있는 다양한 환경에 배포(Deploy)를 해야 한다. 일반적인으로 톰캣이나 제티같은 WAS(웹 애플리케이션 서버, Web Application Server)에 war 파일을 배포하던 형식부터 클라우드 서비스에서 제공하는 환경에 따라 다양한 형태로 배포하여 운영을 시작할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>운영에 앞서서 각 배포환경이 어떤 특징을 가지며 어떻게 운영할지에 대한 전략을 세우는 것이 중요하다. 빌드한 배포본을 수동으로 배포하는 것보다는 CI/CD 시스템을 구축하여 지속적으로 유지가능한 배포전략을 갖추는 것이 서비스 운영에도 큰 도움이 된다. 이와 관련해서는 <a href="https://ko.wikipedia.org/wiki/%EC%A7%80%EC%86%8D%EC%A0%81_%ED%86%B5%ED%95%A9">CI(지속적 통합, Continuous Integration, https://goo.gl/Pwfu4f)</a>와 <a href="https://en.wikipedia.org/wiki/Continuous_delivery">CD(지속적 배포, Continuous delivery, https://goo.gl/Z5u4Pn)</a>에 대해서 살펴보기 바란다.</p>
 </div>
 <div class="sect2">
 <h3 id="cloud-deployment">5.1. 클라우드 배포</h3>
 <div class="paragraph">
-<p>스프링 부트 실행가능한 jar의 경우 압축된 패키지 안에 애플리케이션을 실행하는데 필요한 모든 것을 갖추고 대부분의 클라우드 PaaS(Platform-as-a-Service) 프로바이더(제공자, Provider)를 지원할 준비가 되어있다. 클라우드 프로바이더에 크게 상관없이 실행가능한 jar로 빌드된 애플리케이션을 Java 플랫폼에 배포가능하다.</p>
+<p>스프링 부트 실행가능한 jar의 압축된 패키지 안에 애플리케이션을 실행하는데 필요한 모든 것을 갖추고 있어서 대부분의 클라우드 PaaS(Platform-as-a-Service) 프로바이더(제공자, Provider)를 지원할 준비가 되어있다. 클라우드 프로바이더에 크게 상관없이 실행가능한 jar로 빌드된 애플리케이션을 Java 플랫폼에 배포가능하다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -11321,10 +11320,7 @@ org.springframework.boot.system.EmbeddedServerPortFileWriter</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>클라우드 환경에 배포하는 방법은 클라우드 프로바이더에 따라서 다양하다. 현재 근무하고 있는 회사에서는 젠킨스(jenkins)를 이용하여 실행가능한 jar로 배포본을 빌드하고 Elastic Beanstalk 에서 애플리케이션 정보를 등록하면서 지정한 S3 버킷(Bucket)에 버전을 변경하여 배포하는 방식을 이용하고 있다.</p>
-</div>
-<div class="paragraph">
-<p>보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#cloud-deployment">스프링 부트 참고문서#Deploying To the cloud, https://goo.gl/dzWtvV)</a>를 살펴보기 바란다.</p>
+<p>클라우드 환경에 배포하는 방법은 클라우드 프로바이더에 따라서 다양하다. 현재 근무하고 있는 회사에서는 젠킨스(jenkins)를 이용하여 실행가능한 jar로 배포본을 빌드하고 Elastic Beanstalk 에서 애플리케이션 정보를 등록하면서 지정한 S3 버킷(Bucket)에 버전을 변경하여 배포하는 방식을 이용하고 있다. 회사의 배포 및 운영 전략에 따라서 다양한 방법을 선택할 수 있다. 다양한 방법을 고려할 수 있도록 보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#cloud-deployment">스프링 부트 참고문서#Deploying To the cloud, https://goo.gl/dzWtvV)</a>를 살펴보기 바란다.</p>
 </div>
 </div>
 <div class="sect2">
@@ -11558,10 +11554,10 @@ WantedBy=multi-user.target</code></pre>
 <div class="sect2">
 <h3 id="다음-읽을꺼리-5">5.4. 다음 읽을꺼리</h3>
 <div class="paragraph">
-<p>PaaS에서 제공하는 기능 및 종류에 대한 자세한 정보는 각 웹사이트에서 확인하기 바란다. 자바를 실행할 수 있는 스프링 부트는 클라우드 기반 배포에 적합하며 다양한 클라우드 서비스 공급자들을 자유롭게 고려할 수 있다.</p>
+<p>클라우드 서비스에서 제공하는 기능 및 종류 등에 대한 자세한 정보는 각 웹사이트에서 확인하기 바란다. 자바실행가능한 곳이면 어디든 배포가능한 스프링 부트는 클라우드 기반 실행 및 운영에 적합하며 클라우드 서비스에 독립적으로 서비스 운영을 할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>메이븐 과 그레이들 에서 제공하는 스프링 부트 플러그인을 살펴본다.</p>
+<p>다음 장에서는 메이븐과 그레이들에서 제공하는 스프링 부트 플러그인을 살펴본다.</p>
 </div>
 </div>
 </div>
@@ -15237,8 +15233,8 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.1.1<br>
-Last updated 2018-01-27 15:15:51 KST
+Version 1.2.0<br>
+Last updated 2018-01-27 16:26:23 KST
 </div>
 </div>
 </body>
