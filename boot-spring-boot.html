@@ -562,7 +562,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#의존성-추가">1.4.2. 의존성 추가</a></li>
 <li><a href="#예제-code-hellocontroller-code-작성">1.4.3. 예제: <code>HelloController</code> 작성</a></li>
 <li><a href="#예제-code-hellocontroller-code-실행하기">1.4.4. 예제: <code>HelloController</code> 실행하기</a></li>
-<li><a href="#실행가능한-jar-만들기">1.4.5. 실행가능한 jar 만들기</a></li>
+<li><a href="#실행가능한-executable-jar-만들기">1.4.5. 실행가능한(Executable) jar 만들기</a></li>
 </ul>
 </li>
 <li><a href="#다음-읽을꺼리">1.5. 다음 읽을꺼리</a></li>
@@ -826,7 +826,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#howto-discover-build-in-options-for-external-properties">7.2.8. 외부속성에 대한 빌트인 옵션(built-in option) 발견</a></li>
 </ul>
 </li>
-<li><a href="#howto-embedded-servlet-containers">7.3. 내장서블릿 컨테이너</a>
+<li><a href="#howto-embedded-servlet-containers">7.3. 내장 서블릿 컨테이너</a>
 <ul class="sectlevel3">
 <li><a href="#howto-add-a-servlet-filter-or-listener">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</a></li>
 <li><a href="#howto-change-the-http-port">7.3.2. HTTP  포트 변경</a></li>
@@ -1141,15 +1141,15 @@ table.CodeRay td.code>pre{padding:0}
 <p>Java 8 이상</p>
 </li>
 <li>
-<p>5.0.1.RELEASE 이상</p>
+<p>스프링 프레임워크 5.0.1.RELEASE 이상</p>
 </li>
 <li>
-<p>IDE: {sts} or {ide}</p>
+<p>IDE: STS(Spring Tool Suite, <a href="https://spring.io/tools/sts">https://spring.io/tools/sts</a>) 혹은 인텔리제이(IntelliJ, <a href="https://www.jetbrains.com/idea/">https://www.jetbrains.com/idea/</a>)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">스프링 부트 참고문서#시스템 요구사항</a>(<a href="https://goo.gl/byHFzg" class="bare">https://goo.gl/byHFzg</a>) 을 보면 2.0.0.RELEASE 은 <a href="https://docs.oracle.com/javase/8/">Java 8(https://docs.oracle.com/javase/8/)</a>과 5.0.1.RELEASE 혹은 상위버전을 요구한다. 사용할 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements-servlet-containers">컨테이너의 종류(https://goo.gl/T54pv4)</a>에 따라서 사용할 수 있는 개발환경이 제한되거나 영향을 받을 수 있다. 책에서 작성한 코드들 중에 일부는 Java 8에서 제공하는 <code>Optional</code>, <code>Stream</code> 등을 사용하기에 Java 8 이상을 사용하길 <strong>권장</strong>(recommendation)한다.</p>
+<p><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements">스프링 부트 참고문서#시스템 요구사항</a>(<a href="https://goo.gl/byHFzg" class="bare">https://goo.gl/byHFzg</a>)을 보면 2.0.0.RELEASE는 <a href="https://docs.oracle.com/javase/8/">Java 8(https://docs.oracle.com/javase/8/)</a>과 5.0.1.RELEASE 혹은 상위버전을 요구한다. 사용할 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements-servlet-containers">컨테이너의 종류(https://goo.gl/T54pv4)</a>에 따라서 사용할 수 있는 개발환경이 제한되거나 영향을 받을 수 있다. 책에서 작성한 코드들 중에 일부는 Java 8에서 제공하는 <code>Optional</code>, <code>Stream</code> 등을 사용하기에 Java 8 이상을 사용하길 <strong>권장</strong>(recommendation)한다.</p>
 </div>
 <div class="paragraph">
 <p>IDE 는 <a href="https://spring.io/tools/sts">STS(Spring Tool Suite, https://spring.io/tools/sts)</a>와 <a href="https://www.jetbrains.com/idea/">IntelliJ(https://www.jetbrains.com/idea/)</a> 등이 있는데 이 책은 <strong>STS 를 기준</strong>으로 한다.</p>
@@ -1337,10 +1337,10 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="spring-boot-introduction">1.1. 스프링 부트 소개</h3>
 <div class="paragraph">
-<p>스프링 부트는 '개발 플랫폼(Platform)'이다. 스프링 프레임워크를 기반으로 자바에서 유행하는 기능들을 이용하여 '프로토타이핑'-'개발'-'운영/모니터링' 까지 이어지는 일괄된 개발환경을 제공한다.</p>
+<p>스프링 부트는 '<strong>개발 플랫폼(Platform)</strong>'이다. 스프링 프레임워크를 기반으로 자바에서 유행하는 기능들을 이용하여 '프로토타이핑'-'개발'-'운영/모니터링' 까지 이어지는 일괄된 개발환경을 제공한다.</p>
 </div>
 <div class="paragraph">
-<p><a href="http://projects.spring.io/spring-boot">스프링 부트 프로젝트 페이지(http://projects.spring.io/spring-boot)</a>에 작성되어 있는 <strong>스프링 부트 기능 정의</strong>를 살펴보면 스프링 부트 의 <strong>특징</strong>을 이해할 수 있다.</p>
+<p><a href="http://projects.spring.io/spring-boot">스프링 부트 프로젝트 페이지(http://projects.spring.io/spring-boot)</a>에 정의되어 있는 <strong>스프링 부트 기능</strong>을 살펴보면 스프링 부트의 <strong>특징</strong>을 이해할 수 있다.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1383,7 +1383,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect3">
 <h4 id="feature-starter-pom">스타터('starter') POM 을 제공하여 간결한 의존성 구성 지원</h4>
 <div class="paragraph">
-<p>메이븐을 이용해서 관련되거나 필요한 기타 의존성을 함께 선언할 수 있다. 스프링 부트 프로젝트에 있는 <code>pom.xml</code> 혹은 <code>build.gradle</code> 을 열었을 때 볼 수 있는 의존성(<code>dependency</code>) 부분에 <code>spring-boot-starter-*</code>  들은 각각의 컴포넌트가 실행되는데 필요한 의존성들을 내포하고 있다. 이에 대해서는 '<a href="#starter-poms">스타터(Starter)</a>' 에서 다룰 예정이다.</p>
+<p>메이븐을 이용해서 관련되거나 필요한 기타 의존성을 함께 선언할 수 있다. 스프링 부트 프로젝트에 있는 <code>pom.xml</code> 혹은 <code>build.gradle</code> 을 열었을 때 볼 수 있는 의존성(<code>dependency</code>) 부분에 <code>spring-boot-starter-*</code>  들은 각각의 컴포넌트가 실행되는데 필요한 의존성들을 내포하고 있다. 이에 대해서는 '&lt;&lt; starter-poms&gt;&gt;' 에서 다룰 예정이다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1402,7 +1402,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect3">
 <h4 id="feature-no-xml-context">구성을 위한 XML 코드를 필요로 하지 않으며 작성하지 않아도 됨</h4>
 <div class="paragraph">
-<p>스프링 부트에서 가장 큰 변화 중 하나는 더이상 <strong>XML 구성</strong>을 필요로 하지 않는다는 것이다. 자바구성(<code>JavaConfig</code>) 을 통해서 애플리케이션에 필요한 컴포넌트 스캔(<code>ComponentScan</code>) 과 스프링 빈(<code>Bean</code>)  등록 등을 할 수 있게 됐다. 이마저도 관례적인 자동구성(<code>auto-config</code>)을 제공하여 애플리케이션 구성에 대한 부담감을 줄여준다. 스프링 부트를 기반으로 개발하는 개발자는 환경구성에 대한 부담없이 비즈니스 로직구현에만 집중할 수 있도록 해준다.
+<p>스프링 부트에서 가장 큰 변화 중 하나는 더이상 <strong>XML 구성</strong>을 필요로 하지 않는다는 것이다. 자바구성(<code>JavaConfig</code>)을 통해서 애플리케이션에 필요한 컴포넌트 스캔(<code>ComponentScan</code>)과 스프링 빈(<code>Bean</code>) 등록 등을 할 수 있다. 이마저도 관례적인 자동구성(<code>auto-config</code>)을 제공하여 애플리케이션 구성에 대한 부담감을 줄여준다. 스프링 부트를 기반으로 개발하는 개발자는 환경구성에 대한 부담없이 비즈니스 로직구현에만 집중할 수 있다.
 물론 <code>@Configuration</code> 가 선언된 클래스에서 <code>@ImportResource</code> 애너테이션을 이용해서 패키지에 포함된 <code>XML</code> 파일을 읽어올 수 있는 기능을 제공한다.</p>
 </div>
 <div class="admonitionblock note">
@@ -1422,7 +1422,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <hr>
 <div class="paragraph">
-<p>스프링 부트의 여섯가지 기능들이 어울어져 자바개발자에게는 정말 좋은 도구가 됐다. 이 도구를 잘 익혀두면 자신이 만들고자 하는 애플리케이션에서 <strong>비즈니스 로직(해결하고픈 문제, 달성하고자 하는 목표)</strong>에만 집중하면 <strong>스프링 부트</strong>가 나머지 부분(필요한 기능을 가진 라이브러리를 추가하고 기능을 구성하고 구현하고 배포)을 처리해준다.</p>
+<p>스프링 부트의 여섯가지 기능들이 어우러져 자바개발자에게 정말 좋은 도구가 됐다. 이 도구를 잘 익혀두면 자신이 만들고자 하는 애플리케이션에서 <strong>비즈니스 로직(해결하고픈 문제, 달성하고자 하는 목표)</strong>에만 집중하면 <strong>스프링 부트</strong>가 나머지 부분(필요한 기능을 가진 라이브러리를 추가하고 기능을 구성하고 구현하고 배포)을 처리해준다.</p>
 </div>
 </div>
 </div>
@@ -1458,7 +1458,7 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p>가능하면 스프링 부트 개발팀에서는 권장하는  <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements"><strong>Java 8 이상</strong></a>(<a href="https://goo.gl/YCPntK" class="bare">https://goo.gl/YCPntK</a>)을 사용하기 바란다. 스프링 프레임워크는 4.X 부터 "Java 8"을 완벽하게 지원했다. 스트림(Stream) API 와 람다식의 혜택을 누릴 수 있도록 "Java 8" 사용을 권한다. "스프링 프레임워크 5"부터는 "Java 9"을 지원한다(<a href="https://goo.gl/iv4BY5" class="bare">https://goo.gl/iv4BY5</a>).</p>
+<p>가능하면 스프링 부트 개발팀에서 권장하는  <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-system-requirements"><strong>Java 8 이상</strong></a>(<a href="https://goo.gl/YCPntK" class="bare">https://goo.gl/YCPntK</a>)을 사용하기 바란다. 스프링 프레임워크는 4.X 부터 "Java 8"을 완벽하게 지원했다. 스트림(Stream) API 와 람다식의 혜택을 누릴 수 있도록 "Java 8" 사용을 권한다. "스프링 프레임워크 5"부터는 "Java 9"을 지원한다(<a href="https://goo.gl/iv4BY5" class="bare">https://goo.gl/iv4BY5</a>).</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1514,14 +1514,8 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>스프링 부트에서 Java 사용버전을 고려하는데  가장 큰 영향을 주는 것은 <strong>사용하는 컨테이너가 무엇이냐 하는 것</strong>이다. 컨테이너 스펙에 따라서 요구하는 Java 버전이 다르기 때문에 컨테이너를 우선적으로 고려한다. 컨테이너의 버전에 따라 지원하는 서블릿 스펙이 달라진다. 그러면 컨테이너에서 사용할 수 있는 기능이 제한될 수 있다. 서블릿 3.0의 경우에는 Java 6 까지 지원하며, 서블릿 3.1은 Java 7 부터 지원한다. 보다 자세한 내용은 다음과 같다.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>내장 서블릿 컨테이너별 지원사양</p>
-</li>
-</ol>
-</div>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. 내장 서블릿 컨테이너별 지원사양</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -1594,7 +1588,7 @@ table.CodeRay td.code>pre{padding:0}
 </ul>
 </div>
 <div class="paragraph">
-<p>웹소켓(WebSocket)은 상호작용하는 웹을 만들 수 있도록 해주는 <strong>서버와 클라이언트 사이를 양뱡향으로 연결하는 기능</strong>이다. 일반적인 웹소켓 클라이언트는 프로토콜(protocol)에는 종속적이지 않지만, 서버는 컨테이너에 따라 구현체가 조금씩 다르다. 웹소켓 클라이언트가 서버와 연결되면 적은 리소스를 차지하며 연결을 유지하여 통신을 주고받고 한쪽의 연결이 끝나면 일정시간이 지난 후 종료된다.</p>
+<p>웹소켓(WebSocket)은 상호작용하는 웹을 만들 수 있도록 해주는 <strong>서버와 클라이언트 사이를 양방향으로 연결하는 기능</strong>이다. 일반적인 웹소켓 클라이언트는 프로토콜(protocol)에는 종속적이지 않지만, 서버는 컨테이너에 따라 구현체가 조금씩 다르다. 웹소켓 클라이언트가 서버와 연결되면 적은 리소스를 차지하며 연결을 유지하여 통신을 주고받고 한쪽의 연결이 끝나면 일정시간이 지난 후 종료된다.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1620,7 +1614,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="spring-boot-installation">1.3. 스프링 부트 설치</h3>
 <div class="paragraph">
-<p>스프링 부트를 이용하기 위해서는 JDK(Java Development Kit)가 설치되어 있어야 한다. 라이브러리 의존성 관리를 위해서는 빌드도구가 필요한데, 빌드도구 래퍼를 이용하면 프로젝트 구성자 이외에 그레이들이나 메이븐을 로컬개발환경에 설치할 필요가 없다. 'SPRING INITIALIZR(<a href="http://start.spring.io/" class="bare">http://start.spring.io/</a>)'로 프로젝트를 생성하면서 빌드도구를 선택하면 그에 맞춰 래퍼를 포함하고 있는 스프링 부트 프로젝트가 생성된다. 래퍼에 대한 설명은 "<a href="#build-system-wrapper">래퍼(Wrapper)</a>"를 살펴보기 바란다.</p>
+<p>스프링 부트를 이용하려면 JDK(Java Development Kit)가 설치되어 있어야 한다. 라이브러리 의존성 관리를 위해서는 빌드도구가 필요한데, 빌드도구 래퍼를 이용하면 프로젝트 구성자 이외에 그레이들이나 메이븐을 로컬개발환경에 설치할 필요가 없다. 'SPRING INITIALIZR(<a href="http://start.spring.io/" class="bare">http://start.spring.io/</a>)'로 프로젝트를 생성하면서 빌드도구를 선택하면 그에 맞춰 래퍼를 포함하고 있는 스프링 부트 프로젝트가 생성된다. 래퍼에 대한 설명은 "<a href="#build-system-wrapper">래퍼(Wrapper)</a>"를 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트가 나온 이후 대부분의 IDE 에서는 다양한 스프링 부트 편의기능을 제공한다. STS와 인텔리제이  경우 스프링 부트 대시보드를 제공하여 시작, 디버깅과 원격지 배포실행과 애플리케이션 공통속성 자동완성 등의 기능을 제공하고 있다.</p>
@@ -1647,7 +1641,7 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p>글로 설명하기에는 쓸데없이 화면캡처만 늘어날만한 IDE에서 스프링 부트 프로젝트 생성 등과 관련된 설명은 영상으로 설명하겠다.</p>
+<p>글로 설명하기에는 쓸데없이 화면캡처만 늘어날만한 '스프링 부트 프로젝트 생성' 등과 관련된 설명은 영상으로 설명하겠다.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1694,10 +1688,27 @@ IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 <li>
 <p><code>lombok</code>::<code>@Getter</code>, <code>@Setter</code> 애너테이션를 통해 Getter/Setter 메서드를 손쉽게 생성가능</p>
 </li>
+<li>
+<p><code>thymeleaf</code>:: 스프링에서 지속적으로 지원하고 있는 템플릿 엔진</p>
+</li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>애플리케이션에 필요한 기능을 확인하고 프로젝트 의존성 라이브러리를 구성한다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1715,178 +1726,114 @@ IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 </div>
 <div class="sect4">
 <h5 id="sts-or-eclipse-스프링-부트-프로젝트-생성">STS(or Eclipse): 스프링 부트 프로젝트 생성</h5>
-<div class="ulist">
-<ul>
-<li>
+<div class="paragraph">
 <p>영상: <a href="https://youtu.be/ad03h6usqYc">STS에서 스프링부트 프로젝트 생성하기(https://youtu.be/ad03h6usqYc)</a></p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>'File' - 'New' - 'Spring Starter Project' 선택 <br>
-image::[Spring Starter Project 생성하기]</p>
-</li>
-<li>
-<p>프로젝트 정보를 다음과 같이 입력하고 '[Next &gt;]'  버튼 클릭
-image::[프로젝트 정보 입력]</p>
-</li>
-<li>
-<p>'Type' 선택</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>'Maven'</p>
-</li>
-<li>
-<p>'Gradle(Buildship)'</p>
-</li>
-<li>
-<p>'Gradle(STS)' &#8592; 선택</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>'Packaging' 선택</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>'Jar': WAS 에 배포하지 않고 커맨드로 실행시 선택</p>
-</li>
-<li>
-<p>'War': WAS 에 배포하는 경우 선택</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>'Java' 선택</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>'9'</p>
-</li>
-<li>
-<p>'8' &#8592; 권장</p>
-</li>
-<li>
-<p>'7'</p>
-</li>
-<li>
-<p>'6'</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>'Language' 선택</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>'Java'</p>
-</li>
-<li>
-<p>'Groovy'</p>
-</li>
-<li>
-<p>'Kotlin'</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>메타 정보 입력</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>group: <code>io.honeymon.boot</code></p>
-</li>
-<li>
-<p>artifact: <code>boot-spring-boot</code></p>
-</li>
-<li>
-<p>package: <code>io.honeymon.boot.springboot</code></p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>스프링 부트 버전 및 의존성을 선택하고 '[Finish]' 를 누른다.
-image::[선택항목]</p>
-</li>
-<li>
-<p>'[Make Default]' 버튼을 누르면 'Frequently Used' 항목에 추가된다.</p>
-</li>
-<li>
-<p>'[Next &gt;]'를 누르는 경우 다음과 같은 정보를 확인할 수 있다.</p>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/01-04-spring-initializer.png" alt="Spring Boot initializer Site">
-</div>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>http://start.spring.io/starter.zip?name=boot-spring-boot&amp;groupId=io.honeymon.boot&amp;artifactId=boot-spring-boot&amp;version=0.0.1-SNAPSHOT&amp;description=Demo+project+for+Spring+Boot&amp;packageName=io.honeymon.boot.springboot&amp;type=gradle-project&amp;packaging=jar&amp;javaVersion=1.8&amp;language=java&amp;bootVersion=2.0.0.RELEASE&amp;dependencies=lombok&amp;dependencies=data-jpa&amp;dependencies=h2&amp;dependencies=web</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>+
-해당 창에 있는 'Full URL' 항목을 브라우저 주소창에 복사해서 붙여넣으면 zip 파일이 'artifact' 에 입력값을 파일명으로 가지는 <code>boot-spring-boot.zip</code> 와 압축파일을 내려받게 된다. 이 압축파일을 특정위치로 옮겨 압축해제하거나 그대로 IDE에서 블러오는 것이 가능하다. IDE에서 제공하는 Starter의 경우에는 선택한 항목들을 이용해서 위와 같은 URL을 생성하여 압축파일을 내려받고 이를 압축해제하여 프로젝트로 등록한다.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="intellij-스프링-부트-프로젝트-생성">IntelliJ: 스프링 부트 프로젝트 생성</h5>
+<div class="paragraph">
+<p>영상: <a href="https://goo.gl/Ng5gMF">인텔리제이에서 스프링부트 프로젝트 생성하기(https://goo.gl/Ng5gMF)</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="브라우저에서-spring-boot-프로젝트-생성">브라우저에서 Spring Boot 프로젝트 생성</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>http://start.spring.io/starter.zip?name=boot-spring-boot&amp;groupId=io.honeymon.boot&amp;artifactId=boot-spring-boot&amp;version=1.0.0.RELEASE&amp;description=Demo+project+for+Spring+Boot&amp;packageName=io.honeymon.boot.springboot&amp;type=gradle-project&amp;packaging=jar&amp;javaVersion=1.8&amp;language=java&amp;bootVersion=2.0.0.RELEASE&amp;dependencies=lombok&amp;dependencies=data-jpa&amp;dependencies=h2&amp;dependencies=web</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>위의 링크를 복사해서 브라우저 주소창에 입력하면 바로 <code>boot-spring-boot.zip</code> 파일을 내려받는다.</p>
+</div>
+<div class="paragraph">
+<p>URL에 정의한 파리미터를 하나씩 살펴보자:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>영상: <a href="https://goo.gl/Ng5gMF">인텔리제이에서 스프링부트 프로젝트 생성하기(https://goo.gl/Ng5gMF)</a></p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>'File' &#8594; 'New' 선택</p>
+<p><code>name=boot-spring-boot</code>:: 프로젝트명</p>
 </li>
 <li>
-<p>'Spring Initializer' 선택</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>SDK 선택</p>
+<p><code>groupId=io.honeymon.boot</code>:: 프로젝트 그룹ID</p>
 </li>
 <li>
-<p>[Next] 선택</p>
-</li>
-</ol>
-</div>
+<p><code>artifactId=boot-spring-boot</code>:: 프로젝트 아티팩트(식별)ID</p>
 </li>
 <li>
-<p>'New Project' 창에서 프로젝트 기본정보 등록 &#8594; [Next]</p>
+<p><code>version=1.0.0.RELEASE</code>:: 프로젝트 버전</p>
 </li>
 <li>
-<p>사용될  '의존성'(Dependencies) 선택 &#8594; [Next]</p>
+<p><code>description=Demo+project+for+Spring+Boot</code>:: 프로젝트 설명</p>
 </li>
 <li>
-<p>프로젝트 설치 위치 지정 &#8594; [Finish]</p>
+<p><code>packageName=io.honeymon.boot.springboot</code>:: 기본 패키지명</p>
 </li>
-</ol>
-</div>
+<li>
+<p><code>type=gradle-project</code>:: 프로젝트 빌드도구 gradle</p>
+</li>
+<li>
+<p><code>packaging=jar</code>:: 프로젝트 패키징종류 jar</p>
+</li>
+<li>
+<p><code>javaVersion=1.8</code>:: Java 버전</p>
+</li>
+<li>
+<p><code>language=java</code>:: 사용언어 Java</p>
+</li>
+<li>
+<p><code>bootVersion=2.0.0.RELEASE</code>:: 사용하는 스프링 부트 버전</p>
+</li>
+<li>
+<p><code>dependencies=lombok&amp;dependencies=data-jpa&amp;dependencies=h2&amp;dependencies=web</code>:: 프로젝트 이용 의존성 lombok, data-jpa, h2, web</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>내려받은 <code>boot-spring-boot.zip</code> 압축을 해제하고 IDE에서 불러오기한다.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>boot-spring-boot.zip</code>파일 안에 있는 <code>build.gradle</code>내용</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">buildscript {
+        ext {
+                springBootVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.0.0.RELEASE</span><span class="delimiter">'</span></span>
+        }
+        repositories {
+                mavenCentral()
+        }
+        dependencies {
+                classpath(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-gradle-plugin:</span><span class="inline"><span class="inline-delimiter">${</span>springBootVersion<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
+        }
+}
+
+apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span>
+apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">eclipse</span><span class="delimiter">'</span></span>
+apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot</span><span class="delimiter">'</span></span>
+apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">io.spring.dependency-management</span><span class="delimiter">'</span></span>
+
+group = <span class="string"><span class="delimiter">'</span><span class="content">io.honeymon.boot</span><span class="delimiter">'</span></span>
+version = <span class="string"><span class="delimiter">'</span><span class="content">0.0.1-SNAPSHOT</span><span class="delimiter">'</span></span>
+sourceCompatibility = <span class="float">1.8</span>
+
+repositories {
+        mavenCentral()
+}
+
+
+dependencies {
+        compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-data-jpa</span><span class="delimiter">'</span></span>)
+        compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-web</span><span class="delimiter">'</span></span>)
+        runtime(<span class="string"><span class="delimiter">'</span><span class="content">com.h2database:h2</span><span class="delimiter">'</span></span>)
+        compileOnly(<span class="string"><span class="delimiter">'</span><span class="content">org.projectlombok:lombok</span><span class="delimiter">'</span></span>)
+        testCompile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-test</span><span class="delimiter">'</span></span>)
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="의존성-추가">1.4.2. 의존성 추가</h4>
-<div class="paragraph">
-<p>프로젝트에서 사용하는 라이브러리를 선언하는 부분이다.</p>
-</div>
 <div class="listingblock">
 <div class="title"><code>build.gradle</code></div>
 <div class="content">
@@ -1903,7 +1850,7 @@ image::[선택항목]</p>
 </div>
 </div>
 <div class="paragraph">
-<p>그레이들에서는 <code>build.gradle</code> 파일 내에 <code>dependencies</code> 영역 안에 의존성을 선언한다.</p>
+<p>그레이들에서는 <code>build.gradle</code> 파일 <code>dependencies</code> 영역 안에 의존성 라이브러리를 선언한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1985,7 +1932,7 @@ image::[선택항목]</p>
 <p><code>HelloController</code> 클래스에서 제일 먼저 선언된 <code>@RestController</code> 은 스프링 4.0 때 추가된 메타 애너테이션 이다. <code>@Controller</code> 와 <code>@ResponseBody</code> 애너테이션 을 포함하고 있다.</p>
 </li>
 <li>
-<p>스프링 4.3 에 추가된 메타 애너테이션 으로 <code>@RequestMapping(method = RequestMethod.GET)</code> 을 짧게 쓸 수 있다. '그렇다면? 혹시&#8230;&#8203;' 하고 생각하는대로 {enum} <code>RequestMethod</code> 에 선언되어 있는 <code>GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</code> 에 대응하는 <code>~Mapping</code> 들이 존재한다.</p>
+<p>스프링 4.3 에 추가된 메타 애너테이션 으로 <code>@RequestMapping(method = RequestMethod.GET)</code> 을 짧게 쓸 수 있다. '그렇다면? 혹시&#8230;&#8203;' 하고 생각하는대로 이넘(Enum) <code>RequestMethod</code> 에 선언되어 있는 <code>GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</code> 에 대응하는 <code>~Mapping</code> 들이 존재한다.</p>
 </li>
 </ol>
 </div>
@@ -2020,12 +1967,12 @@ image::[선택항목]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="실행가능한-jar-만들기">1.4.5. 실행가능한 jar 만들기</h4>
+<h4 id="실행가능한-executable-jar-만들기">1.4.5. 실행가능한(Executable) jar 만들기</h4>
 <div class="paragraph">
-<p>예제의 마지막 단계로 내장 컨테이너(Embedded Container) 를 포함한, 실제로 운영에서도 사용가능한, 실행가능한 jar 를 생성해보자. 실행가능한 jar('Fat Jars&#8217;라고도 불림)는 우리가 작성한 코드를 컴파일한 클래스와 이를 실행하는데 필요한 모든 의존성 jar 가 함께 압축되어 있다(여기에는 톰캣과 같은 WAS도 내장 컨테이너로 포함되는데 여기에는 스프링 부트 빌드도구 플러그인의 <code>bootRepackage</code> 가 관여한다).</p>
+<p>예제의 마지막 단계로 내장 컨테이너(Embedded Container) 를 포함한, 실제로 운영에서도 사용가능한, 실행가능한 jar 를 생성해보자. 실행가능한 jar('Fat Jars&#8217;라고도 불림)는 우리가 작성한 코드를 컴파일한 클래스와 이를 실행하는데 필요한 모든 의존성 jar 가 함께 압축되어 있다(톰캣과 같은 WAS가 내장 컨테이너로 포함되는데 여기에는 스프링 부트 빌드도구 플러그인의 <code>bootRepackage</code>가 관여한다).</p>
 </div>
 <div class="paragraph">
-<p>실행가능한 jar를 생성하기 위해서는 <code>build.gradle</code> 에 <code>spring-boot-gradle-plugin</code> 가 추가되어야 한다. <code>build.gradle</code> 첫번째 줄에 다음 코드를 추가하자.</p>
+<p>실행가능한 jar를 생성하기 위해서는 <code>build.gradle</code>에 <code>spring-boot-gradle-plugin</code>을 추가해야 한다ㄴ. <code>build.gradle</code> 첫번째 줄에 다음 코드를 추가하자.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2095,7 +2042,7 @@ Total time: 1.31 secs
 </div>
 </div>
 <div class="paragraph">
-<p>위와 같은 내용이 콘솔에 출력될 것이다. <code>boot-spring-boot</code> 프로젝트에서 <code>build/libs</code> 디렉터리를 보면 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 와 <code>boot-spring-boot-1.0.0.RELEASE.jar.original</code> 이 생성되어 있다. <code>boot-spring-boot-1.0.0.RELEASE.jar.original</code> 는 우리가 작성한 코드가 컴파일되어 있다. 이를 스프링 부트 플러그인에서 실행에 필요한 컨테이너와 의존성을 추가하여 재압축(repackage) 한 것이 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 으로 대략 10MB 정도의 용량이 늘어나게 된다. 이에 대해서는 "<a href="#chap06">'스프링 부트' 빌드도구 플러그인</a>" 에서 자세히 설명한다.</p>
+<p>위와 같은 내용이 콘솔에 출력된다. <code>boot-spring-boot</code> 프로젝트에서 <code>build/libs</code> 디렉터리를 보면 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 와 <code>boot-spring-boot-1.0.0.RELEASE.jar.original</code> 이 생성되어 있다. <code>boot-spring-boot-1.0.0.RELEASE.jar.original</code> 는 우리가 작성한 코드가 컴파일되어 있다. 이를 스프링 부트 플러그인에서 실행에 필요한 컨테이너와 의존성을 추가하여 재압축(repackage) 한 것이 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 으로 대략 10MB 정도의 용량이 늘어난다. 이에 대해서는 "<a href="#chap06">'스프링 부트' 빌드도구 플러그인</a>" 에서 자세히 설명한다.</p>
 </div>
 <div class="paragraph">
 <p><code>jar tvf</code> 명령으로 <code>boot-spring-boot-1.0.0.RELEASE.jar</code>에 포함되어 있는 것을 확인할 수 있다.</p>
@@ -2118,8 +2065,7 @@ Total time: 1.31 secs
 </div>
 </div>
 <div class="paragraph">
-<p><code>bootRepakcage</code> 을 통해서 생성된 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 파일은 <code>java -jar</code> 명령으로 커맨드라인
-에서 실행할 수 있다.</p>
+<p><code>bootRepackage</code> 을 통해서 생성된 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 파일은 커맨드라인에서 <code>java -jar</code> 명령으로 실행할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2151,12 +2097,12 @@ Total time: 1.31 secs
 <h2 id="chap02">2. '스프링 부트' 살펴보기</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>기능 구현에 필요한 라이브러리와 모듈을 손쉽게  추가할 수 있는 '<strong>의존성 관리</strong>', 추가된 '의존성' 라이브러리들을 바로 사용할 수 있도록 스프링 부트 개발팀이 권장하는 '<strong>자동구성(<code>auto-config</code>)</strong>', 개발 생산성을 높여주고 확장성을 부여하는 '<strong>스프링 프레임워크</strong>', "<strong>내장 컨테이너</strong>"를 이용한 빠른 실행과 재가동 시간을 줄이는 '<strong>개발자도구</strong>' 등 스프링 부트 를 이용하는데 알아둬야할 것들을 살펴본다.</p>
+<p>기능 구현에 필요한 라이브러리와 모듈을 손쉽게  추가할 수 있는 '<strong>의존성 관리</strong>', 추가된 '의존성' 라이브러리들을 바로 사용할 수 있도록 스프링 부트 개발팀이 권장하는 '<strong>자동구성(<code>auto-config</code>)</strong>', 개발 생산성을 높여주고 확장성을 부여하는 '<strong>스프링 프레임워크</strong>', "<strong>내장 컨테이너</strong>"를 이용한 빠른 실행과 재가동 시간을 줄이는 '<strong>개발자도구</strong>' 등 스프링 부트를 이용하는데 알아둬야할 것들을 살펴본다.</p>
 </div>
 <div class="sect2">
 <h3 id="using-boot-build-systems">2.1. 빌드 시스템</h3>
 <div class="paragraph">
-<p>스프링 부트 개발팀에서는 "<a href="#using-boot-dependency-management">의존성 관리</a>" 에서 제시하는 것을 강력하게 권장하고 있으며, 의존성과 관련된 부분들은 "메이븐 중앙" 리파지토리에 배포하고 있다. 대표적인 빌드도구 그레이들와 메이븐에 대해서 설명하고 이후에는 그레이들 을 중심으로 설명을 진행한다.</p>
+<p>스프링 부트 개발팀은 자신들이 제시하는 스프링 부트 권장버전을 따르도록 강력하게 권장하고 있으며, 스프링 부트 및 의존성과 관련된 부분들은 "메이븐 중앙" 리파지토리(<a href="https://repo.maven.apache.org/maven2/">https://repo.maven.apache.org/maven2/</a>)에 배포하고 있다. 대표적인 빌드도구 그레이들과 메이븐에 대해서 설명하고 이후에는 그레이들을 중심으로 설명한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2166,7 +2112,7 @@ Total time: 1.31 secs
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트 개발팀에서는 프로젝트 그레이들와 메이븐 중에서 사용하길 권한다. 다른 빌드도구를 사용하는 경우 제대로 지원하지 못한다고 밝히고 있다(맺고 끊고가 분명해서 마음에 든다).</p>
+<p>스프링 부트 개발팀에서는 프로젝트 빌드도구로 그레이들과 메이븐중에서 사용하길 권한다. 다른 빌드도구를 사용하는 경우 제대로 지원하지 못한다고 밝히고 있다(맺고 끊고가 분명해서 마음에 든다).</p>
 </div>
 </td>
 </tr>
@@ -2192,7 +2138,7 @@ Total time: 1.31 secs
 </table>
 </div>
 <div class="paragraph">
-<p>선별된 목록에는 스프링 부트와 함께 사용할 수있는 모든 스프링 모듈과 서드파티(3rd party) 라이브러리 목록이 포함되어 있다. <code>spring-boot-parent</code> 프로젝트에는 <code>spring-boot-dependencies</code>가 부모프로젝트로 정의되어 있다.</p>
+<p>선별된 목록에는 스프링 부트와 함께 사용할 수 있는 모든 스프링 모듈과 서드파티(3rd party) 라이브러리 목록이 포함되어 있다. <code>spring-boot-parent</code> 프로젝트에는 <code>spring-boot-dependencies</code>가 부모프로젝트로 정의되어 있다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>spring-boot-parent/pom.xml</code> 중 일부</div>
@@ -2217,10 +2163,10 @@ Total time: 1.31 secs
 </ol>
 </div>
 <div class="paragraph">
-<p><code>spring-boot-dependencies</code> 프로젝트 <code>pom.xml</code>을 살펴보면 <code>&lt;properties&gt;..&lt;/properties&gt;</code> 에는 스프링 부트에서 사용하는 의존성 라이브러리 버전만 정의되어 있는 것을 확인할 수 있다.</p>
+<p><code>spring-boot-dependencies</code> 프로젝트 <code>pom.xml</code>을 살펴보면 <code>&lt;properties&gt;..&lt;/properties&gt;</code> 에는 스프링 부트에서 사용하는 의존성 라이브러리 버전만 정의되어 있다.</p>
 </div>
 <div class="paragraph">
-<p>그레이들의 경우에는 <code>$ ./gradlew dependencies</code> 명령을 통해서 그레이들 태스크 <code>compileJava</code>와 <code>test</code>가 실행될 때 구성하는 의존성 관계를 확인할 수 있다.</p>
+<p>그레이들의 경우에는 <code>$ ./gradlew dependencies</code> 명령을 통해서 그레이들 태스크 <code>compileJava</code>와 <code>test</code>가 실행될 때 구성하는 의존관계를 확인할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="title">그레이들 :: Java 플러그인 의존성 구성(<a href="https://goo.gl/PIDuVX" class="bare">https://goo.gl/PIDuVX</a>)</div>
@@ -2291,7 +2237,7 @@ Total time: 4.04 secs</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>영상: <a href="https://youtu.be/JUHgcvkfHDQ">프로젝트 의존성 계층 확인하기</a></p>
+<p>영상: <a href="https://youtu.be/JUHgcvkfHDQ">프로젝트 의존성 라이브러리 의존관계 확인하기(https://youtu.be/JUHgcvkfHDQ)</a></p>
 </li>
 </ul>
 </div>
@@ -2317,7 +2263,7 @@ Total time: 4.04 secs</code></pre>
 <div class="sect3">
 <h4 id="maven">2.1.2. 메이븐</h4>
 <div class="paragraph">
-<p>메이븐 사용자는 <code>spring-boot-starter-parent</code> 프로젝트를 상속받아 기본값을 얻어올 수 있다. 상위 프로젝트는 다음과 같은 기능을 제공한다:</p>
+<p>메이븐 사용자는 <code>spring-boot-starter-parent</code> 프로젝트를 상속받아 스프링 부트 기본값을 얻어올 수 있다. 상위 프로젝트는 다음과 같은 기능을 제공한다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2368,14 +2314,14 @@ Total time: 4.04 secs</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트와 관련된 버전에 대해서는 여기에서 사용자가 원하는 대로 선언하면 된다.  이후에 <code>&lt;dependencies&gt;</code> 영역에 스타터를 추가할 때는 버전을 생략해도 <code>spring-boot-starter-parent</code>에 사전에 정의된 버전이 적용된다.</p>
+<p>스프링 부트와 관련된 버전에 대해서는 여기에서 사용자가 원하는 대로 선언하면 된다.  이후에 <code>&lt;dependencies&gt;</code> 영역에 스타터를 추가할 때는 버전을 생략해도 <code>spring-boot-starter-parent</code>에 사전 정의된 버전이 적용된다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>프로젝트에서 사용하는 라이브러리들에 대한 의존성을 사전에 정의된 것과는 다른 버전을 정의할 수도 있다. 예를 들어, 정식버전은 아니지만 'Service Release&#8217;된 스프링 Data release train 을 사용하고 싶다면 다음과 같이 <code>pom.xml</code>에 추가하면 된다.</p>
+<p>프로젝트에서 사용하는 사전정의된 의존성 라이브러리 버전을 변경할 수 있다. 예를 들어, 정식버전은 아니지만 'Service Release&#8217;된 스프링 Data release train 을 사용하고 싶다면 다음과 같이 <code>pom.xml</code>에 추가하면 된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2395,7 +2341,7 @@ Total time: 4.04 secs</code></pre>
 <p>'Release Train'</p>
 </div>
 <div class="paragraph">
-<p>스프링 데이터(Spring Data)는 서로 다른 출시주기를 가지는 독립적인 프로젝트로 구성된 포괄적 프로젝트다. 이 포트폴리오를 관리하기 위해 BOM은 프로젝트별로 설정되어 있는 종속성 세트와 함께 게시된다. 'Release Train&#8217;는 하위 프로젝트와의 혼동을 피하기 위해 버전이 아닌 이름을 사용한다. 사용되는 이름은 유명한 컴퓨터 과학자 및 소프트웨어 개발자의 이름을 알파벳순(정렬을 위해)이다. 프로젝트의 주요 출시시점이 되거나 모든 사용자가 사용할 법한 중대한 버그가 있는 경우 'Release Train&#8217;은 '-SRX&#8217;로 끝나는 이름의 'Service Release&#8217;를 푸시한다. 보다 자세한 내용은 <a href="http://projects.spring.io/spring-data/">Spring Data#'Release Train'</a>부분을  참조하기 바란다.</p>
+<p>스프링 데이터(Spring Data)는 서로 다른 출시주기를 가지는 독립적인 프로젝트로 구성된 포괄적 프로젝트다. 이 포트폴리오를 관리하기 위해 BOM은 프로젝트별로 설정되어 있는 종속성 세트와 함께 게시된다. 'Release Train&#8217;는 하위 프로젝트와의 혼동을 피하기 위해 버전이 아닌 이름을 사용한다. 사용되는 이름은 유명한 컴퓨터 과학자 및 소프트웨어 개발자의 이름을 알파벳순(정렬을 위해)이다. 프로젝트의 주요 출시시점이 되거나 모든 사용자가 사용할 법한 중대한 버그가 있는 경우 'Release Train&#8217;은 '-SRX&#8217;로 끝나는 이름의 'Service Release&#8217;를 푸시한다. 보다 자세한 내용은 <a href="http://projects.spring.io/spring-data/">http://projects.spring.io/spring-data</a>에서 'Release Train&#8217;부분을 찾아보기 바란다.</p>
 </div>
 </td>
 </tr>
@@ -2409,7 +2355,7 @@ Total time: 4.04 secs</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>지원하는 속성들에 대해서 궁금하다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/pom.xml"><code>spring-boot-dependencies</code>(https://goo.gl/hMWdAa|) pom</a> 을 살펴보자.</p>
+<p>지원하는 속성들에 대해서 궁금하다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/pom.xml"><code>spring-boot-dependencies</code>(https://goo.gl/hMWdAa) pom</a> 을 살펴보자.</p>
 </div>
 </td>
 </tr>
@@ -2565,19 +2511,25 @@ dependencies {
 <div class="sect3">
 <h4 id="starter-poms">2.1.7. 스타터(Starter)</h4>
 <div class="paragraph">
-<p><strong>스타터</strong>는 애플리케이션이 이용할 수 있는 <strong>의존성을 기술하고 있는 집합체</strong>다. 필요한 기능을 가진 의존성 라이브러리를 모두 기술할 필요없이 필요한 의존성 라이브러리를 한번에 담을 수 있다. 예를 들자면, 스프링과 데이터베이스 접속을 위한 JPA을 사용하고 싶다면, 프로젝트 빌드스크립트(<code>build.gradle</code> or <code>pom.xml</code>) <code>spring-boot-starter-data-jpa</code>에 대한 의존성을 추가하고 프로젝트를 갱신하면 이와 관련된 별다른 구성을 하지 않아도 바로 사용할 수 있다.<br>
-스타터는 일관성있게 지원되는  의존성 라이브러리 세트를 제공하여 기능을 구현하는데 필요한 의존성 라이브러리 목록을 포함하고 있다.</p>
+<p><strong>스타터</strong>는 애플리케이션이 이용할 수 있는 <strong>의존성을 기술하고 있는 집합체</strong>다. 필요한 기능을 가진 의존성 라이브러리를 모두 기술하지 않아도 관련된 의존성 라이브러리를 한번에 담을 수 있다. 예를 들어, Spring Data JPA를 사용하고 싶다면, 프로젝트 빌드 스크립트(<code>build.gradle</code> or <code>pom.xml</code>)에 <code>spring-boot-starter-data-jpa</code> 의존성을 추가하고 의존성 관리를 갱신하면 DataSource와 스프링에 대한 구성을 하지 않아도 바로 사용할 수 있다.<br>
+스타터는 기능을 구현하는데 필요한 의존성 라이브러리 목록을 일관성있게 제공한다.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">스타터 이름 설명</div>
 <div class="paragraph">
-<p><strong>공식</strong> 스타터는 동일한 작명방식(네이밍 패턴, naming pattern)을 따른다; <code>spring-boot-starter-<strong></code>, <code></strong></code> 는 특정한 기능 유형을 정의한다. 이 작명구조는 필요한 starter 를 쉽게 찾을 수 있도록 해준다. 많은 IDE 의 메이븐 통합기능을 통해 이름으로 의존성을 검색가능하다. 예를 들어, 이클립스 혹은 STS 에 플러그인을 설치하면, POM 에디터에서 "spring-boot-starter"를 입력한 후 자동완성기능을 이용하면 목록에서 원하는 항목을 검색할 수 있다.</p>
+<p><strong>공식</strong> 스타터는 동일한 작명방식(네이밍 패턴, naming pattern)을 따른다.</p>
+</div>
+<div class="paragraph">
+<p><code>spring-boot-starter-*</code></p>
+</div>
+<div class="paragraph">
+<p><code>*</code> 는 특정한 기능 유형을 정의한다. 이 작명구조는 필요한 starter 를 쉽게 찾을 수 있도록 해준다. 많은 IDE 의 메이븐 통합기능을 통해 이름으로 의존성을 검색가능하다. 예를 들어, 이클립스 혹은 STS 에 플러그인을 설치하면, POM 에디터에서 "spring-boot-starter"를 입력한 후 자동완성기능을 이용하면 목록에서 원하는 항목을 검색할 수 있다.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>영상: <a href="https://youtu.be/bLBIONI9OBw">pom.xml 에서 starter 자동완성 찾기</a></p>
+<p>영상: <a href="https://youtu.be/bLBIONI9OBw">pom.xml 에서 starter 자동완성 찾기(https://youtu.be/bLBIONI9OBw)</a></p>
 </li>
 </ul>
 </div>
@@ -3781,7 +3733,7 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 <p><code>banner.txt</code> 파일 내에 다음과 같은 위치변환자를 사용수 있다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. 배너 변수</caption>
+<caption class="title">Table 2. 배너 변수</caption>
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4149,12 +4101,19 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
     <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
         SpringApplication app = <span class="keyword">new</span> SpringApplication(BootSpringBootApplication.class);
         app.addListeners(<span class="keyword">new</span> ApplicationPidFileWriter());
-        <span class="comment">//app.setWebEnvironment(false);</span>
+        <span class="comment">//app.setWebEnvironment(false); </span><b class="conum">(1)</b>
         app.setWebApplicationType(WebApplicationType.SERVLET);
         app.run(args);
     }
 }</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>2.0.0.RELEASE 에서 제외되었다.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><code>setApplicationContextClass(…​)</code>를 호출하는 방식을 이용하면 완벽하게 <code>ApplicationContext</code> 타입을 제어하는 것이 가능하다.</p>
@@ -12593,7 +12552,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="howto-embedded-servlet-containers">7.3. 내장서블릿 컨테이너</h3>
+<h3 id="howto-embedded-servlet-containers">7.3. 내장 서블릿 컨테이너</h3>
 <div class="sect3">
 <h4 id="howto-add-a-servlet-filter-or-listener">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</h4>
 <div class="paragraph">
@@ -12717,17 +12676,7 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 <div class="listingblock">
 <div class="title"><code>@WebFilter</code> 예제</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">java.io.IOException</span>;
-
-<span class="keyword">import</span> <span class="include">javax.servlet.Filter</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.FilterChain</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.FilterConfig</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.ServletException</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.ServletRequest</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.ServletResponse</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.annotation.WebFilter</span>;
-
-<span class="annotation">@WebFilter</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@WebFilter</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">HelloFilter</span> <span class="directive">implements</span> <span class="predefined-type">Filter</span> {
 
   <span class="comment">//init(FilterConfig filterConfig) 생략</span>
@@ -15235,7 +15184,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.2.1<br>
-Last updated 2018-01-29 11:01:19 KST
+Last updated 2018-03-06 21:33:31 KST
 </div>
 </div>
 </body>
