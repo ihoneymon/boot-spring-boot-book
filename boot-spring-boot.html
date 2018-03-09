@@ -674,7 +674,9 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#boot-features-security">3.6. 보안(Security)</a>
 <ul class="sectlevel3">
-<li><a href="#boot-features-actuator-security">3.6.1. 액츄에이터 보안(<code>Actuator Security</code>)</a></li>
+<li><a href="#boot-features-security-mvc">3.6.1. MVC 보안</a></li>
+<li><a href="#boot-features-security-webflux">3.6.2. WebFlux 보안</a></li>
+<li><a href="#boot-features-security-actuator">3.6.3. 액츄에이터 보안(<code>Actuator Security</code>)</a></li>
 </ul>
 </li>
 <li><a href="#boot-features-sql">3.7. SQL 데이터베이스 이용</a>
@@ -699,7 +701,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_supported_cache_providers">3.9.1. 지원하는 캐시 제공자(<code>Provider</code>)</a></li>
 </ul>
 </li>
-<li><a href="#boot-features-restclient">3.10. <code>RestTemplate</code>를 이용한 <strong>REST</strong> 서비스 호출</a>
+<li><a href="#boot-features-restclient">3.10. <code>RestTemplate</code>을 이용한 <strong>REST</strong> 서비스 호출</a>
 <ul class="sectlevel3">
 <li><a href="#boot-features-restclient-customization">3.10.1. <code>RestTemplate</code> 재정의</a></li>
 </ul>
@@ -726,7 +728,8 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#boot-features-custom-starter">3.15.4. 스타터 직접 생성하기</a></li>
 </ul>
 </li>
-<li><a href="#다음-읽을꺼리-3">3.16. 다음 읽을꺼리</a></li>
+<li><a href="#boot-features-kotlin">3.16. 코틀린(코틀린) 지원</a></li>
+<li><a href="#다음-읽을꺼리-3">3.17. 다음 읽을꺼리</a></li>
 </ul>
 </li>
 <li><a href="#chap04">4. '스프링 부트' 출시준비: 액츄에이터</a>
@@ -1686,7 +1689,7 @@ IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 <p><code>h2</code>:: 로컬 개발환경에서 손쉽게 사용할 수 있는 파일형 데이터베이스. 개발 및 운영 단계에서는 다른 데이터베이스로 변경</p>
 </li>
 <li>
-<p><code>lombok</code>::<code>@Getter</code>, <code>@Setter</code> 애너테이션를 통해 Getter/Setter 메서드를 손쉽게 생성가능</p>
+<p><code>lombok</code>::<code>@Getter</code>, <code>@Setter</code> 애너테이션을 통해 Getter/Setter 메서드를 손쉽게 생성가능</p>
 </li>
 <li>
 <p><code>thymeleaf</code>:: 스프링에서 지속적으로 지원하고 있는 템플릿 엔진</p>
@@ -1825,15 +1828,15 @@ IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 <div class="title"><code>boot-spring-boot.zip</code>파일 안에 있는 <code>build.gradle</code>내용</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">buildscript {
-        ext {
-                springBootVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.0.0.RELEASE</span><span class="delimiter">'</span></span>
-        }
-        repositories {
-                mavenCentral()
-        }
-        dependencies {
-                classpath(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-gradle-plugin:</span><span class="inline"><span class="inline-delimiter">${</span>springBootVersion<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
-        }
+    ext {
+        springBootVersion = <span class="string"><span class="delimiter">'</span><span class="content">2.0.0.RELEASE</span><span class="delimiter">'</span></span>
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-gradle-plugin:</span><span class="inline"><span class="inline-delimiter">${</span>springBootVersion<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
+    }
 }
 
 apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">java</span><span class="delimiter">'</span></span>
@@ -1846,15 +1849,15 @@ version = <span class="string"><span class="delimiter">'</span><span class="cont
 sourceCompatibility = <span class="float">1.8</span>
 
 repositories {
-        mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-        compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-data-jpa</span><span class="delimiter">'</span></span>)
-        compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-web</span><span class="delimiter">'</span></span>)
-        runtime(<span class="string"><span class="delimiter">'</span><span class="content">com.h2database:h2</span><span class="delimiter">'</span></span>)
-        compileOnly(<span class="string"><span class="delimiter">'</span><span class="content">org.projectlombok:lombok</span><span class="delimiter">'</span></span>)
-        testCompile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-test</span><span class="delimiter">'</span></span>)
+    compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-data-jpa</span><span class="delimiter">'</span></span>)
+    compile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-web</span><span class="delimiter">'</span></span>)
+    runtime(<span class="string"><span class="delimiter">'</span><span class="content">com.h2database:h2</span><span class="delimiter">'</span></span>)
+    compileOnly(<span class="string"><span class="delimiter">'</span><span class="content">org.projectlombok:lombok</span><span class="delimiter">'</span></span>)
+    testCompile(<span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-test</span><span class="delimiter">'</span></span>)
 }</code></pre>
 </div>
 </div>
@@ -2851,7 +2854,7 @@ Total time: 7.554 secs</code></pre>
 <div class="sect3">
 <h4 id="구성클래스-불러오기">2.3.1. 구성클래스 불러오기</h4>
 <div class="paragraph">
-<p>굳이 모든 것을 <code>@Configuration</code>이 선언된 하나의 클래스에 몰아 넣을 필요는 없다. <code>@Import</code> 애너테이션 을 이용하여 추가적인 구성 클래스를 불러와 사용할 수 있다. 이에 대한 대안으로 <code>@ComponentScan</code>을 사용하면  <code>@Configuration</code>를 포함한 모든 모든 스프링 컴포넌트를 사용할 수 있다.</p>
+<p>굳이 모든 것을 <code>@Configuration</code>이 선언된 하나의 클래스에 몰아 넣을 필요는 없다. <code>@Import</code> 애너테이션 을 이용하여 추가적인 구성 클래스를 불러와 사용할 수 있다. 이에 대한 대안으로 <code>@ComponentScan</code>을 사용하면  <code>@Configuration</code>을 포함한 모든 모든 스프링 컴포넌트를 사용할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>@Import</code>을 이용해서 <code>@Configuration</code> 클래스 불러오기</div>
@@ -2947,7 +2950,7 @@ Total time: 7.554 secs</code></pre>
 <span class="annotation">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class)
 <span class="annotation">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="integer">10</span>)
 <span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class,
-                ValidationAutoConfiguration.class })
+        ValidationAutoConfiguration.class })
 <span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span> {
   <span class="comment">// 생략</span>
 }</code></pre>
@@ -2980,7 +2983,7 @@ Positive matches:
   // 중략
 
    WebMvcAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
       - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)
       - @ConditionalOnMissingBean (types: org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; SearchStrategy: all) did not find any beans (OnBeanCondition)
 
@@ -3179,7 +3182,7 @@ Unconditional classes:
 <p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/SpringBootApplication.java"><code>@SpringBootApplication</code>(https://goo.gl/RguXcz)</a>은 <code>@EnableAutoConfiguration</code> 와 <code>@ComponentScan</code> 의 속성을 재정의하는 앨리어스를 제공한다. 이 애너테이션은 스프링 부트 <a href="https://goo.gl/UveDGP">1.2.0.RELEASE(https://goo.gl/UveDGP)</a> 에서 추가됐다. <a href="https://github.com/spring-projects/spring-boot/blob/1.4.x/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java">1.4 버전(https://goo.gl/Bzv2E5)</a>에서는 <code>@SpringBootConfiguration</code>이 <code>@Configuration</code>을 대체했다.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java"><code>@SpringBootConfiguration</code>(https://goo.gl/UsYvAL)</a>는 스프링 부트 애플리케이션에서 <code>@Configuration</code>를 사용한다고 나타낸다. 테스트에서 <code>@Configuration</code> 대안으로 사용하여 자동구성을 찾을 수 있다. 스프링 부트 애플리케이션에서는 <strong>하나(<code>@SpringBootApplication</code>에 포함되어 있음)만 사용해야 한다</strong>.</p>
+<p><a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java"><code>@SpringBootConfiguration</code>(https://goo.gl/UsYvAL)</a>는 스프링 부트 애플리케이션에서 <code>@Configuration</code>을 사용한다고 나타낸다. 테스트에서 <code>@Configuration</code> 대안으로 사용하여 자동구성을 찾을 수 있다. 스프링 부트 애플리케이션에서는 <strong>하나(<code>@SpringBootApplication</code>에 포함되어 있음)만 사용해야 한다</strong>.</p>
 </div>
 </td>
 </tr>
@@ -3687,7 +3690,7 @@ Unconditional classes:
 </div>
 </div>
 <div class="paragraph">
-<p>애플리케이션이 시작되면서 보여주는 <code>INFO</code> 로깅 메시지로 보여주는 것은 애플리케이션과 관련된 상세한 정보를 포함하고 있다.</p>
+<p>애플리케이션이 시작되면서 보여주는 <code>INFO</code> 로깅 메시지는 애플리케이션과 관련된 상세한 정보를 포함하고 있다.</p>
 </div>
 <div class="sect3">
 <h4 id="boot-features-startup-failure">3.1.1. 구동 실패</h4>
@@ -3725,7 +3728,7 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 </table>
 </div>
 <div class="paragraph">
-<p>실패를 알려줄 실패분석기가 없다하더라도, 자동구성 보고서를 통해 어디가 잘못되었는지 살펴볼 수 있어 유용하다. 이를 위해 <code>org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer</code> 와 관련된 <code>debug</code> 속성을 활성화하면 된다.</p>
+<p>실패를 알려줄 실패분석기가 없다하더라도, 자동구성 보고서를 통해 어디가 잘못되었는지 살펴볼 수 있어 유용하다. 이를 위해 <code>org.springframework.boot.autoconfigure.logging.org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener</code> 와 관련된 <code>debug</code> 속성을 활성화하면 된다.</p>
 </div>
 <div class="paragraph">
 <p>예를 들어, <code>java -jar</code> 명령으로 애플리케이션 실행하면 <code>debug</code> 속성을 활성화할 수 있다.</p>
@@ -3777,7 +3780,7 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 </div>
 </div>
 <div class="paragraph">
-<p><code>banner.txt</code>파일을 클래스패스 혹은 특정 위치에 두고 <code>banner.location</code>로 정의하면 된다. 기본 인코딩(<code>UTF-8</code>)을 사용하지 않고 별도의 인코딩을 사용할 경우에는 <code>banner.charset</code>을 설정한다. 텍스트 파일 외에도 <code>banner.gif</code> <code>banner.jpg</code> 혹은 <code>banner.png</code> 이미지를 클래스패스 혹은 <code>banner.location</code> 속성으로 정의한 곳에 위치시키면 이미지 파일을 아스키(ASCII) 형식으로 텍스트 배너처럼 출력한다.</p>
+<p><code>banner.txt</code>파일을 클래스패스 혹은 특정 위치에 두고 <code>banner.location</code>로 정의하면 된다. 기본 인코딩(<code>UTF-8</code>)을 사용하지 않고 별도의 인코딩을 사용할 경우에는 <code>banner.charset</code>을 설정한다. 텍스트 파일 외에도 <code>banner.gif</code>, <code>banner.jpg</code> 혹은 <code>banner.png</code> 이미지를 클래스패스 혹은 <code>banner.location</code> 속성으로 정의한 곳에 위치시키면 이미지 파일을 아스키(ASCII) 형식으로 텍스트 배너처럼 출력한다.</p>
 </div>
 <div class="paragraph">
 <p><code>banner.txt</code> 파일 내에 다음과 같은 위치변환자를 사용수 있다:</p>
@@ -3834,13 +3837,11 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 <div class="listingblock">
 <div class="title"><code>build.gradle</code></div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">jar {
-    baseName = <span class="string"><span class="delimiter">'</span><span class="content">boot-spring-boot</span><span class="delimiter">'</span></span>
-    version = <span class="string"><span class="delimiter">'</span><span class="content">1.0.0.RELEASE</span><span class="delimiter">'</span></span>
-    manifest {   <b class="conum">(1)</b>
-        attributes(<span class="string"><span class="delimiter">&quot;</span><span class="content">Implementation-Title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>jar.baseName<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>,
-                   <span class="string"><span class="delimiter">&quot;</span><span class="content">Implementation-Version</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>jar.version<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
-    }
+<pre class="CodeRay highlight"><code data-lang="groovy">bootJar {
+  manifest {   <b class="conum">(1)</b>
+      attributes(<span class="string"><span class="delimiter">&quot;</span><span class="content">Implementation-Title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>jar.baseName<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>,
+                 <span class="string"><span class="delimiter">&quot;</span><span class="content">Implementation-Version</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">${</span>jar.version<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>)
+  }
 }</code></pre>
 </div>
 </div>
@@ -3917,7 +3918,7 @@ Main-Class: org.springframework.boot.loader.JarLauncher</code></pre>
 <div class="sect3">
 <h4 id="boot-features-customization-spring-application">3.1.3. <code>SpringApplication</code> 재정의</h4>
 <div class="paragraph">
-<p><code>SpringApplication</code> 은 기본적인 설정이 마음에 들지 않을 때는 로컬 인스턴스를 만들면서 재정의할 수 있다. 예를 들어, 배너를 끄려면 다음과 같이 작성하면 된다:</p>
+<p><code>SpringApplication</code> 기본설정이 마음에 들지 않을 때는 로컬 인스턴스를 만들면서 재정의할 수 있다. 예를 들어, 배너를 끄려면 다음과 같이 작성하면 된다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3948,7 +3949,7 @@ Main-Class: org.springframework.boot.loader.JarLauncher</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>SpringApplication</code>가 전달하는 생성인자들은 스프링 빈을 위한 구성요소다. 대부분 <code>@Configuration</code>에서 참조하는 편이지만, XML 구성을 참조하거나 패키지를 스캔할 수도 있다.</p>
+<p><code>SpringApplication</code>이 전달하는 생성인자들은 스프링 빈을 위한 구성요소다. 대부분 <code>@Configuration</code>에서 참조하는 편이지만, XML 구성을 참조하거나 패키지를 스캔할 수도 있다.</p>
 </div>
 </td>
 </tr>
@@ -3961,7 +3962,7 @@ Main-Class: org.springframework.boot.loader.JarLauncher</code></pre>
 <div class="sect3">
 <h4 id="boot-features-fluent-builder-api">3.1.4. 유연한(<code>Fluent</code>) 빌더 API</h4>
 <div class="paragraph">
-<p><code>ApplicationContext</code> 계층(hierarchy, 부모/자식 관계의 다중 컨텍스트)을 구성해야하거나, 유연한(<code>Fluent</code>)형태의 빌더 API를 선호한다면 <code>SpringApplicationBuilder</code>를 사용할 수 있다. <code>SpringApplicationBuilder</code>는 <code>parent</code>와 <code>child</code> 메서드를 포함하고 있어 계층을 구성하거나 여러 메서드를 연이어 호출수 있다. 예를 들어:</p>
+<p><code>ApplicationContext</code> 계층(hierarchy, 부모/자식 관계의 다중 컨텍스트)을 구성하거나 유연한(<code>Fluent</code>)형태의 빌더 API를 선호한다면 <code>SpringApplicationBuilder</code>를 사용할 수 있다. <code>SpringApplicationBuilder</code>는 <code>parent</code>와 <code>child</code> 메서드를 포함하고 있어 계층을 구성하거나 여러 메서드를 연이어 호출수 있다. 예를 들어:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3996,7 +3997,7 @@ Main-Class: org.springframework.boot.loader.JarLauncher</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>ApplicationContext</code> 계층을 생성할 때 몇가지 제약이 있다. 예를 들자면, 웹컴포넌트는 하위 컨텍스트 내에 파함되어야 하고 부모와 자식 컨텍스트에는 동일한 <code>Environment</code>가 사용된다.  보다 자세한 내용은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/builder/SpringApplicationBuilder.java"><code>SpringApplicationBuilder</code>(https://goo.gl/5pgE8u)</a> <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/builder/SpringApplicationBuilder.html">Javadoc(https://goo.gl/jcDZBs)</a> 에서 살펴볼 수 있다. 꼭 살펴보길 바란다.</p>
+<p><code>ApplicationContext</code> 계층을 생성할 때 몇가지 제약이 있다. 예를 들자면, 웹컴포넌트는 하위 컨텍스트 내에 포함되어야 하고 부모와 자식 컨텍스트에는 동일한 <code>Environment</code>가 사용된다.  보다 자세한 내용은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/builder/SpringApplicationBuilder.java"><code>SpringApplicationBuilder</code>(https://goo.gl/5pgE8u)</a> <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/builder/SpringApplicationBuilder.html">Javadoc(https://goo.gl/jcDZBs)</a> 에서 살펴볼 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -4016,7 +4017,7 @@ Main-Class: org.springframework.boot.loader.JarLauncher</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>몇 가지 이벤트는 <code>ApplicationContext</code> 전에 발생하기 때문에 <code>@Bean</code> 처럼 리스너로 등록할 수 없다. 대신 <code>SpringApplication.addListeners(…​)</code> 혹은 <code>SpringApplicationBuilder.listeners(…​)</code> 메서드를 이용해서 등록할 수 있다. 만약에 리스너가 자동으로 등록되길 바란다면 프로젝트 내에 <code>META-INF/spring.factories</code> 파일을 추가하고 <code>org.springframework.context.ApplicationListener</code>를 키로 해서 리스너들을 참조하도록 하면 된다.</p>
+<p>몇 가지 이벤트는 <code>ApplicationContext</code>가 생성되기 전에 발생하기 때문에 <code>@Bean</code> 과 같은 컴포넌트를 리스너로 등록할 수 없다. 대신 <code>SpringApplication.addListeners(…​)</code> 혹은 <code>SpringApplicationBuilder.listeners(…​)</code> 메서드를 이용해서 등록할 수 있다. 만약에 리스너가 자동으로 등록되길 바란다면 프로젝트 내에 <code>META-INF/spring.factories</code> 파일을 추가하고 <code>org.springframework.context.ApplicationListener</code>를 키로 해서 리스너들을 참조하도록 하면 된다.</p>
 </div>
 </td>
 </tr>
@@ -4139,7 +4140,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <div class="sect3">
 <h4 id="boot-features-web-environment">3.1.6. 웹 환경</h4>
 <div class="paragraph">
-<p><code>SpringApplication</code>은 사용자에게 유용한 <code>ApplicationContext</code> 를 만드려한다. 기본적으로, 웹애플리케이션이나 일반애플리케이션을 개발하는지에 따라 <code>AnnotationConfigApplicationContext</code> 혹은 <code>AnnotationConfigEmbeddedWebApplicationContext</code>을 사용한다.</p>
+<p><code>SpringApplication</code>은 사용자에게 유용한 <code>ApplicationContext</code> 를 만드려한다. 기본적으로, 웹애플리케이션 여부에 따라서 <code>AnnotationConfigApplicationContext</code> 혹은 <code>AnnotationConfigServletWebServerApplicationContext</code>을 사용한다.</p>
 </div>
 <div class="paragraph">
 <p>'웹 환경&#8217;을 구분짓는 방법은 정말 간단하다(몇 가지 클래스를 통해 식별). 웹환경을 수동으로 설정하고자 한다면 <code>setWebApplicationType(WebApplicationType webApplicationType)</code>로 선언하면 된다:</p>
@@ -4166,7 +4167,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p><code>setApplicationContextClass(…​)</code>를 호출하는 방식을 이용하면 완벽하게 <code>ApplicationContext</code> 타입을 제어하는 것이 가능하다.</p>
+<p><code>setApplicationContextClass(…​)</code>를 호출하면 <code>ApplicationContext</code> 타입을 완벽하게 제어하는 것도 가능하다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4186,7 +4187,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <div class="sect3">
 <h4 id="boot-features-application-arguments">3.1.7. 애플리케이션 실행인자 접근</h4>
 <div class="paragraph">
-<p>애플리케이션 구동시 <code>SpringApplication.run(…​)</code>에 전달되는 실행인자에 접근하고 싶을 때는 <code>org.springframework.boot.ApplicationArguments</code> 빈을 이용하면 된다. <code>ApplicationArguments</code> 인터페이스는 원본 <code>String[]</code> 인자를 <code>option</code>과 <code>non-option</code> 인자로 분류하여 접근할 수 있는 기능을 제공한다.</p>
+<p>애플리케이션 구동시 <code>SpringApplication.run(…​)</code>으로 전달되는 실행인자에 접근하고 싶을 때는 <code>org.springframework.boot.ApplicationArguments</code> 빈을 이용하면 된다. <code>ApplicationArguments</code> 인터페이스는 원본 <code>String[]</code> 인자를 <code>option</code>과 <code>non-option</code> 인자로 분류하여 접근할 수 있는 기능을 제공한다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4206,7 +4207,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>위와 같이 작성한 후 <code>java -jar boot-spring-boot-1.0.0.RELEASE.jar --debug logfile.txt</code> 으로 실행하면 출력되는 로그 중 다음과 같이 출력되는 것을 발견할 수 있다.</p>
+<p>위와 같이 작성한 후 <code>java -jar boot-spring-boot-1.0.0.RELEASE.jar --debug logfile.txt</code>으로 실행하면 출력되는 로그 중 다음과 같이 출력되는 것을 발견할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4232,7 +4233,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <div class="sect3">
 <h4 id="boot-features-command-line-runner">3.1.8. <code>CommandLineRunner</code> 혹은 <code>ApplicationRunner</code> 사용하기</h4>
 <div class="paragraph">
-<p>스프링 부트 애플리케이션 이 실행될 때 <code>SpringApplication</code> 와 함께 실행(<code>run</code>)되도록  빈을 정의할 수 있는 인터터페이스가 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html"><code>CommandLineRunner</code>(https://goo.gl/xR9u9r)</a> 과 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ApplicationRunner.html"><code>ApplicationRunner</code>(https://goo.gl/9iCJEy)</a> 이다. 둘의 차이점이라면 <code>CommandLineRunner</code>는 애플리케이션 실행인자를 문자열로 받는데 반해 <code>ApplicationRunner</code>는 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ApplicationArguments.html"><code>ApplicationArguments</code>(https://goo.gl/BMUW4V)</a> 배열로 받는다는 것이다.</p>
+<p>스프링 부트 애플리케이션이 실행될 때 <code>SpringApplication</code>과 함께 실행(<code>run</code>)되도록  빈을 정의할 수 있는 인터터페이스가 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/CommandLineRunner.html"><code>CommandLineRunner</code>(https://goo.gl/xR9u9r)</a>와 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ApplicationRunner.html"><code>ApplicationRunner</code>(https://goo.gl/9iCJEy)</a> 이다. 둘의 차이점이라면 <code>CommandLineRunner</code>는 애플리케이션 실행인자를 문자열로 받는데 반해 <code>ApplicationRunner</code>는 <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ApplicationArguments.html"><code>ApplicationArguments</code>(https://goo.gl/BMUW4V)</a> 배열로 받는다는 것이다.</p>
 </div>
 <div class="paragraph">
 <p>이 인터페이스의 용도는 <strong>애플리케이션 이 실행될 때 반드시 한번 실행되어야 하는 기능을 구현</strong>하는데 사용할 수 있다. 하나의 컴포넌트로 인식되기 때문에 애플리케이션 컨텍스트를 공유한다.</p>
@@ -4270,7 +4271,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <div class="sect3">
 <h4 id="boot-feature-application-exit">3.1.9. 애플리케이션 종료</h4>
 <div class="paragraph">
-<p><code>SpringApplication</code>는 종료훅(hook)을 통해서 <code>ApplicationContext</code>를 보호하면서 깔끔하게 종료할 수 있다. 표준 스프링 라이프사이클 콜백(<code>DisposableBean</code>를 구현했거나 <code>@PreDestroy</code> 애너테이션를 사용)이 사용된다.</p>
+<p><code>SpringApplication</code>은 종료훅(hook)을 통해서 <code>ApplicationContext</code>를 보호하면서 깔끔하게 종료할 수 있다. 표준 스프링 라이프사이클 콜백(<code>DisposableBean</code>를 구현했거나 <code>@PreDestroy</code> 애너테이션을 사용)이 사용된다.</p>
 </div>
 <div class="paragraph">
 <p>추가적으로 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/ExitCodeGenerator.java"><code>org.springframework.boot.ExitCodeGenerator</code>(https://goo.gl/TnUVvi)</a> 인터페이스를 구현하여 애플리케이션이 종료될 때 지정된 종료 코드를 반환하도록 할 수도 있다.</p>
@@ -4321,22 +4322,22 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <p><code>random.*</code> 속성을 가진 <code>RandomValuePropertySource</code></p>
 </li>
 <li>
-<p>패키징된 jar 외부에서 선언한 "<a href="#boot-features-external-config-profile-specific-properties">프로파일 정의 속성</a>"(<code>application-프로파일.properties</code> 과 YAML 변형)</p>
+<p>패키징된 jar 외부에서 선언한 "<a href="#boot-features-external-config-profile-specific-properties">프로파일 정의 속성</a>"(<code>application-{프로파일}.properties</code> 과 YAML 변형)</p>
 </li>
 <li>
-<p>jar 파일 내부에 있는 "<a href="#boot-features-external-config-profile-specific-properties">프로파일 정의 속성</a>"(<code>application-프로파일.properties</code> 과 YAML 변형)</p>
+<p>jar 파일 내부에 있는 "<a href="#boot-features-external-config-profile-specific-properties">프로파일 정의 속성</a>"(<code>application-{프로파일}.properties</code> 과 YAML 변형)</p>
 </li>
 <li>
-<p>패키징된 jar 외부에서 선언한 애플리케이션 속성들(<code>application-프로파일.properties</code> 과 YAML 변형)</p>
+<p>패키징된 jar 외부에서 선언한 애플리케이션 속성들(<code>application-{프로파일}.properties</code> 과 YAML 변형)</p>
 </li>
 <li>
-<p>jar 파일 내부에 있는 애플리케이션 속성들(<code>application-프로파일.properties</code> 과 YAML 변형)</p>
+<p>jar 파일 내부에 있는 애플리케이션 속성들(<code>application-{프로파일}.properties</code> 과 YAML 변형)</p>
 </li>
 <li>
 <p><code>@Configuration</code> 클래스에 있는 <a href="http://docs.spring.io/spring/docs/5.0.1.RELEASE/javadoc-api/org/springframework/context/annotation/PropertySource.html"><code>@PropertySource</code></a> 애너테이션</p>
 </li>
 <li>
-<p>기본 속성들(<code>SpringApplication.setDefaultProperties</code>을 이용해서 정의한 경우)</p>
+<p>기본 속성들(<code>SpringApplication.setDefaultProperties</code>를 이용해서 정의한 경우)</p>
 </li>
 </ol>
 </div>
@@ -4362,7 +4363,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>애플리케이션 클래스패스 상(jar 파일 안에 있는)에서 <code>application.yml</code> 에 <code>name</code>에 대한 기본값을 선언했다고 가정하자.</p>
+<p>애플리케이션 클래스패스(jar 파일 내)에서 <code>application.yml</code> 에 <code>name</code>에 대한 기본값을 선언했다고 가정하자.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4380,7 +4381,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>커맨드라인 혹은 환경변수에서 JSON 형식으로 속성을 정의하는 <code>SPRING_APPLICATION_JSON</code>를 사용할 수 있다. 유닉스 계열 쉘에서는</p>
+<p>커맨드라인 혹은 환경변수에서 JSON 형식으로 속성을 정의하는 <code>SPRING_APPLICATION_JSON</code>을 사용할 수 있다. 유닉스 계열 쉘에서는</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4388,7 +4389,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>이런 예의 경우 스프링 <code>Environment</code> 에는 <code>foo.bar=spam</code>으로 등록된다. 또한 시스템 변수 <code>spring.application.json</code> 에서도 JSON을 지원한다:</p>
+<p>이런 경우 스프링 <code>Environment</code> 에는 <code>foo.bar=spam</code>으로 등록된다. 또한 시스템 변수 <code>spring.application.json</code>에서도 JSON을 지원한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4508,7 +4509,8 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>현재 디렉토리</strong>는 애플리케이션이 실행되는 위치를 지칭한다.</p>
+<p><strong>현재 디렉토리</strong>는 애플리케이션이 실행되는 위치를 지칭한다.
+최상위 <strong>클래스패스</strong>는 <code>${PROJECT_HOME}/src/main/java</code> 혹은 <code>${PROJECT_HOME}/src/main/resources/</code>를 지칭한다.</p>
 </div>
 </td>
 </tr>
@@ -4532,7 +4534,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>혹시나 <code>application.yml</code> 이라는 구성파일명이 마음에 들지 않는다면 <code>spring.config.name</code>을 이용해서 다른 이름으로 대체할 수 있다. 또한 <code>spring.config.location</code> 속성을 이용해서 특정 위치를 지정할 수 있다(파일이나 디렉토리가 여러 개인 경우에는 쉼표(<code>,</code>)로 구분짓는다).</p>
+<p>혹시나 <code>application.yml</code>이라는 구성파일명이 마음에 들지 않는다면 <code>spring.config.name</code>을 이용해서 다른 이름으로 대체할 수 있다. 또한 <code>spring.config.location</code> 속성을 이용해서 특정 위치를 지정할 수 있다(파일이나 디렉토리가 여러 개인 경우에는 쉼표(<code>,</code>)로 구분짓는다).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4562,7 +4564,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p><code>spring.config.location</code>에 정의된 디렉토리는 <code>/</code>으로 끝나야 한다(그래야 적재되기 전에 프로파일로 정의된 파일을 포함하여 <code>spring.config.name</code>에서 읽어온 파일들이 추가된다). <code>spring.config.location</code> 으로 파일명까지 상세히 정의한 경우에는 '프로파일 변환&#8217;과 '속성 덮어쓰기' 기능 등을 사용할 수 없다.</p>
+<p><code>spring.config.location</code>에 정의된 디렉토리는 <code>/</code>으로 끝나야 한다(그래야 적재되기 전에 프로파일로 정의된 파일을 포함하여 <code>spring.config.name</code>에서 읽어온 파일들이 추가된다). <code>spring.config.location</code>으로 파일명까지 상세히 정의한 경우에는 '프로파일 변환&#8217;과 '속성 덮어쓰기' 기능 등을 사용할 수 없다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4593,7 +4595,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <p><strong>지정된 프로파일 속성파일</strong>은 <code>applicatoin.properties</code>와 <strong>동일한 위치</strong>에 있어야 하며, 지정된 프로파일 속성파일은 패키징된 jar 파일의 내외부 관계없이 다른 비지정 프로파일 속성파일을 대체한다(<code>--spring.profiles.active=프로파일</code> 선언으로 지정된 프로파일이 우선한다).</p>
 </div>
 <div class="paragraph">
-<p>만약 여러 프로파일을 지정하는 경우 "최종승자(last-wins)" 전략이 적용된다. 예를 들자면, <code>spring.profiles.active</code>으로 지정한 프로파일은 <code>SpringApplication</code> API를 통해 구성된 프로파일 다음에 추가되므로 우선순위가 높아진다.</p>
+<p>만약 여러 프로파일을 지정하는 경우 "<strong>최종승자(last-wins)</strong>" 전략이 적용된다. 예를 들자면, <code>spring.profiles.active</code>으로 지정한 프로파일은 <code>SpringApplication</code> API를 통해 구성된 프로파일 다음에 추가되므로 우선순위가 높아진다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4680,7 +4682,7 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <div class="sect4">
 <h5 id="boot-features-external-config-loading-yaml">YAML 적재</h5>
 <div class="paragraph">
-<p>스프링 프레임워크는 YAML 문서 적재에 사용하기 위한 두가지 편의 클래스를 제공한다. <code>YamlPropertiesFactoryBean</code> 는 <code>Properties</code>에 YAML을 적재하고 <code>YamlMapFactoryBean</code>는 <code>Map</code>에 YAML을 적재한다.</p>
+<p>스프링 프레임워크는 YAML 문서 적재에 사용하기 위한 두가지 편의 클래스를 제공한다. <code>YamlPropertiesFactoryBean</code>는 <code>Properties</code>에 YAML을 적재하고 <code>YamlMapFactoryBean</code>는 <code>Map</code>에 YAML을 적재한다.</p>
 </div>
 <div class="paragraph">
 <p>예를 들어, 다음과 같은 YAML 문서가 있다면:</p>
@@ -4728,7 +4730,7 @@ my.servers[1]=honeymon.io</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>스프링 <code>DataBinder</code> 유틸리티(<code>@ConfigurationProperties</code>를 사용)를 사용한 것처럼 속성을 연결할 수 있다. 대상 빈에 <code>java.util.List</code>(혹은 <code>Set</code>) 그리고 설정자(Setter)나 변경가능한 값을 제공하는 것이다. 다음 예에 앞서 작성한 properties 값이 연결된다.</p>
+<p>스프링 <code>DataBinder</code> 유틸리티(<code>@ConfigurationProperties</code> 사용)를 사용한 것처럼 속성을 연결할 수 있다. 대상 빈에 <code>java.util.List</code>(혹은 <code>Set</code>) 그리고 설정자(Setter)나 변경가능한 값을 제공하는 것이다. 다음 예에 앞서 작성한 properties 값이 연결된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4770,7 +4772,7 @@ my.servers[1]=honeymon.io</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="boot-features-external-config-exposing-yaml-to-spring">스프링 Environment 에서 <code>properties</code>처럼 <code>YAML</code>사용하기</h5>
+<h5 id="boot-features-external-config-exposing-yaml-to-spring">스프링 <code>Environment</code>에서 <code>properties</code>처럼 <code>YAML</code>사용하기</h5>
 <div class="paragraph">
 <p><code>YamlPropertySourceLoader</code> 클래스는  스프링 <code>Environment</code>의 <code>PropertySource</code> 처럼 YAML을 사용할 수 있다. 이는 위치변환자 문법과 <code>@Value</code> 애너테이션을 사용하여 YAML 속성에 접근하는 것을 허용한다.</p>
 </div>
@@ -4799,7 +4801,7 @@ my.servers[1]=honeymon.io</code></pre>
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="comment"># default     </span><b class="conum">(1)</b>
 <span class="key">logging</span>:
   <span class="key">level</span>:
-    <span class="key">io.honeymon.springboot.boot</span>: <span class="string"><span class="content">DEBUG</span></span>
+    <span class="key">io.honeymon.boot.springboot</span>: <span class="string"><span class="content">DEBUG</span></span>
 <span class="key">server</span>:
   <span class="key">port</span>: <span class="string"><span class="content">9000</span></span>
 <span class="head"><span class="head">---</span></span>
@@ -4807,7 +4809,7 @@ my.servers[1]=honeymon.io</code></pre>
   <span class="key">profiles</span>: <span class="string"><span class="content">local   </span></span><b class="conum">(2)</b>
 <span class="key">logging</span>:
   <span class="key">level</span>:
-    <span class="key">io.honeymon.springboot.boot</span>: <span class="string"><span class="content">TRACE</span></span>
+    <span class="key">io.honeymon.boot.springboot</span>: <span class="string"><span class="content">TRACE</span></span>
 <span class="head"><span class="head">---</span></span>
 <span class="key">spring</span>:
   <span class="key">profiles</span>: <span class="string"><span class="content">test    </span></span><b class="conum">(3)</b>
@@ -4821,7 +4823,7 @@ my.servers[1]=honeymon.io</code></pre>
   <span class="key">profiles</span>: <span class="string"><span class="content">prod    </span></span><b class="conum">(5)</b>
 <span class="key">logging</span>:
   <span class="key">level</span>:
-    <span class="key">io.honeymon.springboot.boot</span>: <span class="string"><span class="content">INFO</span></span>
+    <span class="key">io.honeymon.boot.springboot</span>: <span class="string"><span class="content">INFO</span></span>
 <span class="key">server</span>:
   <span class="key">port</span>: <span class="string"><span class="content">5000</span></span>  <span class="comment"># AWS Elastic Beanstalk 에서는 5000번을 사용해야한다. 단 SERVER_PORT 로 정의해야 한다.</span>
 <span class="head"><span class="head">---</span></span></code></pre>
@@ -4833,16 +4835,16 @@ my.servers[1]=honeymon.io</code></pre>
 <p>모든 프로파일에 공통적용되는 속성 정의, <strong>프로파일을 별도로 지정하지 않은 경우</strong>(<code>default</code>) 적용됨</p>
 </li>
 <li>
-<p><code>local</code>: <code>server.port</code>는 <code>9000</code> 유지, <code>io.honeymon.springboot.boot</code> 로깅레벨은 <code>TRACE</code> 로 조정</p>
+<p><code>local</code>: <code>server.port</code>는 <code>9000</code> 유지, <code>io.honeymon.boot.springboot</code> 로깅레벨은 <code>TRACE</code> 로 조정</p>
 </li>
 <li>
-<p><code>test</code>: <code>server.port</code>는 <code>8000~9000</code> 사이에서 무작위 부여, <code>io.honeymon.springboot.boot</code> 로깅레벨은 <code>DEBUG</code> 유지</p>
+<p><code>test</code>: <code>server.port</code>는 <code>8000~9000</code> 사이에서 무작위 부여, <code>io.honeymon.boot.springboot</code> 로깅레벨은 <code>DEBUG</code> 유지</p>
 </li>
 <li>
-<p><code>dev</code>: <code>server.port</code>는 <code>9000</code> 유지, <code>io.honeymon.springboot.boot</code> 로깅레벨은 <code>DEBUG</code> 유지</p>
+<p><code>dev</code>: <code>server.port</code>는 <code>9000</code> 유지, <code>io.honeymon.boot.springboot</code> 로깅레벨은 <code>DEBUG</code> 유지</p>
 </li>
 <li>
-<p><code>prd</code>: <code>server.port</code>는 <code>5000</code> 변경, <code>io.honeymon.springboot.boot</code> 로깅레벨은 <code>INFO</code> 유지(운영레벨)</p>
+<p><code>prd</code>: <code>server.port</code>는 <code>5000</code> 변경, <code>io.honeymon.boot.springboot</code> 로깅레벨은 <code>INFO</code> 유지(운영레벨)</p>
 </li>
 </ol>
 </div>
@@ -4952,10 +4954,10 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
 <div class="sect4">
 <h5 id="boot-features-external-config-complex-type-merge">YAML 목록 병합(<code>Merging</code>)</h5>
 <div class="paragraph">
-<p>앞에서 살펴본 "<a href="#boot-features-external-config-loading-yaml">YAML 적재</a>" 것처럼, YAML 컨텐츠는 최종적으로 properties 로 변환된다. 이 과정은 프로파일 에 의해서 결정된다.</p>
+<p>앞에서 살펴본 "<a href="#boot-features-external-config-loading-yaml">YAML 적재</a>" 것처럼, YAML 컨텐츠는 최종적으로 properties 로 변환된다. 이 과정은 프로파일에 의해서 결정된다.</p>
 </div>
 <div class="paragraph">
-<p>예로, <code>MyPojo</code> 객체에는 <code>name</code>과 <code>description</code> 필드가 있으며 기본값은 <code>null</code>이다. <code>ExampleProperties</code>로부터 <code>MyPojo</code> 리스트에 값을 연결해보자.</p>
+<p>예로, <code>MyPojo</code>객체에는 <code>name</code>과 <code>description</code> 필드가 있으며 기본값은 <code>null</code>이다. <code>ExampleProperties</code>로부터 <code>MyPojo</code> 리스트에 값을 연결해보자.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4999,7 +5001,7 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
 </div>
 </div>
 <div class="paragraph">
-<p>만약 <code>dev</code> 프로파일이 활성화되지 않는다면 <code>ExampleProperties#list</code>에는 앞서 정의한 <code>MyPojo</code> 한 개가 포함되어 있다. 만약 <code>dev</code> 프로파일 이어도 한개(<code>name</code>에는 <code>my another name</code>이 있고 <code>description</code>는 <code>null</code>)일 것이다. 이 구성으로는 리스트에 두번째 <code>MyPojo</code> 인스턴스가 추가되지는 않는다.</p>
+<p>만약 <code>dev</code> 프로파일이 활성화되지 않는다면 <code>ExampleProperties#list</code>에는 앞서 정의한 <code>MyPojo</code> 한 개가 포함되어 있다. 만약 <code>dev</code> 프로파일 이어도 한개(<code>name</code>에는 <code>my another name</code>이 있고 <code>description</code>은 <code>null</code>)일 것이다. 이 구성으로는 리스트에 두번째 <code>MyPojo</code> 인스턴스가 추가되지는 않는다.</p>
 </div>
 <div class="paragraph">
 <p>콜렉션은 지정된 다중 프로파일 중에서 가장 우선순위가 높은 것이 사용된다:</p>
@@ -5077,7 +5079,7 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
 <p><code>foo.security.password</code></p>
 </li>
 <li>
-<p><code>foo.security.roles</code> 는 <code>String</code> 으로부터 배열처리된다. 별도로 선언하지 않은 경우에는 <code>USER</code>값만 가지고 있다.</p>
+<p><code>foo.security.roles</code>는 <code>String</code>으로 배열처리된다. 별도로 선언하지 않은 경우에는 <code>USER</code>값만 가지고 있다.</p>
 </li>
 </ol>
 </div>
@@ -5089,7 +5091,7 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
 </td>
 <td class="content">
 <div class="paragraph">
-<p>접근자와 설정자를 항상 작성하는 것은, 스프링 MVC 와 마찬가지로 표준 Java Beans 속성 기술로 바인딩되는 필수 항목이다. 다음 경우에는 설정자를 생략할 수 있다:</p>
+<p>접근자(getter)와 설정자(setter)를 항상 작성하는 것은, 스프링 MVC 와 마찬가지로 표준 Java Beans 속성 기술로 바인딩되는 필수 항목이다. 다음 경우에는 설정자를 생략할 수 있다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5349,7 +5351,7 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@ConfigurationProperties</code> 빈은 애플리케이션 생애주기에서 아주 초기에 적용되기 때문에 <code>ConversionService</code>를 사용할 때 제약이 발생할 수 있다. <code>ConversionService</code> 빈이 <code>@ConfigurationProperties</code>가 선언된 클래스의 구성키 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> 유형변환을 지원하지 못하는 경우에는 사용자가 작성한 <code>Converters</code>에 <code>@ConfigurationPropertiesBinding</code> 애너테이션를 선언하여 사용할 수 있다(예: <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/flyway/FlywayEndpointAutoConfiguration.java"><code>FlywayAutoConfiguration#StringOrNumberToMigrationVersionConverter</code>(https://goo.gl/HeVYgF)</a>).</p>
+<p><code>@ConfigurationProperties</code> 빈은 애플리케이션 생애주기에서 아주 초기에 적용되기 때문에 <code>ConversionService</code>를 사용할 때 제약이 발생할 수 있다. <code>ConversionService</code> 빈이 <code>@ConfigurationProperties</code>가 선언된 클래스의 구성키 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> 유형변환을 지원하지 못하는 경우에는 사용자가 작성한 <code>Converters</code>에 <code>@ConfigurationPropertiesBinding</code> 애너테이션을 선언하여 사용할 수 있다(예: <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/flyway/FlywayEndpointAutoConfiguration.java"><code>FlywayAutoConfiguration#StringOrNumberToMigrationVersionConverter</code>(https://goo.gl/HeVYgF)</a>).</p>
 </div>
 </td>
 </tr>
@@ -5432,7 +5434,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </ol>
 </div>
 <div class="paragraph">
-<p>또한,<code>configurationPropertiesValidator</code>라는 빈을 생성하면서 재정의된 스프링 <code>Validator</code>를 추가 할 수 있다. <code>@Bean</code> 메서드는 <strong>정적(static)</strong>으로 선언해야 한다. 구성속성 유효성검사기는 {application}의 생애주기 초기에 생성되어야 하며 <code>@Bean</code> 메서드를 정적으로 선언하면 <code>@Configuration</code> 클래스를 인스턴스화하지 않고도 빈을 만들 수 있다. 이 방법은 초기 인스턴스 생성으로 발생할 수 있는 문제를 피할 수 있다. <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-property-validation">속성검증예제(https://goo.gl/ouWYzq)</a>가 있으니 어떻게 설정하는지 살펴볼 수 있다.</p>
+<p>또한,<code>configurationPropertiesValidator</code>라는 빈을 생성하면서 재정의된 스프링 <code>Validator</code>를 추가 할 수 있다. <code>@Bean</code> 메서드는 <strong>정적(static)</strong>으로 선언해야 한다. 구성속성 유효성검사기는 애플리케이션의 생애주기 초기에 생성되어야 하며 <code>@Bean</code> 메서드를 정적으로 선언하면 <code>@Configuration</code> 클래스를 인스턴스화하지 않고도 빈을 만들 수 있다. 이 방법은 초기 인스턴스 생성으로 발생할 수 있는 문제를 피할 수 있다. <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/spring-boot-sample-property-validation">속성검증예제(https://goo.gl/ouWYzq)</a>가 있으니 어떻게 설정하는지 살펴볼 수 있다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -5442,7 +5444,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spring-boot-actuator</code> 모듈은 종점(endpoint)과 관련한 모든 <code>@ConfigurationProperties</code>를 보여주는 기능을 포함하고 있다. <code>/configprops</code>를 웹브라우저로 살펴보거나 유사한 기능을 제공하는 <code>JMX</code> 종점을 사용하면 된다. "<a href="#production-ready-endpoints">종점(Endpoint)</a>"에서 보다 자세한 내용을 살펴볼 수 있다.</p>
+<p><code>spring-boot-actuator</code> 모듈은 종점(endpoint)과 관련한 모든 <code>@ConfigurationProperties</code>를 보여주는 기능을 포함하고 있다. <code>/actuator/configprops</code>를 웹브라우저로 살펴보거나 유사한 기능을 제공하는 <code>JMX</code> 종점을 사용하면 된다. "<a href="#production-ready-endpoints">종점(Endpoint)</a>"에서 보다 자세한 내용을 살펴볼 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -5452,7 +5454,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <div class="sect4">
 <h5 id="boot-features-external-config-vs-value"><code>@ConfigurationProperties</code> 대 <code>@Value</code></h5>
 <div class="paragraph">
-<p><code>@Value</code>는 컨테이너 핵심기능이며 보장형(type-safe) 구성 속성을 제공하지는 못한다. 다음 테이블에서 <code>ConfigurationProperties</code>와 <code>@Value</code>의 차이점을 비교했다:</p>
+<p><code>@Value</code>는 컨테이너 핵심기능이며 보장형(type-safe) 구성 속성을 제공하지는 못한다. 다음 테이블에서 <code>@ConfigurationProperties</code>와 <code>@Value</code>의 차이점을 비교했다:</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -5488,6 +5490,9 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <div class="paragraph">
 <p>컴포넌트를 작성시 구성키를 정의할 때는 <strong><code>@ConfigurationProperties</code>를 정의한 POJO를 사용하는 것을 권장</strong>한다. <code>@Value</code>는 느슨한 연결을 지원하지 않는다는 것을 상기해두고 환경변수를 사용하는 값을 제공하려할 때 고려할만한 대상은 아니라는 것도 알아두기 바란다.</p>
 </div>
+<div class="paragraph">
+<p>마지막으로, <code>@Value</code>에서는 <code>SpEL</code>(<a href="https://goo.gl/CqVj3V" class="bare">https://goo.gl/CqVj3V</a>)를 사용할 수 있지만 애플리케이션 속성파일에서는 사용할 수 없다.</p>
+</div>
 </div>
 </div>
 </div>
@@ -5515,7 +5520,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </div>
 </div>
 <div class="paragraph">
-<p>혹은 커맨드라인 실행인자에서 사용할 수도 있다 <code>--spring.profiles.active=prod,prod-maria</code>:</p>
+<p>혹은 커맨드라인 실행인자에서 사용할 수도 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5525,7 +5530,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <div class="sect3">
 <h4 id="boot-features-adding-active-profiles">3.3.1. 활성화할 프로파일 추가하기</h4>
 <div class="paragraph">
-<p><code>spring.profiles.active</code> 속성은 최상위의 <code>ProopertySource</code>부터 <strong>정해진 규칙에 따라 우선순위를 따른다</strong>. 이 말인 즉슨 <code>application.yml</code>에서 지정한 프로파일을 커맨드라인에서 대체할 수 있다는 이야기다.</p>
+<p><code>spring.profiles.active</code> 속성은 최상위 <code>ProopertySource</code>부터 <strong>정해진 규칙에 따라 우선순위를 따른다</strong>. 이 말인 즉슨 <code>application.yml</code>에서 지정한 프로파일을 커맨드라인에서 대체할 수 있다는 이야기다.</p>
 </div>
 <div class="paragraph">
 <p>경우에 따라서는 프로파일을 대체하는 대신 활성화할 프로파일을 포함시키는 방법도 유용하다. 지정 프로파일이 아니라 하더라도 <code>spring.profiles.include</code> 속성을 사용하여 함께 활성화할 수 있다. <code>SpringApplication</code> 진입점에서도 프로파일을 추가설정(<code>spring.profiles.active</code> 속성으로 활성화된 프로파일에 추가)에 추가할 수 있는 Java API를 제공한다(<code>setAdditionalProfiles()</code> 메서드를 이용할 수 있다).</p>
@@ -5562,7 +5567,7 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <div class="sect3">
 <h4 id="boot-features-programmatically-setting-profiles">3.3.2. 프로파일을 프로그래밍적으로 설정</h4>
 <div class="paragraph">
-<p>애플리케이션이 실행되기 전에 <code>SpringApplication.setAdditionalProfiles(…​)</code>를 호출하여 프로파일을 프로그래밍으로 지정할 수 있다. 또한 스프링 <code>ConfigurationEnvironment</code> 인터페이스를 사용하여 활성화할  프로파일을 지정하는 것도 가능하다.</p>
+<p>애플리케이션이 실행되기 전에 <code>SpringApplication.setAdditionalProfiles(…​)</code>를 호출하여 프로파일을 프로그래밍으로 지정할 수 있다. 또한 스프링 <code>ConfigurableEnvironment</code> 인터페이스를 사용하여 활성화할  프로파일을 지정하는 것도 가능하다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -6092,7 +6097,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="sect4">
 <h5 id="_environment_properties">환경 속성</h5>
 <div class="paragraph">
-<p>로그백을 사용할 때 스프링 <code>Environment</code>을 통해서 <code>&lt;springProperty&gt;</code> 태그를 사용할 수 있다. 이를 이용하면 로그백 구성에서 <code>application.yml</code>의 값에 접근할 수 있어 매우 유용하다. 태그는 로그백 표준 <code>&lt;property&gt;</code> 태그와 유사하게 동작하지만 (<code>Environment</code>로부터) 속성에 <code>source</code>를 지정하면 값이 바로 정의된다. <code>local</code> 스코프가 아닌 다른 곳에 저장해야하는 경우 <code>scope</code> 속성을 사용할 수 있다. <code>Environment</code> 에서 속성에 값을 설정하지 못하는 때를 대비해서 <code>defaultValue</code> 속성을 사용할 수 있다.</p>
+<p>로그백을 사용할 때 스프링 <code>Environment</code>를 통해서 <code>&lt;springProperty&gt;</code> 태그를 사용할 수 있다. 이를 이용하면 로그백 구성에서 <code>application.yml</code>의 값에 접근할 수 있어 매우 유용하다. 태그는 로그백 표준 <code>&lt;property&gt;</code> 태그와 유사하게 동작하지만 (<code>Environment</code>로부터) 속성에 <code>source</code>를 지정하면 값이 바로 정의된다. <code>local</code> 스코프가 아닌 다른 곳에 저장해야하는 경우 <code>scope</code> 속성을 사용할 수 있다. <code>Environment</code> 에서 속성에 값을 설정하지 못하는 때를 대비해서 <code>defaultValue</code> 속성을 사용할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6206,7 +6211,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </ul>
 </div>
 <div class="paragraph">
-<p>스프링 부트 MVC 기능을 유지하면서 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">MVC 구성(https://goo.gl/EVDNop)</a>(인터셉터, 포맷터, 뷰 컨트롤러 등)을 추가하고 싶다면 <code>@EnableWebMvc</code>없이 <code>WebMvcConfigurerAdapter</code> 타입의 클래스에 <code>@Configuration</code> 추가하면 된다. <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> 혹은 <code>ExceptionHandlerExceptionResolver</code> 에 대한 인스턴스를 재정의하고 싶다면 <code>WebMvcRegistrationsAdapter</code>를 이용할 수 있다.</p>
+<p>스프링 부트 MVC 기능을 유지하면서 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">MVC 구성(https://goo.gl/EVDNop)</a>(인터셉터, 포맷터, 뷰 컨트롤러 등)을 추가하고 싶다면 <code>@EnableWebMvc</code>없이 <code>WebMvcConfigurer</code> 타입의 클래스에 <code>@Configuration</code> 추가하면 된다. <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> 혹은 <code>ExceptionHandlerExceptionResolver</code> 에 대한 인스턴스를 재정의하고 싶다면 <code>WebMvcRegistrations</code>를 이용할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>만약 <strong>스프링 MVC를 완벽하게 제어</strong>하고 싶다면 <code>@Configuration</code> 선언에 추가적으로 <code>@EnableWebMvc</code>를 선언하면 된다.</p>
@@ -6268,7 +6273,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </div>
 </div>
 <div class="paragraph">
-<p><code>ApplicationContext</code> 에 있는 모든 <code>@JsonComponent</code> 빈은 Jackson과 함께 자동으로 등록된다. <code>@JsonComponent</code>는 <code>@Component</code>처럼 메타애너테이션 이기에 컴포넌트 스캔규칙에 적용된다.</p>
+<p><code>ApplicationContext</code>에 있는 모든 <code>@JsonComponent</code> 빈은 Jackson과 함께 자동으로 등록된다. <code>@JsonComponent</code>는 <code>@Component</code>처럼 메타애너테이션이기에 컴포넌트 스캔규칙에 적용된다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트는 객체를 직렬화할 때 Jackson 버전변경에 대한 대안으로 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectSerializer.java"><code>JsonObjectSerializer</code>(https://goo.gl/g9VSQp)</a>와 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jackson/JsonObjectDeserializer.java"><code>JsonObjectDeserializer</code>(https://goo.gl/ESkx4h)</a> 클래스를 제공한다. 자세한 내용에 대해서는 <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/jackson/JsonObjectSerializer.html"><code>JsonObjectSerializer</code>(https://goo.gl/5Lv3UT)</a>와 <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/jackson/JsonObjectDeserializer.html"><code>JsonObjectDeserializer</code>(https://goo.gl/jJ4vHo)</a> Javadoc 문서를 살펴보기 바란다.</p>
@@ -6283,7 +6288,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="sect4">
 <h5 id="boot-features-spring-mvc-static-content">정적 자원</h5>
 <div class="paragraph">
-<p>스프링 부트는 기본적으로 클래스패스에 있는 <code>/static</code>(혹은 <code>/public</code> 혹은 <code>/resources</code> 혹은 <code>/META-INF/resources</code>) 디렉토리 혹은 <code>ServletContext</code> 최상위에 있는 정적 자원을 제공한다. 스프링 MVC의 <code>ResourceHttpRequestHandler</code>를 사용하며 <code>WebMvcConfigurerAdapter</code>의 <code>addResourceHandlers</code>를 재작성하여 행동을 변경할 수 있다.</p>
+<p>스프링 부트는 기본적으로 클래스패스에 있는 <code>/static</code>(혹은 <code>/public</code> 혹은 <code>/resources</code> 혹은 <code>/META-INF/resources</code>) 디렉토리 혹은 <code>ServletContext</code> 최상위에 있는 정적 자원을 제공한다. 스프링 MVC의 <code>ResourceHttpRequestHandler</code>를 사용하며 <code>WebMvcConfigurer</code>의 <code>addResourceHandlers</code>를 재작성하여 행동을 변경할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>단독실행 웹애플리케이션에서는 스프링이 자원에 대한 제어를 결정하지 않으면 컨테이너의 기본 서블릿이 활성화되고 <code>ServletContext</code>의 최상위 컨텐츠가 제공되고 요청에 응답한다. 스프링은 언제나 <code>DispatcherServlet</code>을 통해서 요청을 제어하기 때문에 이런 상황은 대부분 발생하지 않는다(기본 MVC 구성을 변경하지 않는 한).</p>
@@ -6675,7 +6680,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin_resource_sharing(CORS, https://goo.gl/J6wQAd)</a>는 <a href="http://caniuse.com/#feat=cors">대부분의 브라우저(http://caniuse.com/#feat=cors)</a>에서 구현하고 있는 <a href="https://www.w3.org/TR/cors/">'W3C 사양'(https://www.w3.org/TR/cors/)</a>으로, IFRAME 혹은 JSONP 와 같이 덜 안전하고 덜 강력한 접근 방식을 사용하는 대신 <strong>어떤 종류의 크로스 도메인 요청이 승인되었는지를 유연하게 지정</strong>할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 MVC 4.2 버전부터 <a href="https://docs.spring.io/spring/docs/4.2.0.RELEASE/spring-framework-reference/htmlsingle/#cors"><strong>CORS 지원</strong>(https://goo.gl/rfuQes)</a>을 시작했다. 스프링 부트 애플리케이션에서는 별다른 구성없이  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-controller">CORS를 구성하려는 메서드(https://goo.gl/qvLLMA)</a>에서 <a href="https://docs.spring.io/spring-framework/docs/5.0.1.RELEASE/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html"><code>@CrossOrigin</code>(https://goo.gl/BQafXY)</a> 애너테이션를 사용하면 된다.</p>
+<p>스프링 MVC 4.2 버전부터 <a href="https://docs.spring.io/spring/docs/4.2.0.RELEASE/spring-framework-reference/htmlsingle/#cors"><strong>CORS 지원</strong>(https://goo.gl/rfuQes)</a>을 시작했다. 스프링 부트 애플리케이션에서는 별다른 구성없이  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-cors-controller">CORS를 구성하려는 메서드(https://goo.gl/qvLLMA)</a>에서 <a href="https://docs.spring.io/spring-framework/docs/5.0.1.RELEASE/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html"><code>@CrossOrigin</code>(https://goo.gl/BQafXY)</a> 애너테이션을 사용하면 된다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6702,7 +6707,6 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
-<span class="annotation">@EnableWebMvc</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">WebConfig</span> <span class="directive">implements</span> WebMvcConfigurer {
 
         <span class="annotation">@Override</span>
@@ -6834,12 +6838,12 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p><code>HttpMessageReader</code>와 <code>HttpMessageWriter</code> 인스턴스를 위한 커덱 구성</p>
 </li>
 <li>
-<p>WebJas 지원을 포함한 정적 자원 제공 지원</p>
+<p>WebJars 지원을 포함한 정적 자원 제공 지원</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>스프링 부트 WebFlux 기능은 유지하면서 추가적으로 WebFlux 구성을 하고 싶다면 <strong><code>@EnableWebFlux</code> 없이</strong> <code>WebFluxConfigurer</code> 타입의 클래스에 <code>@Configuration</code>을 선언하면 된다. 반대로 스프링 WebFlux를 완벽히 제어하고 싶다면 <code>@Configuration</code>과 함께 <code>@EnableWebFlux</code> 애너테이션를 선언하면 된다.</p>
+<p>스프링 부트 WebFlux 기능은 유지하면서 추가적으로 WebFlux 구성을 하고 싶다면 <strong><code>@EnableWebFlux</code> 없이</strong> <code>WebFluxConfigurer</code> 타입의 클래스에 <code>@Configuration</code>을 선언하면 된다. 반대로 스프링 WebFlux를 완벽히 제어하고 싶다면 <code>@Configuration</code>과 함께 <code>@EnableWebFlux</code> 애너테이션을 선언하면 된다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -6855,9 +6859,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">mport org.springframework.boot.web.codec.CodecCustomizer;
-
-<span class="annotation">@Configuration</span>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">MyConfiguration</span> {
 
     <span class="annotation">@Bean</span>
@@ -7102,7 +7104,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>위에서 거론한 구현체 클래스를 사용할 필요는 없다. 애플리케이션은 대부분 자동구성되고 이 과정에서 <code>ApplicationContext</code>와 <code>ServletWebServerFactory</code>가 만들어지는데 이것들만으로도 충분히 사용가능할 것이다.</p>
+<p>위에서 거론한 구현체 클래스를 사용할 필요는 없다. 애플리케이션은 대부분 자동구성되고 이 과정에서 <code>ApplicationContext</code>와 <code>ServletWebServerFactory</code>가 만들어지는데 이것만으로도 충분히 사용가능할 것이다.</p>
 </div>
 </td>
 </tr>
@@ -7267,28 +7269,6 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p><code>security.user.password</code> 속성을 정의하여 비밀번호를 변경할 수 있다. 이 속성 외에도 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/SecurityProperties.java"><code>SecurityProperties</code>(https://goo.gl/qb8vSr)</a>('security' 접두사를 가지고 있는 속성들)에 외부확장할 수 있는 다양한 속성들이 있다.</p>
 </div>
 <div class="paragraph">
-<p>보안 기본구성은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/SecurityAutoConfiguration.java"><code>SecurityAutoConfiguration</code>(https://goo.gl/6e1g6c)</a>을 통해 관련된 클래스를 불러오며 구성하고 있다(웹 보안을 위한 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/SpringBootWebSecurityConfiguration.java"><code>SpringBootWebSecurityConfiguration</code>(https://goo.gl/q1MYaa)</a>과 웹 애플리케이션이 아니어도 사용가능한 인증 구성을 위한 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/AuthenticationManagerConfiguration.java"><code>AuthenticationManagerConfiguration</code>(https://goo.gl/gjvKAj)</a>).</p>
-</div>
-<div class="listingblock">
-<div class="title"><code>SecurityAutoConfiguration</code> 코드 중 일부</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
-<span class="annotation">@ConditionalOnClass</span>({ AuthenticationManager.class,
-        GlobalAuthenticationConfigurerAdapter.class })
-<span class="annotation">@EnableConfigurationProperties</span>
-<span class="annotation">@Import</span>({ SpringBootWebSecurityConfiguration.class,
-        AuthenticationManagerConfiguration.class,
-        BootGlobalAuthenticationConfiguration.class, SecurityDataConfiguration.class })
-<span class="directive">public</span> <span class="type">class</span> <span class="class">SecurityAutoConfiguration</span> {</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>기본 웹 애플리케이션 보안구성은 <code>WebSecurityConfigurerAdapter</code>를 빈으로 등록하면 비활성화된다(액츄에이터의 보안이나 인증 매니저 구성이 비활성화되는 것은 아니다).</p>
-</div>
-<div class="paragraph">
-<p><code>AuthenticationManager</code> 구성을 비활성화하고 <code>UserDetailsService</code>, <code>AuthenticationProvider</code> 혹은 <code>AuthenticationManager</code> 빈을 등록할 수 있다. 이와 관련해서 일반적으로 사용하는 여러가지 에제는 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples/">Spring boot sample</a> 에서 살펴볼 수 있다.</p>
-</div>
-<div class="paragraph">
 <p>웹 애플리케이션에 적용되는 기본 기능은 다음과 같다:</p>
 </div>
 <div class="ulist">
@@ -7297,14 +7277,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <p>인-메모리에 저장하는 <code>UserDetailsService</code>와 유저 1명(유저에 관한 속성은 <code>SecurityProperties.User</code>를 보라)</p>
 </li>
 <li>
-<p>애플리케이션 접근에 대한 폼(Form) 로그인 혹은 HTTP  기본(<code>Content-Type</code>에 따름) 보안 적용</p>
-<div class="ulist">
-<ul>
-<li>
-<p>액츄에이터가 클래스패스에 포함되어 있을 경우 액츄에이터 종점도 포함</p>
-</li>
-</ul>
-</div>
+<p>애플리케이션 접근에 대한 폼(Form) 로그인 혹은 HTTP  기본(<code>Content-Type</code>에 따름) 보안 적용(액츄에이터가 클래스패스에 포함되어 있을 경우 액츄에이터 종점도 포함)</p>
 </li>
 <li>
 <p>스프링 <code>ApplicationEventPublisher</code>를 이용한 보안 이벤트 게시(<code>인증 성공`과 `실패</code> 그리고 <code>접근 거부</code>).</p>
@@ -7312,7 +7285,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>접근규칙은 <code>WebSecurityConfigurerAdapter</code>를 이용해서 재정의 가능하다. 스프링 부트는 액츄에이터 종점와 정적 자원에 대한 접근 규칙을 재정의할 수 있는 메서드를 제공한다.  <code>management.endpoints.web.base-path</code> 속성을 기반으로 하여 <code>RequestMatcher</code>에서 <code>EndpointRequest</code>를 생성할 수 있다. 정적자원의 공통적인 위치를 기준으로 해서 <code>RequestMatcher</code>에서 <code>StaticResourceRequest</code>를 만들 수 있다.</p>
+<p><code>AuthenticationEventPublisher</code> 타입을 빈으로 추가등록 가능하다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7329,32 +7302,118 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="boot-features-actuator-security">3.6.1. 액츄에이터 보안(<code>Actuator Security</code>)</h4>
+<h4 id="boot-features-security-mvc">3.6.1. MVC 보안</h4>
 <div class="paragraph">
-<p>액츄에이터를 사용한다면 다음과 같은 상황이 벌어진다:</p>
+<p>보안 기본구성은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/security/SecurityAutoConfiguration.java"><code>SecurityAutoConfiguration</code>(https://goo.gl/6e1g6c)</a>을 통해 관련된 클래스를 불러오며 구성하고 있다. 기본 웹 애플리케이션 보안구성은 <code>WebSecurityConfigurerAdapter</code>를 빈으로 등록하면 비활성화된다(액츄에이터의 보안이 비활성화되는 것은 아니다).</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>애플리케이션 종점에 대해서 보안관리를 하지 않는다해도 관리(management) 종점은 보안관리 대상이 된다.</p>
-</li>
-<li>
-<p>보안 이벤트는 <code>AuditEvent</code> 인스턴스로 변형되어 <code>AuditEventRepository</code>로 발행된다.</p>
-</li>
-<li>
-<p>기본 유저는 <code>USER</code> 역할과 유사한 <code>ACTUATOR</code> 역할을 가진다.</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="title"><code>SecurityAutoConfiguration</code> 코드 중 일부</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@ConditionalOnClass</span>(DefaultAuthenticationEventPublisher.class)
+<span class="annotation">@EnableConfigurationProperties</span>(SecurityProperties.class)
+<span class="annotation">@Import</span>({ SpringBootWebSecurityConfiguration.class, WebSecurityEnablerConfiguration.class,
+        SecurityDataConfiguration.class })
+<span class="directive">public</span> <span class="type">class</span> <span class="class">SecurityAutoConfiguration</span> {
+  <span class="comment">// 생략</span>
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>액츄에이터 보안기능은 외부 속성(<code>management.security.*</code>)에 의해 변경가능하다. 애플리케이션 접근규칙에 <code>WebSecurityConfigurerAdapter</code> 유형의 <code>@Bean</code> 을 덮어쓴후 액츄에이터 접근규칙을 덮어쓰기 하고 싶지 않다면 <code>@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)</code>을 사용하고 액츄에이터 접근 규칙을 덮어쓰고 싶다면 <code>@Order(ManagementServerProperties.ACCESS_OVERRIDE_ORDER)</code>을 사용하면 된다.</p>
+<p>접근규칙은 <code>WebSecurityConfigurerAdapter</code>를 이용해서 재정의 가능하다. 스프링 부트는 액츄에이터 종점와 정적 자원에 대한 접근 규칙을 재정의할 수 있는 메서드를 제공한다. <code>management.endpoints.web.base-path</code> 속성을 기반으로 하여 <code>RequestMatcher</code>에서 <code>EndpointRequest</code>를 생성할 수 있다. 정적자원의 공통적인 위치를 기준으로 해서 <code>RequestMatcher</code>에서 <code>StaticResourceRequest</code>를 만들 수 있다.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="boot-features-security-webflux">3.6.2. WebFlux 보안</h4>
+<div class="paragraph">
+<p>스프링 MVC 애플리케이션과 유사하게 WebFlux 애플리케이션도 보안을 위해 <code>spring-boot-starter-security</code>를 필요로 한다. 기본 보안구성은 <code>ReactiveSecurityAutoConfiguration</code>에 구현되어 있다. <code>WebFilterChainProxy</code> 타입의 빈을 추가하면 기본 웹 애플리케이션 보안구성이 비활성화된다(액츄에이터의 보안이 비활성화되는 것은 아니다).</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>ReactiveSecurityAutoConfiguration</code> 중 일부</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@EnableConfigurationProperties</span>(SecurityProperties.class)
+<span class="annotation">@Import</span>(WebFluxSecurityConfiguration.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ReactiveSecurityAutoConfiguration</span> {
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ReactiveUserDetailsService</code> 혹은 <code>ReactiveAuthenticationManager</code> 타입의 빈을 추가하면 인증 매니저 구성은 비활성화된다.</p>
+</div>
+<div class="paragraph">
+<p>접근규칙은 <code>SecurityWebFilterChain</code>를 재정의하여 구성할 수 있다. 스프링 부트는 정적자원과 액츄에이터 종점에 대한 접근규칙을 제어하기 편한 메서드를 제공하고 있다. <code>ServerWebExchangeMatcher</code>를 이용해서 생성한 <code>EndpointRequest</code>는 <code>management.endpoints.web.base-path</code> 속성을 기반으로 한다.</p>
+</div>
+<div class="paragraph">
+<p><code>ServerWebExchangeMatcher</code>으로 생성한 <code>PathRequest</code>는 일반적으로 사용되는 자원위치에 사용할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>다음 예는 보안 구성에서 일부를 재정의한 것이다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    http
+        .authorizeExchange()
+            .matchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+            .pathMatchers(<span class="string"><span class="delimiter">&quot;</span><span class="content">/foo</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">/bar</span><span class="delimiter">&quot;</span></span>)
+                .authenticated().and()
+            .formLogin();
+    <span class="keyword">return</span> http.build();
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="boot-features-security-actuator">3.6.3. 액츄에이터 보안(<code>Actuator Security</code>)</h4>
+<div class="paragraph">
+<p>보안상의 이유로 <code>/actuator/health</code>와 <code>/actuator/info</code>를 제외한 모든 액츄에이터는 비활성화된다. <code>management.endpoints.web.exposure.include</code> 속성을 이용해서 액츄에이터들을 활성화할 수 있다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>management.endpoints.web.exposure.include</code> 속성을 설정하기에 앞서, 노출된 액츄에이터가 중요한 정보를 포함하고 있지 않은지 방화벽 뒤에 있거나 스프링 시큐리티와 같은 보안시스템의 관리를 받는지 확인해야 한다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="csrf-cross-site-request-forgery-보호">CSRF(Cross Site Request Forgery) 보호</h5>
+<div class="paragraph">
+<p>스프링 부트의 기본적인 보안구성은 스프링 시큐리티에 의존하고 있으며 CSRF 보호가 기본적으로 활성화되어 있다. 이말 인즉 기본 보안구성을 사용하고 있다면 액츄에이터 종점에 대한 <code>POST</code>(종료 혹은 종점 로거), <code>PUT</code> 혹은 <code>DELETE</code> 요청에 대해서 <code>403 forbidden</code> 에러를 반환한다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>스프링 부트 개발팀은 브라우저 클라이언트를 사용하지 않는 서비스를 만드는 경우에만 CSRF 보호를 비활성화하길 권장한다.</p>
+</div>
+<div class="paragraph">
+<p>CSRF 보호와 관련된 보다 자세한 내용은 <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#csrf">스프링 시큐리티 참조문서(https://goo.gl/ZFsX2k)</a>를 살펴보기 바란다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="boot-features-sql">3.7. SQL 데이터베이스 이용</h3>
 <div class="paragraph">
-<p>스프링 프레임워크는 SQL 데이터베이스를 위한 다양한 지원을 제공한다. <code>JdbcTemplate</code>를 이용해서 직접 JDBC에 접근하는 것부터 하이버네이트 같은 '객체관계매핑(ORM)' 기술에 이르기까지. 스프링 Data는 인터페이스로부터 <code>Repository</code> 구현체를 생성하고 메서드명으로 쿼리를 생성하는 등의 추가적인 기능을 제공한다.</p>
+<p>스프링 프레임워크는 SQL 데이터베이스를 위한 다양한 지원을 제공한다. <code>JdbcTemplate</code>을 이용해서 직접 JDBC에 접근하는 것부터 하이버네이트 같은 '객체관계매핑(ORM)' 기술에 이르기까지. 스프링 Data는 인터페이스로부터 <code>Repository</code> 구현체를 생성하고 메서드명으로 쿼리를 생성하는 등의 추가적인 기능을 제공한다.</p>
 </div>
 <div class="sect3">
 <h4 id="boot-features-configure-datasource">3.7.1. <code>DataSource</code> 구성</h4>
@@ -7458,13 +7517,13 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>스프링 부트 개발팀에서는 성능과 동시성을 고려하여 'HikariCP&#8217;를 선호한다. 그래서 'HikariCP&#8217;를 사용할 수 있다면 항상 사용하려 한다.</p>
+<p>스프링 부트 개발팀에서는 성능과 동시성을 고려하여 'HikariCP&#8217;를 선호한다. 그래서 <a href="https://github.com/brettwooldridge/HikariCP">'HikariCP'(https://goo.gl/mitL02)</a>를 사용할 수 있다면 항상 사용하려 한다.</p>
 </li>
 <li>
 <p>사용할 수 있다면  톰캣 풀링 <code>DataSource</code>를 사용한다.</p>
 </li>
 <li>
-<p>톰캣 풀링 <code>DataSource</code> 혹은 HikariCP를 사용하지 않는 경우에는 Commons DBCP2를 사용가능하다.</p>
+<p>톰캣 풀링 <code>DataSource</code> 혹은 HikariCP를 사용하지 않는 경우에는 <a href="https://commons.apache.org/proper/commons-dbcp/">Commons DBCP2(https://goo.gl/U5g0tu)</a>를 사용가능하다.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -7476,7 +7535,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>만약 <code>spring-boot-starter-jdbc</code>혹은 <code>spring-boot-starter-data-jpa</code> 스타터를 사용하면 자동으로 <code>HikariCP</code> 의존성이 추가된다.</p>
+<p><code>spring-boot-starter-jdbc</code> 혹은 <code>spring-boot-starter-data-jpa</code>를 사용하면 자동으로 <code>HikariCP</code> 의존성이 추가된다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -7486,7 +7545,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>이 알고리듬을 완전히 무시하고 <code>spring.datasource.type</code> 속성으로 사용하려는 커넥션 풀을 정의할 수 있다. 기본적으로 <code>tomcat-jdbc</code>가 제공되므로 톰캣 컨테이너에서 애플리케이션을 실행한ㄴ 경우 특히 중요하다.</p>
+<p>이 알고리듬을 완전히 무시하고 <code>spring.datasource.type</code> 속성으로 사용하려는 커넥션 풀을 정의할 수 있다. 톰캣 컨테이너에서 애플리케이션을 실행하는 경우 <code>tomcat-jdbc</code>가 기본제공되므로 특히 중요하다.</p>
 </div>
 <div class="paragraph">
 <p>다른 JDBC 모듈을 이용한다면 <code>tomcat-jdbc</code>를 제외하는 것이 좋다.</p>
@@ -7503,7 +7562,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>추가적으로 커넥션 풀은 언제나 수동구성이 가능하다. <code>DataSource</code> 빈을 정의하면 자동구성된 <code>DataSource</code>은 활성화되지 않는다. <code>DataSourceAutoConfiguration</code>에 있는 구성에서 <code>@ConditionalOnMissingBean({ DataSource.class, XADataSource.class })</code> 조건을 만족시키지 못하기 때문이다.</p>
+<p>추가적으로 커넥션 풀은 언제나 수동구성이 가능하다. <code>DataSource</code> 빈을 정의하면 자동구성된 <code>DataSource</code>는 활성화되지 않는다. <code>DataSourceAutoConfiguration</code>에서 <code>@ConditionalOnMissingBean({ DataSource.class, XADataSource.class })</code> 조건을 만족시키지 못하기 때문이다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -7570,7 +7629,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>보다 자세한 지원 선택사항에 대해서는 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/DataSourceProperties.java"><code>DataSourceProperties</code>(https://goo.gl/zkh8nx)</a>을 살펴보기 바란다. 실제 구현에 상관없이 동작하는 표준 선택사항들이다. 또한 각 구현체에 따라 명시적으로 접미사로 구분하여 정의하는 것도 가능하다(<code>spring.datasource.tomcat.<strong></code>, <code>spring.datasource.hikari.</strong></code>,<code>spring.datasource.dbcp2.*</code>). 보다 자세한 사항은 사용하고 있는 커넥션 풀 구현체에 관한 문서를 참조하기 바란다.</p>
+<p>보다 자세한 지원 선택사항에 대해서는 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/DataSourceProperties.java"><code>DataSourceProperties</code>(https://goo.gl/zkh8nx)</a>을 살펴보기 바란다. 실제 구현에 상관없이 동작하는 표준 선택사항들이다. 또한 각 구현체에 따라 명시적으로 접미사로 구분하여 정의하는 것도 가능하다(<code>spring.datasource.tomcat.*</code>, <code>spring.datasource.hikari.*</code>,<code>spring.datasource.dbcp2.*</code>). 보다 자세한 사항은 사용하고 있는 커넥션 풀 구현체에 관한 문서를 참조하기 바란다.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://tomcat.apache.org/tomcat-8.0-doc/jdbc-pool.html#Common_Attributes">톰캣 커넥션풀(https://goo.gl/tRNj66)</a>을 사용하는 경우에 다음 예에서 보는 것 외에도 많은 추가 설정이 가능하다:</p>
@@ -7624,7 +7683,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-jpa-and-spring-data">3.7.3. <code>JPA</code> 그리고 '스프링 Data'</h4>
 <div class="paragraph">
-<p>Java Persistence API(줄여서 JPA)는 객체를 데이터베이스에 매핑하는 표준기술이다. <code>spring-boot-starter-data-jpa</code>는 빠르게 시작할 수 있는 방법을 제공한다. 다음의 주요 의존성이 따라온다:</p>
+<p>Java Persistence API(줄여서 JPA)는 객체를 데이터베이스에 매핑하는 표준기술이다. <code>spring-boot-starter-data-jpa</code>는 JPA를 빠르게 시작할 수 있는 방법을 제공한다. 다음의 주요 의존성이 따라온다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -7673,26 +7732,11 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>일반적으로 JPA 엔티티 클래스는 <code>persistence.xml</code> 파일에 정의한다. 그러나 스프링 부트는 '엔티티 탐색&#8217;을 사용하기 때문에 이 파일이 필요하지 않다. 기본적으로 메인 구성 클래스(<code>@EnableAutoConfiguration</code> 혹은 <code>@SpringBootApplication</code> 이 선언되어 있는)를 기준으로 하위에 모든 패키지를 탐색한다.</p>
 </div>
 <div class="paragraph">
-<p><code>@Entity</code>, <code>Embeddable</code> 혹은 <code>@MappedSourceclass</code> 가 선언되어 있는 클래스가 대상이 된다. 일반적인 엔티티 클래스는 다음과 같다:</p>
+<p><code>@Entity</code>, <code>@Embeddable</code> 혹은 <code>@MappedSuperclass</code>가 선언되어 있는 클래스를 대상으로 한다. 일반적인 엔티티 클래스는 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">java.io.Serializable</span>;
-
-<span class="keyword">import</span> <span class="include">javax.persistence.Column</span>;
-<span class="keyword">import</span> <span class="include">javax.persistence.Entity</span>;
-<span class="keyword">import</span> <span class="include">javax.persistence.GeneratedValue</span>;
-<span class="keyword">import</span> <span class="include">javax.persistence.Id</span>;
-
-<span class="keyword">import</span> <span class="include">org.springframework.util.Assert</span>;
-
-<span class="keyword">import</span> <span class="include">lombok.AccessLevel</span>;
-<span class="keyword">import</span> <span class="include">lombok.EqualsAndHashCode</span>;
-<span class="keyword">import</span> <span class="include">lombok.Getter</span>;
-<span class="keyword">import</span> <span class="include">lombok.NoArgsConstructor</span>;
-<span class="keyword">import</span> <span class="include">lombok.ToString</span>;
-
-<span class="annotation">@Entity</span>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Entity</span>
 <span class="annotation">@Getter</span>
 <span class="annotation">@NoArgsConstructor</span>(access=AccessLevel.PROTECTED)  <b class="conum">(1)</b>
 <span class="annotation">@ToString</span>
@@ -7946,14 +7990,14 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="뷰에서-엔티티매니저-열기">뷰에서 엔티티매니저 열기</h5>
 <div class="paragraph">
-<p>웹 애플리케이션을 실행하면 스프링 부트는 'Open EntityManager in View' 패턴을 위해  <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/orm/jpa/support/OpenEntityManagerInViewInterceptor.html"><code>OpenEntityManagerInViewInterceptor</code>(https://goo.gl/AamJ6i)</a>을 기본등록한다. 웹 뷰에서 지연읽기를 지원한다. 이런 행동을 원하지 않는 경우에는 <code>application.yml(or properties)</code>파일에서 <code>spring-jpa.open-in-view</code>를 <code>false</code>로 정의하면 된다.</p>
+<p>웹 애플리케이션을 실행하면 스프링 부트는 'Open EntityManager in View' 패턴을 위해  <a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/orm/jpa/support/OpenEntityManagerInViewInterceptor.html"><code>OpenEntityManagerInViewInterceptor</code>(https://goo.gl/AamJ6i)</a>을 기본등록한다. 웹 뷰에서 지연읽기를 지원한다. 이런 행동을 원하지 않는 경우에는 <code>application.yml(or properties)</code>파일에서 <code>spring.jpa.open-in-view</code>를 <code>false</code>로 정의하면 된다.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="boot-features-h2">3.7.4. H2 사용</h4>
 <div class="paragraph">
-<p>지금은 로컬에 mariaDB를 설치하여 사용하고 있지만, 이전에는 <a href="http://h2database.com/html/main.html">H2 데이터베이스(http://h2database.com/html/main.html)</a>를 개발에 사용해왔다. 파일로 저장하도록 하여 데이터 영속화도 처리하면서 개발에 적용했다. 서비스 운영에 적용하기는 곤란한 부분들이 있지만 개발시에는 간단하게 파일DB를 생성할 수 있다. 그래서 <code>application.yml</code> 에 프로파일을 구분지어 로컬, 테스트 시에는 h2database를 사용하고, 개발, 운영에서는 mariadDB를 사용하도록 구성해왔다.</p>
+<p>현재는 개발환경 통일을 위해 로컬에 mariaDB를 설치하여 사용하고 있지만, 이전에는 <a href="http://h2database.com/html/main.html">H2 데이터베이스(http://h2database.com/html/main.html)</a>를 개발에 사용해왔다. 파일로 저장하도록 하여 데이터 영속화도 처리하면서 개발에 적용했다. 서비스 운영에 적용하기는 곤란한 부분들이 있지만 개발시에는 간단하게 파일DB를 생성할 수 있다. 그래서 <code>application.yml</code> 에 프로파일을 구분지어 로컬, 테스트 시에는 h2database를 사용하고, 개발, 운영에서는 mariadDB를 사용하도록 구성해왔다.</p>
 </div>
 <div class="sect4">
 <h5 id="boot-features-sql-h2-console">H2 웹콘솔 사용</h5>
@@ -8007,7 +8051,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-mybatis">3.7.6. MyBatis 사용하기</h4>
 <div class="paragraph">
-<p>MyBatis 는 사용하지 않은 지 꽤 오래되었기에 다루고 싶지는 않다. 어쨌든 스프링 부트에서 <a href="http://www.mybatis.org/mybatis-3/ko/">MyBatis(http://www.mybatis.org/mybatis-3/ko/)</a>를 사용하는 분들이 많은 것도 사실이기에 이를 사용할 수 있는 스타터가 제공되고 있다. <a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/"><code>mybatis-spring-boot-autoconfigure</code>(https://goo.gl/p9cEt3)</a>를 이용하면 스프링 부트에서도 MyBatis를 이용할 수 있다.</p>
+<p>MyBatis 는 사용하지 않은 지 꽤 오래되었기에 다루고 싶지는 않다. 스프링 부트에서 <a href="http://www.mybatis.org/mybatis-3/ko/">MyBatis(http://www.mybatis.org/mybatis-3/ko/)</a>를 사용하는 분들이 많은 것도 사실이기에 이를 사용할 수 있는 스타터가 제공되고 있다. <a href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/"><code>mybatis-spring-boot-autoconfigure</code>(https://goo.gl/p9cEt3)</a>를 이용하면 스프링 부트에서도 MyBatis를 이용할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>그레이들에서는 다음과 같이 <code>mybatis-spring-boot-starter</code>에 대한 의존성을 추가하면 된다:</p>
@@ -8052,7 +8096,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>매퍼는 <code>@Mapper</code> 애너테이션를 선언하여 자동검색 노출</p>
+<p>매퍼는 <code>@Mapper</code> 애너테이션을 선언하여 자동검색 노출</p>
 </li>
 </ul>
 </div>
@@ -8106,10 +8150,10 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-redis">3.8.1. 레디스(Redis)</h4>
 <div class="paragraph">
-<p><a href="http://redis.io/">레디스(http://redis.io/)</a>는 캐시, 메시지 브로커 그리고 풍부한 기능을 가진 키-값 리파지토리다. 스프링 부트는 <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a> 와 <a href="https://github.com/xetorthio/jedis/">Jedis(https://goo.gl/qBrtLa)</a>클라이언트 라이브러리를 위한 기초적인 자동구성와  <a href="http://projects.spring.io/spring-data-redis/">스프링 Data Redis(https://goo.gl/QYRr7q)</a>에서 제공하는 것에 대한 추상체를 제공한다.</p>
+<p><a href="http://redis.io/">레디스(http://redis.io/)</a>는 캐시, 메시지 브로커 그리고 풍부한 기능을 가진 키-값 리파지토리다. 스프링 부트는 <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>과 <a href="https://github.com/xetorthio/jedis/">Jedis(https://goo.gl/qBrtLa)</a>클라이언트 라이브러리를 위한 기초적인 자동구성과  <a href="http://projects.spring.io/spring-data-redis/">스프링 Data Redis(https://goo.gl/QYRr7q)</a>에서 제공하는 것에 대한 추상체를 제공한다.</p>
 </div>
 <div class="paragraph">
-<p><code>spring-boot-starter-data-redis</code> 스타터를 통해서 의존성 라이브러리를 모아두었다. <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>를 사용하는 것을 기본전제하고 있으며 일반적인 혹은 리액티브 애플리케이션을 모두 제어가능하다.</p>
+<p><code>spring-boot-starter-data-redis</code>를 통해서 의존성 라이브러리를 모아두었다. <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>를 사용하는 것을 기본전제하고 있으며 일반적인 혹은 리액티브 애플리케이션을 모두 제어가능하다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -8158,19 +8202,19 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>자동구성된 유형에 <code>@Bean</code>을 추가하면 기본값으로 바뀐다(<code>RedisTemplate</code>를 제외하고 다른 유형의 빈 이름이  <code>redisTemplate</code>가 된다). 만약 <code>common-pool2</code>가 클래스패스에 있다면 기본적으로 풀링된 커넥션 팩토리를 얻을 수 있다.</p>
+<p>자동구성된 유형에 <code>@Bean</code>을 추가하면 기본값으로 바뀐다(<code>RedisTemplate</code>을 제외하고 다른 유형의 빈 이름이  <code>redisTemplate</code>가 된다). 만약 <code>common-pool2</code>가 클래스패스에 있다면 기본적으로 풀링된 커넥션 팩토리를 얻을 수 있다.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="boot-features-mongodb">3.8.2. 몽고DB(MongoDB)</h4>
 <div class="paragraph">
-<p><a href="https://www.mongodb.com/">몽고DB(https://www.mongodb.com/)</a>는 전통적인 테이블 기반 관계형 데이터를 대신하여 JSON과 유사한 스키마를 사용하는 오픈소스 NoSQL 도큐먼트 데이터베이스다. 스프링 부트는 <code>spring-boot-starter-data-mongodb</code>와 <code>spring-boot-starter-data-mongodb-reactive</code> 스타터를 통해서 몽고DB에서 동작하는 다양한 편이를 제공한다.</p>
+<p><a href="https://www.mongodb.com/">몽고DB(https://www.mongodb.com/)</a>는 전통적인 테이블 기반 관계형 데이터를 대신하여 JSON과 유사한 스키마를 사용하는 오픈소스 NoSQL 도큐먼트 데이터베이스다. 스프링 부트는 <code>spring-boot-starter-data-mongodb</code>와 <code>spring-boot-starter-data-mongodb-reactive</code>를 통해서 몽고DB에서 동작하는 다양한 편이를 제공한다.</p>
 </div>
 <div class="sect4">
 <h5 id="boot-features-connecting-to-mongodb">몽고DB 데이터베이스 연결</h5>
 <div class="paragraph">
-<p>몽고DB 데이터베이스에 접근하기 위한 자동구성된 <code>org.springframework.data.mongodb.MongoDbFactory</code>을 주입할 수 있다. 인스턴스는 기본적으로 <code>mongodb://localhost/test</code> URL을 사용하여 몽고DB에 연결한다:</p>
+<p>몽고DB 데이터베이스에 접근하기 위한 자동구성된 <code>org.springframework.data.mongodb.MongoDbFactory</code>를 주입할 수 있다. 인스턴스는 기본적으로 <code>mongodb://localhost/test</code> URL을 사용하여 몽고DB에 연결한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8318,7 +8362,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>포트를 재정의하지 않았다면 내장 몽고는 기본적으로 무작위 포트(<code>27017</code>를 사용하기 보다는)를 사용한다.</p>
+<p>포트를 재정의하지 않았다면 내장 몽고는 기본적으로 무작위 포트(<code>27017</code> 포트 대신)를 사용한다.</p>
 </div>
 </td>
 </tr>
@@ -8335,12 +8379,12 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-elasticsearch">3.8.3. 엘라스틱서치(Elasticsearch)</h4>
 <div class="paragraph">
-<p><a href="http://www.elasticsearch.org/">엘라스틱서치(http://www.elasticsearch.org/)</a>는 오픈소스, 분산형, 실시간 검색 및 분석엔진이다. 스프링 부트는 엘라스틱 서치에 대한 기본적인 자동구성와 <a href="https://github.com/spring-projects/spring-data-elasticsearch/">Elasticsearch(https://goo.gl/MKAR13)</a>에서 제공하는 추상체를 제공한다. <code>spring-boot-starter-data-elasticsearch</code> 스타터를 추가하면 간단하다. 스프링 부트는 또한 <a href="https://github.com/searchbox-io/Jest">Jest(https://goo.gl/kvC4Jb)</a>도 지원한다.</p>
+<p><a href="http://www.elasticsearch.org/">엘라스틱서치(http://www.elasticsearch.org/)</a>는 오픈소스, 분산형, 실시간 검색 및 분석엔진이다. 스프링 부트는 엘라스틱 서치에 대한 기본적인 자동구성과 <a href="https://github.com/spring-projects/spring-data-elasticsearch/">Elasticsearch(https://goo.gl/MKAR13)</a>에서 제공하는 추상체를 제공한다. <code>spring-boot-starter-data-elasticsearch</code>를 추가하면 간단하다. 스프링 부트는 또한 <a href="https://github.com/searchbox-io/Jest">Jest(https://goo.gl/kvC4Jb)</a>도 지원한다.</p>
 </div>
 <div class="sect4">
 <h5 id="boot-features-connecting-to-elasticsearch-jest">Jest 를 통해 엘라스틱서치 연결</h5>
 <div class="paragraph">
-<p>클래스패스 상에 <code>Jest</code>가 있다면 기본적으로 <code><a href="http://localhost:9200/" class="bare">http://localhost:9200/</a></code>를 겨냥한 자동구성된 <code>JestClient</code>를 주입받을 수 있다. 클라이언트가 어떻게 조정되어 있는지 살펴보자:</p>
+<p>클래스패스 상에 <code>Jest</code>가 있다면 기본적으로 <code><a href="http://localhost:9200/" class="bare">http://localhost:9200/</a></code>를 바라보는 자동구성된 <code>JestClient</code>를 주입받을 수 있다. 클라이언트가 어떻게 조정되어 있는지 살펴보자:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8352,7 +8396,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>보다 향상된 재정의를 할 수 있도록 임의의 <code>HttpClientConfigBuilderCustomizer</code> 구현체를 등록할 수 있다.다음 예제의 경우 HTTP 설정을 추가적으로 조정하고 있다:</p>
+<p><code>HttpClientConfigBuilderCustomizer</code> 구현체를 등록하면서 보다 다양하게 재정의할 수 있다. 다음 예제의 경우 HTTP 설정을 추가적으로 조정하고 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8368,7 +8412,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-connecting-to-elasticsearch-spring-data">스프링 Data를 사용하여 엘라스틱서치 연결하기</h5>
 <div class="paragraph">
-<p>여느 스프링 빈과 마찬가지로 자동구성된 <code>ElasticsearchTemplate</code> 와 엘라스틱 <code>Client</code> 인스턴스를 주입받을 수 잆다. 기본적으로 인스턴스는 로컬 인-메모리 서버(엘라스틱서치에서 말하는 <code>Node</code>)를 내장하고 있으며 서버의 홈디렉토리는 현재 작업 디렉터리를 사용한다. 다음설정에서 엘라스틱 서치가 어디에 저장되는지를 정의할 수 있다:</p>
+<p>여느 스프링 빈과 마찬가지로 자동구성된 <code>ElasticsearchTemplate</code> 와 엘라스틱 <code>Client</code> 인스턴스를 주입받을 수 잆다. 기본적으로 인스턴스는 로컬 인-메모리 서버(엘라스틱서치에서 말하는 <code>Node</code>)를 내장하고 있으며 서버의 홈디렉토리는 현재 작업 디렉터리를 사용한다. 다음설정에서 엘라스틱서치가 어디에 저장되는지를 정의할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8403,7 +8447,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-spring-data-elasticsearch-repositories">스프링 Data 엘라스틱서치 리파지토리</h5>
 <div class="paragraph">
-<p>스프링 Data 리파지토리는 엘라스틱서치도 지원한다. 앞서 살펴봤던 JPA 리파지토리 처럼 기본 원리는 메서드 명을 기반으로 해서 쿼리가 자동생성된다.</p>
+<p>스프링 Data 리파지토리는 엘라스틱서치도 지원한다. 앞서 살펴봤던 JPA 리파지토리처럼 기본 원리는 메서드명을 기반으로 해서 쿼리가 자동생성된다.</p>
 </div>
 <div class="paragraph">
 <p>사실 스프링 Data JPA와 스프링 Data Elasticsearch는 동일한 인프라스트럭처를 공유하고 있기 때문에 JPA 예제에서 봤던 것과 마찬가지로 엘라스틱서치 <code>@Document</code> 애너테이션이 정의되어 있는 클래스가 JPA 의 <code>@Entity</code>와 동일한 방식으로 동작한다.</p>
@@ -8479,7 +8523,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>특정 캐시 라이브러리를 추가하지 않았다면 스프링 부트는 메모리에 <code>ConcurrentHashMap</code>을 이용해서 구현한 간단한 프로바이더(Simple Provider)를 자동구성한다. 이 프로바이더는 캐시가 필요하면 즉시 생성한다. 프로바이더는 운영시에 사용하는 것은 권장하지 않지만 기능을 이해하는 것을 돕고 시작하기에는 정말 좋다. 캐시 프로바이더를 사용하는 것에 어느정도 익숙해졌다면 애플리케이션에서 사용할 캐시를 어떻게 구성할지에 대해서는 문서를 살펴보고 좀 더 살펴보길 권한다. 사실 모든 프로바이더는 애플리케이션에서 사용할 캐시에 대해 정확하게 구성해야 한다. <code>spring.cache.cache-names</code> 속성을 이용해서 기본 캐시에 대한 재정의할 수 있는 몇가지 방법을 제공한다.</p>
+<p>특정 캐시 라이브러리를 추가하지 않았다면 스프링 부트는 메모리에 <code>ConcurrentHashMap</code>을 이용해서 구현한 간단한 프로바이더(Simple Provider)를 자동구성한다. 이 프로바이더는 캐시가 필요하면 즉시 생성한다. 프로바이더는 운영시에 사용하는 것은 권장하지 않지만 기능을 이해하는 것을 돕고 시작하기에는 정말 좋다. 캐시 프로바이더를 사용하는 것에 어느정도 익숙해졌다면 애플리케이션에서 사용할 캐시를 어떻게 구성할지에 대해서는 문서를 좀 더 살펴보길 권한다. 사실 모든 프로바이더는 애플리케이션에서 사용할 캐시에 대해 정확하게 구성해야 한다. <code>spring.cache.cache-names</code> 속성을 이용해서 기본 캐시에 대한 재정의할 수 있는 몇가지 방법을 제공한다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -8512,39 +8556,39 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="_supported_cache_providers">3.9.1. 지원하는 캐시 제공자(<code>Provider</code>)</h4>
 <div class="paragraph">
-<p>캐시 추상화는 실제 저장소를 제공하지 않으며 <code>org.springframework.cache.Cache</code>와  <code>org.springframework.cache.CacheManager</code> 인터페이스를 통해 추상화를 구현한 것에 의존한다.</p>
+<p>캐시 추상화는 실제 저장소를 제공하지 않으며 <code>org.springframework.cache.Cache</code>와  <code>org.springframework.cache.CacheManager</code> 인터페이스를 통해 추상화 구현체에 의존한다.</p>
 </div>
 <div class="paragraph">
-<p>만약 <code>CacheManager</code> 타입의 빈이나 <code>cacheResolver</code>라는 이름 <code>CacheResolver</code>을 정의(<code>CachingConfigurer</code>를 살펴보라)하지 않았다면, 스프링부트는 다음순서로 프로바이더를 찾아내려고 시도한다.</p>
+<p>만약 <code>CacheManager</code> 타입의 빈이나 <code>cacheResolver</code>라는 이름으로 <code>CacheResolver</code>을 정의(<code>CachingConfigurer</code>를 살펴보라)하지 않았다면, 스프링부트는 다음순서로 프로바이더를 찾아내려고 시도한다.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#boot-features-caching-provider-generic">Generic</a> <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-generic">(https://goo.gl/zuGf1T)</a></p>
+<p><a href="#boot-features-caching-provider-generic">Generic</a><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-generic">(https://goo.gl/zuGf1T)</a></p>
 </li>
 <li>
-<p><a href="#boot-features-caching-provider-jcache">JCache (JSR-107)</a> <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-jcache">(https://goo.gl/4GnnSe)</a>(EhCache 3, Hazelcast, Infinispan, 기타등등)</p>
+<p><a href="#boot-features-caching-provider-jcache">JCache (JSR-107)</a><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-jcache">(https://goo.gl/4GnnSe)</a>(EhCache 3, Hazelcast, Infinispan, 기타등등)</p>
 </li>
 <li>
-<p><a href="#boot-features-caching-provider-ehcache2">EhCache 2.x</a> <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-ehcache2">(https://goo.gl/ayjHaX)</a></p>
+<p><a href="#boot-features-caching-provider-ehcache2">EhCache 2.x</a><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-ehcache2">(https://goo.gl/ayjHaX)</a></p>
 </li>
 <li>
-<p>Hazelcast <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-hazelcast">(https://goo.gl/LBqC4N)</a></p>
+<p>Hazelcast<a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-hazelcast">(https://goo.gl/LBqC4N)</a></p>
 </li>
 <li>
-<p>Infinispan <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-infinispan">(https://goo.gl/ZNQKzV)</a></p>
+<p>Infinispan<a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-infinispan">(https://goo.gl/ZNQKzV)</a></p>
 </li>
 <li>
-<p>Couchbase <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-couchbase">(https://goo.gl/7sd6tb)</a></p>
+<p>Couchbase<a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-couchbase">(https://goo.gl/7sd6tb)</a></p>
 </li>
 <li>
-<p><a href="#boot-features-caching-provider-redis">Redis</a> <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-redis">(https://goo.gl/BFVbKL)</a></p>
+<p><a href="#boot-features-caching-provider-redis">Redis</a><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-redis">(https://goo.gl/BFVbKL)</a></p>
 </li>
 <li>
-<p>Caffein <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-caffeine">(https://goo.gl/c5Vdaj)</a></p>
+<p>Caffein<a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-caffeine">(https://goo.gl/c5Vdaj)</a></p>
 </li>
 <li>
-<p><a href="#boot-features-caching-provider-simple">Simple</a> <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-simple">(https://goo.gl/Febz4S)</a></p>
+<p><a href="#boot-features-caching-provider-simple">Simple</a><a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-caching-provider-simple">(https://goo.gl/Febz4S)</a></p>
 </li>
 </ul>
 </div>
@@ -8570,14 +8614,14 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spring-boot-starter-cache</code> 스타터를 사용하면 기초적인 캐시 의존성을 빠르게 추가할 수 있다. 스타터에는  <code>spring-context-support</code> 의존성이 포함되어 있는데, 프로젝트가 사용하는 의존성 라이브러리를 수동으로 관리하는 상황에서 JCache, EhCache 2.x 혹은 Guava를 지원해야한다면 <code>spring-context-support</code>를 추가해야 한다.</p>
+<p><code>spring-boot-starter-cache</code>를 사용하면 기초적인 캐시 의존성을 빠르게 추가할 수 있다. 스타터에는  <code>spring-context-support</code> 의존성을 포함하고 있는데, 프로젝트가 사용하는 의존성 라이브러리를 수동으로 관리하는 상황에서 JCache, EhCache 2.x 혹은 Guava를 지원해야한다면 <code>spring-context-support</code>를 추가해야 한다.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p><code>CacheManagerCustomizer</code> 인터페이스를 구현하는 과정에서 초기화 되기 전에 스프링 부트이 자동구성한 <code>CacheManager</code> 속성을 조정할 수 있다. 다음 예제는 전달되는 기본 맵Map에 대해서 null허용여부를 설정한다.</p>
+<p><code>CacheManagerCustomizer</code> 인터페이스를 구현하는 과정에서 초기화 되기 전에 스프링 부트가 자동구성한 <code>CacheManager</code> 속성을 조정할 수 있다. 다음 예제는 전달되는 기본 맵Map에 대해서 null허용여부를 설정한다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8615,7 +8659,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-caching-provider-jcache">JCache (JSR-107)</h5>
 <div class="paragraph">
-<p>JCache는 클래스패스상에 <code>javax.cache.spi.CachingProvider</code>의 존재(예: JSR-107을 구현한 캐싱 라이브러리)가 있다면 발동되며 <code>spring-boot-starter-cache</code> 스타터에 의해 <code>JCacheCacheManager</code>를 제공한다. 다양한 구현 라이브러리가 있으며 스프링 부트는 EhCache 3, Hazelcast와 Infinispan에 대한 의존성을 관리한다. 다른 구현 라이브러리를 추가해도 잘 동작한다.</p>
+<p>JCache는 클래스패스상에 <code>javax.cache.spi.CachingProvider</code>의 존재(예: JSR-107을 구현한 캐싱 라이브러리)가 있다면 발동되며 <code>spring-boot-starter-cache</code>에서 <code>JCacheCacheManager</code>를 제공한다. 다양한 구현 라이브러리가 있으며 스프링 부트는 EhCache 3, Hazelcast와 Infinispan에 대한 의존성을 관리한다. 다른 구현 라이브러리를 추가해도 잘 동작한다.</p>
 </div>
 <div class="paragraph">
 <p>다수의 프로바이더가 존재하는 경우에 프로바이더를 명시적으로 지정해야할 경우가 있다. JSR-107 표준이 구성파일의 위치를 정의하는 표준화된 방법을 제공하지 않더라도, 스프링 부트는 구현 세부사항을 수용하기 위해 최선을 다한다.</p>
@@ -8687,7 +8731,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-caching-provider-ehcache2">EhCache 2.x</h5>
 <div class="paragraph">
-<p>EhCache 2.x는 클래스패스 최상위에서 <code>ehcache.xml</code> 이란 파일을 찾는다. EhCache 2.x를 사용한다면 <code>spring-boot-starter-cache</code> 스타터에서 <code>EhCacheCacheManager</code>를 제공하며 캐시 매니저가 시작할 때도 저 파일을 이용한다. 그에 대한 대안으로 다음과 같이 사용할 수 있다:</p>
+<p>EhCache 2.x는 클래스패스 최상위에서 <code>ehcache.xml</code> 이란 파일을 찾는다. EhCache 2.x를 사용한다면 <code>spring-boot-starter-cache</code>에서 <code>EhCacheCacheManager</code>를 제공하며 캐시 매니저가 시작할 때도 저 파일을 이용한다. 그에 대한 대안으로 다음과 같이 사용할 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8725,7 +8769,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-caching-provider-simple">Simple</h5>
 <div class="paragraph">
-<p>프로바이더를 찾을 수 없을 경우에는 캐시를 저장하는 용도로 <code>ConcurrentHashMap</code>를 사용하는 간단한 구현체가 구성된다. 애플리케이션에 캐싱 라이브러리가 없는 경우에 적용된다. 캐시는 기본적으로 직접 작성하지만 <code>cache-names</code> 속성을 사용하여 가능한 캐시를 제한할 수 있다. 예를 들어, <code>foo</code> 와 <code>bar</code> 캐시만 사용하려는 경우는 다음과 같다:</p>
+<p>프로바이더를 찾을 수 없을 경우에는 캐시를 저장하는 용도로 <code>ConcurrentHashMap</code>를 사용하는 간단한 구현체가 구성된다. 애플리케이션에 캐싱 라이브러리가 없는 경우에 적용된다. 캐시는 기본적으로 직접 작성하지만 <code>cache-names</code> 속성을 사용가능한 캐시를 제한할 수 있다. 예를 들어, <code>foo</code> 와 <code>bar</code> 캐시만 사용하려는 경우는 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8750,9 +8794,9 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="boot-features-restclient">3.10. <code>RestTemplate</code>를 이용한 <strong>REST</strong> 서비스 호출</h3>
+<h3 id="boot-features-restclient">3.10. <code>RestTemplate</code>을 이용한 <strong>REST</strong> 서비스 호출</h3>
 <div class="paragraph">
-<p>애플리케이션에서 원격에 있는 REST 서비스를 호출해야할 때 스프링 프레임워크의 <code>RestTemplate</code>를 사용할 수 있다. <code>RestTemplate</code> 인스턴스는 사용되기 전에 재정의되는 것이 일반적이기 때문에 스프링 부트에서는 <code>RestTemplate</code> 빈을 자동구성하여 제공하지 않는다. 그러나 <code>RestTemplate</code>가 필요할 때 인스턴스를 생성할 수 있도록 자동구성된 <code>RestTemplateBuilder</code>를 제공한다. 자동구성된 <code>RestTemplateBuilder</code>는 <code>HttpMessageConverters</code>를 지원하는 <code>RestTemplate</code> 인스턴스를 만들어낸다.</p>
+<p>애플리케이션에서 원격에 있는 REST 서비스를 호출해야할 때 스프링 프레임워크의 <code>RestTemplate</code>을 사용할 수 있다. <code>RestTemplate</code> 인스턴스는 사용되기 전에 재정의되는 것이 일반적이기 때문에 스프링 부트에서는 <code>RestTemplate</code> 빈을 자동구성하여 제공하지 않는다. 그러나 <code>RestTemplate</code>이 필요할 때 인스턴스를 생성할 수 있도록 자동구성된 <code>RestTemplateBuilder</code>를 제공한다. 자동구성된 <code>RestTemplateBuilder</code>는 <code>HttpMessageConverters</code>를 지원하는 <code>RestTemplate</code> 인스턴스를 만들어낸다.</p>
 </div>
 <div class="paragraph">
 <p>일반적인 예제는 다음과 같다:</p>
@@ -8783,7 +8827,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>RestTemplateBuilder</code>는 <code>RestTemplate</code>를 빠르게 구성하는데 사용할 수 있는 유용한 여러 메서드를 제공한다. 예를 들어, <code>builder.basicAuthorization("user", "password").build()</code>으로 기본인증을 추가할 수 있다.</p>
+<p><code>RestTemplateBuilder</code>는 <code>RestTemplate</code>을 빠르게 구성하는데 사용할 수 있는 유용한 여러 메서드를 제공한다. 예를 들어, <code>builder.basicAuthorization("user", "password").build()</code>으로 기본인증을 추가할 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -8792,7 +8836,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-restclient-customization">3.10.1. <code>RestTemplate</code> 재정의</h4>
 <div class="paragraph">
-<p>사용목적에 따라서 <code>RestTemplate</code>를 재정의하는 방법은 크게 세 가지가 있다.</p>
+<p>사용목적에 따라서 <code>RestTemplate</code>을 재정의하는 방법은 크게 세 가지가 있다.</p>
 </div>
 <div class="paragraph">
 <p>첫 번째는, <strong>필요한 순간에 재정의하는 방법</strong>으로  자동구성된 <code>RestTemplateBuilder</code>를 주입받아서 각 메서드가 호출되는 시점에 생성하는 방법이 있다. 각 방법은 빌더를 이용해 재정의한 새로운 인스턴스가 반환된다.</p>
@@ -8904,7 +8948,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>만약 스프링  세션이 가능하다면, 세션을 저장할 때 사용할 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/session/StoreType.java"><code>StoreType</code>(https://goo.gl/Ts2DrN)</a>를 선택해야 한다. 백엔드 저장에 JDBC 인스턴스를 사용한다면 애플리케이션 설정은 다음과 같다:</p>
+<p>만약 스프링  세션이 가능하다면, 세션을 저장할 때 사용할 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/session/StoreType.java"><code>StoreType</code>(https://goo.gl/Ts2DrN)</a>을 선택해야 한다. 백엔드 저장에 JDBC 인스턴스를 사용한다면 애플리케이션 설정은 다음과 같다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -8942,10 +8986,10 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>spring-boot-test</code>는 핵심 아이템들 포함</p>
+<p><code>spring-boot-test</code>는 핵심 아이템 포함</p>
 </li>
 <li>
-<p><code>spring-boot-test-autoconfigure</code>는 테스트를 위한 자동구성을 지원</p>
+<p><code>spring-boot-test-autoconfigure</code>는 테스트를 위한 자동구성 지원</p>
 </li>
 </ul>
 </div>
@@ -8955,7 +8999,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-test-scope-dependencies">3.13.1. 테스트 관련 의존성</h4>
 <div class="paragraph">
-<p><code>spring-boot-starter-test</code> 스타터를 사용(<code>test</code> 스코프에서)하면 다음 라이브러리를 확인할 수 있다:</p>
+<p><code>spring-boot-starter-test</code>를 사용(<code>test</code> 스코프에서)하면 다음 라이브러리를 확인할 수 있다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -8989,13 +9033,13 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-testing-spring-applications">3.13.2. 스프링 애플리케이션 테스트</h4>
 <div class="paragraph">
-<p>의존성 주입을 통해 얻게 되는 큰 혜택 중 하나는 코드에 대한 단위테스트를 손쉽게할 수 있다는 것이다. 스프링 없이도 <code>new</code> 명령어를 통해 간단하게 객체의 인스턴스를 얻을 수 있다. 또한 실제 의존성을 가진 객체 대신 *목 객체*를 사용할 수 도 있다.</p>
+<p>의존성 주입을 통해 얻게 되는 큰 혜택 중 하나는 코드에 대한 단위테스트를 손쉽게할 수 있다는 것이다. 스프링 없이도 <code>new</code> 명령어를 통해 간단하게 객체의 인스턴스를 얻을 수 있다. 또한 실제 의존성을 가진 객체 대신 <strong>목(Mock) 객체</strong>를 사용할 수 도 있다.</p>
 </div>
 <div class="paragraph">
-<p>'단위 테스트' 다음에는 '통합 테스트'(진행 과정 중에 실제 스프링 <code>ApplicationContext</code>이 필요하기도 하고)으로 넘어가야한다. 다른 인프라에 연결해야하는 상황이나 애플리케이션을 배포하지 않고 통합테스트를 수행하려고 할 때 유용하다.</p>
+<p>'단위 테스트' 다음에는 '통합 테스트'(진행 과정 중에 실제 스프링 <code>ApplicationContext</code>이 필요하기도 하고)으로 넘어가야한다. 다른 인프라에 연결해야하는 상황이나 애플리케이션을 배포하지 않고 통합테스트를 수행할 때 유용하다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 프레임워크는 통합 테스트를 위한 테스트 모듈을 포함하고 있다. <code>org.springframework:spring-test</code>이나 <code>spring-boot-starter-test</code> 스타터에 대한 의존성을 선언할 수 있다.</p>
+<p>스프링 프레임워크는 통합 테스트를 위한 테스트 모듈을 포함하고 있다. <code>org.springframework:spring-test</code>나 <code>spring-boot-starter-test</code>에 대한 의존성을 선언할 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>만약 <code>spring-test</code> 모듈을 사용해본 경험이 없다면 스프링 프레임워크 참조 문서에서 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#testing">관련된 항목(https://goo.gl/mFD1F4)</a>을 읽기 바란다.</p>
@@ -9004,7 +9048,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-testing-spring-boot-applications">3.13.3. 스프링 부트 애플리케이션 테스트</h4>
 <div class="paragraph">
-<p>스프링 부트 애플리케이션은 스프링 <code>ApplicationContext</code> 이기에 스프링 컨텍스트에 관해서는 특별히 더 테스트할 것은 없다. 외부 속성, 로깅과 스프링 부트의 다른 기능은  <code>SpringApplication</code> 을 사용하여 생성하는 경우 기본적으로 컨텍스트에만 설치된다는 것을 유의해야 한다.</p>
+<p>스프링 부트 애플리케이션은 스프링 <code>ApplicationContext</code>를 이용하기에 스프링 컨텍스트에 관해서는 특별히 더 테스트할 것은 없다. 외부 속성, 로깅과 스프링 부트의 다른 기능은  <code>SpringApplication</code> 을 사용하여 생성하는 경우 기본적으로 컨텍스트에만 설치된다는 것을 유의해야 한다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트는 스프링 부트 기능이 필요할 때 표준 <code>spring-test</code> <code>@ContextConfigration</code> 애너테이션의 대안으로 사용할 수 있는 <code>@SpringBootTest</code> 애너테이션을 제공한다. 이 애너테이션는 <code>SpringApplication</code>를 이용한 테스트에서 <code>ApplicationContext</code>를 만들어낸다.</p>
@@ -9015,13 +9059,13 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>MOCK</code>: <code>WebApplicationContext</code>를 적재하면서 목 서블릿 환경을 제공한다. 이 애너테이션를 사용하면 내장 서블릿 컨테이너가 시작하지 않는다. 클래스패스상에 서블릿 API가 존재하지 않는다면 이 모드에서는 비웹<code>ApplicationContext</code>이 생성될 것이다. 애플리케이션을 위한 <code>MockMvc</code> 기반 테스트를 위해 <code>@AutoConfigureMockMvc</code>를 사용할 수도 있다.</p>
+<p><code>MOCK</code>: <code>WebApplicationContext</code>를 적재하면서 목 서블릿 환경을 제공한다. 이 애너테이션을 사용하면 내장 서블릿 컨테이너가 시작하지 않는다. 클래스패스상에 서블릿 API가 존재하지 않는다면 이 모드에서는 비웹<code>ApplicationContext</code>이 생성될 것이다. 애플리케이션을 위한 <code>MockMvc</code> 기반 테스트를 위해 <code>@AutoConfigureMockMvc</code>를 사용할 수도 있다.</p>
 </li>
 <li>
-<p><code>RANDOM_PORT</code>: <code>EmbeddedWebApplicationContext</code>를 적재하며 실제 서블릿 컨테이너를 제공한다. 내장 서블릿 컨테이너는 무작위 포트로 시작하며 준비한다.</p>
+<p><code>RANDOM_PORT</code>: <code>ServletWebServerApplicationContext</code>를 적재하며 실제 서블릿 컨테이너를 제공한다. 내장 서블릿 컨테이너는 무작위 포트로 시작하며 준비한다.</p>
 </li>
 <li>
-<p><code>DEFINED_PORT</code>: <code>EmbeddedWebApplicationContext</code>를 적재하고 실제 서블릿 환경을 제공한다. 내장 서블릿 컨테이너는 기본 포트(<code>application.yml</code>에서 정의하지 않았다면 기본 포트는 <code>8080</code>)로 시작한다.</p>
+<p><code>DEFINED_PORT</code>: <code>ServletWebServerApplicationContext</code>를 적재하고 실제 서블릿 환경을 제공한다. 내장 서블릿 컨테이너는 기본 포트(<code>application.yml</code>에서 정의하지 않았다면 기본 포트는 <code>8080</code>)로 시작한다.</p>
 </li>
 <li>
 <p><code>NONE</code>: <code>SpringApplication</code>을 사용하여 <code>ApplicationContext</code>이 적재되며 서블릿 환경(목 혹은 어떤 것도)을 제공하지 않는다.</p>
@@ -9050,7 +9094,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@SpringBootTest</code>를 비롯해서 애플리케이션을 테스트하는데 필요한 다양한 애너테이션를 제공한다. 자세한 내용은 아래에서 기술한다.</p>
+<p><code>@SpringBootTest</code>를 비롯해서 애플리케이션을 테스트하는데 필요한 다양한 애너테이션을 제공한다. 자세한 내용은 아래에서 기술한다.</p>
 </div>
 </td>
 </tr>
@@ -9073,7 +9117,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-testing-spring-boot-applications-detecting-config">테스트 구성 탐색</h5>
 <div class="paragraph">
-<p>스프링 테스트 프레임워크에 친숙하다면, <code>@ContextConfiguration(classes=…​)</code>를 사용하여 스프링 <code>@Configuration</code>이 적재되는 순서를 지정해봤을 것이다. 그에 대한 대안으로 테스트 코드 내부 클래스에 <code>@Configuration</code>를 선언하여 사용할 수도 있다.</p>
+<p>스프링 테스트 프레임워크에 친숙하다면, <code>@ContextConfiguration(classes=…​)</code>를 사용하여 스프링 <code>@Configuration</code>이 적재되는 순서를 지정해봤을 것이다. 그에 대한 대안으로 테스트 코드 내부 클래스에 <code>@Configuration</code>을 선언하여 사용할 수도 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9090,42 +9134,42 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <span class="annotation">@RunWith</span>(SpringJUnit4ClassRunner.class)
 <span class="annotation">@ContextConfiguration</span>(classes={BootSpringBootConfiguration.class}, loader = AnnotationConfigContextLoader.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootServiceTest</span> {
-        <span class="annotation">@Autowired</span>
-        <span class="directive">private</span> BootSpringBootService bootService;
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> BootSpringBootService bootService;
 
-        <span class="annotation">@Test</span>
-        <span class="directive">public</span> <span class="type">void</span> testBserService() {
-                <span class="comment">// test the userService</span>
-                bootService.greeting();
-        }
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testBserService() {
+        <span class="comment">// test the userService</span>
+        bootService.greeting();
+    }
 }</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">테스트 클래스 내부에 <code>@Configuration</code>를 선언하는 경우</div>
+<div class="title">테스트 클래스 내부에 <code>@Configuration</code>을 선언하는 경우</div>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringJUnit4ClassRunner.class)
 <span class="annotation">@ContextConfiguration</span>(loader = AnnotationConfigContextLoader.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootServiceTest</span> {
 
-        <span class="annotation">@Configuration</span>
-        <span class="directive">static</span> <span class="type">class</span> <span class="class">BootSpringBootConfiguration</span> {
-                <span class="annotation">@Bean</span>
-                <span class="directive">public</span> BootSpringBootService bootService() {
-                        BootSpringBootService service = <span class="keyword">new</span> BootSpringBootServiceImpl();
-                        <span class="comment">//service 속성 설정 등의 작업 수행</span>
-                        <span class="keyword">return</span> service;
-                }
+    <span class="annotation">@Configuration</span>
+    <span class="directive">static</span> <span class="type">class</span> <span class="class">BootSpringBootConfiguration</span> {
+        <span class="annotation">@Bean</span>
+        <span class="directive">public</span> BootSpringBootService bootService() {
+            BootSpringBootService service = <span class="keyword">new</span> BootSpringBootServiceImpl();
+            <span class="comment">//service 속성 설정 등의 작업 수행</span>
+            <span class="keyword">return</span> service;
         }
+    }
 
-        <span class="annotation">@Autowired</span>
-        <span class="directive">private</span> BootSpringBootService bootService;
+    <span class="annotation">@Autowired</span>
+    <span class="directive">private</span> BootSpringBootService bootService;
 
-        <span class="annotation">@Test</span>
-        <span class="directive">public</span> <span class="type">void</span> testBserService() {
-                <span class="comment">// test the userService</span>
-                bootService.greeting();
-        }
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testBserService() {
+        <span class="comment">// test the userService</span>
+        bootService.greeting();
+    }
 }</code></pre>
 </div>
 </div>
@@ -9133,7 +9177,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>스프링 부트 애플리케이션에서는 많이 사용되지 않는 방법이다. 스프링 부트의 <code>@*Test</code> 계열 애너테이션은 명시적으로 선언된 것이 없을 때는 주(primary)구성을 자동으로 탐색한다.</p>
 </div>
 <div class="paragraph">
-<p>탐색 알고리듬은 <code>@SpringBootApplication</code> 혹은 <code>@SpringBootConfiguration</code> 애너테이션가 선언되어 있는 클래스를 찾을 때까지 진행된다. 꽤 이전에 "<a href="#code-structure">코드 구조</a>"에서 설명했던 것을 잘 이행하고 있다면 주 구성클래스를 찾아낼 것이다.</p>
+<p>탐색 알고리듬은 <code>@SpringBootApplication</code> 혹은 <code>@SpringBootConfiguration</code> 애너테이션이 선언되어 있는 클래스를 찾을 때까지 진행된다. 꽤 이전에 "<a href="#code-structure">코드 구조</a>"에서 설명했던 것을 잘 이행하고 있다면 주 구성클래스를 찾아낼 것이다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -9150,7 +9194,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>주 구성을 재정의하고 싶다면 <code>@TestConfiguration</code>를 선언한 내부클래스를 사용할 수 있다. <code>@Configuration</code>을 사용한 내부 클래스와는 달리 애플리케이션 주구성을 대신할 수 있고 <code>@TestConfiguration</code> 이 선언된 클래스를 추가할 수도 있다.</p>
+<p>주 구성을 재정의하고 싶다면 <code>@TestConfiguration</code>을 선언한 내부클래스를 사용할 수 있다. <code>@Configuration</code>을 사용한 내부 클래스와는 달리 애플리케이션 주구성을 대신할 수 있고 <code>@TestConfiguration</code>이 선언된 클래스를 추가할 수도 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9158,39 +9202,39 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <span class="annotation">@SpringBootTest</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">TestConfigurationTest</span> {
 
-        <span class="annotation">@TestConfiguration</span> <b class="conum">(1)</b>
-        <span class="directive">static</span> <span class="type">class</span> <span class="class">InnerTestConfig</span> {
+    <span class="annotation">@TestConfiguration</span> <b class="conum">(1)</b>
+    <span class="directive">static</span> <span class="type">class</span> <span class="class">InnerTestConfig</span> {
 
-                <span class="annotation">@Bean</span>
-                RestTemplate restTemplate() {
-                        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate() {
-                                <span class="annotation">@Override</span>
-                                <span class="directive">public</span> &lt;T&gt; T getForObject(<span class="predefined-type">String</span> url, <span class="predefined-type">Class</span>&lt;T&gt; responseType, <span class="predefined-type">Object</span>... uriVariables)
-                                                <span class="directive">throws</span> RestClientException {
-                                        <span class="keyword">if</span> (responseType == <span class="predefined-type">String</span>.class) {
-                                                <span class="keyword">return</span> (T) <span class="string"><span class="delimiter">&quot;</span><span class="content">Test</span><span class="delimiter">&quot;</span></span>;
-                                        } <span class="keyword">else</span> {
-                                                <span class="keyword">throw</span> <span class="keyword">new</span> RestClientException(<span class="string"><span class="delimiter">&quot;</span><span class="content">Not Support type: </span><span class="delimiter">&quot;</span></span> + responseType.getName());
-                                        }
-                                }
-                        };
+        <span class="annotation">@Bean</span>
+        RestTemplate restTemplate() {
+            <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate() {
+                <span class="annotation">@Override</span>
+                <span class="directive">public</span> &lt;T&gt; T getForObject(<span class="predefined-type">String</span> url, <span class="predefined-type">Class</span>&lt;T&gt; responseType, <span class="predefined-type">Object</span>... uriVariables)
+                        <span class="directive">throws</span> RestClientException {
+                    <span class="keyword">if</span> (responseType == <span class="predefined-type">String</span>.class) {
+                        <span class="keyword">return</span> (T) <span class="string"><span class="delimiter">&quot;</span><span class="content">Test</span><span class="delimiter">&quot;</span></span>;
+                    } <span class="keyword">else</span> {
+                        <span class="keyword">throw</span> <span class="keyword">new</span> RestClientException(<span class="string"><span class="delimiter">&quot;</span><span class="content">Not Support type: </span><span class="delimiter">&quot;</span></span> + responseType.getName());
+                    }
                 }
+            };
         }
+    }
 
-        <span class="annotation">@Autowired</span>
-        RestTemplate restTemplate;
+    <span class="annotation">@Autowired</span>
+    RestTemplate restTemplate;
 
-        <span class="annotation">@Test</span>
-        <span class="directive">public</span> <span class="type">void</span> getForObject() {
-                assertThat(restTemplate.getForObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>, <span class="predefined-type">String</span>.class)).isEqualTo(<span class="string"><span class="delimiter">&quot;</span><span class="content">Test</span><span class="delimiter">&quot;</span></span>);
-        }
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> getForObject() {
+        assertThat(restTemplate.getForObject(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>, <span class="predefined-type">String</span>.class)).isEqualTo(<span class="string"><span class="delimiter">&quot;</span><span class="content">Test</span><span class="delimiter">&quot;</span></span>);
+    }
 }</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <ol>
 <li>
-<p><code>@TestConfiguration</code>가 선언된 구성 클래스는 소스에서 보는 것처럼 내부 클래스 혹은 외부 클래스로 정의하여 호출하여 사용이 가능하다. 테스트가 실행되면 컴포넌트 스캔 과정에서 <code>@TestConfiguration</code>가 탐색되어 <code>RestTemplate</code> 빈을 대체하게 된다.</p>
+<p><code>@TestConfiguration</code>이 선언된 구성 클래스는 소스에서 보는 것처럼 내부 클래스 혹은 외부 클래스로 정의하여 호출하여 사용이 가능하다. 테스트가 실행되면 컴포넌트 스캔 과정에서 <code>@TestConfiguration</code>이 탐색되어 <code>RestTemplate</code> 빈을 대체하게 된다.</p>
 </li>
 </ol>
 </div>
@@ -9258,7 +9302,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>테스트를 위해서 애플리케이션을 완벽하게 시작해야 한다면, 랜덤포트를 사용하기를 권한다. 만약 <code>@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)</code>를 사용한다면 테스트를 실행할 때마다 무작위로 포트를 선택할 것이다.</p>
 </div>
 <div class="paragraph">
-<p><code>@LocalServerPort</code> 애너테이션를 사용하면 테스트에서 <a href="#howto-discover-the-http-port-at-runtime">실제 포트를 주입</a>받을 수 있다('실행시 HTTP 포트 할당' 참조). 편의를 위해 테스트는 REST 호출이 필요한 경우에 서버는 <code>@Autowired</code>로 <code>TestRestTemplate</code>를 추가하여 실행 서버와 관련된 연결을 처리할 수 있다.</p>
+<p><code>@LocalServerPort</code> 애너테이션을 사용하면 테스트에서 <a href="#howto-discover-the-http-port-at-runtime">실제 포트를 주입</a>받을 수 있다("<a href="#howto-discover-the-http-port-at-runtime">실행시 HTTP 포트 할당</a>" 참조). 편의를 위해 테스트는 REST 호출이 필요한 경우에 서버는 <code>@Autowired</code>로 <code>TestRestTemplate</code>을 추가하여 실행 서버와 관련된 연결을 처리할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9290,24 +9334,14 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>테스트를 실행할 때 애플리케이션 컨텍스트 내에서 특정 구성요소를 모방(Mock)해야하는 경우가 있다. 예를 들어, 개발 동안에 원격 서비스를 흉내내야할 때가 있다. 모킹은 실제 환경에서 구현하기 어려운 실패하는 경우를 원하는 경우 유용하다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 <code>@MockBean</code> 애너테이션을 통해 <code>ApplicationContext</code> 에 있는 빈을 모키토 모방체으로 정의할 수 있다. 애너테이션을 사용하여 새로운 빈을 추가하거나 정의되어 있는 빈을 대체할 수 있다. 테스트 클래스에서 바로 사용하거나 <code>@configuration</code> 클래스와 필드에서 사용할 수 있다. 필드에 사용할 경우, 생성된 목 인스턴스가 주입된다. 모방 빈은 각 테스트 메서드 마다 자동으로 초기화된다.</p>
+<p>스프링 부트는 <code>@MockBean</code> 애너테이션을 통해 <code>ApplicationContext</code> 에 있는 빈을 모키토 모방체으로 정의할 수 있다. 애너테이션을 사용하여 새로운 빈을 추가하거나 정의되어 있는 빈을 대체할 수 있다. 테스트 클래스에서 바로 사용하거나 <code>@Configuration</code> 클래스와 필드에서 사용할 수 있다. 필드에 사용할 경우, 생성된 목 인스턴스가 주입된다. 목(Mock) 빈은 각 테스트 메서드 마다 자동으로 초기화된다.</p>
 </div>
 <div class="paragraph">
-<p>다음 예제는 <code>RemoteService</code> 빈을 모방 구현체로 대체하고 있다:</p>
+<p>다음 예제는 <code>RemoteService</code> 빈을 목 구현체로 대체하고 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit</span>.*;
-<span class="keyword">import</span> <span class="include">org.junit.runner</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.context</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.mock.mockito</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.test.context.junit4</span>.*;
-
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.assertj.core.api.Assertions</span>.*;
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.mockito.BDDMockito</span>.*;
-
-<span class="annotation">@RunWith</span>(SpringRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@SpringBootTest</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">MyTests</span> {
     <span class="annotation">@MockBean</span>
@@ -9335,7 +9369,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>스프링 부트의 자동구성된 시스템은 애플리케이션에서 잘 동작한다. 그러나 테스트에 사용하기에는 좀 과한 면이 있다. 이때 애플리케이션 중 테스트에 필요한 부분만 잘라내어 구성 일부만 적재하면 유용할 것이다. 예를 들어, 스프링 MVC 컨트롤러에 URL이 정확히 매핑되었는지만 확인하고 싶거나 데이터베이스를 호출하고 싶지 않다거나 JPA 엔티티만 테스트하고 싶거나 웹 계층에 대해서는 테스트하고 싶지 않은 경우 등 말이다.</p>
 </div>
 <div class="paragraph">
-<p><code>spring-boot-test-autoconfigure</code> 모듈은 필요한 부분만 절제한 구성을 사용할 수 있는 다양한 애너테이션를 포함하고 있다. 각각이 동작하는 방식은 유사하며, <code>@&#8230;&#8203;Test</code> 애너테이션는 <code>ApplicationContext</code>에 적재되고 하나 이상의 <code>@autoconfigure..</code> 애너테이션으로 자동구성을 재정의할 수 있다.</p>
+<p><code>spring-boot-test-autoconfigure</code> 모듈은 필요한 부분만 절제한 구성을 사용할 수 있는 다양한 애너테이션을 포함하고 있다. 각각이 동작하는 방식은 유사하며, <code>@&#8230;&#8203;Test</code> 애너테이션는 <code>ApplicationContext</code>에 적재되고 하나 이상의 <code>@Autoconfigure..</code> 애너테이션으로 자동구성을 재정의할 수 있다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -9369,24 +9403,14 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-testing-spring-boot-applications-testing-autoconfigured-json-tests">자동구성된 JSON 테스트</h5>
 <div class="paragraph">
-<p>객체에 대한 JSON 직렬화와 역직렬화를 테스트하고 싶을 때 <code>@JsonTest</code> 애너테이션를 사용할 수 있다. <code>@JsonTest</code>는 Jackson <code>ObjectMaaper</code>, <code>@JsonComponent</code> 빈과 Jackson <code>Module</code>을 자동구성한다. 물론 Jackson 대신 <code>Gson</code> 구성을 사용할 수도 있다. 만약 자동구성된 요소들을 필요로 한다면 <code>@AutoConfigureJsonTesters</code> 애너테이션를 사용할 수 있다.</p>
+<p>객체에 대한 JSON 직렬화와 역직렬화를 테스트하고 싶을 때 <code>@JsonTest</code> 애너테이션을 사용할 수 있다. <code>@JsonTest</code>는 Jackson <code>ObjectMaaper</code>, <code>@JsonComponent</code> 빈과 Jackson <code>Module</code>을 자동구성한다. 물론 Jackson 대신 <code>Gson</code> 구성을 사용할 수도 있다. 만약 자동구성된 요소들을 필요로 한다면 <code>@AutoConfigureJsonTesters</code> 애너테이션을 사용할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 AssertJ 기반의 헬퍼 JSONassert와 JsonPath 라이브러리를 통해서 JSON을 예측할 수 있다. <code>JacksonTester</code>, <code>GsonTester</code> 그리고 <code>BasicJsonTester</code> 클래스는 Jackson, Gson 과 문자열에 각각 사용할 수 있다. <code>@JsonTest</code> 를 사용했을 때 테스트 클래스의 헬퍼 필드에 <code>@Autowired</code> 를 사용한 예제다:</p>
+<p>스프링 부트는 AssertJ 기반의 헬퍼 JSONassert와 JsonPath 라이브러리를 통해서 JSON을 예측할 수 있다. <code>JacksonTester</code>, <code>GsonTester</code> 그리고 <code>BasicJsonTester</code> 클래스는 Jackson, Gson 과 문자열에 각각 사용할 수 있다. <code>@JsonTest</code>를 사용했을 때 테스트 클래스의 헬퍼 필드에 <code>@Autowired</code> 를 사용한 예제다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit</span>.*;
-<span class="keyword">import</span> <span class="include">org.junit.runner</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.autoconfigure.json</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.context</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.json</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.test.context.junit4</span>.*;
-
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.assertj.core.api.Assertions</span>.*;
-
-<span class="annotation">@RunWith</span>(SpringRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@JsonTest</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">MyJsonTests</span> {
 
@@ -9436,13 +9460,13 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-testing-spring-boot-applications-testing-autoconfigured-mvc-tests">자동구성된 스프링 MVC 테스트</h5>
 <div class="paragraph">
-<p>스프링 MVC 컨트롤러를 테스트할 때는 <code>@WebMvcTest</code> 애너테이션를 사용할 수 있다. <code>@WebMvcTest</code>는 스프링 MVC 인프라와 제한적으로 <code>@Controller</code>, <code>@ControllerAdvice</code>, <code>@JsonComponent</code>, <code>Filter</code>, <code>WebMvcConfigurer</code> 와 <code>HandlerMethodArgumentResolver</code> 빈을 남색하여 사용할 수 있다. 이 애너테이션을 사용했을 때는 일반적인 @Component 들은 탐색되지 않는다.</p>
+<p>스프링 MVC 컨트롤러를 테스트할 때는 <code>@WebMvcTest</code> 애너테이션을 사용할 수 있다. <code>@WebMvcTest</code>는 스프링 MVC 인프라와 제한적으로 <code>@Controller</code>, <code>@ControllerAdvice</code>, <code>@JsonComponent</code>, <code>Filter</code>, <code>WebMvcConfigurer</code> 와 <code>HandlerMethodArgumentResolver</code> 빈을 남색하여 사용할 수 있다. 이 애너테이션을 사용했을 때는 일반적인 <code>@Component</code> 들은 탐색되지 않는다.</p>
 </div>
 <div class="paragraph">
-<p><code>@WebMvcTest</code>는 하나의 컨트롤러로 제한하거나 <code>@MockBean</code> 과 조합하여 필요한 목(mock) 구현할 수 있다.</p>
+<p><code>@WebMvcTest</code>는 하나의 컨트롤러로 제한하거나 <code>@MockBean</code>과 조합하여 필요한 목(mock) 구현할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>또한 <code>@WebMvcTest</code>는 <code>MockMvc</code>를 자동구성한다. Mock Mvc 는 HTTP 서버를 완전히 가동할 필요 없이 MVC 컨트롤러 테스트를 빠르게 할 수 있는 강력한 방법을 제공한다.</p>
+<p>또한 <code>@WebMvcTest</code>는 <code>MockMvc</code>를 자동구성한다. MockMvc 는 HTTP 서버를 완전히 가동할 필요 없이 MVC 컨트롤러 테스트를 빠르게 할 수 있는 강력한 방법을 제공한다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9452,7 +9476,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@WebMvcTest</code> 없이도 <code>MockMvc</code>를 자동구성할 수 있다(예: <code>SpringBootTest</code>와 <code>@AutoConfigurationMockMvc</code> 애너테이션를 함께 사용).</p>
+<p><code>@WebMvcTest</code> 없이도 <code>MockMvc</code>를 자동구성할 수 있다(예: <code>@SpringBootTest</code>와 <code>@AutoConfigurationMockMvc</code> 애너테이션을 함께 사용).</p>
 </div>
 </td>
 </tr>
@@ -9460,18 +9484,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit</span>.*;
-<span class="keyword">import</span> <span class="include">org.junit.runner</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.autoconfigure.web.servlet</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.mock.mockito</span>.*;
-
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.assertj.core.api.Assertions</span>.*;
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.mockito.BDDMockito</span>.*;
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.springframework.test.web.servlet.request.MockMvcRequestBuilders</span>.*;
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.springframework.test.web.servlet.result.MockMvcResultMatchers</span>.*;
-
-<span class="annotation">@RunWith</span>(SpringRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@WebMvcTest</span>(UserVehicleController.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">MyControllerTests</span> {
     <span class="annotation">@Autowired</span>
@@ -9509,17 +9522,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">com.gargoylesoftware.htmlunit</span>.*;
-<span class="keyword">import</span> <span class="include">org.junit</span>.*;
-<span class="keyword">import</span> <span class="include">org.junit.runner</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.autoconfigure.web.servlet</span>.*;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.mock.mockito</span>.*;
-
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.assertj.core.api.Assertions</span>.*;
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.mockito.BDDMockito</span>.*;
-
-<span class="annotation">@RunWith</span>(SpringRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@WebMvcTest</span>(UserVehicleController.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">MyHtmlUnitTests</span> {
     <span class="annotation">@Autowired</span>
@@ -9560,7 +9563,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect4">
 <h5 id="boot-features-testing-spring-boot-applications-testing-autoconfigured-webflux-tests">자동구성된 스프링 WebFlux 테스트</h5>
 <div class="paragraph">
-<p><code>@WebFluxTest</code> 애너테이션를 이용하면 스프링 WebFlux 의 동작을 테스트해볼 수 있다. <code>@WebFluxTest</code>는 스프링 WebFlux 인프라를 자동으로 구성하고 <code>@Controller</code>, <code>@ControllerAdvice</code>, <code>@JsonComponent</code>, <code>Converter</code> 와 <code>WebFluxConfigurer</code> 빈을 제한적으로 스캔한다. <code>@WebFluxTest</code> 애너테이션를 사용하면 <code>@Component</code> 빈을 스캔하지 않는다.</p>
+<p><code>@WebFluxTest</code> 애너테이션을 이용하면 스프링 WebFlux 의 동작을 테스트해볼 수 있다. <code>@WebFluxTest</code>는 스프링 WebFlux 인프라를 자동으로 구성하고 <code>@Controller</code>, <code>@ControllerAdvice</code>, <code>@JsonComponent</code>, <code>Converter</code> 와 <code>WebFluxConfigurer</code> 빈을 제한적으로 스캔한다. <code>@WebFluxTest</code> 애너테이션을 사용하면 <code>@Component</code> 빈을 스캔하지 않는다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9590,7 +9593,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@WebFluxTest</code>가 아닌 곳에서는 <code>@AutoConfigureWebTestClien</code> 애너테이션를 추가하여 <code>WebTestClient</code>를 자동구성 가능하다. 다음 예제에서 <code>@WebFluxTest</code>와 <code>WebTestClient</code>를 모두 사용하는 경우를 보여준다.</p>
+<p><code>@WebFluxTest</code>가 아닌 곳에서는 <code>@AutoConfigureWebTestClient</code> 애너테이션을 추가하여 <code>WebTestClient</code>를 자동구성 가능하다. 다음 예제에서 <code>@WebFluxTest</code>와 <code>WebTestClient</code>를 모두 사용하는 경우를 보여준다.</p>
 </div>
 </td>
 </tr>
@@ -9598,16 +9601,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit.Test</span>;
-<span class="keyword">import</span> <span class="include">org.junit.runner.RunWith</span>;
-
-<span class="keyword">import</span> <span class="include">org.springframework.beans.factory.annotation.Autowired</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.http.MediaType</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.test.context.junit4.SpringRunner</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.test.web.reactive.server.WebTestClient</span>;
-
-<span class="annotation">@RunWith</span>(SpringRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@WebFluxTest</span>(UserVehicleController.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">MyControllerTests</span> {
 
@@ -9643,14 +9637,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit.Test</span>;
-<span class="keyword">import</span> <span class="include">org.junit.runner.RunWith</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.test.context.junit4.SpringRunner</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.transaction.annotation.Propagation</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.transaction.annotation.Transactional</span>;
-
-<span class="annotation">@RunWith</span>(SpringRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@DataJpaTest</span>
 <span class="annotation">@Transactional</span>(propagation = Propagation.NOT_SUPPORTED) <b class="conum">(1)</b>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">ExampleNonTransactionalTests</span> {
@@ -9666,7 +9653,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>Data JPA 테스트에는 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-test-autoconfigure/src/main/java/org/springframework/boot/test/autoconfigure/orm/jpa/TestEntityManager.java"><code>TestEntityManager</code>(https://goo.gl/CRf7si)</a> 빈을 주입하여 표준 JPA <code>EntityManager</code>에 대한 대안으로 테스트에 제공할 수 있다. 만약 <code>TestEntityManager</code>를 <code>@DataJpaTest</code> 외부에서 사용하고 싶다면 <code>@AutoConfigureTestEntityManager</code> 애너테이션를 사용할 수 있다. 필요하다면 <code>JdbcTemplate</code>도 사용가능하다:</p>
+<p>Data JPA 테스트에는 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-test-autoconfigure/src/main/java/org/springframework/boot/test/autoconfigure/orm/jpa/TestEntityManager.java"><code>TestEntityManager</code>(https://goo.gl/CRf7si)</a> 빈을 주입하여 표준 JPA <code>EntityManager</code>에 대한 대안으로 테스트에 제공할 수 있다. 만약 <code>TestEntityManager</code>를 <code>@DataJpaTest</code> 외부에서 사용하고 싶다면 <code>@AutoConfigureTestEntityManager</code> 애너테이션을 사용할 수 있다. 필요하다면 <code>JdbcTemplate</code>도 사용가능하다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9695,7 +9682,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>인-메모리 내장 데이터베이스 테스트는 개발자가 추가적으로 설치하는 것이 없어도 잘 동작한다. 그러나, 실제 데이터베이스 테스트를 하고 싶다면 <code>@AutoConfigureTestDatabase</code> 애너테이션를 사용할 수 있다.</p>
+<p>인-메모리 내장 데이터베이스 테스트는 개발자가 추가적으로 설치하는 것이 없어도 잘 동작한다. 그러나, 실제 데이터베이스 테스트를 하고 싶다면 <code>@AutoConfigureTestDatabase</code> 애너테이션을 사용할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -9741,7 +9728,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <p>사내에서 개발한 라이브러리를 공유하여 작업하거나 오픈소스 혹은 상업적인 라이브러리로 작업하게될 경우 자동구성을 개발하고 싶은 상황을 마주하게 될 것이다. 자동구성은 외부 jar에서 제공하거나 스프링 부트에 의해 제공될 것이다.</p>
 </div>
 <div class="paragraph">
-<p>자동구성은 자동구성하는데 필요한 라이브러리들을 한데 묶어서  "스타터"를 통해서 제공한다. 자동구성을 구성하는데 필요한 것들이 무엇인시 살펴본 후 "<a href="#boot-features-custom-starter">스타터 직접 생성하기</a>" 단계로 이동한다.</p>
+<p>자동구성은 필요한 라이브러리들을 한데 묶어서  "스타터"를 통해서 제공한다. 자동구성을 구성하는데 필요한 것들이 무엇인시 살펴본 후 "<a href="#boot-features-custom-starter">스타터 직접 생성하기</a>" 단계로 이동한다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9805,7 +9792,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>대부분의 자동구성 클래스에는 한 개 이상의 <code>@Conditional</code> 애너테이션을 포함하게 된다. <code>@ConditionalOnMissingBean</code>이 가장 일반적인 예로 개발자에게 '기본&#8217;적인 구성이 맘에 들지 않을 때 자동구성을 덮어쓰기할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트에 포함된 많은 <code>@Configuration</code> 애너테이션은 <code>@Configuration</code>가 선언된 클래스 혹은 <code>@Bean</code> 메서드에서 사용할 수 있다. 다음의 애너테이션을 포함한다:</p>
+<p>스프링 부트에 포함된 많은 <code>@Configuration</code> 애너테이션은 <code>@Configuration</code>이 선언된 클래스 혹은 <code>@Bean</code> 메서드에서 사용할 수 있다. 다음의 애너테이션을 포함한다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -9960,10 +9947,10 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="boot-features-custom-starter-naming">이름짓기</h5>
 <div class="paragraph">
-<p>스타터에 명확한 네임스페이스를 부여하자. <code>spring-boot</code>로 모듈을 시작하지 말고, 메이븐 groupId 도 다른 것을 사요오하자. 나중에 개인의 자동구성에 대해 스프링 부트에서 공식지원을 할 수도 있다.</p>
+<p>스타터에 명확한 네임스페이스를 부여하자. <code>spring-boot</code>로 모듈을 시작하지 말고, 메이븐 groupId 도 다른 것을 사용하자. 나중에 개인의 자동구성에 대해 스프링 부트에서 공식지원을 할 수도 있다.</p>
 </div>
 <div class="paragraph">
-<p>추천할만한 방법이 있다. "acme"를 위한 스타터를 생성한다면, auto-configure 모듈이름은 <code>acme-spring-boot-autoconfigure</code>으로 하고 스타터는 <code>acme-spring-boot-starter</code>로 한다. 두 모듈을 하나로 엮는다면 <code>acme-spring-boot-starter</code>을 사용한다.</p>
+<p>추천할만한 방법이 있다. "acme"를 위한 스타터를 생성한다면, <code>autoconfigure</code> 모듈이름은 <code>acme-spring-boot-autoconfigure</code>으로 하고 스타터는 <code>acme-spring-boot-starter</code>로 한다. 두 모듈을 하나로 엮는다면 <code>acme-spring-boot-starter</code>를 사용한다.</p>
 </div>
 <div class="paragraph">
 <p>반면에 스타터에서 구성키를 제공할 계획이라면 명확한 네임스페이스를 부여하라. 특히 스프링 부트에서 사용하는 네임스페이스를 키로 포함하지 않도록 주의하자(예: <code>server</code>, <code>management</code>, <code>spring</code>, 기타 등등). 공식지원을 하게 될 경우 작성했던 것들을 향상 또는 변경할 수도 있다.</p>
@@ -9973,9 +9960,9 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </div>
 </div>
 <div class="sect4">
-<h5 id="boot-features-custom-starter-module-autoconfigure">auto-configure 모듈</h5>
+<h5 id="boot-features-custom-starter-module-autoconfigure"><code>autoconfigure</code> 모듈</h5>
 <div class="paragraph">
-<p>auto-configure 모듈은 라이브러리를 사용하기 위해 필요한 모든 것을 포함해야 한다. 구성키 정의(<code>@ConfigurationProperties</code>)와 컴포넌트 초기화시에 재정의할 수 있도록 콜백 인터페이스를 포함해야 한다.</p>
+<p><code>autoconfigure</code> 모듈은 라이브러리를 사용하기 위해 필요한 모든 것을 포함해야 한다. 구성키 정의(<code>@ConfigurationProperties</code>)와 컴포넌트 초기화시에 재정의할 수 있도록 콜백 인터페이스를 포함해야 한다.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -9985,7 +9972,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>프로젝트에서 auto-configure 모듈을 쉽게 포함시킬 수 있도록 라이브러리에 대한 종속성을 표시해야 한다. 그렇게하면 라이브러리가 제공되지 않고 기본적으로 스프링 부트가 해제된다.</p>
+<p>프로젝트에서 <code>1`</code> 모듈을 쉽게 포함시킬 수 있도록 라이브러리에 대한 종속성을 표시해야 한다. 그렇게 해야 스프링 부트가 라이브러리를 중복으로 적재하지 않고 시작한다.</p>
 </div>
 </td>
 </tr>
@@ -9995,16 +9982,39 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect4">
 <h5 id="boot-features-custom-starter-module-starter">스타터 모듈</h5>
 <div class="paragraph">
-<p>스타터는 비어있는 jar 다. 라이브러리가 동작하는데 필요한 의존성을 제공하려는 목적으로 사용된다; 그래서 자세히 살펴보면 시작하는데 필요한 것이 무엇인지 알 수 있다.</p>
+<p>스타터는 비어있는 jar 다. 라이브러리가 동작하는데 필요한 의존성을 제공하려는 목적으로 사용된다. 그래서 자세히 살펴보면 시작하는데 필요한 것이 무엇인지 알 수 있다.</p>
 </div>
 <div class="paragraph">
 <p>프로젝트에 필요할 것이라고 추측한 것들을 스타터에 추가하지 말자. 다른 스타터에서 필요로 하는 일반적인 자동구성 라이브러리라면 그것에 대해서 언급하는 정도면 된다. <strong>기본</strong> 의존성에 대해서 명확하게 제공하면 일반적으로 사용하는 라이브러리를 위한 불필요한 의존성 참조를 피할 수 있다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>상황에 따라서는 스타터를 손수 제작하면서 필요한 스프링 부트 스타터 조합하여 프로젝트를 구성할 수도 있다. 이렇게 하면 스프링 부트 핵심기능을 유지하면서 프로젝트를 구성할 수 있다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="다음-읽을꺼리-3">3.16. 다음 읽을꺼리</h3>
+<h3 id="boot-features-kotlin">3.16. 코틀린(코틀린) 지원</h3>
+<div class="paragraph">
+<p><a href="https://kotlinlang.org/">코틀린(https://kotlinlang.org/)</a>은 Java로 작성된 기존 라이브러리와 상호운용성을 제공하면서 간결하고 우아한 코드를 작성할 수 있는 JVM을 기반으로 하는 정적타입 언어다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트는 스프링 프레임워크, 스프링 Data와 리액터를 아우르는 스프링 프로젝트 전반적인 영역에 대해서 코틀린 지원을 제공한다. 보다 자세한 내용은 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/languages.html#kotlin">스프링 참고문서#Kotlin(https://goo.gl/AkC3gP)</a>를 참조하기 바란다.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="다음-읽을꺼리-3">3.17. 다음 읽을꺼리</h3>
 <div class="paragraph">
 <p>이번 장에서 논의되었던 클래스에 대해서 보다 자세히 살펴보기를 원한다면 <a href="https://docs.spring.io/spring-boot/docs/current/api/">Spring Boot API 문서(https://goo.gl/2KoJKF)</a> 혹은 직접 <a href="https://github.com/spring-projects/spring-boot/tree/master">소스코드(https://goo.gl/jdAvPr)</a>를 살펴보는 것이 좋다. 특정 상황에 대해서 어떻게 사용할지 살펴보고자 한다면 "<a href="#chap07">'스프링 부트' 활용 안내</a>"를 살펴보기 바란다.</p>
 </div>
@@ -10438,7 +10448,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <p>만약 <code>@EndPoint</code> 애너테이션와 함께 <code>@Bean</code>을 <code>@ReadOperation</code>, <code>@WriteOperation</code> 혹은 <code>@DeleteOperation</code> 애너테이션을 선언한 모든 메서드가 추가한다면 JMX 및 HTTP(서버에서 설정되어 있다면)에서 자동으로 노출된다.</p>
 </div>
 <div class="paragraph">
-<p><code>@JmxEndpoint</code> 혹은 <code>@WebEndpoint</code>을 사용하여 종점이 사용할 기술을 지정하는 것도 가능하다. 저 애너테이션를 사용하는 것만으로 종점가 기술에 따라 분류된다. 예를 들어, <code>@WebEndpoint</code>을 사용하면 JMX에는 노출되지 않고 HTTP에만 노출된다.</p>
+<p><code>@JmxEndpoint</code> 혹은 <code>@WebEndpoint</code>을 사용하여 종점이 사용할 기술을 지정하는 것도 가능하다. 저 애너테이션을 사용하는 것만으로 종점가 기술에 따라 분류된다. 예를 들어, <code>@WebEndpoint</code>을 사용하면 JMX에는 노출되지 않고 HTTP에만 노출된다.</p>
 </div>
 <div class="paragraph">
 <p>마지막으로 <code>@EndpointWebExtension</code>와 <code>@EndpointJmxExtension</code>를 사용하여 확장을 지정하는 것이 가능하다. 이 애너테이션은 존재하는 종점에 대한 특정 명령과 확장을 허용한다.</p>
@@ -10451,7 +10461,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 </td>
 <td class="content">
 <div class="paragraph">
-<p>종점를 라이브러리 기능으로 추가하는 경우 <code>@ManagementContextConfiguration</code>를 선언한 클래스를 추가하고 <code>/META-INF/spring.factories</code>에 <code>org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration</code> 목록을 추가한다. 그렇게 하면 별도의 관리포트 또는 주소를 요청하면 종점은 다른 웹 종점이 있는 하위 컨텍스트로 이동한다.</p>
+<p>종점를 라이브러리 기능으로 추가하는 경우 <code>@ManagementContextConfiguration</code>을 선언한 클래스를 추가하고 <code>/META-INF/spring.factories</code>에 <code>org.springframework.boot.actuate.autoconfigure.ManagementContextConfiguration</code> 목록을 추가한다. 그렇게 하면 별도의 관리포트 또는 주소를 요청하면 종점은 다른 웹 종점이 있는 하위 컨텍스트로 이동한다.</p>
 </div>
 </td>
 </tr>
@@ -12128,7 +12138,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code><strong>AutoConfiguration</code> 이란 이름을 가지고 있는 클래스를 찾아서 소스코드를 살펴보고, <code>@Conditional</strong></code> 애너테이션가 선언되어 있는 부분을 살펴보면 그 기능이 언제 활성화될 지 알 수 있다. 커맨드라인에서 실행시 <code>--debug</code>이나 <code>-Ddebug</code> 시스템 속성을 추가하면 애플리케이션이 구동되면서 구성한 자동구성과 관련된 정보를 콘솔 로그로 볼 수 있다. 실행중인 애플리케이션의 액츄에이터 <code>autoconf</code> 종점(<code>/actuator/autoconfig</code>)에서도 동일한 정보를 확인할 수 있다.</p>
+<p><code><strong>AutoConfiguration</code> 이란 이름을 가지고 있는 클래스를 찾아서 소스코드를 살펴보고, <code>@Conditional</strong></code> 애너테이션이 선언되어 있는 부분을 살펴보면 그 기능이 언제 활성화될 지 알 수 있다. 커맨드라인에서 실행시 <code>--debug</code>이나 <code>-Ddebug</code> 시스템 속성을 추가하면 애플리케이션이 구동되면서 구성한 자동구성과 관련된 정보를 콘솔 로그로 볼 수 있다. 실행중인 애플리케이션의 액츄에이터 <code>autoconf</code> 종점(<code>/actuator/autoconfig</code>)에서도 동일한 정보를 확인할 수 있다.</p>
 </li>
 <li>
 <p><code>@ConfigurationProperties</code>를 사용하고 있는 클래스(예: <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/ServerProperties.java"><code>ServerProperties</code>(https://goo.gl/FsDpzc)</a>)를 찾아보고 그 클래스와 관련된 외부 구성옵션을 찾아본다. <code>@ConfigurationProperties</code>는 <code>prefix</code> 속성을 가지고 있는데 외부 속성들의 접두사로 동작하며 <code>ServerProperties</code>는 <code>prefix="server"</code>으로 선언되어 이를 통해 구현된 구성속성들은 <code>server.port</code>, <code>server.address</code> 와 기타 등등이 있다. 애플리케이션 액츄에이터가 실행중이라면 <code>configprops</code> 종점에서 찾아볼 수 있다.</p>
@@ -12137,10 +12147,10 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <p><code>Environment</code>의 구성값을 <code>Binder</code>의 <code>bind</code> 메서드를 사용하여 명시적으로 끌어올 수 있다. 접두사를 이용하는 경우가 많다(<code>server</code>, <code>spring</code> 등).</p>
 </li>
 <li>
-<p><code>@Value</code> 애너테이션를 사용하여 <code>Environment</code> 에서 직접 연계하여 찾아볼 수 있다.</p>
+<p><code>@Value</code> 애너테이션을 사용하여 <code>Environment</code> 에서 직접 연계하여 찾아볼 수 있다.</p>
 </li>
 <li>
-<p><code>Environment</code>으로부터 위치변환자에 대하여 SpEL 표현식에 따라서 활성화 혹은 비활성화될 수 있는 <code>@ConditionalOnExpression</code> 애너테이션를 찾아본다.</p>
+<p><code>Environment</code>으로부터 위치변환자에 대하여 SpEL 표현식에 따라서 활성화 혹은 비활성화될 수 있는 <code>@ConditionalOnExpression</code> 애너테이션을 찾아본다.</p>
 </li>
 </ul>
 </div>
@@ -12245,7 +12255,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="sect3">
 <h4 id="howto-create-a-non-web-application">7.1.5. 비-웹애플리케이션 생성</h4>
 <div class="paragraph">
-<p>모든 스프링 애플리케이션이 웹 애플리케이션(혹은 웹서비스)여야 하는 것은 아니다. <code>main</code> 메서드에서 코드를 실행하려면 스프링 애플리케이션 인프라를 구성하고 구동해야할 것 같지만, 스프링 부트의 <code>SpringApplication</code> 기능을 이용하면 너무나 쉽게 처리할 수 있다. <code>SpringApplication</code>는 웹 애플리케이션인지 여부에 따라서 <code>ApplicationContext</code>를 변경한다. 이를 위한 첫번째 할일은 클래스패스에서 서블릿 API 의존성을 제거하는 것이다. 이렇게 하고 싶지 않은 경우에는 <code>SpringApplication</code> 인스턴스에서 <code>app.setWebApplicationType(WebApplicationType.NONE)</code>를 호출하거나 <code>applicationContextClass</code> 속성을 설정한다(JAVA API를 이용하거나 외부 속성 이용). 실행하고 싶은 비즈니스 로직을 <code>CommandLineRunner</code>를 구현하여 애플리케이션 코드로 작성하고 컨텍스트에 <code>@Bean</code> 정의를 이용할 수 있다.</p>
+<p>모든 스프링 애플리케이션이 웹 애플리케이션(혹은 웹서비스)여야 하는 것은 아니다. <code>main</code> 메서드에서 코드를 실행하려면 스프링 애플리케이션 인프라를 구성하고 구동해야할 것 같지만, 스프링 부트의 <code>SpringApplication</code> 기능을 이용하면 너무나 쉽게 처리할 수 있다. <code>SpringApplication</code>은 웹 애플리케이션인지 여부에 따라서 <code>ApplicationContext</code>를 변경한다. 이를 위한 첫번째 할일은 클래스패스에서 서블릿 API 의존성을 제거하는 것이다. 이렇게 하고 싶지 않은 경우에는 <code>SpringApplication</code> 인스턴스에서 <code>app.setWebApplicationType(WebApplicationType.NONE)</code>를 호출하거나 <code>applicationContextClass</code> 속성을 설정한다(JAVA API를 이용하거나 외부 속성 이용). 실행하고 싶은 비즈니스 로직을 <code>CommandLineRunner</code>를 구현하여 애플리케이션 코드로 작성하고 컨텍스트에 <code>@Bean</code> 정의를 이용할 수 있다.</p>
 </div>
 </div>
 </div>
@@ -12416,7 +12426,7 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <h4 id="howto-change-the-location-of-external-properties">7.2.3. 애플리케이션 속성 외부구성파일 위치변경</h4>
 <div class="paragraph">
 <p>서로 다른 소스에서 기본 속성들이 스프링 <code>Environment</code>에 추가될 때에는 정의된 순서에 따른다("<a href="#chap03">'스프링 부트' 기능소개</a>"의 "<a href="#boot-features-external-configuration">외부 구성(Externalized Configuration)</a>"에서 상세히 설명함).
-애플리케이션 소스에 <code>@PropertySource</code> 애너테이션를 추가하여 속성을 정의해두면 정의나 변경이 매우 용이하다. <code>SpringApplication</code>에 있는 정적 메서드 중 <code>setSources()</code>에 추가된 소스에서 <code>@PropertySource</code>를 가지고 있는지 검사하여 <code>ApplicationContext</code> 생애주기의 모든 과정에서 <code>Environment</code>에 속성을 추가할 수 있다. 이 방법으로 추가된 속성은 기본 위치 정의된 구성파일(예: <code>application.yml</code>), 시스템 속성, 환경변수 혹은 실행인자보다 낮은 순위로 추가된다.
+애플리케이션 소스에 <code>@PropertySource</code> 애너테이션을 추가하여 속성을 정의해두면 정의나 변경이 매우 용이하다. <code>SpringApplication</code>에 있는 정적 메서드 중 <code>setSources()</code>에 추가된 소스에서 <code>@PropertySource</code>를 가지고 있는지 검사하여 <code>ApplicationContext</code> 생애주기의 모든 과정에서 <code>Environment</code>에 속성을 추가할 수 있다. 이 방법으로 추가된 속성은 기본 위치 정의된 구성파일(예: <code>application.yml</code>), 시스템 속성, 환경변수 혹은 실행인자보다 낮은 순위로 추가된다.
 시스템 속성(혹은 환경변수)를 정의하여 동작을 변경할 수 있다:</p>
 </div>
 <div class="ulist">
@@ -12650,9 +12660,9 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 
 <span class="annotation">@Bean</span>
 ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) {
-        ServletRegistrationBean&lt;MyServlet&gt; registration = <span class="keyword">new</span> ServletRegistrationBean&lt;&gt;(servlet);
-        registration.setEnabled(<span class="predefined-constant">false</span>);  <b class="conum">(2)</b>
-        <span class="keyword">return</span> registration;
+    ServletRegistrationBean&lt;MyServlet&gt; registration = <span class="keyword">new</span> ServletRegistrationBean&lt;&gt;(servlet);
+    registration.setEnabled(<span class="predefined-constant">false</span>);  <b class="conum">(2)</b>
+    <span class="keyword">return</span> registration;
 }</code></pre>
 </div>
 </div>
@@ -12670,7 +12680,7 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 <div class="sect4">
 <h5 id="howto-add-a-servlet-filter-or-listener-using-scanning">클래스패스 탐색을 이용해서 <code>Servlet</code>, <code>Filter</code> 그리고 <code>Listener</code> 추가하기</h5>
 <div class="paragraph">
-<p><code>@WebServlet</code>, <code>@WebFilter</code> 그리고 <code>@WebListener</code> 애너테이션를 선언한 클래스를 내장 서블릿 컨테이너에 등록하려면 <code>@Configuration</code>과 함께 <code>@ServletComponentScan</code> 애너테이션를 사용하거나 등록을 원하는 컴포넌트가 위치한 패키지를 정의하여 등록할 수 있다. 기본적으로 <strong><code>@ServletComponentScan</code>를 선언한 클래스가 위치한 패키지부터 탐색</strong>한다.</p>
+<p><code>@WebServlet</code>, <code>@WebFilter</code> 그리고 <code>@WebListener</code> 애너테이션을 선언한 클래스를 내장 서블릿 컨테이너에 등록하려면 <code>@Configuration</code>과 함께 <code>@ServletComponentScan</code> 애너테이션을 사용하거나 등록을 원하는 컴포넌트가 위치한 패키지를 정의하여 등록할 수 있다. 기본적으로 <strong><code>@ServletComponentScan</code>를 선언한 클래스가 위치한 패키지부터 탐색</strong>한다.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>BootSpringBootApplication</code>에 <code>@ServletComponentScan</code> 선언</div>
@@ -12678,13 +12688,13 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@ServletComponentScan</span>
 <span class="annotation">@SpringBootApplication</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootApplication</span> {
-        <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
-                <span class="comment">// SpringApplication.run(BootSpringBootApplication.class, args);</span>
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+        <span class="comment">// SpringApplication.run(BootSpringBootApplication.class, args);</span>
 
-                SpringApplication app = <span class="keyword">new</span> SpringApplication(BootSpringBootApplication.class);
-                app.addListeners(<span class="keyword">new</span> ApplicationPidFileWriter());
-                app.run(args);
-        }
+        SpringApplication app = <span class="keyword">new</span> SpringApplication(BootSpringBootApplication.class);
+        app.addListeners(<span class="keyword">new</span> ApplicationPidFileWriter());
+        app.run(args);
+    }
 }</code></pre>
 </div>
 </div>
@@ -12698,10 +12708,10 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 <span class="annotation">@WebListener</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">AttrListener</span> <span class="directive">implements</span> ServletContextListener {
 
-        <span class="annotation">@Override</span>
-        <span class="directive">public</span> <span class="type">void</span> contextInitialized(ServletContextEvent sce) {
-                sce.getServletContext().setAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">honeymon</span><span class="delimiter">&quot;</span></span>);
-        }
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> contextInitialized(ServletContextEvent sce) {
+        sce.getServletContext().setAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">honeymon</span><span class="delimiter">&quot;</span></span>);
+    }
   <span class="comment">//contextDestroyed 예제</span>
 }</code></pre>
 </div>
@@ -12712,14 +12722,14 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@WebServlet</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/hello</span><span class="delimiter">&quot;</span></span>)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">HelloServlet</span> <span class="directive">extends</span> HttpServlet {
 
-        <span class="annotation">@Override</span>
-        <span class="directive">protected</span> <span class="type">void</span> doGet(HttpServletRequest req, HttpServletResponse resp) <span class="directive">throws</span> ServletException, <span class="exception">IOException</span> {
-                <span class="keyword">try</span> {
-                        resp.getOutputStream().write(<span class="string"><span class="delimiter">&quot;</span><span class="content">hello</span><span class="delimiter">&quot;</span></span>.getBytes());
-                } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
-                        e.printStackTrace();
-                }
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> <span class="type">void</span> doGet(HttpServletRequest req, HttpServletResponse resp) <span class="directive">throws</span> ServletException, <span class="exception">IOException</span> {
+        <span class="keyword">try</span> {
+            resp.getOutputStream().write(<span class="string"><span class="delimiter">&quot;</span><span class="content">hello</span><span class="delimiter">&quot;</span></span>.getBytes());
+        } <span class="keyword">catch</span> (<span class="exception">Exception</span> e) {
+            e.printStackTrace();
         }
+    }
 }</code></pre>
 </div>
 </div>
@@ -12731,18 +12741,18 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 
   <span class="comment">//init(FilterConfig filterConfig) 생략</span>
 
-        <span class="annotation">@Override</span>
-        <span class="directive">public</span> <span class="type">void</span> doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-                        <span class="directive">throws</span> <span class="exception">IOException</span>, ServletException {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            <span class="directive">throws</span> <span class="exception">IOException</span>, ServletException {
 
         response.getOutputStream().println(<span class="string"><span class="delimiter">&quot;</span><span class="content">filtering</span><span class="delimiter">&quot;</span></span>);
-                response.getOutputStream()
-                                .println(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr:</span><span class="delimiter">&quot;</span></span> + request.getServletContext().getAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr</span><span class="delimiter">&quot;</span></span>));
+        response.getOutputStream()
+                .println(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr:</span><span class="delimiter">&quot;</span></span> + request.getServletContext().getAttribute(<span class="string"><span class="delimiter">&quot;</span><span class="content">servlet-context-attr</span><span class="delimiter">&quot;</span></span>));
 
-                chain.doFilter(request, response);
+        chain.doFilter(request, response);
 
-                chain.doFilter(request, response);
-        }
+        chain.doFilter(request, response);
+    }
   <span class="comment">//destroy() 생략</span>
 }</code></pre>
 </div>
@@ -12799,7 +12809,7 @@ hello</code></pre>
 <p>서버가 실행되었을 때 로그로 출력되었을 때나 <code>EmbeddedServletContainer</code>을 통해 <code>EmbeddedWebApplicationContext</code>에서 가져왔을 때 서버 포트에 접근이 가능하다. 가장 확실한 방법은 <code>ApplicationListener&lt;EmbeddedServletContainerInitializedEvent&gt;</code> 타입을 <code>@Bean</code>으로 추가하고 컨테이너가 구동되는 이벤트가 발생되었을 때 가져오도록 할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>테스트를 할 때는 <code>@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)</code>를 사용하거나 <code>@LocalServerPort</code> 애너테이션를 필드에 사용하여 실제 포트를 주입받을 수 있다. 예를 들어:</p>
+<p>테스트를 할 때는 <code>@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)</code>를 사용하거나 <code>@LocalServerPort</code> 애너테이션을 필드에 사용하여 실제 포트를 주입받을 수 있다. 예를 들어:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13027,7 +13037,7 @@ dependencies {
 </div>
 </div>
 <div class="paragraph">
-<p>이 빈은 <code>@ServerEndpoint</code> 애너테이션가 선언된 모든 빈을 기본 웹소켓 컨테이너에 등록한다. 독립형 서블릿 컨테이너에 배포되었을 때는 서블릿 컨테이너가 초기화되면서 등록과정을 수행하기 때문에 <code>ServerEndpointExporter</code> 빈을 등록할 필요는 없다.</p>
+<p>이 빈은 <code>@ServerEndpoint</code> 애너테이션이 선언된 모든 빈을 기본 웹소켓 컨테이너에 등록한다. 독립형 서블릿 컨테이너에 배포되었을 때는 서블릿 컨테이너가 초기화되면서 등록과정을 수행하기 때문에 <code>ServerEndpointExporter</code> 빈을 등록할 필요는 없다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -13116,7 +13126,7 @@ dependencies {
 </div>
 </div>
 <div class="paragraph">
-<p>혹시나 Jackson XML 확장을 쓰는 것이 여의치 않아 JAXB(JDK에서 기본제공)를 사용하려려면 <code>MyThing</code>에 <code>@XmlRootElement</code> 애너테이션를 추가해야 한다.</p>
+<p>혹시나 Jackson XML 확장을 쓰는 것이 여의치 않아 JAXB(JDK에서 기본제공)를 사용하려려면 <code>MyThing</code>에 <code>@XmlRootElement</code> 애너테이션을 추가해야 한다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13144,7 +13154,7 @@ dependencies {
 <li>
 <p><code>MapperFeature.DEFAULT_VIEW_INCLUSION</code>: 비활성화</p>
 <div class="paragraph">
-<p><code>JsonView</code> 애너테이션가 없는 경우 속성이 모두 포함시키는데 이를 비활성화</p>
+<p><code>JsonView</code> 애너테이션이 없는 경우 속성이 모두 포함시키는데 이를 비활성화</p>
 </div>
 </li>
 <li>
@@ -13227,7 +13237,7 @@ dependencies {
 <p>스프링은 <code>@ResponseBody</code>(혹은 <code>@RestController</code>의 응답) 랜더링에 <code>HttpMessageConverters</code>를 사용한다. 스프링 부트 컨텍스트에서 <code>HttpMessageConverters</code> 타입의 빈을 간단히 추가하여 컨버터를 추가적으로 등록가능하다. 추가하는 빈이 기본적으로 포함되어 있는 타입(JSON 변환을 위한 MappingJackson2HttpMessageConverter 같은)이라면 기본값을 대체한다. 컨벤션빈은 <code>HttpMessageConverters</code> 타입(기본 MVC 구성을 사용할 경우 항상 사용가능)으로 제공되며 기본 및 재정의한 메시지 컨버터에 접근하는데 유용한 메서드가 있다(예: 재정의한 <code>RestTemplate</code>수동으로 주입하려는 경우 유용함).</p>
 </div>
 <div class="paragraph">
-<p>일반적인 MVC로 이용할 경우, 재정의한 <code>WebMvcConfigurerAdapter</code>빈은 <code>configureMessageConverters</code> 메서드를 재정의하여 컨버터를 등록할 수 있지만 일반 MVC와는 달리 필요한 컨버터만 추가할 수도 있다(스프링 부트에서도 동일한 메카니즘을 사용한다). 스프링 부트 기본 MVC 구성를 대신하여 <code>@EnableWebMvc</code> 구성을 하려한다면 <code>WebMvcConfigurationSupport</code>에 있는 <code>getMessageConverters</code>를 사용하여 수동으로 모든 것을 제어가능하다.</p>
+<p>일반적인 MVC로 이용할 경우, 재정의한 <code>WebMvcConfigurer</code>빈은 <code>configureMessageConverters</code> 메서드를 재정의하여 컨버터를 등록할 수 있지만 일반 MVC와는 달리 필요한 컨버터만 추가할 수도 있다(스프링 부트에서도 동일한 메카니즘을 사용한다). 스프링 부트 기본 MVC 구성를 대신하여 <code>@EnableWebMvc</code> 구성을 하려한다면 <code>WebMvcConfigurationSupport</code>에 있는 <code>getMessageConverters</code>를 사용하여 수동으로 모든 것을 제어가능하다.</p>
 </div>
 <div class="paragraph">
 <p>보다 자세한 내용은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.java"><code>WebMvcAutoConfiguration</code>(https://goo.gl/ig7JXw)</a>를 살펴보자.</p>
@@ -13254,7 +13264,7 @@ dependencies {
 <div class="sect3">
 <h4 id="howto-switch-off-default-mvc-configuration">7.4.7. 기본 MVC 구성 전환</h4>
 <div class="paragraph">
-<p>MVC 구성을 완벽하게 제어할 수 있는 가장 쉬운 방법은 <code>@EnableWebMvc</code> 애너테이션를 <code>@Configuration</code>과 함께 사용하는 것이다. 이렇게 하면 모든 MVC 구성을 제어할 수 있게 된다.</p>
+<p>MVC 구성을 완벽하게 제어할 수 있는 가장 쉬운 방법은 <code>@EnableWebMvc</code> 애너테이션을 <code>@Configuration</code>과 함께 사용하는 것이다. 이렇게 하면 모든 MVC 구성을 제어할 수 있게 된다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -13332,7 +13342,7 @@ dependencies {
 <div class="sect3">
 <h4 id="howto-http-clients-proxy-configuration">7.5.1. <code>RestTemplate</code> 가 프록시를 사용하도록 구성</h4>
 <div class="paragraph">
-<p>"<a href="#boot-features-restclient-customization"><code>RestTemplate</code> 재정의</a>"에서 설명했듯이, <code>RestTemplate</code>를 재정의하는데 <code>RestTemplateBuilder</code>에서 사용할 수 있도록 <code>RestTemplateCustomizer</code>를 구현하여 빈으로 등록사용할 수 있다. 이 제안은 프록시를 사용할 때 <code>RestTemplate</code>를 구성하여 생성할 수 있다.</p>
+<p>"<a href="#boot-features-restclient-customization"><code>RestTemplate</code> 재정의</a>"에서 설명했듯이, <code>RestTemplate</code>을 재정의하는데 <code>RestTemplateBuilder</code>에서 사용할 수 있도록 <code>RestTemplateCustomizer</code>를 구현하여 빈으로 등록사용할 수 있다. 이 제안은 프록시를 사용할 때 <code>RestTemplate</code>을 구성하여 생성할 수 있다.</p>
 </div>
 </div>
 </div>
@@ -13779,13 +13789,13 @@ dependencies {
 <p>많은 애플리케이션에서 클래스패스 상에 스프링 Data 의존성을 추가(JPA를 위한 <code>spring-boot-starter-data-jpa</code>과 MongoDB를 위한 <code>spring-boot-starter-data-mongodb</code>)해야 하고 <code>@Entity</code> 객체를 다루기 위한 리파지토리를 생성해야 한다. JPA 예제(<a href="https://goo.gl/mh6Pc8" class="bare">https://goo.gl/mh6Pc8</a>)와 MongoDB 예제(<a href="https://goo.gl/6MRnf5" class="bare">https://goo.gl/6MRnf5</a>)가 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 <code>@EnableAutoConfiguration</code>를 기반으로 해서 <code>@Repository</code> 위치를 추측한다. 좀 더 자세히 제어하고 싶다면 <code>@EnableJpaRepositories</code>를 사용한다.</p>
+<p>스프링 부트는 <code>@EnableAutoConfiguration</code>을 기반으로 해서 <code>@Repository</code> 위치를 추측한다. 좀 더 자세히 제어하고 싶다면 <code>@EnableJpaRepositories</code>를 사용한다.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="howto-separate-entity-definitions-from-spring-configuration">7.7.4. 스프링 구성으로부터 <code>@Entity</code> 정의 분리</h4>
 <div class="paragraph">
-<p>스프링 부트는 <code>@EnableAutoConfiguration</code>를 기반으로 해서 <code>@Entity</code>의 위치를 추측한다. 보다 자세히 제어하고 싶다면 <code>@EntityScan</code>을 다음과 같이 정의하여 사용한다:</p>
+<p>스프링 부트는 <code>@EnableAutoConfiguration</code>을 기반으로 해서 <code>@Entity</code>의 위치를 추측한다. 보다 자세히 제어하고 싶다면 <code>@EntityScan</code>을 다음과 같이 정의하여 사용한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -13899,7 +13909,7 @@ dependencies {
 <div class="sect3">
 <h4 id="howto-use-spring-data-jpa--and-mongo-repositories">7.7.9. 스프링 Data JPA 와 몽고 리파지토리 이용</h4>
 <div class="paragraph">
-<p>스프링 Data JPA와 스프링 Data Mongo 에서는 자동으로 <code>Repository</code> 구현체를 생성한다. 만약 클래스패스에 두 가지고 존재한다면 스프링 부트에게 어느 리파지토리에 대해서(혹은 둘 다) 리파지토리를 만들 것인지를 알려주는 몇 가지 추가 구성을 해야할 수도 있다. 가장 명확한 방법은 표준 스프링 Data <code>@EnableJpaRepositories</code>와 <code>@EnableMongoRepositories</code> 애너테이션를 사용하고 <code>Repository</code> 인터페이스의 위치를 지정하는 것이다.</p>
+<p>스프링 Data JPA와 스프링 Data Mongo 에서는 자동으로 <code>Repository</code> 구현체를 생성한다. 만약 클래스패스에 두 가지고 존재한다면 스프링 부트에게 어느 리파지토리에 대해서(혹은 둘 다) 리파지토리를 만들 것인지를 알려주는 몇 가지 추가 구성을 해야할 수도 있다. 가장 명확한 방법은 표준 스프링 Data <code>@EnableJpaRepositories</code>와 <code>@EnableMongoRepositories</code> 애너테이션을 사용하고 <code>Repository</code> 인터페이스의 위치를 지정하는 것이다.</p>
 </div>
 <div class="paragraph">
 <p>또한 <code>spring.data.*.repositories.enabled</code> 플래그를 이용하면 외부 구성을 이용해서 자동구성되는 리파지토리를 켜고끌 수 있다. 예를 들어, Mongo 리파지토리는 끄고 자동구성된 <code>MongoTemplate</code>는 사용하고 싶을 때도 유용할 수 있다.</p>
@@ -14158,7 +14168,7 @@ dependencies {
 <p>에러 페이지를 덮어쓰려고 한다면 템플릿 기술에 의존적이 된다. 예를 들어 타임리프를 사용한다면 <code>error.html</code> 템플릿을 추가할 수 있다. 만약 프리마커를 사용한다면 <code>error.ftl</code> 템플릿을 추가해야 한다. 일반적으로 <code>error</code>라는 이름의 <code>View</code> 리졸버가 필요하거나 <code>@Controller</code>에서 <code>/error</code> 경로를 제어하면 된다. 기본 구성에서 일부를 변경하지 않는 경우 <code>ApplicationContext</code>에서 <code>BeanNameViewResolver</code>를 찾을 수 있으며 <code>error</code>라는 이름의 <code>@Bean</code>을 정의하는 것도 간단한 처리방법 중 하나다. 보다 자세한 <a href="https://github.com/spring-projects/spring-boot/tree/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration.java"><code>ErrorMvcAutoConfiguration</code>(https://goo.gl/8tM5PS)</a>을 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
-<p><code>ErrorMvcAutoConfiguration</code>를 살펴보면 <code>SpelView</code>를 이용해서 <code>defaultErrorView</code>를 생성하는 코드를 볼 수 있다:</p>
+<p><code>ErrorMvcAutoConfiguration</code>을 살펴보면 <code>SpelView</code>를 이용해서 <code>defaultErrorView</code>를 생성하는 코드를 볼 수 있다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14692,7 +14702,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <p>웹애플리케이션이 아닌 경우, 스프링 애플리케이션을 스프링 부트 애플리케이션으로 변환하는 것은 손쉽다. 그렇게 하려면 <code>ApplicationContext</code>를 생성하는 코드를 버리고 <code>SpringApplication</code> 혹은 <code>SpringApplicationBuilder</code>를 호출하도록 대체한다. 스프링 MVC 웹애플리케이션은 배포가능한  war 애플리케이션으로 생성할 수 있으며 나중에는 실행가능한 war 혹은 jar로 이관가능하다. 보다 자세한 정보는 <a href="https://spring.io/guides/gs/convert-jar-to-war/">Getting Started Guide on Converting a jar to a war(https://spring.io/guides/gs/convert-jar-to-war/)</a>을 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
-<p>배포가능한 war를 생성하기 위해서는 다음 예제 <code>Application</code>이라 불리는 클래스처럼 <code>SpringBootServletInitializer</code>를 확장하고 스프링 부트 <code>@SpringBootApplication</code> 애너테이션를 추가하면 된다:</p>
+<p>배포가능한 war를 생성하기 위해서는 다음 예제 <code>Application</code>이라 불리는 클래스처럼 <code>SpringBootServletInitializer</code>를 확장하고 스프링 부트 <code>@SpringBootApplication</code> 애너테이션을 추가하면 된다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -15234,7 +15244,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.2.1<br>
-Last updated 2018-03-06 21:33:31 KST
+Last updated 2018-03-09 17:50:54 KST
 </div>
 </div>
 </body>
