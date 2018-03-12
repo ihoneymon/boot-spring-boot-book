@@ -11688,7 +11688,7 @@ WantedBy=multi-user.target</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>이 구성은 메이븐 생애주기에서 <code>package</code> 단계에서 빌드가 진행되는 동안 jar나 war를 재포장한다. 다음 예제에서는 리패키징된 jar와 원본 jar가 <code>target</code> 디렉토리에 있는 것을 보여준다:</p>
+<p>이 구성은 메이븐 생애주기 <code>package</code> 단계에서 빌드가 진행되는 동안 jar나 war를 재포장한다. 다음 예제에서는 리패키징된 jar와 원본 jar가 <code>target</code> 디렉토리에 있는 것을 보여준다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11812,7 +11812,7 @@ $ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
 <div class="sect2">
 <h3 id="build-tool-plugins-gradle-plugin">6.2. 스프링 부트 그레이들 플러그인</h3>
 <div class="paragraph">
-<p>스프링 부트 그레이들 플러그인은 그레이들에 대한 {excutable-jar}나 war를 패키징하거나 스프링 부트 애플리케이션을 실행하거나 <code>spring-boot-dependencies</code>에 의해 제공되는 의존성 관리를 사용하는 등의 스프링 부트에 관련된 기능을 지원한다.</p>
+<p>스프링 부트 그레이들 플러그인은 그레이들에 대한 실행가능한 jar나 war를 패키징하거나 스프링 부트 애플리케이션을 실행하거나 <code>spring-boot-dependencies</code>에 의해 제공되는 의존성 관리를 사용하는 등의 스프링 부트에 관련된 기능을 지원한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -11957,7 +11957,7 @@ dependencies {
 <div class="sect3">
 <h4 id="build-tool-plugins-gradle-running-applications">6.2.4. 프로젝트를 빌드하지 않고 실행하기</h4>
 <div class="paragraph">
-<p>그레이들 혹은 메이븐 래퍼를 통해서 프로젝트르 별도의 배포파일을 생성하지 않고 소스코드를 컴파일한 후 바로 실행하는 것이 가능하다. 각 빌드도구의 실행방법은 다음과 같다.</p>
+<p>그레이들 혹은 메이븐 래퍼를 통해서 프로젝트에 대한 별도의 배포파일을 생성하지 않고 소스코드를 컴파일한 후 바로 실행하는 것이 가능하다.</p>
 </div>
 <div class="paragraph">
 <p>그레이들 <code>bootRun</code> 태스크를 사용하면 jar 파일을 빌드하지 않아도 프로젝트를 실행하는 것이 가능하다.</p>
@@ -11971,7 +11971,7 @@ dependencies {
 <p>메이븐에서는 <code>mvn spring-boot:run</code> 골을 실행하여 빌드없이 프로젝트를 실행하는 것이 가능하다.</p>
 </div>
 <div class="paragraph">
-<p>"<a href="#using-boot-devtools">'스프링 부트' 개발자도구</a>"를 프로젝트에 추가해두면 애플리케이션의 변경을 자동으로 감지한다. 혹은 대안으로, 애플리케이션이 실행했을 때 정적 자원 클래스패스(예: 기본구성은 <code>src/main/resources</code>으로 지정)가 동작중인 애플리케이션에서 재적재할 수 있도록 애플리케이션을 실행하는 기능은 개발시 유용할 수 있다.</p>
+<p>"<a href="#using-boot-devtools">'스프링 부트' 개발자도구</a>"를 프로젝트에 추가해두면 애플리케이션의 변경을 자동으로 감지한다. 혹은 대안으로, 애플리케이션이 실행했을 때 정적 자원 클래스패스(예: 기본구성은 <code>src/main/resources</code> 지정)가 동작중인 애플리케이션에서 재적재할 수 있도록 실행하는 기능은 개발시 유용할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11991,7 +11991,7 @@ dependencies {
 </td>
 <td class="content">
 <div class="paragraph">
-<p>"<a href="#build-tool-plugins-gradle-running-applications">프로젝트를 빌드하지 않고 실행하기</a>"는 생각욀로 유용하다.</p>
+<p>"<a href="#build-tool-plugins-gradle-running-applications">프로젝트를 빌드하지 않고 실행하기</a>"는 생각외로 유용하다.</p>
 </div>
 </td>
 </tr>
