@@ -14783,10 +14783,10 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div class="sect3">
 <h4 id="howto-convert-an-existing-application-to-spring-boot">7.14.3. 기존 애플리케이션을 스프링 부트 로 변환</h4>
 <div class="paragraph">
-<p>웹애플리케이션이 아닌 경우, 스프링 애플리케이션을 스프링 부트 애플리케이션으로 변환하는 것은 손쉽다. 그렇게 하려면 <code>ApplicationContext</code>를 생성하는 코드를 버리고 <code>SpringApplication</code> 혹은 <code>SpringApplicationBuilder</code>를 호출하도록 대체한다. 스프링 MVC 웹애플리케이션은 배포가능한  war 애플리케이션으로 생성할 수 있으며 나중에는 실행가능한 war 혹은 jar로 이관가능하다. 보다 자세한 정보는 <a href="https://spring.io/guides/gs/convert-jar-to-war/">Getting Started Guide on Converting a jar to a war(https://spring.io/guides/gs/convert-jar-to-war/)</a>을 살펴보기 바란다.</p>
+<p>웹애플리케이션이 아닌 경우, 스프링 애플리케이션을 스프링 부트 애플리케이션으로 변환하는 것은 손쉽다. 그렇게 하려면 <code>ApplicationContext</code>를 생성하는 코드를 버리고 <code>SpringApplication</code> 혹은 <code>SpringApplicationBuilder</code>를 호출하도록 대체한다. 스프링 MVC 웹애플리케이션은 배포가능한  war 애플리케이션으로 생성할 수 있으며 나중에는 실행가능한 war 혹은 jar로 이관가능하다. 보다 자세한 정보는 <a href="https://spring.io/guides/gs/convert-jar-to-war/">Getting Started Guide on Converting a jar to a war(https://spring.io/guides/gs/convert-jar-to-war/)</a>를 살펴보기 바란다.</p>
 </div>
 <div class="paragraph">
-<p>배포가능한 war를 생성하기 위해서는 다음 예제 <code>Application</code>이라 불리는 클래스처럼 <code>SpringBootServletInitializer</code>를 확장하고 스프링 부트 <code>@SpringBootApplication</code> 애너테이션을 추가하면 된다:</p>
+<p>배포가능한 war를 생성하기 위해서는 다음 예제 <code>Application</code> 클래스처럼 <code>SpringBootServletInitializer</code>를 확장하고 스프링 부트 <code>@SpringBootApplication</code> 애너테이션을 추가하면 된다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -14804,7 +14804,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>기억해둘 것은 <code>sources</code>에 밀언허는 것은 <code>ApplicationContext</code>와 유사하다. 일반적이리 이전에 정상적으로 동작하는 것은 변경 후에도 정상적으로 동작해야 한다. 스프링 부트에서 기본 제공하는 몇몇 빈은 나중에 삭제할 수도 있지만, 그러기 보다는 원하는 것에 맞춰 동작하도록 하는 작업이 필요하다.</p>
+<p>기억해둘 것은 <code>sources</code>에 주입할 수 있는 것은 <code>ApplicationContext</code> 뿐이다. 일반적으로 이전에 정상적으로 동작하는 것은 변경 후에도 정상적으로 동작해야 한다. 스프링 부트에서 기본 제공하는 몇몇 빈은 나중에 삭제할 수도 있지만, 그러기 보다는 원하는 것에 맞춰 동작하도록 하는 작업이 필요하다.</p>
 </div>
 <div class="paragraph">
 <p>정적자원은 클래스패스 최상위 <code>/public</code>(혹은 <code>/static</code> 혹은 <code>/resources</code> 혹은 <code>/META-INF/resources</code>)으로 이동시킨다. 이와 동일하게 <code>messages.properties</code>도 적용한다(스프링 부트에서 자동으로 클래스패스 최상위부터 탐지한다).</p>
@@ -14973,7 +14973,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <h2 id="chap08">8. 정리</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>'스프링 부트&#8217;의 특징을 정리하자면 다음과 같다:</p>
+<p>'스프링 부트&#8217;의 특징을 정리하면 다음과 같다:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -15031,10 +15031,10 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>자세히 살펴보면 위의 기능을 애플리케이션이 실행될 환경에 맞춰 조합하여 배포할 수 있다는 것이 <strong>스프링 부트의 강점</strong>이라고 생각한다.</p>
+<p>자세히 살펴보면 위의 기능을 애플리케이션 실행환경에 맞춰 조합하여 배포할 수 있다는 것이 <strong>스프링 부트의 강점</strong>이라고 생각한다.</p>
 </div>
 <div class="paragraph">
-<p>기본적인 '스프링 부트&#8217;의 개발절차는 다음과 같다:</p>
+<p>기본적인 '스프링 부트' 개발절차는 다음과 같다:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -15059,10 +15059,10 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </ol>
 </div>
 <div class="paragraph">
-<p>물론 개발해야하는 애플리케이션이 이렇게 간단한 과정으로 만들어지지는 않는다. 각 과정의 사이사이에 고민해야하는 것들이 있다. 스프링 부트를 이용하면 그런 고민거리들을 덜어낼 수 있다.</p>
+<p>물론 개발해야하는 애플리케이션이 이렇게 간단한 과정으로 만들어지지 않는다. 각 과정의 사이사이에 고민해야하는 것들이 있다. 스프링 부트를 이용하면 그런 고민거리들을 덜어낼 수 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 프로젝트 흐름을 살펴보면 각 기술이 가지는 개념들을 적절한 추상화를 통해 코드로 뽑아내고 이 코드를 이용해서 "개발자가 <strong>비즈니스 로직</strong> 구현에만 집중해라"하는 경향이 있다. 기술을 사용하기 위해 알아야 하는 학습에 대한 부담감을 줄여주고 프로젝트 코드를 어떻게 작성하고 실행하는지만 이해하면 되는 것이다. 하지만 이 타성에만 익숙해져 있어서는 한계를 접하게 된다.</p>
+<p>스프링 프로젝트 흐름을 살펴보면 각 기술이 가지는 개념들을 적절한 추상화를 통해 코드로 뽑아내고 이 코드를 이용해서 "개발자는 <strong>비즈니스 로직</strong> 구현에만 집중해라"하는 경향이 있다. 기술을 사용하기 위해 알아야 하는 학습에 대한 부담감을 줄여주고 프로젝트 코드를 어떻게 작성하고 실행하는지만 이해하면 되는 것이다. 하지만 이 타성에만 익숙해져 있어서는 한계를 접하게 된다.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -15133,7 +15133,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <h2 id="appendix">부록</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>아래의 링크들은 스프링 부트 개발하면서 자주볼 수 있는 링크들을 모아두었다. 이 링크 외에도 자신에게 필요한 것들을 찾아볼 수 있는 자신만의 즐겨찾기 목록을 가지고 공유해줄 수 있으면 한 단계 더 성장하게 될 것이다.</p>
+<p>아래의 링크들은 스프링 부트 개발하면서 자주볼 수 있는 링크들을 모아두었다. 이 링크 외에도 자신에게 필요한 것들을 찾아볼 수 있는 자신만의 즐겨찾기 목록을 가지고 공유한다면 많은 이들에게 도움이 될 것이다.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -15200,23 +15200,27 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <li>
 <p>영상: <a href="https://youtu.be/2E_1yb8iLKk">스프링캠프 2017:: SpringWebFlux - 이일민(https://youtu.be/2E_1yb8iLKk)</a></p>
 </li>
-</ul>
-</div>
-</li>
 <li>
 <p>링크: <a href="https://bclozel.github.io/webflux-workshop/">Spring WebFlux Workshop(https://goo.gl/Lq168g)</a></p>
 </li>
 <li>
 <p>링크: <a href="https://bclozel.github.io/webflux-workshop/">Spring WebFlux Workshop - Brian Clozel, Violeta Georgieva - Pivotal</a></p>
 </li>
+</ul>
+</div>
+</li>
 <li>
 <p>스프링 시큐리티</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>링크: <a href="https://projects.spring.io/spring-security/">Spring Security project(https://goo.gl/HxLfQ8)</a></p>
 </li>
 <li>
 <p>링크: <a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/">Spring Security 참고문서(https://goo.gl/h12ij8)</a></p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -15258,7 +15262,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트에서 제공하는 자동구성 시 사용하는 기본값을 확인할 때 관련한 Properties 클래스를 살펴보면 된다.</p>
+<p>스프링 부트에서 제공하는 자동구성 기본값을 확인할 때 관련한 Properties 클래스를 살펴보면 된다.</p>
 </div>
 </td>
 </tr>
