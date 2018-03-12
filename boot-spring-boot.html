@@ -787,20 +787,20 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#chap06">6. '스프링 부트' 빌드도구 플러그인</a>
 <ul class="sectlevel2">
-<li><a href="#build-tool-plugins-maven-plugin">6.1. 스프링 부트 메이븐 플러그인</a>
+<li><a href="#build-tool-plugins-gradle-plugin">6.1. 스프링 부트 그레이들 플러그인</a>
 <ul class="sectlevel3">
-<li><a href="#build-tool-plugins-include-maven-plugin">6.1.1. 플러그인 추가</a></li>
-<li><a href="#플로그인-추가하기">6.1.2. 플로그인 추가하기</a></li>
-<li><a href="#build-tool-plugins-maven-packaging">6.1.3. 실행가능한 jar 와 war 파일 패키징</a></li>
+<li><a href="#build-tool-plugins-including-the-gradle-plugin">6.1.1. 플러그인 추가하기</a></li>
+<li><a href="#build-tool-plugins-gradle-dependency-management">6.1.2. 그레이들 의존성 관리</a></li>
+<li><a href="#build-tool-plugins-gradle-packaging">6.1.3. 실행가능한 jar 와 war 파일 생성</a></li>
+<li><a href="#build-tool-plugins-gradle-running-applications">6.1.4. 프로젝트를 빌드하지 않고 실행하기</a></li>
+<li><a href="#build-tool-plugins-gradle-global-configuration">6.1.5. 스프링 부트 플러그인 구성</a></li>
 </ul>
 </li>
-<li><a href="#build-tool-plugins-gradle-plugin">6.2. 스프링 부트 그레이들 플러그인</a>
+<li><a href="#build-tool-plugins-maven-plugin">6.2. 스프링 부트 메이븐 플러그인</a>
 <ul class="sectlevel3">
-<li><a href="#build-tool-plugins-including-the-gradle-plugin">6.2.1. 플러그인 추가하기</a></li>
-<li><a href="#build-tool-plugins-gradle-dependency-management">6.2.2. 그레이들 의존성 관리</a></li>
-<li><a href="#build-tool-plugins-gradle-packaging">6.2.3. 실행가능한 jar 와 war 파일 생성</a></li>
-<li><a href="#build-tool-plugins-gradle-running-applications">6.2.4. 프로젝트를 빌드하지 않고 실행하기</a></li>
-<li><a href="#build-tool-plugins-gradle-global-configuration">6.2.5. 스프링 부트 플러그인 구성</a></li>
+<li><a href="#build-tool-plugins-include-maven-plugin">6.2.1. 플러그인 추가</a></li>
+<li><a href="#플로그인-추가하기">6.2.2. 플로그인 추가하기</a></li>
+<li><a href="#build-tool-plugins-maven-packaging">6.2.3. 실행가능한 jar 와 war 파일 패키징</a></li>
 </ul>
 </li>
 <li><a href="#다음-읽을꺼리-6">6.3. 다음 읽을꺼리</a></li>
@@ -1644,7 +1644,7 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p>글로 설명하기에는 쓸데없이 화면캡처만 늘어날만한 '스프링 부트 프로젝트 생성' 등과 관련된 설명은 영상으로 설명하겠다.</p>
+<p>설명하다보면 화면캡처만 늘어날만한 '스프링 부트 프로젝트 생성' 등과 관련된 설명은 영상으로 설명하겠다.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1671,33 +1671,7 @@ IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 'Spring Initializer' 사이트에서 생성한 <code>zip</code> 파일을 내려받아 이를 지정된 위치에 압축해제한 후에 불러내기(import) 한다.</p>
 </div>
 <div class="paragraph">
-<p>프로젝트를 생성할 때 선택하는 기본적인 의존성은 다음과 같다:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>선택항목:: <code>web</code>, <code>jpa</code>, <code>h2</code>, <code>lombok</code>, <code>thymeleaf</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>web</code>:: 톰캣을 내장 컨테이너로 가지며 스프링 웹애플리케이션 개발을 하는데 필요한 의존성을 포함하고 있음</p>
-</li>
-<li>
-<p><code>jpa</code>::  Hibernate, 스프링 Data JPA 및 JDBC를 포함하고 있음</p>
-</li>
-<li>
-<p><code>h2</code>:: 로컬 개발환경에서 손쉽게 사용할 수 있는 파일형 데이터베이스. 개발 및 운영 단계에서는 다른 데이터베이스로 변경</p>
-</li>
-<li>
-<p><code>lombok</code>::<code>@Getter</code>, <code>@Setter</code> 애너테이션을 통해 Getter/Setter 메서드를 손쉽게 생성가능</p>
-</li>
-<li>
-<p><code>thymeleaf</code>:: 스프링에서 지속적으로 지원하고 있는 템플릿 엔진</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<p>프로젝트 생성에 필요한 프로젝트 기본정보와 의존성을 선택해야 한다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1906,6 +1880,11 @@ dependencies {
 <div class="paragraph">
 <p>앞에서 보여준 과정을 따라 했다면 <code>BootSpringBootApplicaion</code> 혹은 변경한 프로젝트 명을 접두사로 가지는 <code>~Application</code> 클래스가 자동생성되어 있다.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/01-04-03-boot-spring-boot-application.png" alt="``BootSpringBootApplication``">
+</div>
+</div>
 <div class="listingblock">
 <div class="title"><code>BootSpringBootApplicaion.java</code></div>
 <div class="content">
@@ -1973,6 +1952,11 @@ dependencies {
 <div class="paragraph">
 <p>이제 예제를 실행해보자. <code>BootSpringBootApplication</code> 를 우클릭하고 팝업메뉴에서 'Run as ' &#8594; 'Spring Boot App' 을 선택한다.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/01-04-04-application-run.png" alt="Run As" width="-> 'Spring Boot App'">
+</div>
+</div>
 <div class="paragraph">
 <p>'Spring Boot Dashboard' 의 항목이 변경된다.
 콘솔(Console)  창에 스프링부트가 실행되는 과정에서 로그가 출력된다.</p>
@@ -2000,10 +1984,10 @@ dependencies {
 <div class="sect3">
 <h4 id="실행가능한-executable-jar-만들기">1.4.5. 실행가능한(Executable) jar 만들기</h4>
 <div class="paragraph">
-<p>예제의 마지막 단계로 내장 컨테이너(Embedded Container) 를 포함한, 실제로 운영에서도 사용가능한, 실행가능한 jar 를 생성해보자. 실행가능한 jar('Fat Jars&#8217;라고도 불림)는 우리가 작성한 코드를 컴파일한 클래스와 이를 실행하는데 필요한 모든 의존성 jar 가 함께 압축되어 있다(톰캣과 같은 WAS가 내장 컨테이너로 포함되는데 여기에는 스프링 부트 빌드도구 플러그인의 <code>bootRepackage</code>가 관여한다).</p>
+<p>예제의 마지막 단계로 내장 컨테이너(Embedded Container) 를 포함한, 실제로 운영에서도 사용가능한, 실행가능한 jar 를 생성해보자. 실행가능한 jar('Fat Jars&#8217;라고도 불림)는 우리가 작성한 코드를 컴파일한 클래스와 이를 실행하는데 필요한 모든 의존성 jar 가 함께 압축되어 있다(톰캣과 같은 WAS가 내장 컨테이너로 포함되는데 여기에는 스프링 부트 빌드도구 플러그인의 <code>bootJar</code>가 관여한다).</p>
 </div>
 <div class="paragraph">
-<p>실행가능한 jar를 생성하기 위해서는 <code>build.gradle</code>에 <code>spring-boot-gradle-plugin</code>을 추가해야 한다ㄴ. <code>build.gradle</code> 첫번째 줄에 다음 코드를 추가하자.</p>
+<p>실행가능한 jar를 생성하기 위해서는 <code>build.gradle</code>에 <code>spring-boot-gradle-plugin</code>을 추가해야 한다. <code>build.gradle</code> 첫번째 줄에 다음 코드를 추가하자.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2035,7 +2019,7 @@ dependencies {
 </td>
 <td class="content">
 <div class="paragraph">
-<p>스프링 부트 플러그인을 설치하면 <code>bootRepackage</code>, <code>bootRun</code> 태스크(task)를 실행할 수 있게 된다. 이 태스크들에 대해서는 "<a href="#build-tool-plugins-gradle-plugin">스프링 부트 그레이들 플러그인</a>" 에서 설명한다.
+<p>스프링 부트 플러그인을 설치하면 <code>bootJar</code>, <code>bootRun</code> 태스크(task)를 실행할 수 있게 된다. 이 태스크들에 대해서는 "<a href="#build-tool-plugins-gradle-plugin">스프링 부트 그레이들 플러그인</a>" 에서 설명한다.
 그레이들 의 <code>buildscript</code> 에 대한 설명은 <a href="https://docs.gradle.org/current/userguide/custom_plugins.html#sec:using_your_plugin_in_another_project">Gradle#Using your plugin in another project(https://goo.gl/vdE77Q)</a> 을 읽어보길 바란다.</p>
 </div>
 </td>
@@ -2043,37 +2027,37 @@ dependencies {
 </table>
 </div>
 <div class="paragraph">
-<p>프로젝트를 선택하고 우클릭하여 'Run AS' &#8594; 'Gradle' &#8594; 'Task Quick Launcher' 를 클릭한다. 팝업된 실행창에서 <code>bootRepackage</code> 를 입력하자. 자동완성 기능을 제공하기 때문에 <code>boot</code> 까지 입력하면 <code>bootRun</code> 과 <code>bootRepackage</code> 가 나열될 것이다.</p>
+<p>STS에서 'Gradle Tasks' 뷰를 찾아 'build &#8594; bootJar' 태스크를 찾아 우클릭하여 뜨는 팝업메뉴에서 'Run Gradle Task&#8217;를 선택하여 태스크를 실행한다.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/01-04-spring-boot-application-development-02.png" alt="Gradle Task Quick Launcher - bootRepackage">
+<img src="images/01-04-spring-boot-application-development-02.png" alt="Gradle Tasks - `bootJar`">
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>[sts] -----------------------------------------------------
-[sts] Starting Gradle build for the following tasks:
-[sts]      bootRepackage
-[sts] -----------------------------------------------------
+<pre class="CodeRay highlight"><code>Working Directory: /home/honeymon/workspaces/boot-spring-boot/boot-spring-boot
+Gradle User Home: /home/honeymon/.gradle
+Gradle Distribution: Gradle wrapper from target build
+Gradle Version: 4.5.1
+Java Home: /usr/lib/jvm/jdk1.8.0_152
+JVM Arguments: None
+Program Arguments: None
+Build Scans Enabled: false
+Offline Mode Enabled: false
+Gradle Tasks: bootJar
+
 :compileJava
 :processResources UP-TO-DATE
 :classes
-:findMainClass
-:jar
-:bootRepackage
+:bootJar UP-TO-DATE
 
-BUILD SUCCESSFUL
-
-Total time: 1.31 secs
-[sts] -----------------------------------------------------
-[sts] Build finished succesfully!
-[sts] Time taken: 0 min, 1 sec
-[sts] -----------------------------------------------------</code></pre>
+BUILD SUCCESSFUL in 21s
+3 actionable tasks: 1 executed, 2 up-to-date</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>위와 같은 내용이 콘솔에 출력된다. <code>boot-spring-boot</code> 프로젝트에서 <code>build/libs</code> 디렉터리를 보면 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 와 <code>boot-spring-boot-1.0.0.RELEASE.jar.original</code> 이 생성되어 있다. <code>boot-spring-boot-1.0.0.RELEASE.jar.original</code> 는 우리가 작성한 코드가 컴파일되어 있다. 이를 스프링 부트 플러그인에서 실행에 필요한 컨테이너와 의존성을 추가하여 재압축(repackage) 한 것이 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 으로 대략 10MB 정도의 용량이 늘어난다. 이에 대해서는 "<a href="#chap06">'스프링 부트' 빌드도구 플러그인</a>" 에서 자세히 설명한다.</p>
+<p>위와 같은 내용이 콘솔에 출력된다. <code>boot-spring-boot</code> 프로젝트에서 <code>build/libs</code> 디렉터리를 보면 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 파일이 생성되어 있다. <code>boot-spring-boot-1.0.0.RELEASE.jar</code>는 우리가 작성한 코드와 애플리케이션 실행에 필요한 의존성 라이브러리를 함께 압축하면서 용량이 늘어난다. 이에 대해서는 "<a href="#chap06">'스프링 부트' 빌드도구 플러그인</a>" 에서 자세히 설명한다.</p>
 </div>
 <div class="paragraph">
 <p><code>jar tvf</code> 명령으로 <code>boot-spring-boot-1.0.0.RELEASE.jar</code>에 포함되어 있는 것을 확인할 수 있다.</p>
@@ -2081,22 +2065,21 @@ Total time: 1.31 secs
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="console">$ jar tvf build/libs/boot-spring-boot-1.0.0.RELEASE.jar
-     0 Wed Nov 22 15:50:40 KST 2017 META-INF/
-   258 Wed Nov 22 15:50:40 KST 2017 META-INF/MANIFEST.MF
-     0 Wed Nov 22 15:50:40 KST 2017 BOOT-INF/
-     0 Wed Nov 22 15:50:40 KST 2017 BOOT-INF/classes/
-   306 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/AvoidDefaultPackagePosition.class
-     0 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/io/
-     0 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/io/honeymon/
-     0 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/io/honeymon/boot/
-     0 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/io/honeymon/boot/springboot/
-     0 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/io/honeymon/boot/springboot/api/
-     0 Wed Nov 22 15:50:38 KST 2017 BOOT-INF/classes/io/honeymon/boot/springboot/api/handler/
+     0 Wed Mar 01 15:50:40 KST 2018 META-INF/
+   258 Wed Mar 01 15:50:40 KST 2018 META-INF/MANIFEST.MF
+     0 Wed Mar 01 15:50:40 KST 2018 BOOT-INF/
+     0 Wed Mar 01 15:50:40 KST 2018 BOOT-INF/classes/
+   306 Wed Mar 01 15:50:38 KST 2018 BOOT-INF/classes/AvoidDefaultPackagePosition.class
+     0 Wed Mar 01 15:50:38 KST 2018 BOOT-INF/classes/io/
+     0 Wed Mar 01 15:50:38 KST 2018 BOOT-INF/classes/io/honeymon/
+     0 Wed Mar 01 15:50:38 KST 2018 BOOT-INF/classes/io/honeymon/boot/
+     0 Wed Mar 01 15:50:38 KST 2018 BOOT-INF/classes/io/honeymon/boot/springboot/
+     0 Wed Mar 01 15:50:38 KST 2018 BOOT-INF/classes/io/honeymon/boot/springboot/api/
     // 생략</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>bootRepackage</code> 을 통해서 생성된 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 파일은 커맨드라인에서 <code>java -jar</code> 명령으로 실행할 수 있다.</p>
+<p><code>bootJar</code> 태스크를 통해서 생성된 <code>boot-spring-boot-1.0.0.RELEASE.jar</code> 파일은 커맨드라인에서 <code>java -jar</code> 명령으로 실행할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2104,11 +2087,11 @@ Total time: 1.31 secs
 ... 스프링부트 로고
  :: Spring Boot ::        (v2.0.0.RELEASE)
 
-...  i.h.s.book.BootSpringBootApplication     : Starting BootSpringBootApplication on jake-mac.local with PID 42838 (/Users/honeymon/workspace/boot-spring-boot/build/libs/boot-spring-boot-1.0.0.RELEASE.jar started by honeymon in /Users/honeymon/workspace/boot-spring-boot)
-... i.h.s.book.BootSpringBootApplication     : No active profile set, falling back to default profiles: default
+...  i.h.b.s.BootSpringBootApplication        : Starting BootSpringBootApplication on honeymon-ThinkPad with PID 7330 (/home/honeymon/workspaces/boot-spring-boot/boot-spring-boot/build/libs/boot-spring-boot-1.0.0.RELEASE.jar started by honeymon in /home/honeymon/workspaces/boot-spring-boot/boot-spring-boot)
+... i.h.b.s.BootSpringBootApplication        : No active profile set, falling back to default profiles: default
 ... 로그 생략 ..
-... [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-... [           main] i.h.s.book.BootSpringBootApplication     : Started BootSpringBootApplication in 2.668 seconds (JVM running for 3.09)</code></pre>
+... [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+... [           main] i.h.b.s.BootSpringBootApplication        : Started BootSpringBootApplication in 14.555 seconds (JVM running for 15.822)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2883,6 +2866,16 @@ Total time: 7.554 secs</code></pre>
 <div class="paragraph">
 <p><code>@Configuration</code> 클래스로 시작하는 것을 권하지만 그래도! 굳이! XML 기반으로 구성을 하겠다면 할 수도 있다. <code>@ImportResource</code> 애너테이션을 사용해서 XML 구성 파일을 불러오면 된다.</p>
 </div>
+<div class="listingblock">
+<div class="title"><code>@ImportResource</code> 예제</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@ImportResource</span>({<span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:config/application-context.xml</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">classpath:config/web-application-context.xml</span><span class="delimiter">&quot;</span></span>})
+<span class="directive">public</span> <span class="type">class</span> <span class="class">Configuration</span> {
+
+}</code></pre>
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2912,7 +2905,7 @@ Total time: 7.554 secs</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>EmbeddedDatabaseCondition</code> 조건이 발동되면서 <code>DataSourceAutoConfiguration.EmbeddedDatabaseConfiguration</code> 구성이 활성화되어 인-메모리로 구성한다.</p>
+<p><code>EmbeddedDatabaseConfiguration</code>구성의 조건이 발동되면서 <code>DataSourceAutoConfiguration.EmbeddedDatabaseConfiguration</code> 구성이 활성화되어 인-메모리로 구성한다.</p>
 </div>
 </td>
 </tr>
@@ -2973,59 +2966,56 @@ Total time: 7.554 secs</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>=========================
-auto-config REPORT
-=========================
+<pre class="CodeRay highlight"><code>============================
+CONDITIONS EVALUATION REPORT
+============================
 
 
 Positive matches:
 -----------------
-  // 중략
 
-   WebMvcAutoConfiguration matched:
-      - @ConditionalOnClass found required classes 'javax.servlet.Servlet', 'org.springframework.web.servlet.DispatcherServlet', 'org.springframework.web.servlet.config.annotation.WebMvcConfigurer'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
-      - @ConditionalOnWebApplication (required) found StandardServletEnvironment (OnWebApplicationCondition)
-      - @ConditionalOnMissingBean (types: org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   WebMvcAutoConfiguration#hiddenHttpMethodFilter matched:
-      - @ConditionalOnMissingBean (types: org.springframework.web.filter.HiddenHttpMethodFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-   WebMvcAutoConfiguration#httpPutFormContentFilter matched:
-      - @ConditionalOnProperty (spring.mvc.formcontent.putfilter.enabled) matched (OnPropertyCondition)
-      - @ConditionalOnMissingBean (types: org.springframework.web.filter.HttpPutFormContentFilter; SearchStrategy: all) did not find any beans (OnBeanCondition)
-
-  // 중략
-
-Negative matches:
------------------
-  // 중략
-
-   DataSourceAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required class 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType' (OnClassCondition)
-
-   DataSourceTransactionManagerAutoConfiguration:
-      Did not match:
-         - @ConditionalOnClass did not find required classes 'org.springframework.jdbc.core.JdbcTemplate', 'org.springframework.transaction.PlatformTransactionManager' (OnClassCondition)
+   // 중략
+   DataSourceAutoConfiguration matched:
+      - @ConditionalOnClass found required classes 'javax.sql.DataSource', 'org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
 
    // 중략
 
-   DispatcherServletAutoConfiguration.DispatcherServletConfiguration#multipartResolver:
+   DispatcherServletAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.web.servlet.DispatcherServlet'; @ConditionalOnMissingClass did not find unwanted class (OnClassCondition)
+      - found ConfigurableWebEnvironment (OnWebApplicationCondition)
+
+   // 중략
+
+Negative matches:
+-----------------
+
+   WebClientAutoConfiguration:
       Did not match:
-         - @ConditionalOnBean (types: org.springframework.web.multipart.MultipartResolver; SearchStrategy: all) did not find any beans (OnBeanCondition)
+         - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.function.client.WebClient' (OnClassCondition)
+
+   WebFluxAutoConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required class 'org.springframework.web.reactive.config.WebFluxConfigurer' (OnClassCondition)
+
+   WebFluxSecurityConfiguration:
+      Did not match:
+         - @ConditionalOnClass did not find required classes 'org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity', 'org.springframework.security.web.server.WebFilterChainProxy' (OnClassCondition)
 
    // 중략
 
 
 Exclusions:
 -----------
+
     None
+
 
 Unconditional classes:
 ----------------------
-    org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
-    org.springframework.boot.autoconfigure.web.WebClientAutoConfiguration
     org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration
+    org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration
+    org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration
+    org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
     org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration</code></pre>
 </div>
 </div>
@@ -4274,7 +4264,40 @@ io.honeymon.boot.springboot.listener.ApplicationReadyEventListener</code></pre>
 <p><code>SpringApplication</code>은 종료훅(hook)을 통해서 <code>ApplicationContext</code>를 보호하면서 깔끔하게 종료할 수 있다. 표준 스프링 라이프사이클 콜백(<code>DisposableBean</code>를 구현했거나 <code>@PreDestroy</code> 애너테이션을 사용)이 사용된다.</p>
 </div>
 <div class="paragraph">
-<p>추가적으로 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/ExitCodeGenerator.java"><code>org.springframework.boot.ExitCodeGenerator</code>(https://goo.gl/TnUVvi)</a> 인터페이스를 구현하여 애플리케이션이 종료될 때 지정된 종료 코드를 반환하도록 할 수도 있다.</p>
+<p>추가적으로 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/ExitCodeGenerator.java"><code>org.springframework.boot.ExitCodeGenerator</code>(https://goo.gl/TnUVvi)</a> 인터페이스를 구현하여 <code>SpringApplication.exit()</code>이 호출되었을 때 특정 종료코드를 반환하도록 할 수 있다. 이 종료코드는 <code>System.exit()</code>에 전달하여 상태 코드를 반환할 수 있으며 예제는 다음과 같다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@SpringBootApplication</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ExitCodeApplication</span> {
+    <span class="annotation">@Bean</span>
+    <span class="directive">public</span> ExitCodeGenerator exitCodeGenerator() {
+        <span class="keyword">return</span> () -&gt; <span class="integer">42</span>;
+    }
+
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+        <span class="predefined-type">System</span>.exit(SpringApplication
+                .exit(SpringApplication.run(ExitCodeApplication.class, args)));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>또한 <code>ExitCodeGenerator</code>를 예외에 맞춰 구현할 수도 있다. 예외가 발생했을 때 <code>getExitCode()</code>를 구현하여 스프링 부트가 종료코드를 반환하도록 할 수 있다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>이에 대한 내용은 <a href="https://goo.gl/P52Vz7">https://goo.gl/P52Vz7</a>을 통해서 자세히 설명하겠다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -4918,6 +4941,20 @@ java.lang.IllegalArgumentException: Invalid profile [!prod]: must not begin with
     at org.springframework.boot.SpringApplication.run(SpringApplication.java:296)
     at io.honeymon.boot.springboot.BootSpringBootApplication.main(BootSpringBootApplication.java:14)</code></pre>
 </div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>YAML 파일도 파일명에 프로파일이 적용된다. <code>application-local.yml</code>, <code>application-dev.yml</code>와 <code>application-prd.yml</code> 처럼 활용가능하다.</p>
 </div>
 </td>
 </tr>
@@ -5741,8 +5778,14 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 </tr>
 </tbody>
 </table>
+<div class="imageblock">
+<div class="content">
+<img src="images/03-04-03-logging-level-color.png" alt="실제로 콘솔에 찍힌 로그">
+</div>
+<div class="title">Figure 3. 각각 'ERROR, WARN, INFO, DEBUG, TRACE&#8217;로 출력해본 로그</div>
+</div>
 <div class="paragraph">
-<p>대안으로 관례로 제공하는 선택사항ㅇㄹ 사용하여 색상이나 형식을 변경지정할 수도 있다. 예를 들어, 텍스트를 노랑색으로 변경해본다면:</p>
+<p>대안으로 관례로 제공하는 선택사항을 사용하여 색상이나 형식을 변경지정할 수도 있다. 예를 들어, 텍스트를 노랑색으로 변경해본다면:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -11632,185 +11675,7 @@ WantedBy=multi-user.target</code></pre>
 <p>"<a href="#chap06">'스프링 부트' 빌드도구 플러그인</a>"에서는 '실행가능한(Excutable)' 배포본(jar or war)를 만들어내는 '스프링 부트 빌드도구 플러그인&#8217;을 살펴본다. 스프링 부트는 자바 개발시 주로 사용하는 빌드도구인 메이븐과 그레이들 에서 사용할 수 있는 빌드도구 플러그인을 제공한다. 프로젝트를 빌드할 때 고려할 수 있는 다양한 선택사항에 대해서 빌드도구 플러그인을 제공하여 개발자의 다양한 욕구를 수용하고 있다. 여기서 '실행가능한' 배포본을 만들어내는 교모한 기술 '재포장(리패키징, Repackage)'에 대해 설명한다.</p>
 </div>
 <div class="sect2">
-<h3 id="build-tool-plugins-maven-plugin">6.1. 스프링 부트 메이븐 플러그인</h3>
-<div class="paragraph">
-<p>스프링 부트는 메이븐과 그레이들에서 사용할 수 있는 빌드도구 플러그인을 제공한다. 플러그인은 다양한 기능을 제공하는데 그중에는 실행가능한 jar의 패키징도 포함되어 있다. 이번 장에서는 플러그인에 대해서 상세히 사렾보고, 빌드 시스템에서 지원하지 않는 기능이 필요할 때 확장하는 방법을 살펴보도록 한다.이제 막 이 부분부터 시작한다면 "<a href="#chap02">'스프링 부트' 살펴보기</a>"의 "<a href="#using-boot-build-systems">빌드 시스템</a>"을 읽어보길 바란다.</p>
-</div>
-<div class="sect3">
-<h4 id="build-tool-plugins-include-maven-plugin">6.1.1. 플러그인 추가</h4>
-<div class="paragraph">
-<p><a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/">'스프링 부트 메이븐 플러그인'(https://goo.gl/1B538w)</a>은 메이븐에 대한 스프링 부트를 지원하며, 실행가능한 jar나 war를 패키징하거나 애플리케이션으로 바로 실행하는 기능 등을 제공한다. 이를 위해서는 메이븐 3.2(혹은 그 이상)을 사용해야 한다.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/">'스프링 부트 메이븐 플러그인'(https://goo.gl/1B538w)</a>을 살펴보기 바란다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="플로그인-추가하기">6.1.2. 플로그인 추가하기</h4>
-<div class="paragraph">
-<p>스프링 부트 메이븐 플러그인를 추가하려면 <code>pom.xml</code> 내에 적당한 위치에 <code>plugins</code>에 플러그인에 대한 XML을 추가하면 된다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="tag">&lt;project</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
-    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;modelVersion&gt;</span>4.0.0<span class="tag">&lt;/modelVersion&gt;</span>
-    <span class="comment">&lt;!-- ... --&gt;</span>
-    <span class="tag">&lt;build&gt;</span>
-        <span class="tag">&lt;plugins&gt;</span>
-            <span class="tag">&lt;plugin&gt;</span>
-                <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-                <span class="tag">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
-                <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
-                <span class="tag">&lt;executions&gt;</span>
-                    <span class="tag">&lt;execution&gt;</span>
-                        <span class="tag">&lt;goals&gt;</span>
-                            <span class="tag">&lt;goal&gt;</span>repackage<span class="tag">&lt;/goal&gt;</span>
-                        <span class="tag">&lt;/goals&gt;</span>
-                    <span class="tag">&lt;/execution&gt;</span>
-                <span class="tag">&lt;/executions&gt;</span>
-            <span class="tag">&lt;/plugin&gt;</span>
-        <span class="tag">&lt;/plugins&gt;</span>
-    <span class="tag">&lt;/build&gt;</span>
-<span class="tag">&lt;/project&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>이 구성은 메이븐 생애주기 <code>package</code> 단계에서 빌드가 진행되는 동안 jar나 war를 재포장한다. 다음 예제에서는 리패키징된 jar와 원본 jar가 <code>target</code> 디렉토리에 있는 것을 보여준다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ mvn package
-// 로그 생략
-$ ls target/*.jar
-target/boot-spring-boot-1.0.0.RELEASE.jar target/boot-spring-boot-1.0.0.RELEASE.jar.original</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>만약 위의 플러그인 선언부에서 <code>&lt;execution/&gt;</code>구성을 포함시키지 않았다면, 다음과 같이 별도로 플러그인을 실행시켜야 한다(패키징이 잘 되어있다면 잘 동작한다).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ mvn package spring-boot:repackage
-// 로그 생략
-$ ls target/*.jar
-target/boot-spring-boot-1.0.0.RELEASE.jar target/boot-spring-boot-1.0.0.RELEASE.jar.original</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>만약에 아직 정식 출시가 되지 않은 마일스톤(milestone) 혹은 스냅샷(snapshot) 버전을 사용하고자 한다면 적당한 위치에 <code>pluginRepository</code> 요소를 추가하면 된다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;pluginRepositories&gt;</span>
-    <span class="tag">&lt;pluginRepository&gt;</span>
-        <span class="tag">&lt;id&gt;</span>spring-snapshots<span class="tag">&lt;/id&gt;</span>
-        <span class="tag">&lt;url&gt;</span>http://repo.spring.io/snapshot<span class="tag">&lt;/url&gt;</span>
-    <span class="tag">&lt;/pluginRepository&gt;</span>
-    <span class="tag">&lt;pluginRepository&gt;</span>
-        <span class="tag">&lt;id&gt;</span>spring-milestones<span class="tag">&lt;/id&gt;</span>
-        <span class="tag">&lt;url&gt;</span>http://repo.spring.io/milestone<span class="tag">&lt;/url&gt;</span>
-    <span class="tag">&lt;/pluginRepository&gt;</span>
-<span class="tag">&lt;/pluginRepositories&gt;</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="build-tool-plugins-maven-packaging">6.1.3. 실행가능한 jar 와 war 파일 패키징</h4>
-<div class="paragraph">
-<p><code>pom.xml</code> 에 <code>spring-boot-maven-plugin</code>이 추가되어 있다면 자동적으로 <code>spring-boot:repackage</code> 골을 사용하여 실행가능한 패키지로 재작성하는 작업이 진행된다. 프로젝트를 jar로 할 지 war로 할 지 <code>packaging</code> 요소에서 정의하는 것이 가능하다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="tag">&lt;project</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
-    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="comment">&lt;!-- ... --&gt;</span>
-    <span class="tag">&lt;packaging&gt;</span>jar<span class="tag">&lt;/packaging&gt;</span> <b class="conum">(1)</b>
-    <span class="comment">&lt;!-- ... --&gt;</span>
-<span class="tag">&lt;/project&gt;</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<ol>
-<li>
-<p>패키징을 jar로 할 지 war로 할 지 정의하는 부분</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><code>package</code> 페이즈가 진행되는 동안 스프링 부트가 압축하는 과정에 개입한다. 실행하고자 하는 메인 클래스를 구성옵션으로 선택하거나 매니패스트에 <code>Main-Class</code> 속성을 추가하는 방법이 있다. 메인 클래스를 정의하지 않았다면 플러그인은 <code>public static void main(String[] args)</code> 메서드를 가지고 있는 클래스를 탐색할 것이다.</p>
-</div>
-<div class="paragraph">
-<p>프로젝트에 대한 빌드와 실행을 하려면 다음과 같이 입력한다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="console">$ mvn package
-// 로그 생략
-$ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
-// 로그생략</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>실행가능하면서 외부 컨테이너에서 배포가능한 war 파일을 빌드하기 위해서는 내장 컨테이너 의존성에 대해서 "provided"를 선언해야 한다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="tag">&lt;project</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
-    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="comment">&lt;!-- ... --&gt;</span>
-    <span class="tag">&lt;packaging&gt;</span>war<span class="tag">&lt;/packaging&gt;</span>
-    <span class="comment">&lt;!-- ... --&gt;</span>
-    <span class="tag">&lt;dependencies&gt;</span>
-        <span class="tag">&lt;dependency&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="tag">&lt;/artifactId&gt;</span>
-        <span class="tag">&lt;/dependency&gt;</span>
-        <span class="tag">&lt;dependency&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/artifactId&gt;</span>
-            <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
-        <span class="tag">&lt;/dependency&gt;</span>
-        <span class="comment">&lt;!-- ... --&gt;</span>
-    <span class="tag">&lt;/dependencies&gt;</span>
-<span class="tag">&lt;/project&gt;</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>"<a href="#howto-create-a-deployable-war-file">배포가능한 war 파일 생성</a>"에서 어떻게 배포 가능한 war 파일을 생성하는지 자세히 살펴볼 수 있다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>보다 자세한 옵션과 예제는 <a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/">'스프링 부트 메이븐 플러그인'(https://goo.gl/1B538w) 안내문서</a>에서 살펴볼 수 있다.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="build-tool-plugins-gradle-plugin">6.2. 스프링 부트 그레이들 플러그인</h3>
+<h3 id="build-tool-plugins-gradle-plugin">6.1. 스프링 부트 그레이들 플러그인</h3>
 <div class="paragraph">
 <p>스프링 부트 그레이들 플러그인은 그레이들에 대한 실행가능한 jar나 war를 패키징하거나 스프링 부트 애플리케이션을 실행하거나 <code>spring-boot-dependencies</code>에 의해 제공되는 의존성 관리를 사용하는 등의 스프링 부트에 관련된 기능을 지원한다.</p>
 </div>
@@ -11839,7 +11704,7 @@ $ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
 </table>
 </div>
 <div class="sect3">
-<h4 id="build-tool-plugins-including-the-gradle-plugin">6.2.1. 플러그인 추가하기</h4>
+<h4 id="build-tool-plugins-including-the-gradle-plugin">6.1.1. 플러그인 추가하기</h4>
 <div class="paragraph">
 <p>스프링 부트 그레이들 플러그인구성을 사용하려면 <code>plugin</code> 영역에 다음과 같이 선언한다:</p>
 </div>
@@ -11852,7 +11717,7 @@ $ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
 </div>
 </div>
 <div class="sect3">
-<h4 id="build-tool-plugins-gradle-dependency-management">6.2.2. 그레이들 의존성 관리</h4>
+<h4 id="build-tool-plugins-gradle-dependency-management">6.1.2. 그레이들 의존성 관리</h4>
 <div class="paragraph">
 <p><code>spring-boot</code> 플러그인은 자동으로 <a href="https://github.com/spring-gradle-plugins/dependency-management-plugin/">의존성 관리 플러그인</a>을 제공하며 <code>spring-boot-starter-parent</code> BOM을 불러와 구성한다. 이 기능은 메이븐 사용자에게도 메이븐과 유사한 의존성 관리 경험을 제공한다. 예를 들어, BOM에서 관리하고 있는 의존성을 정의할 때는 버전을 생략하는 것이 가능하다. 이 기능을 사용한다면, 의존성을 선언하면서 버전은 비워두면 된다:</p>
 </div>
@@ -11884,9 +11749,9 @@ $ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
 </div>
 </div>
 <div class="sect3">
-<h4 id="build-tool-plugins-gradle-packaging">6.2.3. 실행가능한 jar 와 war 파일 생성</h4>
+<h4 id="build-tool-plugins-gradle-packaging">6.1.3. 실행가능한 jar 와 war 파일 생성</h4>
 <div class="paragraph">
-<p><code>spring-boot</code> 플러그인이 프로젝트에 적용되면 <code>bootRepackage</code> 태스크를 이용하여 아카이브를 다시 작성하여 실행가능하게 만든다. jar 또는 war(적절한 경우)로 프로젝트를 빌드하도록 프로젝트를 구성해야 한다.</p>
+<p><code>spring-boot</code> 플러그인이 프로젝트에 적용되면 <code>bootJar</code> 태스크를 이용하여 아카이브를 다시 작성하여 실행가능하게 만든다. jar 또는 war(적절한 경우)로 프로젝트를 빌드하도록 프로젝트를 구성해야 한다.</p>
 </div>
 <div class="paragraph">
 <p>실행할 메인 클래스는 구성 옵션을 사용하여 정의하거나 <code>Main-Class</code> 속성을 매니페스트에 추가하여 지정할 수 있다. 만약 메인 클래스를 정의하지 않았다면 플러그인은 <code>public static void main(String[] args)</code> 메서드가 작성되어 있는 클래스를 탐색한다(<code>ApplicationRunner</code> 혹은 <code>CommandLineRunner</code>를 이용하여 테스트 코드 등을 작성했다면 반드시 메인 클래스를 정의해야 한다).</p>
@@ -11955,7 +11820,7 @@ dependencies {
 </div>
 </div>
 <div class="sect3">
-<h4 id="build-tool-plugins-gradle-running-applications">6.2.4. 프로젝트를 빌드하지 않고 실행하기</h4>
+<h4 id="build-tool-plugins-gradle-running-applications">6.1.4. 프로젝트를 빌드하지 않고 실행하기</h4>
 <div class="paragraph">
 <p>그레이들 혹은 메이븐 래퍼를 통해서 프로젝트에 대한 별도의 배포파일을 생성하지 않고 소스코드를 컴파일한 후 바로 실행하는 것이 가능하다.</p>
 </div>
@@ -11999,7 +11864,7 @@ dependencies {
 </div>
 </div>
 <div class="sect3">
-<h4 id="build-tool-plugins-gradle-global-configuration">6.2.5. 스프링 부트 플러그인 구성</h4>
+<h4 id="build-tool-plugins-gradle-global-configuration">6.1.5. 스프링 부트 플러그인 구성</h4>
 <div class="paragraph">
 <p>그레이들 플러그인은 전역 구성을 위한 <code>springBoot</code> 요소에 대한 빌드 스크립트 DSL을 자동으로 확장한다. 그레이들를 확장하여 속성을 적당히 설정할 수 있다.</p>
 </div>
@@ -12105,7 +11970,7 @@ dependencies {
 </tbody>
 </table>
 <div class="paragraph">
-<p>개발을 마친 애플리케이션을 테스트 및 운영을 위해 배포를 해야 한다. 배포본을 빌드하는 과정에서 <code>springBoot</code>와 <code>bootRepackage</code> 태스크 속성에 애플리케이션 메인 클래스를 정의하고 운영환경에 맞춰 레이아웃을 구성하는 등의 작업을 해야 한다. 스프링 부트를 이용하면 서비스 운영환경의 변화에 대한 유연한 대처가 가능하다. 클라우드 서버에 배포하여 운영하고 있는 애플리케이션을 IDC에서 운영되고 있는 WAS서버에 배포하거나 소스코드 수준에서 실행하는 등의 작업에 어려움이 없다.</p>
+<p>개발을 마친 애플리케이션을 테스트 및 운영을 위해 배포를 해야 한다. 배포본을 빌드하는 과정에서 <code>springBoot</code>와 <code>bootJar</code> 태스크 속성에 애플리케이션 메인 클래스를 정의하고 운영환경에 맞춰 레이아웃을 구성하는 등의 작업을 해야 한다. 스프링 부트를 이용하면 서비스 운영환경의 변화에 대한 유연한 대처가 가능하다. 클라우드 서버에 배포하여 운영하고 있는 애플리케이션을 IDC에서 운영되고 있는 WAS서버에 배포하거나 소스코드 수준에서 실행하는 등의 작업에 어려움이 없다.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -12121,6 +11986,184 @@ dependencies {
 </tr>
 </table>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="build-tool-plugins-maven-plugin">6.2. 스프링 부트 메이븐 플러그인</h3>
+<div class="paragraph">
+<p>스프링 부트는 메이븐과 그레이들에서 사용할 수 있는 빌드도구 플러그인을 제공한다. 플러그인은 다양한 기능을 제공하는데 그중에는 실행가능한 jar의 패키징도 포함되어 있다. 이번 장에서는 플러그인에 대해서 상세히 사렾보고, 빌드 시스템에서 지원하지 않는 기능이 필요할 때 확장하는 방법을 살펴보도록 한다.이제 막 이 부분부터 시작한다면 "<a href="#chap02">'스프링 부트' 살펴보기</a>"의 "<a href="#using-boot-build-systems">빌드 시스템</a>"을 읽어보길 바란다.</p>
+</div>
+<div class="sect3">
+<h4 id="build-tool-plugins-include-maven-plugin">6.2.1. 플러그인 추가</h4>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/">'스프링 부트 메이븐 플러그인'(https://goo.gl/1B538w)</a>은 메이븐에 대한 스프링 부트를 지원하며, 실행가능한 jar나 war를 패키징하거나 애플리케이션으로 바로 실행하는 기능 등을 제공한다. 이를 위해서는 메이븐 3.2(혹은 그 이상)을 사용해야 한다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>보다 자세한 내용은 <a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/">'스프링 부트 메이븐 플러그인'(https://goo.gl/1B538w)</a>을 살펴보기 바란다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="플로그인-추가하기">6.2.2. 플로그인 추가하기</h4>
+<div class="paragraph">
+<p>스프링 부트 메이븐 플러그인를 추가하려면 <code>pom.xml</code> 내에 적당한 위치에 <code>plugins</code>에 플러그인에 대한 XML을 추가하면 된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;project</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;modelVersion&gt;</span>4.0.0<span class="tag">&lt;/modelVersion&gt;</span>
+    <span class="comment">&lt;!-- ... --&gt;</span>
+    <span class="tag">&lt;build&gt;</span>
+        <span class="tag">&lt;plugins&gt;</span>
+            <span class="tag">&lt;plugin&gt;</span>
+                <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+                <span class="tag">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+                <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
+                <span class="tag">&lt;executions&gt;</span>
+                    <span class="tag">&lt;execution&gt;</span>
+                        <span class="tag">&lt;goals&gt;</span>
+                            <span class="tag">&lt;goal&gt;</span>repackage<span class="tag">&lt;/goal&gt;</span>
+                        <span class="tag">&lt;/goals&gt;</span>
+                    <span class="tag">&lt;/execution&gt;</span>
+                <span class="tag">&lt;/executions&gt;</span>
+            <span class="tag">&lt;/plugin&gt;</span>
+        <span class="tag">&lt;/plugins&gt;</span>
+    <span class="tag">&lt;/build&gt;</span>
+<span class="tag">&lt;/project&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이 구성은 메이븐 생애주기 <code>package</code> 단계에서 빌드가 진행되는 동안 jar나 war를 재포장한다. 다음 예제에서는 리패키징된 jar와 원본 jar가 <code>target</code> 디렉토리에 있는 것을 보여준다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ mvn package
+// 로그 생략
+$ ls target/*.jar
+target/boot-spring-boot-1.0.0.RELEASE.jar target/boot-spring-boot-1.0.0.RELEASE.jar.original</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>만약 위의 플러그인 선언부에서 <code>&lt;execution/&gt;</code>구성을 포함시키지 않았다면, 다음과 같이 별도로 플러그인을 실행시켜야 한다(패키징이 잘 되어있다면 잘 동작한다).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ mvn package spring-boot:repackage
+// 로그 생략
+$ ls target/*.jar
+target/boot-spring-boot-1.0.0.RELEASE.jar target/boot-spring-boot-1.0.0.RELEASE.jar.original</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>만약에 아직 정식 출시가 되지 않은 마일스톤(milestone) 혹은 스냅샷(snapshot) 버전을 사용하고자 한다면 적당한 위치에 <code>pluginRepository</code> 요소를 추가하면 된다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;pluginRepositories&gt;</span>
+    <span class="tag">&lt;pluginRepository&gt;</span>
+        <span class="tag">&lt;id&gt;</span>spring-snapshots<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;url&gt;</span>http://repo.spring.io/snapshot<span class="tag">&lt;/url&gt;</span>
+    <span class="tag">&lt;/pluginRepository&gt;</span>
+    <span class="tag">&lt;pluginRepository&gt;</span>
+        <span class="tag">&lt;id&gt;</span>spring-milestones<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;url&gt;</span>http://repo.spring.io/milestone<span class="tag">&lt;/url&gt;</span>
+    <span class="tag">&lt;/pluginRepository&gt;</span>
+<span class="tag">&lt;/pluginRepositories&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="build-tool-plugins-maven-packaging">6.2.3. 실행가능한 jar 와 war 파일 패키징</h4>
+<div class="paragraph">
+<p><code>pom.xml</code> 에 <code>spring-boot-maven-plugin</code>이 추가되어 있다면 자동적으로 <code>spring-boot:repackage</code> 골을 사용하여 실행가능한 패키지로 재작성하는 작업이 진행된다. 프로젝트를 jar로 할 지 war로 할 지 <code>packaging</code> 요소에서 정의하는 것이 가능하다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;project</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- ... --&gt;</span>
+    <span class="tag">&lt;packaging&gt;</span>jar<span class="tag">&lt;/packaging&gt;</span> <b class="conum">(1)</b>
+    <span class="comment">&lt;!-- ... --&gt;</span>
+<span class="tag">&lt;/project&gt;</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>패키징을 jar로 할 지 war로 할 지 정의하는 부분</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>package</code> 페이즈가 진행되는 동안 스프링 부트가 압축하는 과정에 개입한다. 실행하고자 하는 메인 클래스를 구성옵션으로 선택하거나 매니패스트에 <code>Main-Class</code> 속성을 추가하는 방법이 있다. 메인 클래스를 정의하지 않았다면 플러그인은 <code>public static void main(String[] args)</code> 메서드를 가지고 있는 클래스를 탐색할 것이다.</p>
+</div>
+<div class="paragraph">
+<p>프로젝트에 대한 빌드와 실행을 하려면 다음과 같이 입력한다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ mvn package
+// 로그 생략
+$ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
+// 로그생략</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>실행가능하면서 외부 컨테이너에서 배포가능한 war 파일을 빌드하기 위해서는 내장 컨테이너 의존성에 대해서 "provided"를 선언해야 한다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;project</span> <span class="attribute-name">xmlns</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span>
+    <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="comment">&lt;!-- ... --&gt;</span>
+    <span class="tag">&lt;packaging&gt;</span>war<span class="tag">&lt;/packaging&gt;</span>
+    <span class="comment">&lt;!-- ... --&gt;</span>
+    <span class="tag">&lt;dependencies&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="tag">&lt;/artifactId&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;scope&gt;</span>provided<span class="tag">&lt;/scope&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+        <span class="comment">&lt;!-- ... --&gt;</span>
+    <span class="tag">&lt;/dependencies&gt;</span>
+<span class="tag">&lt;/project&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>"<a href="#howto-create-a-deployable-war-file">배포가능한 war 파일 생성</a>"에서 어떻게 배포 가능한 war 파일을 생성하는지 자세히 살펴볼 수 있다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>보다 자세한 옵션과 예제는 <a href="https://docs.spring.io/spring-boot/docs/current/maven-plugin/">'스프링 부트 메이븐 플러그인'(https://goo.gl/1B538w) 안내문서</a>에서 살펴볼 수 있다.</p>
 </div>
 </div>
 </div>
@@ -12962,31 +13005,31 @@ hello</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
 <span class="directive">public</span> ServletWebServerFactory servletContainer() {
-        TomcatServletWebServerFactory tomcat = <span class="keyword">new</span> TomcatServletWebServerFactory();
-        tomcat.addAdditionalTomcatConnectors(createSslConnector());
-        <span class="keyword">return</span> tomcat;
+    TomcatServletWebServerFactory tomcat = <span class="keyword">new</span> TomcatServletWebServerFactory();
+    tomcat.addAdditionalTomcatConnectors(createSslConnector());
+    <span class="keyword">return</span> tomcat;
 }
 
 <span class="directive">private</span> Connector createSslConnector() {
-        Connector connector = <span class="keyword">new</span> Connector(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.apache.coyote.http11.Http11NioProtocol</span><span class="delimiter">&quot;</span></span>);
-        Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
-        <span class="keyword">try</span> {
-                <span class="predefined-type">File</span> keystore = <span class="keyword">new</span> ClassPathResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span>).getFile();
-                <span class="predefined-type">File</span> truststore = <span class="keyword">new</span> ClassPathResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span>).getFile();
-                connector.setScheme(<span class="string"><span class="delimiter">&quot;</span><span class="content">https</span><span class="delimiter">&quot;</span></span>);
-                connector.setSecure(<span class="predefined-constant">true</span>);
-                connector.setPort(<span class="integer">8443</span>);
-                protocol.setSSLEnabled(<span class="predefined-constant">true</span>);
-                protocol.setKeystoreFile(keystore.getAbsolutePath());
-                protocol.setKeystorePass(<span class="string"><span class="delimiter">&quot;</span><span class="content">changeit</span><span class="delimiter">&quot;</span></span>);
-                protocol.setTruststoreFile(truststore.getAbsolutePath());
-                protocol.setTruststorePass(<span class="string"><span class="delimiter">&quot;</span><span class="content">changeit</span><span class="delimiter">&quot;</span></span>);
-                protocol.setKeyAlias(<span class="string"><span class="delimiter">&quot;</span><span class="content">apitester</span><span class="delimiter">&quot;</span></span>);
-                <span class="keyword">return</span> connector;
-        } <span class="keyword">catch</span> (<span class="exception">IOException</span> ex) {
-                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">IllegalStateException</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">can't access keystore: [</span><span class="delimiter">&quot;</span></span> + <span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span>
-                                + <span class="string"><span class="delimiter">&quot;</span><span class="content">] or truststore: [</span><span class="delimiter">&quot;</span></span> + <span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span> + <span class="string"><span class="delimiter">&quot;</span><span class="content">]</span><span class="delimiter">&quot;</span></span>, ex);
-        }
+    Connector connector = <span class="keyword">new</span> Connector(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.apache.coyote.http11.Http11NioProtocol</span><span class="delimiter">&quot;</span></span>);
+    Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
+    <span class="keyword">try</span> {
+        <span class="predefined-type">File</span> keystore = <span class="keyword">new</span> ClassPathResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span>).getFile();
+        <span class="predefined-type">File</span> truststore = <span class="keyword">new</span> ClassPathResource(<span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span>).getFile();
+        connector.setScheme(<span class="string"><span class="delimiter">&quot;</span><span class="content">https</span><span class="delimiter">&quot;</span></span>);
+        connector.setSecure(<span class="predefined-constant">true</span>);
+        connector.setPort(<span class="integer">8443</span>);
+        protocol.setSSLEnabled(<span class="predefined-constant">true</span>);
+        protocol.setKeystoreFile(keystore.getAbsolutePath());
+        protocol.setKeystorePass(<span class="string"><span class="delimiter">&quot;</span><span class="content">changeit</span><span class="delimiter">&quot;</span></span>);
+        protocol.setTruststoreFile(truststore.getAbsolutePath());
+        protocol.setTruststorePass(<span class="string"><span class="delimiter">&quot;</span><span class="content">changeit</span><span class="delimiter">&quot;</span></span>);
+        protocol.setKeyAlias(<span class="string"><span class="delimiter">&quot;</span><span class="content">apitester</span><span class="delimiter">&quot;</span></span>);
+        <span class="keyword">return</span> connector;
+    } <span class="keyword">catch</span> (<span class="exception">IOException</span> ex) {
+        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="exception">IllegalStateException</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">can't access keystore: [</span><span class="delimiter">&quot;</span></span> + <span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span>
+                + <span class="string"><span class="delimiter">&quot;</span><span class="content">] or truststore: [</span><span class="delimiter">&quot;</span></span> + <span class="string"><span class="delimiter">&quot;</span><span class="content">keystore</span><span class="delimiter">&quot;</span></span> + <span class="string"><span class="delimiter">&quot;</span><span class="content">]</span><span class="delimiter">&quot;</span></span>, ex);
+    }
 }</code></pre>
 </div>
 </div>
@@ -14409,11 +14452,11 @@ dependencies {
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">SslWebSecurityConfigurerAdapter</span> <span class="directive">extends</span> WebSecurityConfigurerAdapter {
-        <span class="annotation">@Override</span>
-        <span class="directive">protected</span> <span class="type">void</span> configure(HttpSecurity http) <span class="directive">throws</span> <span class="exception">Exception</span> {
-                <span class="comment">// Customize the application security</span>
-                http.requiresChannel().anyRequest().requiresSecure();
-        }
+    <span class="annotation">@Override</span>
+    <span class="directive">protected</span> <span class="type">void</span> configure(HttpSecurity http) <span class="directive">throws</span> <span class="exception">Exception</span> {
+        <span class="comment">// Customize the application security</span>
+        http.requiresChannel().anyRequest().requiresSecure();
+    }
 }</code></pre>
 </div>
 </div>
@@ -15332,7 +15375,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.2.1<br>
-Last updated 2018-03-12 17:51:34 KST
+Last updated 2018-03-12 21:08:31 KST
 </div>
 </div>
 </body>
