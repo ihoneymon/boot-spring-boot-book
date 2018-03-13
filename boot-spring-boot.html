@@ -6223,6 +6223,39 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <p>스프링 부트는 스프링 MVC에 대한 자동구성을 제공하며 대부분의 애플리케이션에서 큰 무리없이 잘 동작한다.</p>
 </div>
 <div class="paragraph">
+<p>스프링 부트 MVC 구성은 <code>WebMvcAutoConfiguration</code>을 통해 구현된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@ConditionalOnWebApplication</span>(type = <span class="predefined-type">Type</span>.SERVLET) <b class="conum">(1)</b>
+<span class="annotation">@ConditionalOnClass</span>({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class }) <b class="conum">(2)</b>
+<span class="annotation">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class) <b class="conum">(3)</b>
+<span class="annotation">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="integer">10</span>)
+<span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class,
+                ValidationAutoConfiguration.class }) <b class="conum">(4)</b>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span> {
+  <span class="comment">// 내용 생략</span>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>웹애플리케이션이 서블릿 타입인 경우</p>
+</li>
+<li>
+<p><code>Servlet</code>, <code>DispatcherServlet</code>와 <code>WebMvcConfigurer</code> 클래스가 있는 경우</p>
+</li>
+<li>
+<p><code>WebMvcConfigurationSupport</code> 타입의 빈이 없는 경우</p>
+</li>
+<li>
+<p><code>WebMvcAutoConfiguration</code> 구성 후 <code>DispatcherServletAutoConfiguration</code>과 <code>ValidationAutoConfiguration</code> 구성</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
 <p>자동구성은 스프링 기본구성에 다음 기능을 추가한다:</p>
 </div>
 <div class="ulist">
@@ -6254,10 +6287,132 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 </ul>
 </div>
 <div class="paragraph">
-<p>스프링 부트 MVC 기능을 유지하면서 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">MVC 구성(https://goo.gl/EVDNop)</a>(인터셉터, 포맷터, 뷰 컨트롤러 등)을 추가하고 싶다면 <code>@EnableWebMvc</code>없이 <code>WebMvcConfigurer</code> 타입의 클래스에 <code>@Configuration</code> 추가하면 된다. <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> 혹은 <code>ExceptionHandlerExceptionResolver</code> 에 대한 인스턴스를 재정의하고 싶다면 <code>WebMvcRegistrations</code>를 이용할 수 있다.</p>
+<p>스프링 부트 MVC 기능을 유지하면서 <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc">MVC 구성(https://goo.gl/EVDNop)</a>(인터셉터, 포맷터, 뷰 컨트롤러 등)을 추가하고 싶다면 <code>@EnableWebMvc</code>없이 <code>WebMvcConfigurer</code> 타입의 클래스에 <code>@Configuration</code> 추가하면 된다. <code>RequestMappingHandlerMapping</code>, <code>RequestMappingHandlerAdapter</code> 혹은 <code>ExceptionHandlerExceptionResolver</code> 에 대한 인스턴스를 재정의하고 싶다면 <code>WebMvcRegistrations</code>를 이용할 수 있다. 예는 다음과 같다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcConfig</span> <span class="directive">implements</span> WebMvcConfigurer, WebMvcRegistrations {
+  <span class="comment">// 기능구현</span>
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>WebMvcConfigurer</code>와 <code>WebMvcRegistrations</code> 소스를 살펴보면 메서드에 <code>default</code> 메서드가 선언됐다. Java7을 지원하는 스프링 부트 1.5 에서는 <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html"><code>default</code> 메서드(https://goo.gl/A7CL31)</a>가 없었기에 <code>WebMvcConfigurer</code>를 사용하려면 인터페이스에 선언된 메서드를 모두 구현해야 했다. 그런 불편함을 해소하고자 <code>WebMvcConfigurerAdapter</code> 추상 클래스를 제공했다. 이 추상 클래스를 상속받아 필요한 메서드만 오버라이드했다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트 2.0부터 Java8과 스프링 5.0을 사용하면서 <code>WebMvcConfigurer</code> 메서드에 <code>default</code>를 선언했다. 그 덕분에 <code>WebMvcConfigurer</code>를 구현하는 클래스에서 모든 메서드를
+구현해야하는 강제력이 사라졌다. 필요한 메서드만 오버라이드해서 사용하라는 의미다. 쓰임새가 사라진 <code>WebMvcConfigurerAdapter</code> 클래스는 스프링 부트 2.0에서 제외(Deprecated)되었다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>만약 <strong>스프링 MVC를 완벽하게 제어</strong>하고 싶다면 <code>@Configuration</code> 선언에 추가적으로 <code>@EnableWebMvc</code>를 선언하면 된다.</p>
+</div>
+<div class="paragraph">
+<p>자동구성된 스프링 MVC 구성을 개발자가 완벽히 제어하는 방법은 다음과 같다.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>@Configuration</code> 과 <code>@EnableWebMvc</code>를 함께 선언</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@EnableWebMvc</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcConfig</span> {}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>@EnableWebMvc</code>를 선언하면  <code>WebMvcConfigurationSupport</code>에서 구성한 스프링 MVC 구성을 불러온다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>@Configuration</code> 과 <code>@EnableWebMvc</code>를 함께 선언한 클래스가 <code>WebMvcConfigurer</code> 인터페이스 구현</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@EnableWebMvc</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcConfig</span> <span class="directive">implements</span> WebMvcConfigurer {
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> addFormatters(FormatterRegistry formatterRegistry) {
+        formatterRegistry.addConverter(<span class="keyword">new</span> MyConverter());
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">void</span> configureMessageConverters(<span class="predefined-type">List</span>&lt;HttpMessageConverter&gt; converters) {
+        converters.add(<span class="keyword">new</span> MyHttpMessageConverter());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>위처럼 선언하면 <code>WebMvcConfigurationSupport</code>에서 자동구성한 스프링 MVC 구성에 <code>Formatter</code>, <code>MessageConverter</code> 등을 추가적으로 등록할 수 있다.</p>
+</div>
+</li>
+<li>
+<p><code>@EnableWebMvc</code> 없이 스프링 MVC 구성을 변경하는 방법</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcConfig</span> <span class="directive">extends</span> WebMvcConfigurationSupport {
+
+    <span class="annotation">@Bean</span>
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> RequestMappingHandlerMapping requestMappingHandlerMapping() {
+        <span class="keyword">return</span> <span class="local-variable">super</span>.requestMappingHandlerMapping();
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>위의 내용을 정리해보자. 스프링 MVC 자동구성은 <code>WebMvcAutoConfiguration</code>이 담당한다. 이 구성이 활성화되는 조건 중에 '<code>WebMvcConfigurationSupport</code> 타입의 빈을 찾을 수 없을 때(<code>@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)</code>)'라는 조건이 있다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Configuration</span>
+<span class="annotation">@ConditionalOnWebApplication</span>(type = <span class="predefined-type">Type</span>.SERVLET)
+<span class="annotation">@ConditionalOnClass</span>({ Servlet.class, DispatcherServlet.class, WebMvcConfigurer.class })
+<span class="annotation">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class) <b class="conum">(1)</b>
+<span class="annotation">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="integer">10</span>)
+<span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class,
+                ValidationAutoConfiguration.class })
+<span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span> {
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>바로 이 조건.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>그런데 위에서 거론했던 <code>@EnableWebMvc</code>를 스프링 MVC 구성을 위한 클래스에 선언하면 <code>WebMvcConfigurationSupport</code>을 불러와 스프링 MVC를 구성한다. 이 과정에서 <code>WebMvcConfigurationSupport</code>가 컴포넌트로 등록되어 <code>@ConditionalOnMissingBean(WebMvcConfigurationSupport.class)</code> 조건을 만족시키지 못하게 되어 <code>WebMvcAutoConfiguration</code>은 비활성화 된다. 이와 유사하게 <code>WebMvcConfigurationSupport</code>를 확장한 클래스에 <code>@Configuration</code>를 선언하면 동일하게 적용된다.</p>
 </div>
 </div>
 <div class="sect4">
@@ -7827,7 +7982,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@EntityScan</code> 애너테이션을 이용해서 스캐닝 위치를 변경할 수 있다. 이에 대한 자세한 "<a href="#howto-separate-entity-definitions-from-spring-configuration">스프링 구성으로부터 <code>@Entity</code> 정의 분리</a>"를 살펴보기 바란다.</p>
+<p><code>@EntityScan</code> 애너테이션을 이용해서 스캐닝 위치를 변경할 수 있다. 이에 대한 자세한 내용은 "<a href="#howto-separate-entity-definitions-from-spring-configuration">스프링 구성으로부터 <code>@Entity</code> 정의 분리</a>"를 살펴보기 바란다.</p>
 </div>
 </td>
 </tr>
