@@ -7827,7 +7827,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>@EntityScan</code> 애너테이션을 이용해서 스캐닝 위치를 변경할 수 있다.</p>
+<p><code>@EntityScan</code> 애너테이션을 이용해서 스캐닝 위치를 변경할 수 있다. 이에 대한 자세한 "<a href="#howto-separate-entity-definitions-from-spring-configuration">스프링 구성으로부터 <code>@Entity</code> 정의 분리</a>"를 살펴보기 바란다.</p>
 </div>
 </td>
 </tr>
@@ -8193,7 +8193,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-redis">3.8.1. 레디스(Redis)</h4>
 <div class="paragraph">
-<p><a href="http://redis.io/">레디스(http://redis.io/)</a>는 캐시, 메시지 브로커 그리고 풍부한 기능을 가진 키-값 리파지토리다. 스프링 부트는 <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>과 <a href="https://github.com/xetorthio/jedis/">Jedis(https://goo.gl/qBrtLa)</a>클라이언트 라이브러리를 위한 기초적인 자동구성과  <a href="http://projects.spring.io/spring-data-redis/">스프링 Data Redis(https://goo.gl/QYRr7q)</a>에서 제공하는 것에 대한 추상체를 제공한다.</p>
+<p><a href="http://redis.io/">레디스(http://redis.io/)</a>는 캐시, 메시지 브로커 그리고 풍부한 기능을 가진 키-값 리파지토리다. 스프링 부트는 <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>과 <a href="https://github.com/xetorthio/jedis/">Jedis(https://goo.gl/qBrtLa)</a>클라이언트 라이브러리를 위한 기본적인 자동구성과  <a href="http://projects.spring.io/spring-data-redis/">스프링 Data Redis(https://goo.gl/QYRr7q)</a>에서 제공하는 것에 대한 추상체를 제공한다.</p>
 </div>
 <div class="paragraph">
 <p><code>spring-boot-starter-data-redis</code>를 통해서 의존성 라이브러리를 모아두었다. <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>를 사용하는 것을 기본전제하고 있으며 일반적인 혹은 리액티브 애플리케이션을 모두 제어가능하다.</p>
@@ -8657,7 +8657,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>spring-boot-starter-cache</code>를 사용하면 기초적인 캐시 의존성을 빠르게 추가할 수 있다. 스타터에는  <code>spring-context-support</code> 의존성을 포함하고 있는데, 프로젝트가 사용하는 의존성 라이브러리를 수동으로 관리하는 상황에서 JCache, EhCache 2.x 혹은 Guava를 지원해야한다면 <code>spring-context-support</code>를 추가해야 한다.</p>
+<p><code>spring-boot-starter-cache</code>를 사용하면 기본적인 캐시의존성을 빠르게 추가할 수 있다. 스타터에는  <code>spring-context-support</code> 의존성을 포함하고 있는데, 프로젝트가 사용하는 의존성 라이브러리를 수동으로 관리하는 상황에서 JCache, EhCache 2.x 혹은 Guava를 지원해야한다면 <code>spring-context-support</code>를 추가해야 한다.</p>
 </div>
 </td>
 </tr>
@@ -9174,7 +9174,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
   }
 }
 
-<span class="annotation">@RunWith</span>(SpringJUnit4ClassRunner.class)
+<span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@ContextConfiguration</span>(classes={BootSpringBootConfiguration.class}, loader = AnnotationConfigContextLoader.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootServiceTest</span> {
     <span class="annotation">@Autowired</span>
@@ -9191,7 +9191,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="listingblock">
 <div class="title">테스트 클래스 내부에 <code>@Configuration</code>을 선언하는 경우</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringJUnit4ClassRunner.class)
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RunWith</span>(SpringRunner.class)
 <span class="annotation">@ContextConfiguration</span>(loader = AnnotationConfigContextLoader.class)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">BootSpringBootServiceTest</span> {
 
