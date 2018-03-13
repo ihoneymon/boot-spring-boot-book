@@ -8348,6 +8348,20 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="paragraph">
 <p><code>spring-boot-starter-data-redis</code>를 통해서 의존성 라이브러리를 모아두었다. <a href="https://github.com/lettuce-io/lettuce-core/">Lettuce(https://goo.gl/k2TsTk)</a>를 사용하는 것을 기본전제하고 있으며 일반적인 혹은 리액티브 애플리케이션을 모두 제어가능하다.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>레디스와 관련된 스프링 부트 속성은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/data/redis/RedisProperties.java"><code>RedisProperties</code>(https://goo.gl/QepZyZ)</a>를 통해 접근하는 <code>spring.redis.*</code>다. 이 속성으로 레디스 구성을 제어할 수 있다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -8403,6 +8417,23 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <h4 id="boot-features-mongodb">3.8.2. 몽고DB(MongoDB)</h4>
 <div class="paragraph">
 <p><a href="https://www.mongodb.com/">몽고DB(https://www.mongodb.com/)</a>는 전통적인 테이블 기반 관계형 데이터를 대신하여 JSON과 유사한 스키마를 사용하는 오픈소스 NoSQL 도큐먼트 데이터베이스다. 스프링 부트는 <code>spring-boot-starter-data-mongodb</code>와 <code>spring-boot-starter-data-mongodb-reactive</code>를 통해서 몽고DB에서 동작하는 다양한 편이를 제공한다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>몽고DB와 관련된 스프링 부트 속성은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/mongo/MongoProperties.java"><code>MongoProperties</code>(https://goo.gl/hDP3dC)</a>를 통해 접근하는 <code>spring.data.mongodb.*</code>다. 이 속성으로 몽고DB 구성을 제어할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트 2.0 패키지 정리를 하면서 위치가 이동될 가능성이 높아 보인다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect4">
 <h5 id="boot-features-connecting-to-mongodb">몽고DB 데이터베이스 연결</h5>
@@ -8573,6 +8604,23 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <h4 id="boot-features-elasticsearch">3.8.3. 엘라스틱서치(Elasticsearch)</h4>
 <div class="paragraph">
 <p><a href="http://www.elasticsearch.org/">엘라스틱서치(http://www.elasticsearch.org/)</a>는 오픈소스, 분산형, 실시간 검색 및 분석엔진이다. 스프링 부트는 엘라스틱 서치에 대한 기본적인 자동구성과 <a href="https://github.com/spring-projects/spring-data-elasticsearch/">Elasticsearch(https://goo.gl/MKAR13)</a>에서 제공하는 추상체를 제공한다. <code>spring-boot-starter-data-elasticsearch</code>를 추가하면 간단하다. 스프링 부트는 또한 <a href="https://github.com/searchbox-io/Jest">Jest(https://goo.gl/kvC4Jb)</a>도 지원한다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>엘라스틱서치와 관련된 스프링 부트 속성은 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/data/elasticsearch/ElasticsearchProperties.java"><code>ElasticsearchProperties</code>(https://goo.gl/WvWUut)</a>를 통해 접근하는 <code>spring.data.elasticsearc.*</code>다. 이 속성으로 엘라스틱서치 구성을 제어할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>스프링 부트 2.0 패키지 정리를 하면서 위치가 이동될 가능성이 높아 보인다.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect4">
 <h5 id="boot-features-connecting-to-elasticsearch-jest">Jest 를 통해 엘라스틱서치 연결</h5>
@@ -9179,15 +9227,15 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><code>spring-boot-test</code>는 핵심 아이템 포함</p>
+<p><code>spring-boot-test</code> 테스트를 위한 핵심 아이템 포함</p>
 </li>
 <li>
-<p><code>spring-boot-test-autoconfigure</code>는 테스트를 위한 자동구성 지원</p>
+<p><code>spring-boot-test-autoconfigure</code> 테스트를 위한 자동구성 지원</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>대부분의 개발자는 <code>spring-boot-starter-test</code> 스타터를 사용하여 스프링 부트 테스트 모듈과 JUnit, AssertJ, Hamcrest 와 다른 유용한 라이브러리를 불러올 수 있다.</p>
+<p>대부분의 개발자는 <code>spring-boot-starter-test</code>를 사용하여 스프링 부트 테스트 모듈과 JUnit, AssertJ, Hamcrest 와 다른 유용한 라이브러리를 불러올 수 있다.</p>
 </div>
 <div class="sect3">
 <h4 id="boot-features-test-scope-dependencies">3.13.1. 테스트 관련 의존성</h4>
@@ -9380,7 +9428,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>만약 "<a href="#boot-features-testing-spring-boot-applications-testing-autoconfigured-tests">자동구성된 테스트</a>"를 사용하고 있다면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-testing-user-configuration">메인 메서드의 애플리케이션 클래스에 특정 영역에 대한 특정한 구성(https://goo.gl/SYgb9D)</a>을 설정하지 않는 것이 좋다.</p>
+<p>만약 "<a href="#boot-features-testing-spring-boot-applications-testing-autoconfigured-tests">자동구성된 테스트</a>"를 사용하고 있다면 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-testing-spring-boot-applications-testing-user-configuration">메인 애플리케이션 클래스에 탐색영역을 특정하는 구성(https://goo.gl/SYgb9D)</a>을 설정하지 않는 것이 좋다.</p>
 </div>
 </td>
 </tr>
