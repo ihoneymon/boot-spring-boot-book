@@ -10315,6 +10315,28 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <span class="tag">&lt;/dependencies&gt;</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>액츄에이터 의존성을 추가한 후 애플리케이션 속성파일에 <code>management.endpoints.web.exposure.include: "*"</code> 속성을 정의하고 애플리케이션을 구동해보자. 브라우저로 <code><a href="http://localhost:8080/actuator" class="bare">http://localhost:8080/actuator</a></code>에 접근하면 다음과 같은 화면을 보게 될 것이다.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/04-01-actuator.png" alt="액츄에이터 모든 종점 노출">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>위의 예는 어디까지나 액츄에이터 목록을 보여주기 위한 것이다. <code>management.endpoints.web.exposure.include</code> 속성은 애플리케이션의 모든 정보를 노출할 수 있기 때문에 조심스럽게 접근해야 한다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="production-ready-endpoints">4.1.1. 종점(Endpoint)</h4>
 <div class="admonitionblock note">
@@ -10499,8 +10521,8 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="listingblock">
 <div class="title"><code>application.yml</code></div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web</span>:
-  <span class="key">expose</span>: <span class="error">*</span>
+<pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web.exposure</span>:
+  <span class="key">include</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">*</span><span class="delimiter">&quot;</span></span>
   <span class="key">exclude</span>: <span class="string"><span class="content">env</span></span></code></pre>
 </div>
 </div>
@@ -10673,7 +10695,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="yaml"><span class="key">management.endpoints.web.cors</span>:
   <span class="key">allowed-origins</span>: <span class="string"><span class="content">http://honeymon.io</span></span>
-  <span class="key">allowed-method</span>: <span class="string"><span class="content">GET,POST</span></span></code></pre>
+  <span class="key">allowed-methods</span>: <span class="string"><span class="content">GET,POST</span></span></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
