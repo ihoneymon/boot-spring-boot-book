@@ -828,16 +828,16 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#howto-discover-build-in-options-for-external-properties">7.2.8. 외부속성에 대한 빌트인 옵션(built-in option) 발견</a></li>
 </ul>
 </li>
-<li><a href="#howto-embedded-web-servers">7.3. 내장 서블릿 컨테이너</a>
+<li><a href="#howto-embedded-web-servers">7.3. 내장 웹서버</a>
 <ul class="sectlevel3">
-<li><a href="#howto-add-a-servlet-filter-or-listener">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</a></li>
-<li><a href="#howto-change-the-http-port">7.3.2. HTTP  포트 변경</a></li>
-<li><a href="#howto-user-a-random-unassigned-http-port">7.3.3. 할당되지 않은 HTTP  포트 무작위 사용</a></li>
-<li><a href="#howto-discover-the-http-port-at-runtime">7.3.4. 실행시 HTTP 포트 할당</a></li>
-<li><a href="#howto-configure-ssl">7.3.5. SSL 구성</a></li>
-<li><a href="#howto-configure-accesslogs">7.3.6. 접근로그 구성</a></li>
-<li><a href="#howto-configure-tomcat">7.3.7. 톰캣 구성</a></li>
-<li><a href="#howto-use-undertow-instead-of-tomcat">7.3.8. 톰캣을 언더토우로 대체하기</a></li>
+<li><a href="#howto-use-another-web-server">7.3.1. 다른 웹서버 사용하기</a></li>
+<li><a href="#howto-add-a-servlet-filter-or-listener">7.3.2. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</a></li>
+<li><a href="#howto-change-the-http-port">7.3.3. HTTP  포트 변경</a></li>
+<li><a href="#howto-user-a-random-unassigned-http-port">7.3.4. 할당되지 않은 HTTP  포트 무작위 사용</a></li>
+<li><a href="#howto-discover-the-http-port-at-runtime">7.3.5. 실행시 HTTP 포트 할당</a></li>
+<li><a href="#howto-configure-ssl">7.3.6. SSL 구성</a></li>
+<li><a href="#howto-configure-accesslogs">7.3.7. 접근로그 구성</a></li>
+<li><a href="#howto-configure-tomcat">7.3.8. 톰캣 구성</a></li>
 <li><a href="#howto-configure-undertow">7.3.9. 언더토우 구성</a></li>
 <li><a href="#howto-enable-multiple-listeners-in-undertow">7.3.10. 언더토우 멀티 리스너 활성화</a></li>
 <li><a href="#howto-create-websocket-endpoints-using-serverendpoint">7.3.11. <code>@ServerEndpoint</code> 를 사용한 웹소켓 종점 생성</a></li>
@@ -1378,7 +1378,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect3">
 <h4 id="feature-embedded-containers">내장 컨테이너로 톰캣, 제티 혹은 언더토우 중에서 선택가능(WAR   배포 필요없음)</h4>
 <div class="paragraph">
-<p>스프링 부트 의 <code>spring-boot-starter-web</code> 는 기본적으로는 톰캣을 포함하지만, 개발자가 원한다면 언제든지 <a href="http://tomcat.apache.org/">톰캣</a>을 제거하고 <a href="http://www.eclipse.org/jetty/">제티</a> 혹은 <a href="http://undertow.io/">언더토우</a>로 대체할 수 있다. 대체하는 방법은 '<a href="#howto-use-undertow-instead-of-tomcat">톰캣을 언더토우로 대체하기</a>'에서 자세히 다룰 예정이다.</p>
+<p>스프링 부트 의 <code>spring-boot-starter-web</code> 는 기본적으로는 톰캣을 포함하지만, 개발자가 원한다면 언제든지 <a href="http://tomcat.apache.org/">톰캣</a>을 제거하고 <a href="http://www.eclipse.org/jetty/">제티</a> 혹은 <a href="http://undertow.io/">언더토우</a>로 대체할 수 있다. 대체하는 방법은 '<a href="#howto-use-another-web-server">다른 웹서버 사용하기</a>'에서 자세히 다룰 예정이다.</p>
 </div>
 </div>
 <div class="sect3">
@@ -12917,9 +12917,90 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="howto-embedded-web-servers">7.3. 내장 서블릿 컨테이너</h3>
+<h3 id="howto-embedded-web-servers">7.3. 내장 웹서버</h3>
+<div class="paragraph">
+<p>스프링 부트 웹애플리케이션은 웹서버를 내장하고 있다. 여기서는 내장 서버를 변경하는 방법과 내장 서버를 구성하는 방법 등을 설명한다.</p>
+</div>
 <div class="sect3">
-<h4 id="howto-add-a-servlet-filter-or-listener">7.3.1. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</h4>
+<h4 id="howto-use-another-web-server">7.3.1. 다른 웹서버 사용하기</h4>
+<div class="paragraph">
+<p>많은 스프링 부트 스타터는 기본 내장 {conatiner}를 포함하고 있다. <code>spring-boot-starter-web</code>는 <code>spring-boot-starter-tomcat</code>를 통해 톰캣을 포함하지만 <code>spring-boot-starter-jetty</code> 혹은 <code>spring-boot-starter-undertow</code>를 사용할 수 있다. <code>spring-boot-starter-webflux</code>는 <code>spring-boot-starter-reactor-netty</code>를 통해서 리액터 네티(Reactor Netty)를 포함하지만 <code>spring-boot-starter-tomcat</code>, <code>spring-boot-starter-jetty</code> 혹은 <code>spring-boot-starter-jetty</code>를 사용할 수 있다.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>많은 스타터가 스프링 MVC만 지원하기 때문에 애플리케이션 클래스패스에 <code>spring-boot-starter-web</code> 의존성이 적용된다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>만약 다른 웹서버를 사용하고 싶다면, 기본 의존성에서 기존 의존성을 제외하고 필요로 하는 의존성을 추가해야 한다. 스프링 부트는 웹서버 분리방법을 제공하여 쉽게 분리할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p>다음 그레이들 예제에서는 Spring WebFlux에서 사용하는 네티를 제외하고 언더토우를 포함시켰다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">configurations {
+        <span class="comment">// exclude Reactor Netty</span>
+        compile.exclude <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">spring-boot-starter-reactor-netty</span><span class="delimiter">'</span></span>
+}
+
+dependencies {
+        compile <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-webflux</span><span class="delimiter">'</span></span>
+        <span class="comment">// Use Undertow instead</span>
+        compile <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-undertow</span><span class="delimiter">'</span></span>
+        <span class="comment">// ...</span>
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>다음 메이븐 예제에서는 Spring MVC에서 사용하는 톰캣을 제외하고 제티를 포함시켰다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="tag">&lt;/artifactId&gt;</span>
+        <span class="tag">&lt;exclusions&gt;</span>
+                <span class="comment">&lt;!-- Exclude the Tomcat dependency --&gt;</span>
+                <span class="tag">&lt;exclusion&gt;</span>
+                        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+                        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/artifactId&gt;</span>
+                <span class="tag">&lt;/exclusion&gt;</span>
+        <span class="tag">&lt;/exclusions&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span>
+<span class="comment">&lt;!-- Use Jetty instead --&gt;</span>
+<span class="tag">&lt;dependency&gt;</span>
+        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-jetty<span class="tag">&lt;/artifactId&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>WebClient</code>를 사용하려면 <code>spring-boot-starter-reactor-netty</code>가 필요하다. 그래서 다른 HTTP서버를 포함할 때에도 리액터 네티 의존성은 유지해야 한다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="howto-add-a-servlet-filter-or-listener">7.3.2. 애플리케이션에 서블릿, 필터 혹은 리스너 추가하기</h4>
 <div class="paragraph">
 <p>서블릿 스펙을 지원하는 <code>Servlet</code>, <code>Filter</code>, <code>ServletContextListener</code>와 다른 리스너를 애플리케이션에 추가하는 두 가지 방법이 있다. 스프링 빈을 제공하거나 서블릿 컴포넌트를 검색하도록 할 수 있다.</p>
 </div>
@@ -13006,11 +13087,7 @@ ServletRegistrationBean&lt;MyServlet&gt; serlvetRegistration(MyServlet servlet) 
 <div class="listingblock">
 <div class="title"><code>@WebListener</code> 예제</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">javax.servlet.ServletContextEvent</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.ServletContextListener</span>;
-<span class="keyword">import</span> <span class="include">javax.servlet.annotation.WebListener</span>;
-
-<span class="annotation">@WebListener</span>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@WebListener</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">AttrListener</span> <span class="directive">implements</span> ServletContextListener {
 
     <span class="annotation">@Override</span>
@@ -13086,7 +13163,7 @@ hello</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-change-the-http-port">7.3.2. HTTP  포트 변경</h4>
+<h4 id="howto-change-the-http-port">7.3.3. HTTP  포트 변경</h4>
 <div class="paragraph">
 <p>애플리케이션이 실행될 때 기본포트는 <code>8080</code>이지만 <code>server.port</code>(예: <code>application.yml</code> 혹은 시스템 속성)으로 설정할 수 있다. <code>Environment</code>의 느슨한 연결방식으로 <code>SERVER_PORT</code>(OS 환경변수)를 사용할 수도 있다.</p>
 </div>
@@ -13098,7 +13175,7 @@ hello</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-user-a-random-unassigned-http-port">7.3.3. 할당되지 않은 HTTP  포트 무작위 사용</h4>
+<h4 id="howto-user-a-random-unassigned-http-port">7.3.4. 할당되지 않은 HTTP  포트 무작위 사용</h4>
 <div class="paragraph">
 <p>OS 에서 선점하여 사용하고 있는 포트와 충돌하지 않는 포트를 탐색하여 사용하려면 다음과 같이 설정한다.</p>
 </div>
@@ -13109,7 +13186,7 @@ hello</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-discover-the-http-port-at-runtime">7.3.4. 실행시 HTTP 포트 할당</h4>
+<h4 id="howto-discover-the-http-port-at-runtime">7.3.5. 실행시 HTTP 포트 할당</h4>
 <div class="paragraph">
 <p>서버가 실행되었을 때 로그로 출력되었을 때나 <code>WebServer</code>를 통해 <code>ServletWebServerApplicationContext</code>에서 가져왔을 때 서버 포트에 접근이 가능하다. 가장 확실한 방법은 <code>ApplicationListener&lt;ServletWebServerInitializedEvent&gt;</code> 타입을 <code>@Bean</code>으로 추가하고 컨테이너가 구동되는 이벤트가 발생되었을 때 가져오도록 할 수 있다.</p>
 </div>
@@ -13146,7 +13223,7 @@ hello</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-configure-ssl">7.3.5. SSL 구성</h4>
+<h4 id="howto-configure-ssl">7.3.6. SSL 구성</h4>
 <div class="paragraph">
 <p><code>application.yml</code> 혹은 <code>application.properties</code>에서 다양한 <code>server.ssl.*</code> 속성을 설정하여 SSL을 구성할 수 있다. 예로:</p>
 </div>
@@ -13167,7 +13244,7 @@ hello</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-configure-accesslogs">7.3.6. 접근로그 구성</h4>
+<h4 id="howto-configure-accesslogs">7.3.7. 접근로그 구성</h4>
 <div class="paragraph">
 <p>톰캣과 언더토우의 namespace를 통해서 접근로그를 구성할 수 있다.</p>
 </div>
@@ -13212,7 +13289,7 @@ hello</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="howto-configure-tomcat">7.3.7. 톰캣 구성</h4>
+<h4 id="howto-configure-tomcat">7.3.8. 톰캣 구성</h4>
 <div class="paragraph">
 <p>"<a href="#howto-discover-build-in-options-for-external-properties">외부속성에 대한 빌트인 옵션(built-in option) 발견</a>"에서 언급했던 <code>@ConfigurationProperties</code>(<code>ServerProperties</code>가 주요하다) 구성을 따를 수 있지만, <code>WebServerFactoryCustomizer</code>를 찾아보고 톰캣을 위한 다양한 <code>*Customizers</code> 중에 하나를 추가하는 방법이 있다. 풍부한 톰캣 API를 통해서 <code>TomcatServletWebServerFactory</code>에 접근하면서 여러가지 방법으로 수정할 수 있다. 혹은 <code>TomcatServletWebServerFactory</code>을 추가하여 세부적으로 구성하는 방법도 있다.</p>
 </div>
@@ -13252,49 +13329,6 @@ hello</code></pre>
     }
 }</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="howto-use-undertow-instead-of-tomcat">7.3.8. 톰캣을 언더토우로 대체하기</h4>
-<div class="paragraph">
-<p>톰캣 의존성을 제외하고 언더토우 스타터를 추가하면 간단하게 대체가능하다.</p>
-</div>
-<div class="paragraph">
-<p>그레이들은 다음처럼 선언하면 되고,</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">configurations {
-    compile.exclude <span class="key">module</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">spring-boot-starter-tomcat</span><span class="delimiter">&quot;</span></span>
-}
-
-dependencies {
-    compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-starter-web</span><span class="delimiter">&quot;</span></span>)
-    compile(<span class="string"><span class="delimiter">&quot;</span><span class="content">org.springframework.boot:spring-boot-starter-undertow</span><span class="delimiter">&quot;</span></span>)
-    <span class="comment">// ...</span>
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>메이븐은 다음처럼 선언하면 된다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
-    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;exclusions&gt;</span>
-        <span class="tag">&lt;exclusion&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/artifactId&gt;</span>
-        <span class="tag">&lt;/exclusion&gt;</span>
-    <span class="tag">&lt;/exclusions&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span>
-<span class="tag">&lt;dependency&gt;</span>
-    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-undertow<span class="tag">&lt;/artifactId&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -14090,13 +14124,13 @@ dependencies {
 <p>많은 애플리케이션에서 클래스패스 상에 스프링 Data 의존성을 추가(JPA를 위한 <code>spring-boot-starter-data-jpa</code>와 MongoDB를 위한 <code>spring-boot-starter-data-mongodb</code>)해야 하고 <code>@Entity</code> 객체를 다루기 위한 리파지토리를 생성해야 한다. JPA 예제(<a href="https://goo.gl/mh6Pc8" class="bare">https://goo.gl/mh6Pc8</a>)와 MongoDB 예제(<a href="https://goo.gl/6MRnf5" class="bare">https://goo.gl/6MRnf5</a>)가 있다.</p>
 </div>
 <div class="paragraph">
-<p>스프링 부트는 <code>@EnableAutoConfiguration</code>을 기반으로 해서 <code>@Repository</code> 위치를 추측한다. 좀 더 자세히 제어하고 싶다면 <code>@EnableJpaRepositories</code>를 사용한다.</p>
+<p>스프링 부트는 메인 구성 클래스(<code>@EnableAutoConfiguration</code> 혹은 <code>@SpringBootApplication</code> 애너테이션이 선언된)위치를 기반으로 해서 <code>@Repository</code> 위치를 추측한다. 좀 더 자세히 제어하고 싶다면 <code>@EnableJpaRepositories</code>를 사용한다.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="howto-separate-entity-definitions-from-spring-configuration">7.7.4. 스프링 구성으로부터 <code>@Entity</code> 정의 분리</h4>
 <div class="paragraph">
-<p>스프링 부트는 <code>@EnableAutoConfiguration</code>을 기반으로 해서 <code>@Entity</code>의 위치를 추측한다. 보다 자세히 제어하고 싶다면 <code>@EntityScan</code>을 다음과 같이 정의하여 사용한다:</p>
+<p>스프링 부트는 메인 구성 클래스(<code>@EnableAutoConfiguration</code> 혹은 <code>@SpringBootApplication</code> 애너테이션이 선언된)위치를 기반으로 해서 <code>@Entity</code>의 위치를 추측한다. 보다 자세히 제어하고 싶다면 <code>@EntityScan</code>을 다음과 같이 정의하여 사용한다:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -15589,7 +15623,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.2.1<br>
-Last updated 2018-03-12 23:39:45 KST
+Last updated 2018-03-13 15:11:02 KST
 </div>
 </div>
 </body>
