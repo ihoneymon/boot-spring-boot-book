@@ -574,12 +574,11 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel3">
 <li><a href="#using-boot-dependency-management">2.1.1. 의존성 관리</a></li>
 <li><a href="#gradle">2.1.2. 그레이들</a></li>
-<li><a href="#starter-poms">2.1.3. 스타터(Starter)</a></li>
-<li><a href="#build-system-wrapper">2.1.4. 래퍼(Wrapper)</a></li>
-<li><a href="#maven">2.1.5. 메이븐</a></li>
-<li><a href="#bom">2.1.6. 부모 스프링 부트 스타터 상속</a></li>
-<li><a href="#using-boot-maven-without-a-parent">2.1.7. <code>spring-boot-starter-parent</code> 없이 사용하기</a></li>
-<li><a href="#스프링-부트-메이븐-플러그인-사용하기">2.1.8. 스프링 부트 메이븐 플러그인 사용하기</a></li>
+<li><a href="#maven">2.1.3. 메이븐</a></li>
+<li><a href="#starter-poms">2.1.4. 스타터(Starter)</a></li>
+<li><a href="#bom">2.1.5. 부모 스프링 부트 스타터 상속</a></li>
+<li><a href="#using-boot-maven-without-a-parent">2.1.6. <code>spring-boot-starter-parent</code> 없이 사용하기</a></li>
+<li><a href="#build-system-wrapper">2.1.7. 래퍼(Wrapper)</a></li>
 </ul>
 </li>
 <li><a href="#code-structure">2.2. 코드 구조</a>
@@ -2291,7 +2290,7 @@ dependencies {
 </div>
 </div>
 <div class="paragraph">
-<p>"<a href="#build-tool-plugins-gradle-plugin">스프링 부트 그레이들 플러그인</a>" 는 실행가능한 jar를 생성하고 소스를 바로 실행할 수 있는 태스크를 지원한다. "<a href="#build-tool-plugins-gradle-dependency-management">그레이들 의존성 관리</a>"가 제공하는 기능으로 스프링 부트가 관리되는 의존성 라이브러리들의 버전을 생략할 수 있다.</p>
+<p>"<a href="#build-tool-plugins-gradle-plugin">스프링 부트 그레이들 플러그인</a>"은 실행가능한 jar를 생성하고 소스를 바로 실행할 수 있는 태스크를 지원한다. "<a href="#build-tool-plugins-gradle-dependency-management">그레이들 의존성 관리</a>"가 제공하는 기능으로 스프링 부트가 관리되는 의존성 라이브러리들의 버전을 생략할 수 있다.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2313,7 +2312,67 @@ dependencies {
 </div>
 </div>
 <div class="sect3">
-<h4 id="starter-poms">2.1.3. 스타터(Starter)</h4>
+<h4 id="maven">2.1.3. 메이븐</h4>
+<div class="paragraph">
+<p>메이븐 사용자는 <code>spring-boot-starter-parent</code> 프로젝트를 상속받아 스프링 부트 기본값을 얻어올 수 있다. 상위 프로젝트는 다음과 같은 기능을 제공한다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>기본 컴파일러 Java 1.8 사용</p>
+</li>
+<li>
+<p>UTF-8 소스 인코딩</p>
+</li>
+<li>
+<p>"<a href="#using-boot-dependency-management">의존성 관리</a>" 에서, <code>spring-boot-dependencies</code> 를 상속한 경우 선별된 의존성에 대해서는 <code>&lt;version&gt;</code> 태그 생략가능</p>
+</li>
+<li>
+<p>손쉬운 <a href="https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html">리소스 필터링(https://goo.gl/L3peFs)</a></p>
+</li>
+<li>
+<p>손쉬운 플러그인 구성(<a href="http://www.mojohaus.org/exec-maven-plugin/">exec plugin(https://goo.gl/kIO2TY)</a>, <a href="https://maven.apache.org/surefire/maven-surefire-plugin/">surefire(https://goo.gl/Scd9qE)</a>, <a href="https://github.com/ktoso/maven-git-commit-id-plugin">Git commit ID(https://goo.gl/oZXhu8)</a>, <a href="https://maven.apache.org/plugins/maven-shade-plugin/">shade(https://goo.gl/P9ZgqN)</a>)</p>
+</li>
+<li>
+<p>프로파일 선언 파일(예: <code>application-foo.properties</code> 과 <code>application-foo.yml</code>) 을 포함한 <code>application.properties</code> 과 <code>application.yml</code> 에 대한 리소스 필터링 제공</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>마지막으로, 메이븐에서 사용하는 위치변환자(placeholder) <code>@..@</code> 를 스프링 스타일 <code>${…​}</code> 로 변경할 수 있다(메이븐 속성 <code>resource.delimiter</code> 를 오버라이드 할 수 있다)</p>
+</div>
+<div class="paragraph">
+<p>"<a href="#build-tool-plugins-maven-plugin">스프링 부트 메이븐 플러그인</a>"을 사용하면 프로젝트를 실행가능한 jar로 압축할 수 있다. 이를 사용하고 싶다면 <code>&lt;plugins&gt;&#8230;&#8203;&lt;/plugins&gt;</code> 영역에 다음과 같이 추가하면 된다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;build&gt;</span>
+    <span class="tag">&lt;plugins&gt;</span>
+        <span class="tag">&lt;plugin&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+        <span class="tag">&lt;/plugin&gt;</span>
+    <span class="tag">&lt;/plugins&gt;</span>
+<span class="tag">&lt;/build&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>스프링 부트 starter parent pom 을 사용하고 있다면 플러그인을 추가하기만 하면 된다. parent 에 정의된 설정을 변경하지 않았다면 별다른 구성을 하지 않아도 된다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="starter-poms">2.1.4. 스타터(Starter)</h4>
 <div class="paragraph">
 <p><strong>스타터</strong>는 애플리케이션이 이용할 수 있는 <strong>의존성을 기술하고 있는 집합체</strong>다. 필요한 기능을 가진 의존성 라이브러리를 모두 기술하지 않아도 관련된 의존성 라이브러리를 한번에 담을 수 있다. 예를 들어, Spring Data JPA를 사용하고 싶다면, 프로젝트 빌드 스크립트(<code>build.gradle</code> or <code>pom.xml</code>)에 <code>spring-boot-starter-data-jpa</code> 의존성을 추가하고 의존성 관리를 갱신하면 DataSource와 스프링에 대한 구성을 하지 않아도 바로 사용할 수 있다.<br>
 스타터는 기능을 구현하는데 필요한 의존성 라이브러리 목록을 일관성있게 제공한다.</p>
@@ -2355,7 +2414,154 @@ dependencies {
 </div>
 </div>
 <div class="sect3">
-<h4 id="build-system-wrapper">2.1.4. 래퍼(Wrapper)</h4>
+<h4 id="bom">2.1.5. 부모 스프링 부트 스타터 상속</h4>
+<div class="paragraph">
+<p>다음에서 볼 수 있는 것처럼 <code>parent</code> 를 설정하는 것으로 간단하게 프로젝트에서 <code>spring-boot-starter-parent</code> 를 상속할 수 있다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="comment">&lt;!-- Inherit defaults from Spring Boot --&gt;</span>
+<span class="tag">&lt;parent&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/parent&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>스프링 부트와 관련된 버전에 대해서는 여기에서 사용자가 원하는 대로 선언하면 된다.  이후에 <code>&lt;dependencies&gt;</code> 영역에 스타터를 추가할 때는 버전을 생략해도 <code>spring-boot-starter-parent</code>에 사전 정의된 버전이 적용된다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>프로젝트에서 사용하는 사전정의된 의존성 라이브러리 버전을 변경할 수 있다. 예를 들어, 정식버전은 아니지만 'Service Release&#8217;된 스프링 Data release train 을 사용하고 싶다면 다음과 같이 <code>pom.xml</code>에 추가하면 된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;properties&gt;</span>
+    <span class="tag">&lt;spring-data-releasetrain.version&gt;</span>Kay-SR2<span class="tag">&lt;/spring-data-releasetrain.version&gt;</span>
+<span class="tag">&lt;/properties&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>'Release Train'</p>
+</div>
+<div class="paragraph">
+<p>스프링 데이터(Spring Data)는 서로 다른 출시주기를 가지는 독립적인 프로젝트로 구성된 포괄적 프로젝트다. 이 포트폴리오를 관리하기 위해 BOM은 프로젝트별로 설정되어 있는 종속성 세트와 함께 게시된다. 'Release Train&#8217;는 하위 프로젝트와의 혼동을 피하기 위해 버전이 아닌 이름을 사용한다. 사용되는 이름은 유명한 컴퓨터 과학자 및 소프트웨어 개발자의 이름을 알파벳순(정렬을 위해)이다. 프로젝트의 주요 출시시점이 되거나 모든 사용자가 사용할 법한 중대한 버그가 있는 경우 'Release Train&#8217;은 '-SRX&#8217;로 끝나는 이름의 'Service Release&#8217;를 푸시한다. 보다 자세한 내용은 <a href="http://projects.spring.io/spring-data/">http://projects.spring.io/spring-data</a>에서 'Release Train&#8217;부분을 찾아보기 바란다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>지원하는 속성들에 대해서 궁금하다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/pom.xml"><code>spring-boot-dependencies</code>(https://goo.gl/hMWdAa) pom</a> 을 살펴보자.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-boot-maven-without-a-parent">2.1.6. <code>spring-boot-starter-parent</code> 없이 사용하기</h4>
+<div class="paragraph">
+<p>모든 이가 <code>spring-boot-starter-parent</code> POM 사용을 원하는 것은 아니다. 기업 표준 parent POM  을 사용하거나 모든 메이븐 구성을 명확하게 선언하기를 원하는 경우가 있을 것이다.<br>
+<code>spring-boot-starter-parent</code> 사용은 하고 싶지 않지만 의존성 관리(플러그인 관리는 안됨)의 장점은 유지하고 싶다면 <code>scope=import</code>를 이용하면 된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencyManagement&gt;</span>
+     <span class="tag">&lt;dependencies&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="comment">&lt;!-- 스프링 부트로부터 의존성관리 불러오기 --&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
+            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
+            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+    <span class="tag">&lt;/dependencies&gt;</span>
+<span class="tag">&lt;/dependencyManagement&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이 설정은 위에 설명대로 속성(property)을 이용한 개별적인 의존성을 재정의 할 수 없다. 부모 스프링 부트 스타터 상속에서 프로퍼티만 정의했던 것과 동일한 결과를 얻기 위해서는 <code>dependencyManagement</code> 엔트리 안에서 <code>spring-boot-dependencies</code> 엔트리 <strong>이전</strong>에 필요한 것을 추가해야 한다. 예를 들자면, <code>pom.xml</code> 에 스프링 Data release train 을 추가하는 방법은 다음과 같다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencyManagement&gt;</span>
+    <span class="tag">&lt;dependencies&gt;</span>
+        <span class="comment">&lt;!-- 스프링 부트에서 제공하는 스프링 Data release train 재정의 --&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.data<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-data-releasetrain<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>Fowler-SR2<span class="tag">&lt;/version&gt;</span>
+            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
+            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+        <span class="tag">&lt;dependency&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="tag">&lt;/artifactId&gt;</span>
+            <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
+            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
+            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
+        <span class="tag">&lt;/dependency&gt;</span>
+    <span class="tag">&lt;/dependencies&gt;</span>
+<span class="tag">&lt;/dependencyManagement&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>앞의 예제에서 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-maven-without-a-parent">BOM(Bills of Materials)</a> 타입을 정의했지만 저런 방식으로 어떤 의존성 유형이든 정의할 수 있다.</p>
+</div>
+<div class="paragraph">
+<p><strong>BOM</strong> 은 메이븐에서 정의한 라이브러리와 관련된 의존성을 한데 묶어서 버전을 관리하는 기능을 제공한다. 스프링 부트는 <code>spring-boot-dependencies</code> 에 사전에 정의해둔 BOM을 정의하고 있다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>spring-boot-starter-parent</code> 는 매우 보수적인 자바 호환성을 선택했다(Java 6). 권장사항에 따라서 최신 자바 버전을 사용하고 싶다면 다음처럼 <code>java.version</code> 속성을 추가하면 된다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;properties&gt;</span>
+    <span class="tag">&lt;java.version&gt;</span>1.8<span class="tag">&lt;/java.version&gt;</span>
+<span class="tag">&lt;/properties&gt;</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="build-system-wrapper">2.1.7. 래퍼(Wrapper)</h4>
 <div class="paragraph">
 <p>그레이들 혹은 메이븐을 개발자 로컬환경 CI 서버에 설치하지 않고 프로젝트에 함께 포함시켜 배포할 수 있다.</p>
 </div>
@@ -2443,216 +2649,6 @@ Total time: 7.554 secs</code></pre>
 <p><a href="http://kwonnam.pe.kr/wiki/gradle/wrapper">Gradle wrapper - 권남(https://goo.gl/7NpPp5)</a></p>
 </li>
 </ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="maven">2.1.5. 메이븐</h4>
-<div class="paragraph">
-<p>메이븐 사용자는 <code>spring-boot-starter-parent</code> 프로젝트를 상속받아 스프링 부트 기본값을 얻어올 수 있다. 상위 프로젝트는 다음과 같은 기능을 제공한다:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>기본 컴파일러 Java 1.8 사용</p>
-</li>
-<li>
-<p>UTF-8 소스 인코딩</p>
-</li>
-<li>
-<p>"<a href="#using-boot-dependency-management">의존성 관리</a>" 에서, <code>spring-boot-dependencies</code> 를 상속한 경우 선별된 의존성에 대해서는 <code>&lt;version&gt;</code> 태그 생략가능</p>
-</li>
-<li>
-<p>손쉬운 <a href="https://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html">리소스 필터링(https://goo.gl/L3peFs)</a></p>
-</li>
-<li>
-<p>손쉬운 플러그인 구성(<a href="http://www.mojohaus.org/exec-maven-plugin/">exec plugin(https://goo.gl/kIO2TY)</a>, <a href="https://maven.apache.org/surefire/maven-surefire-plugin/">surefire(https://goo.gl/Scd9qE)</a>, <a href="https://github.com/ktoso/maven-git-commit-id-plugin">Git commit ID(https://goo.gl/oZXhu8)</a>, <a href="https://maven.apache.org/plugins/maven-shade-plugin/">shade(https://goo.gl/P9ZgqN)</a>)</p>
-</li>
-<li>
-<p>프로파일 선언 파일(예: <code>application-foo.properties</code> 과 <code>application-foo.yml</code>) 을 포함한 <code>application.properties</code> 과 <code>application.yml</code> 에 대한 리소스 필터링 제공</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>마지막으로, 메이븐 에서 사용하는 위치변환자(placeholder) <code>@..@</code> 를 스프링 스타일 <code>${…​}</code> 로 변경할 수 있다(메이븐 속성 <code>resource.delimiter</code> 를 오버라이드 할 수 있다)</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="bom">2.1.6. 부모 스프링 부트 스타터 상속</h4>
-<div class="paragraph">
-<p>다음에서 볼 수 있는 것처럼 <code>parent</code> 를 설정하는 것으로 간단하게 프로젝트에서 <code>spring-boot-starter-parent</code> 를 상속할 수 있다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="comment">&lt;!-- Inherit defaults from Spring Boot --&gt;</span>
-<span class="tag">&lt;parent&gt;</span>
-    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/artifactId&gt;</span>
-    <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
-<span class="tag">&lt;/parent&gt;</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>스프링 부트와 관련된 버전에 대해서는 여기에서 사용자가 원하는 대로 선언하면 된다.  이후에 <code>&lt;dependencies&gt;</code> 영역에 스타터를 추가할 때는 버전을 생략해도 <code>spring-boot-starter-parent</code>에 사전 정의된 버전이 적용된다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>프로젝트에서 사용하는 사전정의된 의존성 라이브러리 버전을 변경할 수 있다. 예를 들어, 정식버전은 아니지만 'Service Release&#8217;된 스프링 Data release train 을 사용하고 싶다면 다음과 같이 <code>pom.xml</code>에 추가하면 된다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;properties&gt;</span>
-    <span class="tag">&lt;spring-data-releasetrain.version&gt;</span>Kay-SR2<span class="tag">&lt;/spring-data-releasetrain.version&gt;</span>
-<span class="tag">&lt;/properties&gt;</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>'Release Train'</p>
-</div>
-<div class="paragraph">
-<p>스프링 데이터(Spring Data)는 서로 다른 출시주기를 가지는 독립적인 프로젝트로 구성된 포괄적 프로젝트다. 이 포트폴리오를 관리하기 위해 BOM은 프로젝트별로 설정되어 있는 종속성 세트와 함께 게시된다. 'Release Train&#8217;는 하위 프로젝트와의 혼동을 피하기 위해 버전이 아닌 이름을 사용한다. 사용되는 이름은 유명한 컴퓨터 과학자 및 소프트웨어 개발자의 이름을 알파벳순(정렬을 위해)이다. 프로젝트의 주요 출시시점이 되거나 모든 사용자가 사용할 법한 중대한 버그가 있는 경우 'Release Train&#8217;은 '-SRX&#8217;로 끝나는 이름의 'Service Release&#8217;를 푸시한다. 보다 자세한 내용은 <a href="http://projects.spring.io/spring-data/">http://projects.spring.io/spring-data</a>에서 'Release Train&#8217;부분을 찾아보기 바란다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>지원하는 속성들에 대해서 궁금하다면 <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-dependencies/pom.xml"><code>spring-boot-dependencies</code>(https://goo.gl/hMWdAa) pom</a> 을 살펴보자.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="using-boot-maven-without-a-parent">2.1.7. <code>spring-boot-starter-parent</code> 없이 사용하기</h4>
-<div class="paragraph">
-<p>모든 이가 <code>spring-boot-starter-parent</code> POM 사용을 원하는 것은 아니다. 기업 표준 parent POM  을 사용하거나 모든 메이븐 구성을 명확하게 선언하기를 원하는 경우가 있을 것이다.<br>
-<code>spring-boot-starter-parent</code> 사용은 하고 싶지 않지만 의존성 관리(플러그인 관리는 안됨)의 장점은 유지하고 싶다면 <code>scope=import</code>를 이용하면 된다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencyManagement&gt;</span>
-     <span class="tag">&lt;dependencies&gt;</span>
-        <span class="tag">&lt;dependency&gt;</span>
-            <span class="comment">&lt;!-- 스프링 부트로부터 의존성관리 불러오기 --&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="tag">&lt;/artifactId&gt;</span>
-            <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
-            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
-            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
-        <span class="tag">&lt;/dependency&gt;</span>
-    <span class="tag">&lt;/dependencies&gt;</span>
-<span class="tag">&lt;/dependencyManagement&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>이 설정은 위에 설명대로 속성(property)을 이용한 개별적인 의존성을 재정의 할 수 없다. 부모 스프링 부트 스타터 상속에서 프로퍼티만 정의했던 것과 동일한 결과를 얻기 위해서는 <code>dependencyManagement</code> 엔트리 안에서 <code>spring-boot-dependencies</code> 엔트리 <strong>이전</strong>에 필요한 것을 추가해야 한다. 예를 들자면, <code>pom.xml</code> 에 스프링 Data release train 을 추가하는 방법은 다음과 같다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencyManagement&gt;</span>
-    <span class="tag">&lt;dependencies&gt;</span>
-        <span class="comment">&lt;!-- 스프링 부트에서 제공하는 스프링 Data release train 재정의 --&gt;</span>
-        <span class="tag">&lt;dependency&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.data<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-data-releasetrain<span class="tag">&lt;/artifactId&gt;</span>
-            <span class="tag">&lt;version&gt;</span>Fowler-SR2<span class="tag">&lt;/version&gt;</span>
-            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
-            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
-        <span class="tag">&lt;/dependency&gt;</span>
-        <span class="tag">&lt;dependency&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-boot-dependencies<span class="tag">&lt;/artifactId&gt;</span>
-            <span class="tag">&lt;version&gt;</span>2.0.0.RELEASE<span class="tag">&lt;/version&gt;</span>
-            <span class="tag">&lt;type&gt;</span>pom<span class="tag">&lt;/type&gt;</span>
-            <span class="tag">&lt;scope&gt;</span>import<span class="tag">&lt;/scope&gt;</span>
-        <span class="tag">&lt;/dependency&gt;</span>
-    <span class="tag">&lt;/dependencies&gt;</span>
-<span class="tag">&lt;/dependencyManagement&gt;</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>앞의 예제에서 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-maven-without-a-parent">BOM(Bills of Materials)</a> 타입을 정의했지만 저런 방식으로 어떤 의존성 유형이든 정의할 수 있다.</p>
-</div>
-<div class="paragraph">
-<p><strong>BOM</strong> 은 메이븐에서 정의한 라이브러리와 관련된 의존성을 한데 묶어서 버전을 관리하는 기능을 제공한다. 스프링 부트는 <code>spring-boot-dependencies</code> 에 사전에 정의해둔 BOM을 정의하고 있다.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><code>spring-boot-starter-parent</code> 는 매우 보수적인 자바 호환성을 선택했다(Java 6). 권장사항에 따라서 최신 자바 버전을 사용하고 싶다면 다음처럼 <code>java.version</code> 속성을 추가하면 된다.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;properties&gt;</span>
-    <span class="tag">&lt;java.version&gt;</span>1.8<span class="tag">&lt;/java.version&gt;</span>
-<span class="tag">&lt;/properties&gt;</span></code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="스프링-부트-메이븐-플러그인-사용하기">2.1.8. 스프링 부트 메이븐 플러그인 사용하기</h4>
-<div class="paragraph">
-<p>"<a href="#build-tool-plugins-maven-plugin">스프링 부트 메이븐 플러그인</a>" 을 사용하면 프로젝트를 실행가능한 jar로 압축할 수 있다. 이를 사용하고 싶다면 <code>&lt;plugins&gt;</code> 영역에 다음과 같이 추가하면 된다:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;build&gt;</span>
-    <span class="tag">&lt;plugins&gt;</span>
-        <span class="tag">&lt;plugin&gt;</span>
-            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-            <span class="tag">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
-        <span class="tag">&lt;/plugin&gt;</span>
-    <span class="tag">&lt;/plugins&gt;</span>
-<span class="tag">&lt;/build&gt;</span></code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>스프링 부트 starter parent pom 을 사용하고 있다면 플러그인을 추가하기만 하면 된다. parent 에 정의된 설정을 변경하지 않았다면 별다른 구성을 하지 않아도 된다.</p>
 </div>
 </td>
 </tr>
@@ -6220,7 +6216,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="sect4">
 <h5 id="boot-features-spring-mvc-auto-config">스프링 MVC 자동구성</h5>
 <div class="paragraph">
-<p>스프링 부트는 스프링 MVC에 대한 자동구성을 제공하며 대부분의 애플리케이션에서 큰 무리없이 잘 동작한다. 스프링 MVC 구성에 대해서는  <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/WebMvcProperties.java"><code>WebMvcProperties</code>(https://goo.gl/JjKQRn)</a> 속성(<code>spring.mvc.*</code>)을 이용한다.</p>
+<p>스프링 부트는 스프링 MVC에 대한 자동구성을 제공하며 대부분의 애플리케이션에서 큰 무리없이 잘 동작한다. 스프링 MVC 자동구성에는  <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/WebMvcProperties.java"><code>WebMvcProperties</code>(https://goo.gl/JjKQRn)</a> 속성(<code>spring.mvc.*</code>)을 이용한다.</p>
 </div>
 <div class="paragraph">
 <p>스프링 부트 MVC 구성은 <code>WebMvcAutoConfiguration</code>을 통해 구현된다.</p>
