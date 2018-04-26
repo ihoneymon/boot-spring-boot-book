@@ -6228,7 +6228,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <span class="annotation">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class) <b class="conum">(3)</b>
 <span class="annotation">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="integer">10</span>)
 <span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class,
-                ValidationAutoConfiguration.class }) <b class="conum">(4)</b>
+        ValidationAutoConfiguration.class }) <b class="conum">(4)</b>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span> {
   <span class="comment">// 내용 생략</span>
 }</code></pre>
@@ -6394,7 +6394,7 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <span class="annotation">@ConditionalOnMissingBean</span>(WebMvcConfigurationSupport.class) <b class="conum">(1)</b>
 <span class="annotation">@AutoConfigureOrder</span>(Ordered.HIGHEST_PRECEDENCE + <span class="integer">10</span>)
 <span class="annotation">@AutoConfigureAfter</span>({ DispatcherServletAutoConfiguration.class,
-                ValidationAutoConfiguration.class })
+        ValidationAutoConfiguration.class })
 <span class="directive">public</span> <span class="type">class</span> <span class="class">WebMvcAutoConfiguration</span> {
 }</code></pre>
 </div>
@@ -12949,15 +12949,15 @@ com.example.ProjectConstraintViolationFailureAnalyzer</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">configurations {
-        <span class="comment">// exclude Reactor Netty</span>
-        compile.exclude <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">spring-boot-starter-reactor-netty</span><span class="delimiter">'</span></span>
+    <span class="comment">// exclude Reactor Netty</span>
+    compile.exclude <span class="key">module</span>: <span class="string"><span class="delimiter">'</span><span class="content">spring-boot-starter-reactor-netty</span><span class="delimiter">'</span></span>
 }
 
 dependencies {
-        compile <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-webflux</span><span class="delimiter">'</span></span>
-        <span class="comment">// Use Undertow instead</span>
-        compile <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-undertow</span><span class="delimiter">'</span></span>
-        <span class="comment">// ...</span>
+    compile <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-webflux</span><span class="delimiter">'</span></span>
+    <span class="comment">// Use Undertow instead</span>
+    compile <span class="string"><span class="delimiter">'</span><span class="content">org.springframework.boot:spring-boot-starter-undertow</span><span class="delimiter">'</span></span>
+    <span class="comment">// ...</span>
 }</code></pre>
 </div>
 </div>
@@ -12967,20 +12967,20 @@ dependencies {
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
-        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="tag">&lt;/artifactId&gt;</span>
-        <span class="tag">&lt;exclusions&gt;</span>
-                <span class="comment">&lt;!-- Exclude the Tomcat dependency --&gt;</span>
-                <span class="tag">&lt;exclusion&gt;</span>
-                        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-                        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/artifactId&gt;</span>
-                <span class="tag">&lt;/exclusion&gt;</span>
-        <span class="tag">&lt;/exclusions&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;exclusions&gt;</span>
+        <span class="comment">&lt;!-- Exclude the Tomcat dependency --&gt;</span>
+        <span class="tag">&lt;exclusion&gt;</span>
+            <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+            <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/artifactId&gt;</span>
+        <span class="tag">&lt;/exclusion&gt;</span>
+    <span class="tag">&lt;/exclusions&gt;</span>
 <span class="tag">&lt;/dependency&gt;</span>
 <span class="comment">&lt;!-- Use Jetty instead --&gt;</span>
 <span class="tag">&lt;dependency&gt;</span>
-        <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
-        <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-jetty<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.springframework.boot<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>spring-boot-starter-jetty<span class="tag">&lt;/artifactId&gt;</span>
 <span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
@@ -13347,16 +13347,16 @@ hello</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
 <span class="directive">public</span> UndertowServletWebServerFactory servletWebServerFactory() {
-        UndertowServletWebServerFactory factory = <span class="keyword">new</span> UndertowServletWebServerFactory();
-        factory.addBuilderCustomizers(<span class="keyword">new</span> UndertowBuilderCustomizer() {
+    UndertowServletWebServerFactory factory = <span class="keyword">new</span> UndertowServletWebServerFactory();
+    factory.addBuilderCustomizers(<span class="keyword">new</span> UndertowBuilderCustomizer() {
 
-                <span class="annotation">@Override</span>
-                <span class="directive">public</span> <span class="type">void</span> customize(Builder builder) {
-                        builder.addHttpListener(<span class="integer">8080</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">0.0.0.0</span><span class="delimiter">&quot;</span></span>);
-                }
+        <span class="annotation">@Override</span>
+        <span class="directive">public</span> <span class="type">void</span> customize(Builder builder) {
+            builder.addHttpListener(<span class="integer">8080</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">0.0.0.0</span><span class="delimiter">&quot;</span></span>);
+        }
 
-        });
-        <span class="keyword">return</span> factory;
+    });
+    <span class="keyword">return</span> factory;
 }</code></pre>
 </div>
 </div>
@@ -13370,7 +13370,7 @@ hello</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Bean</span>
 <span class="directive">public</span> ServerEndpointExporter serverEndpointExporter() {
-        <span class="keyword">return</span> <span class="keyword">new</span> ServerEndpointExporter();
+    <span class="keyword">return</span> <span class="keyword">new</span> ServerEndpointExporter();
 }</code></pre>
 </div>
 </div>
@@ -15494,9 +15494,6 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <li>
 <p>링크: <a href="https://bclozel.github.io/webflux-workshop/">Spring WebFlux Workshop(https://goo.gl/Lq168g)</a></p>
 </li>
-<li>
-<p>링크: <a href="https://bclozel.github.io/webflux-workshop/">Spring WebFlux Workshop - Brian Clozel, Violeta Georgieva - Pivotal</a></p>
-</li>
 </ul>
 </div>
 </li>
@@ -15554,6 +15551,23 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <td class="content">
 <div class="paragraph">
 <p>스프링 부트에서 제공하는 자동구성 기본값을 확인할 때 관련한 Properties 클래스를 살펴보면 된다.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>백기선님의 <a href="https://github.com/keesun/study/blob/master/spring-boot-reference-coding.md">"스프링 부트 2.0 레퍼런스 코딩"(https://goo.gl/txrmPd)</a></p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>기선님의 부지런함에 혀를 내두를 지경이다. 좋은 영상자료다. 바쁘지 않을 때마다 꾸준하게 읽어보자.</p>
 </div>
 </td>
 </tr>
@@ -15623,7 +15637,7 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.3.0<br>
-Last updated 2018-03-16 23:07:46 KST
+Last updated 2018-04-19 08:48:27 KST
 </div>
 </div>
 </body>
