@@ -525,8 +525,8 @@ table.CodeRay td.code>pre{padding:0}
 <div class="details">
 <span id="author" class="author">Honeymon(Jiheon Kim)</span><br>
 <span id="email" class="email"><a href="mailto:ihoneymon@gmail.com">ihoneymon@gmail.com</a></span><br>
-<span id="revnumber">version 1.3.0,</span>
-<span id="revdate">2018-03-16</span>
+<span id="revnumber">version 1.4.0,</span>
+<span id="revdate">2018-04-26</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -1666,7 +1666,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>STS(Spring Tool Suite, <a href="https://spring.io/tools/sts" class="bare">https://spring.io/tools/sts</a>) 와 IntelliJ(<a href="https://www.jetbrains.com/idea/" class="bare">https://www.jetbrains.com/idea/</a>) 에서 프로젝트를 생성한다. 이후에는 STS 를 기준으로 진행한다(무료이고 이클립스 기반이고 스프링 부트 대시보드 등의 지원기능이 꽤 쓸만하다).<br>
 IDE에서 스프링 부트 프로젝트를 생성하는 방식은
-'Spring Initializer' 사이트에서 생성한 <code>zip</code> 파일을 내려받아 이를 지정된 위치에 압축해제한 후에 불러내기(import) 한다.</p>
+'Spring Initializr' 사이트에서 생성한 <code>zip</code> 파일을 내려받아 이를 지정된 위치에 압축해제한 후에 불러내기(import) 한다.</p>
 </div>
 <div class="paragraph">
 <p>프로젝트 생성에 필요한 프로젝트 기본정보와 의존성을 선택해야 한다.</p>
@@ -1693,7 +1693,7 @@ IDE에서 스프링 부트 프로젝트를 생성하는 방식은
 </td>
 <td class="content">
 <div class="paragraph">
-<p>'Spring Initializer' 에서 프로젝트 초기파일을 내려받는 방식이기 때문에 인터넷 연결이 되지 않는 경우에는 스프링 부트 프로젝트를 생성하기 어렵다. 이를 해결하기 위한 방법으로 인트라넷에 'Spring initializer' 프로젝트를 가동해야 한다. 여기에 오픈소스의 위대함이 깃드는데, <a href="https://github.com/spring-io/initializr/">Spring Initializr(https://github.com/spring-io/initializr/)</a> 프로젝트에서 소스를 내려받아 인트라넷에 구성할 수 있다.</p>
+<p>'Spring Initializr' 에서 프로젝트 초기파일을 내려받는 방식이기 때문에 인터넷 연결이 되지 않는 경우에는 스프링 부트 프로젝트를 생성하기 어렵다. 이를 해결하기 위한 방법으로 인트라넷에 'Spring Initializr' 프로젝트를 가동해야 한다. 여기에 오픈소스의 위대함이 깃드는데, <a href="https://github.com/spring-io/initializr/">Spring Initializr(https://github.com/spring-io/initializr/)</a> 프로젝트에서 소스를 내려받아 인트라넷에 구성할 수 있다.</p>
 </div>
 </td>
 </tr>
@@ -5722,10 +5722,10 @@ Binding to target ExampleProperties(enabled=false, remoteAddress=/192.168.1.1, s
 <div class="sect3">
 <h4 id="boot-features-logging-color-coded-output">3.4.3. 안시를 이용한 컬러 출력</h4>
 <div class="paragraph">
-<p>터미널에서 안시(ANSI)을 지원하는 경우, 컬러로 출력되면 가독성에 더욱 도움이 될 것이다. <code>spring.output.ansi.enabled</code> 속성을 지정하여  <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ansi/AnsiOutput.Enabled.html">지원하는 값(<code>ALWAYS</code>, <code>DETECT</code>, <code>NAVER</code>)(https://goo.gl/d2qb3W)</a>으로 설정을 변경할 수 있다.</p>
+<p>터미널에서 안시(ANSI)을 지원하는 경우, 컬러로 출력되면 가독성에 더욱 도움이 될 것이다. <code>spring.output.ansi.enabled</code> 속성을 지정하여  <a href="http://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ansi/AnsiOutput.Enabled.html">지원하는 값(<code>ALWAYS</code>, <code>DETECT</code>, <code>NEVER</code>)(https://goo.gl/d2qb3W)</a>으로 설정을 변경할 수 있다.</p>
 </div>
 <div class="paragraph">
-<p><code>%crl</code> 관례를 이용해서 색상을 변경할 수 있다. 가장 간단한 형태로 컨버터는 로그 수준에 따라서 출력색상을 지정한다, 예를 들자면:</p>
+<p><code>%clr</code> 관례를 이용해서 색상을 변경할 수 있다. 가장 간단한 형태로 컨버터는 로그 수준에 따라서 출력색상을 지정한다, 예를 들자면:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -6180,13 +6180,14 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@RestController</span>
+<span class="annotation">@RequestMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
 <span class="directive">public</span> <span class="type">class</span> <span class="class">UserRestController</span> {
-    <span class="annotation">@GetMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
+    <span class="annotation">@GetMapping</span>
     <span class="directive">public</span> <span class="predefined-type">List</span>&lt;User&gt; getUsers() {
       <span class="comment">//....</span>
     }
 
-    <span class="annotation">@PostMapping</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">/users</span><span class="delimiter">&quot;</span></span>)
+    <span class="annotation">@PostMapping</span>
     <span class="directive">public</span> User createUser(<span class="annotation">@RequestBody</span> User user) {
       <span class="comment">//...</span>
     }
@@ -6205,7 +6206,6 @@ ERROR in ch.qos.logback.core.joran.spi.Interpreter@4:71 - no applicable action f
     <span class="directive">public</span> <span class="type">void</span> deleteUser(<span class="annotation">@PathVariable</span> <span class="predefined-type">Long</span> user) {
         <span class="comment">// ...</span>
     }
-
 }</code></pre>
 </div>
 </div>
@@ -6647,7 +6647,7 @@ spring.resources.chain.strategy.fixed.version=v12</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>JSP는 내장 서블릿 컨테이너를 사용할 때 알려져 있는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-jsp-limitations">여러가지 제약사항(https://goo.gl/QhAA5L)</a>이 있어서 가급적이면 사용하지 않길 바란다.</p>
+<p>JSP는 내장 서블릿 컨테이너를 사용할 때 알려져 있는 <a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-jsp-limitations">여러가지 제약사항(https://goo.gl/QhAA5L)</a>이 있다.</p>
 </div>
 </td>
 </tr>
@@ -7852,7 +7852,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-h2">3.7.2. H2 데이터베이스</h4>
 <div class="paragraph">
-<p>현재는 개발환경 통일을 위해 로컬에 mariaDB를 설치하여 사용하고 있지만, 이전에는 <a href="http://h2database.com/html/main.html">H2 데이터베이스(http://h2database.com/html/main.html)</a>를 개발에 사용해왔다. 파일로 저장하도록 하여 데이터 영속화도 처리하면서 개발에 적용했다. 서비스 운영에 적용하기는 곤란한 부분들이 있지만 개발시에는 간단하게 파일DB를 생성할 수 있다. 그래서 <code>application.yml</code> 에 프로파일을 구분지어 로컬, 테스트 시에는 h2database를 사용하고, 개발, 운영에서는 mariadDB를 사용하도록 구성해왔다.</p>
+<p>현재는 개발환경 통일을 위해 로컬에 MariaDB를 설치하여 사용하고 있지만, 이전에는 <a href="http://h2database.com">H2 데이터베이스(http://h2database.com)</a>를 개발에 사용해왔다. 파일로 저장하도록 하여 데이터 영속화도 처리하면서 개발에 적용했다. 서비스 운영에 적용하기는 곤란한 부분들이 있지만 개발시에는 간단하게 파일DB를 생성할 수 있다. 그래서 <code>application.yml</code> 에 프로파일을 구분지어 로컬, 테스트 시에는 h2database를 사용하고, 개발, 운영에서는 MariaDB를 사용하도록 구성해왔다.</p>
 </div>
 <div class="sect4">
 <h5 id="boot-features-sql-h2-console">H2 웹콘솔</h5>
@@ -8010,7 +8010,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="colist arabic">
 <ol>
 <li>
-<p>JPA 명세서에서는 기본생성자를 요구한다. <code>protected</code> 접근자를를 통해 다른 패키지에서는 바로 사용할 수 없도록 제한하자.</p>
+<p>JPA 명세서에서는 기본생성자를 요구한다. 롬복 애너테이션 <code>@NoArgsConstructor</code>을 선언하면서 접근자를 <code>protected</code>로 선언하여 다른 패키지에서는 바로 사용할 수 없도록 제한하자.</p>
 </li>
 </ol>
 </div>
@@ -9274,7 +9274,7 @@ spring.datasource.tomcat.test-on-borrow=true</code></pre>
 <div class="sect3">
 <h4 id="boot-features-testing-spring-applications">3.13.2. 스프링 애플리케이션 테스트</h4>
 <div class="paragraph">
-<p>의존성 주입을 통해 얻게 되는 큰 혜택 중 하나는 코드에 대한 단위테스트를 손쉽게할 수 있다는 것이다. 스프링 없이도 <code>new</code> 명령어를 통해 간단하게 객체의 인스턴스를 얻을 수 있다. 또한 실제 의존성을 가진 객체 대신 <strong>목(Mock) 객체</strong>를 사용할 수 도 있다.</p>
+<p>의존성 주입을 통해 얻게 되는 큰 혜택 중 하나는 코드에 대한 단위테스트가 손쉽다는 것이다. 스프링 없이도 빈 객체를 인스턴스로 생성하여 테스트에 이용할 수 있다. 또한 실제 의존성을 가진 객체 대신 <strong>목(Mock) 객체</strong>를 사용할 수 도 있다.</p>
 </div>
 <div class="paragraph">
 <p>'단위 테스트' 다음에는 '통합 테스트'(진행 과정 중에 실제 스프링 <code>ApplicationContext</code>이 필요하기도 하고)으로 넘어가야한다. 다른 인프라에 연결해야하는 상황이나 애플리케이션을 배포하지 않고 통합테스트를 수행할 때 유용하다.</p>
@@ -10493,7 +10493,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="ulist">
 <ul>
 <li>
-<p>link: <a href="https://docs.spring.io/spring-boot/docs/current/actuator-api/html/">HTML(https://goo.gl/5Xjc1b)</a></p>
+<p><a href="https://docs.spring.io/spring-boot/docs/current/actuator-api/html/">HTML(https://goo.gl/5Xjc1b)</a></p>
 </li>
 <li>
 <p><a href="https://docs.spring.io/spring-boot/docs/current/actuator-api/pdf/spring-boot-actuator-web-api.pdf">PDF(https://goo.gl/aZXWkb)</a></p>
@@ -10686,7 +10686,7 @@ io.honeymon.boot.springboot.autoconfigure.HoneymonWebAutoConfiguration</code></p
 <div class="sect3">
 <h4 id="production-ready-endpoint-cors">4.1.7. CORS 지원</h4>
 <div class="paragraph">
-<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin resource sharing(CORS, https://goo.gl/J6wQAd)</a>은  <a href="https://www.w3.org/TR/cors/">W3C 명세(https://www.w3.org/TR/cors/)</a>되어 있는 서로 다른 도메인사이 요청에 대한 인증을 유연하게 정의하는 것을 허용한다. 액츄에이터는 MVC, WebFlux 혹은 액츄에이터 종점에 대해서 여러가지 상황에 따른 구성을 지원한다.</p>
+<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">Cross-origin resource sharing(CORS, https://goo.gl/J6wQAd)</a>은  <a href="https://www.w3.org/TR/cors/">W3C 명세(https://www.w3.org/TR/cors/)</a>되어 있는 서로 다른 도메인 사이 요청에 대한 인증을 유연하게 정의하는 것을 허용한다. 액츄에이터는 MVC, WebFlux 혹은 액츄에이터 종점에 대해서 여러가지 상황에 따른 구성을 지원한다.</p>
 </div>
 <div class="paragraph">
 <p>CORS 지원은 기본적으로 비활성화되어 있으며 <code>management.endpoints.web.cors.allowed-origins</code> 속성을 통해서만 활성화가 가능하다. 다음과 같이 정의하면 <code>honeymon.io</code> 도메인으로부터 <code>GET</code>과 <code>POST</code> 요청에 대해서만 허용한다:</p>
@@ -12171,7 +12171,7 @@ $ java -jar target/boot-spring-boot-1.0.0.RELEASE.jar
 </table>
 </div>
 <div class="paragraph">
-<p>빌드와 함께 실행 스크립트를 생성하려면 2.0.0.RELEASE 그레이들에서는 다음과 같이 선언해야 한다:</p>
+<p>실행가능한 바이너리를 생성하려면 2.0.0.RELEASE 그레이들에서는 다음과 같이 선언해야 한다:</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>build.gradle</code></div>
@@ -14718,7 +14718,7 @@ hello</code></pre>
 <div class="sect3">
 <h4 id="howto-reload-static-content">7.12.1. 정적 컨텐츠 재적재</h4>
 <div class="paragraph">
-<p>여러가지 선택사항이 있다. 그 중 가장 권장하는 것은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-devtools"><code>spring-boot-devtools</code>(https://goo.gl/Dcrgeh)</a>를 사용하는 것인데, 개발시 제공되는 기능으로, 애플리케이션을 빠르게 재시작할 수 있으며 LiveReolad 개발시 세밀한 구성(템플릿 캐싱과 같은)을 지원한다. 개발툴은 클래스패스의 변동사항을 살펴보는 방식으로 작동한다. 이 이야기는 정적 자원의 변경사항이 빌드된 후에 변화를 감지하여 적용한다는 뜻이다. 기본적으로 이클립스에서는 변경사항을 저장하면 자동으로 일어난다. 인텔리제이에서는 프로젝트가 필요한 빌드를 발동시키도록 해야한다. "<a href="#using-boot-devtools-exclude-resources">재시작 대상 제외</a>"를 이용하면 정적 자원을 변경해도 애플리케이션이 재시작되지 않도록 할 수 있다. 하지만 LiveReload는 발동된다.</p>
+<p>여러가지 선택사항이 있다. 그 중 가장 권장하는 것은 <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-devtools"><code>spring-boot-devtools</code>(https://goo.gl/Dcrgeh)</a>를 사용하는 것인데, 개발시 제공되는 기능으로, 애플리케이션을 빠르게 재시작할 수 있으며 LiveReload 개발시 세밀한 구성(템플릿 캐싱과 같은)을 지원한다. 개발툴은 클래스패스의 변동사항을 살펴보는 방식으로 작동한다. 이 이야기는 정적 자원의 변경사항이 빌드된 후에 변화를 감지하여 적용한다는 뜻이다. 기본적으로 이클립스에서는 변경사항을 저장하면 자동으로 일어난다. 인텔리제이에서는 프로젝트가 필요한 빌드를 발동시키도록 해야한다. "<a href="#using-boot-devtools-exclude-resources">재시작 대상 제외</a>"를 이용하면 정적 자원을 변경해도 애플리케이션이 재시작되지 않도록 할 수 있다. 하지만 LiveReload는 발동된다.</p>
 </div>
 <div class="paragraph">
 <p>반면 IDE에서 실행될 때(특히 디버깅 시)는 기능을 활용하는 것이 좋다(최근의 모든 IDE는 정적 자원의 재적재 및 자바 클래스가 변경되었을 때 핫스와핑이 가능하다).</p>
@@ -15636,8 +15636,8 @@ git.commit.time=2017-11-16T08:47+0000   <b class="conum">(1)</b></code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.3.0<br>
-Last updated 2018-04-03 10:57:32 KST
+Version 1.4.0<br>
+Last updated 2018-04-26 22:36:30 KST
 </div>
 </div>
 </body>
