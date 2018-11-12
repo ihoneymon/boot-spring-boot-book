@@ -22,7 +22,8 @@ namespace :book do
     puts " -- PDF  output at boot-spring-boot.pdf"
 
     puts "Converting to EPUB... (this one takes a while)"
-    `bundle exec asciidoctor-epub3 -a ebook-validate boot-spring-boot.asc`
+    `bundle exec asciidoctor -d book -b docbook5 boot-spring-boot.asc -o boot-spring-boot.docbook`
+    `pandoc -f docbook -t epub boot-spring-boot.docbook -o boot-spring-boot.epub`
     puts " -- EPUB  output at boot-spring-boot.epub"
   end
 
