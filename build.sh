@@ -1,2 +1,2 @@
 #!/usr/bin/env zsh
-bundle exec rake book:build
+bundle exec rake "book:build[publication]"

@@ -5,26 +5,29 @@ namespace :book do
     Dir.glob("book/*/images/*").each do |image|
       FileUtils.copy(image, "images/" + File.basename(image))
     end
+    Dir.mkdir 'publication' unless Dir.exist? 'publication'
   end
 
   desc 'build basic book formats'
-  task :build => :prebuild do
+  task :build, [:destination] => :prebuild do |t, args|
+    destination_name = args[:destination]
     puts "Converting to HTML..."
-    `bundle exec asciidoctor boot-spring-boot.asc`
-    puts " -- HTML output at boot-spring-boot.html"
+    `bundle exec asciidoctor ./book.adoc -o ./publication/#{destination_name}.html`
+    puts " -- HTML output:: ./publication/#{destination_name}.html"
 
     puts "converting to DOCX... (this one takes a while)"
-    `pandoc -s boot-spring-boot.html -o boot-spring-boot.docx`
-    puts " -- DOCX  output at boot-spring-boot.docx"
+    `pandoc -s ./publication/#{destination_name}.html -o ./publication/#{destination_name}.docx`
+    puts " -- DOCX  output:: ./publication/#{destination_name}.docx"
 
     puts "Converting to PDF... (this one takes a while)"
-    `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR boot-spring-boot.asc -o boot-spring-boot.pdf`
-    puts " -- PDF  output at boot-spring-boot.pdf"
+    `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR ./book.adoc -o ./publication/#{destination_name}.pdf`
+    puts " -- PDF  output:: ./publication/#{destination_name}.pdf"
 
     puts "Converting to EPUB... (this one takes a while)"
-    `bundle exec asciidoctor -d book -b docbook5 boot-spring-boot.asc -o boot-spring-boot.docbook`
-    `pandoc -f docbook -t epub boot-spring-boot.docbook -o boot-spring-boot.epub`
-    puts " -- EPUB  output at boot-spring-boot.epub"
+    `bundle exec asciidoctor -d book -b docbook5 ./book.adoc -o ./publication/#{destination_name}.docbook`
+    `pandoc -f docbook -t epub ./publication/#{destination_name}.docbook -o ./publication/#{destination_name}.epub`
+    puts " -- EPUB  output at ./publication/#{destination_name}.epub"
+
   end
 
 end
