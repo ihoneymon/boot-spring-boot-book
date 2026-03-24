@@ -1,20 +1,20 @@
 extends: default
 font:
   catalog:
-    NotoSansCJKkr:
-      normal: NotoSansCJKkr-Regular.otf
-      bold: NotoSansCJKkr-Bold.otf
-      italic: NotoSansCJKkr-Regular.otf
-      bold_italic: NotoSansCJKkr-Bold.otf
+    NanumGothic:
+      normal: NanumGothic-Regular.ttf
+      bold: NanumGothic-Bold.ttf
+      italic: NanumGothic-Regular.ttf
+      bold_italic: NanumGothic-Bold.ttf
     M+ 1mn:
       normal: mplus1mn-regular-subset.ttf
       bold: mplus1mn-bold-subset.ttf
       italic: mplus1mn-italic-subset.ttf
       bold_italic: mplus1mn-bold_italic-subset.ttf
   fallbacks:
-    - NotoSansCJKkr
+    - NanumGothic
 base:
-  font_family: NotoSansCJKkr
+  font_family: NanumGothic
   font_size: 10.5
   line_height: 1.6
 code:
