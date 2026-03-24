@@ -2,71 +2,98 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.0.3)
-    addressable (2.5.2)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.8.9)
+      public_suffix (>= 2.0.2, < 8.0)
     afm (0.2.2)
-    asciidoctor (1.5.8)
-    asciidoctor-pdf (1.5.0.alpha.16)
+    asciidoctor (2.0.26)
+    asciidoctor-pdf (1.5.0.alpha.14)
       asciidoctor (>= 1.5.0)
-      prawn (>= 1.3.0, < 2.3.0)
+      prawn (>= 1.3.0, < 3.0.0)
       prawn-icon (= 1.3.0)
-      prawn-svg (>= 0.21.0, < 0.28.0)
+      prawn-svg (>= 0.21.0, < 0.27.0)
       prawn-table (= 0.2.2)
-      prawn-templates (>= 0.0.3, <= 0.1.1)
+      prawn-templates (= 0.0.3)
       safe_yaml (~> 1.0.4)
-      thread_safe (~> 0.3.6)
+      thread_safe (~> 0.3.5)
       treetop (= 1.5.3)
     asciidoctor-pdf-cjk (0.1.3)
       asciidoctor-pdf (~> 1.5.0.alpha.8)
     asciidoctor-pdf-cjk-kai_gen_gothic (0.1.1)
       asciidoctor-pdf-cjk (~> 0.1.2)
-    awesome_print (1.8.0)
-    coderay (1.1.2)
-    concurrent-ruby (1.1.3)
-    css_parser (1.6.0)
+    awesome_print (1.9.2)
+    bigdecimal (3.3.1)
+    coderay (1.1.3)
+    concurrent-ruby (1.3.6)
+    css_parser (1.21.1)
       addressable
     epubcheck (3.0.1)
     hashery (2.1.2)
-    json (2.1.0)
-    kindlegen (2.9.7)
-    mini_portile2 (2.4.0)
-    multi_json (1.13.1)
-    nokogiri (1.10.8)
-      mini_portile2 (~> 2.4.0)
-    pdf-core (0.7.0)
-    pdf-reader (2.1.0)
+    json (2.19.2)
+    matrix (0.4.3)
+    mini_portile2 (2.8.9)
+    nokogiri (1.19.2)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.19.2-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.2-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.19.2-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.2-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.19.2-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.2-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.19.2-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.19.2-x86_64-linux-musl)
+      racc (~> 1.4)
+    pdf-core (0.10.0)
+    pdf-reader (1.4.1)
       Ascii85 (~> 1.0.0)
       afm (~> 0.2.1)
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
     polyglot (0.3.5)
-    prawn (2.2.2)
-      pdf-core (~> 0.7.0)
-      ttfunk (~> 1.5)
+    prawn (2.5.0)
+      matrix (~> 0.4)
+      pdf-core (~> 0.10.0)
+      ttfunk (~> 1.8)
     prawn-icon (1.3.0)
       prawn (>= 1.1.0, < 3.0.0)
-    prawn-svg (0.27.1)
+    prawn-svg (0.26.0)
       css_parser (~> 1.3)
       prawn (>= 0.11.1, < 3)
     prawn-table (0.2.2)
       prawn (>= 1.3.0, < 3.0.0)
-    prawn-templates (0.1.1)
-      pdf-reader (~> 2.0)
-      prawn (~> 2.2)
-    public_suffix (3.0.3)
-    pygments.rb (1.2.1)
-      multi_json (>= 1.0.0)
-    rake (12.3.1)
+    prawn-templates (0.0.3)
+      pdf-reader (~> 1.3)
+      prawn (>= 0.15.0)
+    public_suffix (7.0.5)
+    pygments.rb (4.0.0)
+    racc (1.8.1)
+    rake (13.3.1)
     ruby-rc4 (0.1.5)
-    safe_yaml (1.0.4)
+    safe_yaml (1.0.5)
     thread_safe (0.3.6)
     treetop (1.5.3)
       polyglot (~> 0.3)
-    ttfunk (1.5.1)
+    ttfunk (1.8.0)
+      bigdecimal (~> 3.1)
 
 PLATFORMS
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
   ruby
+  x86_64-darwin
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   asciidoctor
@@ -76,12 +103,11 @@ DEPENDENCIES
   coderay
   concurrent-ruby
   epubcheck
-  json
-  kindlegen (~> 2.9.0)
-  nokogiri (>= 1.8.2)
+  json (>= 2.3.0)
+  nokogiri (>= 1.19.1)
   pygments.rb
-  rake
+  rake (>= 12.3.3)
   thread_safe
 
 BUNDLED WITH
-   1.17.1
+  4.0.8
