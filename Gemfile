@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby File.read(File.join(__dir__, '.ruby-version')).strip
+
 gem 'rake', '>= 12.3.3'
 gem 'asciidoctor'
 
@@ -13,5 +15,4 @@ gem 'nokogiri', '>= 1.19.1'
 
 gem 'coderay'
 gem 'pygments.rb'
-gem 'thread_safe'
 gem 'epubcheck'
