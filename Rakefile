@@ -1,7 +1,7 @@
 namespace :book do
   desc 'prepare build'
   task :prebuild do
-    Dir.mkdir 'images' unless Dir.exists? 'images'
+    Dir.mkdir 'images' unless Dir.exist? 'images'
     Dir.glob("book/*/images/*").each do |image|
       FileUtils.copy(image, "images/" + File.basename(image))
     end
@@ -20,7 +20,8 @@ namespace :book do
     puts " -- DOCX  output:: ./publication/#{destination_name}.docx"
 
     puts "Converting to PDF... (this one takes a while)"
-    `bundle exec asciidoctor-pdf -r asciidoctor-pdf-cjk-kai_gen_gothic -a pdf-style=KaiGenGothicKR ./book.adoc -o ./publication/#{destination_name}.pdf`
+    fonts_dir = File.expand_path('themes/fonts')
+    `bundle exec asciidoctor-pdf -a pdf-theme=themes/korean-theme.yml -a "pdf-fontsdir=#{fonts_dir};GEM_FONTS_DIR" ./book.adoc -o ./publication/#{destination_name}.pdf`
     puts " -- PDF  output:: ./publication/#{destination_name}.pdf"
 
     puts "Converting to EPUB... (this one takes a while)"

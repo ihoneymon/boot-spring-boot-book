@@ -7,8 +7,8 @@ gem 'json', '>= 2.3.0'
 gem 'awesome_print'
 
 gem 'concurrent-ruby'
-gem 'asciidoctor-pdf'
-gem 'asciidoctor-pdf-cjk-kai_gen_gothic'
+gem 'asciidoctor-pdf', '>= 2.0'
+gem 'rexml'
 gem 'nokogiri', '>= 1.19.1'
 
 gem 'coderay'
