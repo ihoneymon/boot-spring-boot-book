@@ -7,6 +7,9 @@
 
 예제 코드는 [boot-spring-boot](https://github.com/ihoneymon/boot-spring-boot) 저장소를 함께 참고하세요.
 
+> **유지보수 정책**: 새 Spring Boot 버전 출시 시 작업 절차는
+> [boot-spring-boot/docs/MAINTENANCE.md](https://github.com/ihoneymon/boot-spring-boot/blob/upgrade/spring-boot-4x/docs/MAINTENANCE.md)를 참고하세요.
+
 ## 버전별 신기능 체크아웃 가이드
 
 각 버전 태그를 체크아웃하면 해당 버전 시점의 책 내용을 확인할 수 있습니다.
