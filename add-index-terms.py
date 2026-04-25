@@ -51,28 +51,29 @@ TECH_TERMS = [
 ]
 
 # 섹션 헤딩에서 인덱스 용어로 변환 시 제거할 AsciiDoc 속성 패턴
-ATTR_RE = re.compile(r'\{[a-z][a-z0-9\-]*\}')
-CODE_RE  = re.compile(r'`([^`]+)`')
-LINK_RE  = re.compile(r'link:[^\[]+\[([^\]]*)\]')
+ATTR_RE      = re.compile(r'\{[a-z][a-z0-9\-]*\}')
+CODE_RE      = re.compile(r'``?([^`]+?)``?')   # 단일·이중 백틱 모두 처리
+BOLD_RE      = re.compile(r'\*\*?([^*]+?)\*\*?')  # *bold* / **bold**
+ITALIC_RE    = re.compile(r'__?([^_]+?)__?')       # _italic_ / __italic__
+LINK_RE      = re.compile(r'link:[^\[]+\[([^\]]*)\]')
 
 # 이미 indexterm이 있는 줄 감지
 INDEXTERM_RE = re.compile(r'\(\(\(|\)\)\)|indexterm:\[')
 
 
 def clean_heading(text: str) -> str:
-    """헤딩 텍스트에서 AsciiDoc 마크업 제거."""
-    text = LINK_RE.sub(r'\1', text)
-    text = CODE_RE.sub(r'\1', text)
-    text = ATTR_RE.sub('', text)
-    # 남은 괄호·중괄호·대괄호 strip
-    text = text.strip().strip('{}()[]')
+    """헤딩 텍스트에서 AsciiDoc 인라인 마크업을 모두 제거하여 순수 텍스트 반환."""
+    text = LINK_RE.sub(r'\1', text)   # link:...[label] → label
+    text = CODE_RE.sub(r'\1', text)   # ``term`` / `term` → term
+    text = BOLD_RE.sub(r'\1', text)   # **bold** / *bold* → bold
+    text = ITALIC_RE.sub(r'\1', text) # __italic__ / _italic_ → italic
+    text = ATTR_RE.sub('', text)      # {attr} 제거
+    # 괄호류는 공백으로 치환 (단어 붙음 방지: "파비콘(Favicon)" → "파비콘 Favicon")
+    text = re.sub(r'[(){}\[\]]', ' ', text)
+    # 나머지 특수문자 제거 (백틱, 별표, 언더스코어, 따옴표)
+    text = re.sub(r'[`*_\'"<>]', '', text)
     text = re.sub(r'\s+', ' ', text).strip()
-    # 여전히 괄호로 감싸진 경우 다시 strip
-    if text.startswith('(') and text.endswith(')'):
-        text = text[1:-1].strip()
-    # 내부에 남은 괄호도 제거 (인덱스 마커 구문 오염 방지)
-    text = text.replace('(', '').replace(')', '')
-    return text.strip()
+    return text
 
 
 def heading_level(line: str) -> int:
