@@ -82,8 +82,22 @@ def heading_level(line: str) -> int:
     return len(m.group(1)) if m else 0
 
 
-def make_primary_indexterm(text: str) -> str:
-    return f'(((({text}))))'  # 잘못된 중첩 방지를 위해 아래에서 단일로 사용
+# 목록·테이블 줄 감지: 별도 줄 삽입 시 DocBook 태그 불일치 유발
+LIST_TABLE_RE = re.compile(r'^(\*+\s+|\.+\s+|-\s+|\|+\s*|//)')
+
+
+def insert_indexterm_inline(line: str, marker: str) -> str:
+    """목록·테이블 줄에는 마커를 인라인으로 삽입한다.
+
+    예) '* ``RestTemplate`` 사용' → '* indexterm:[...]``RestTemplate`` 사용'
+    """
+    m = LIST_TABLE_RE.match(line)
+    if m:
+        prefix = m.group(0)
+        rest = line[len(prefix):]
+        return prefix + marker + rest
+    # 일반 단락: 줄 맨 앞에 인라인 삽입
+    return marker + line
 
 
 def process_file(path: Path) -> bool:
@@ -107,7 +121,6 @@ def process_file(path: Path) -> bool:
             term = clean_heading(raw_term)
 
             if term and len(term) > 1:
-                # 다음 줄이 이미 indexterm이 아니면 삽입
                 next_line = lines[i + 1] if i + 1 < len(lines) else ''
                 if not INDEXTERM_RE.search(next_line) and not next_line.startswith('='):
                     out.append(f'((({term})))\n')
@@ -119,12 +132,22 @@ def process_file(path: Path) -> bool:
         if not INDEXTERM_RE.search(line):
             for pattern, primary, secondary in TECH_TERMS:
                 if primary not in term_seen and re.search(pattern, line):
-                    # 줄 앞에 indexterm 삽입
-                    marker = f'indexterm:[{primary},{secondary}]\n'
-                    out.append(marker)
+                    marker = f'indexterm:[{primary},{secondary}]'
+                    if LIST_TABLE_RE.match(line):
+                        # 목록·테이블: 줄 내 인라인 삽입 (별도 줄 생성 금지)
+                        out.append(insert_indexterm_inline(line, marker))
+                    else:
+                        # 일반 단락: 별도 앞 줄 삽입
+                        out.append(marker + '\n')
+                        out.append(line)
                     term_seen.add(primary)
                     changed = True
-                    break  # 줄당 하나의 마커만
+                    i += 1
+                    break
+            else:
+                out.append(line)
+                i += 1
+            continue
 
         out.append(line)
         i += 1
