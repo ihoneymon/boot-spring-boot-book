@@ -24,7 +24,7 @@ GEM
       addressable
     epubcheck (3.0.1)
     hashery (2.1.2)
-    json (2.19.2)
+    json (2.19.9)
     matrix (0.4.3)
     nokogiri (1.19.2-aarch64-linux-gnu)
       racc (~> 1.4)
